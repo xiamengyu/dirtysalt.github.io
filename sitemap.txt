@@ -49,7 +49,7 @@ https://dirtysalt.github.io/html/application-resilience-in-a-service-oriented-ar
 https://dirtysalt.github.io/html/applied-philosophy-aka-hacking.html
 https://dirtysalt.github.io/html/apply-visa-for-finland.html
 https://dirtysalt.github.io/html/apply-visa-for-usa.html
-https://dirtysalt.github.io/html/apue.html
+https://dirtysalt.github.io/html/apue-v2.html
 https://dirtysalt.github.io/html/atlassian-user-onboarding-magic.html
 https://dirtysalt.github.io/html/authority-and-merit.html
 https://dirtysalt.github.io/html/automate-to-save-mental-energy-not-time.html

@@ -17,7 +17,7 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org5a030ed">1. 写在前面</a></li>
-<li><a href="#org6b69412">2. 函数入口</a></li>
+<li><a href="#orgb0f49ac">2. 函数入口</a></li>
 <li><a href="#org92f080e">3. 全局内存</a></li>
 <li><a href="#orgead2a81">4. 管理对象</a>
 <ul>
@@ -26,8 +26,8 @@
 <li><a href="#orge3032b7">4.3. SizeMap</a></li>
 <li><a href="#orgf3b0243">4.4. Central Cache</a>
 <ul>
-<li><a href="#org1414acd">4.4.1. Data Structure</a></li>
-<li><a href="#orga2f14c4">4.4.2. Init</a></li>
+<li><a href="#orgff50b36">4.4.1. Data Structure</a></li>
+<li><a href="#org4ac66b3">4.4.2. Init</a></li>
 <li><a href="#orgf9dead5">4.4.3. InsertRange</a></li>
 <li><a href="#org545068e">4.4.4. RemoveRange</a></li>
 <li><a href="#org1186069">4.4.5. Populate</a></li>
@@ -35,7 +35,7 @@
 </li>
 <li><a href="#org8af66a5">4.5. PageHeap</a>
 <ul>
-<li><a href="#org9374c85">4.5.1. Data Structure</a></li>
+<li><a href="#org4c5e36c">4.5.1. Data Structure</a></li>
 <li><a href="#orga6cfea1">4.5.2. New</a></li>
 <li><a href="#org9a545b7">4.5.3. Carve</a></li>
 <li><a href="#org7f8e2fa">4.5.4. GrowHeap</a></li>
@@ -50,14 +50,14 @@
 <li><a href="#orga9aa7e3">4.7. PackedCache</a></li>
 <li><a href="#org69b879a">4.8. Thread Cache</a>
 <ul>
-<li><a href="#orgff50b36">4.8.1. Data Structure</a></li>
+<li><a href="#org757fdee">4.8.1. Data Structure</a></li>
 <li><a href="#orge9351c0">4.8.2. InitModule</a></li>
 <li><a href="#orgcf457f4">4.8.3. InitTSD</a></li>
 <li><a href="#org8b140a8">4.8.4. GetCache</a></li>
 <li><a href="#org503a15f">4.8.5. CreateCacheIfNecessary</a></li>
 <li><a href="#org321c512">4.8.6. NewHeap</a></li>
 <li><a href="#org7f96fa5">4.8.7. BecomeIdle</a></li>
-<li><a href="#org4ac66b3">4.8.8. Init</a></li>
+<li><a href="#org2c581cc">4.8.8. Init</a></li>
 <li><a href="#orga7ec271">4.8.9. ThreadCache::FreeList</a></li>
 <li><a href="#orgc6ad6ae">4.8.10. IncreaseCacheLimitLocked</a></li>
 <li><a href="#org69cc9c6">4.8.11. DeleteCache</a></li>
@@ -74,7 +74,7 @@
 </li>
 <li><a href="#org8c9b4d7">5. 用户对象</a>
 <ul>
-<li><a href="#orgb0f49ac">5.1. 函数入口</a></li>
+<li><a href="#org73996af">5.1. 函数入口</a></li>
 <li><a href="#org9e40bd4">5.2. 分配逻辑</a></li>
 <li><a href="#org90d825f">5.3. 释放逻辑</a></li>
 </ul>
@@ -154,8 +154,8 @@ tcmalloc代码写得相当得好，虽然很多地方没有看懂(而且我猜�
 </div>
 </div>
 
-<div id="outline-container-org6b69412" class="outline-2">
-<h2 id="org6b69412"><span class="section-number-2">2</span> 函数入口</h2>
+<div id="outline-container-orgb0f49ac" class="outline-2">
+<h2 id="orgb0f49ac"><span class="section-number-2">2</span> 函数入口</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 tcmalloc.cc
@@ -516,8 +516,8 @@ central_freelist.h
 </p>
 </div>
 
-<div id="outline-container-org1414acd" class="outline-4">
-<h4 id="org1414acd"><span class="section-number-4">4.4.1</span> Data Structure</h4>
+<div id="outline-container-orgff50b36" class="outline-4">
+<h4 id="orgff50b36"><span class="section-number-4">4.4.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 首先在static里面定义的central_cache是一个数组大小为kNumClasses，相当于和每一个thread cache里面的slab对应。
@@ -620,8 +620,8 @@ CentralFreeList的接口非常少
 </div>
 </div>
 
-<div id="outline-container-orga2f14c4" class="outline-4">
-<h4 id="orga2f14c4"><span class="section-number-4">4.4.2</span> Init</h4>
+<div id="outline-container-org4ac66b3" class="outline-4">
+<h4 id="org4ac66b3"><span class="section-number-4">4.4.2</span> Init</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 init主要是计算了tc(transfer cache)的max_cache_size以及cache_size,然后初始化了字段。
@@ -891,8 +891,8 @@ page_heap.h
 </p>
 </div>
 
-<div id="outline-container-org9374c85" class="outline-4">
-<h4 id="org9374c85"><span class="section-number-4">4.5.1</span> Data Structure</h4>
+<div id="outline-container-org4c5e36c" class="outline-4">
+<h4 id="org4c5e36c"><span class="section-number-4">4.5.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <p>
 PageHeap是在page_heap.h里面定义的，主要是用来分配page的。对于PageHeap结构还是比较复杂的.阅读tcmalloc文档也会发现，
@@ -1542,8 +1542,8 @@ thread_cache.h
 </p>
 </div>
 
-<div id="outline-container-orgff50b36" class="outline-4">
-<h4 id="orgff50b36"><span class="section-number-4">4.8.1</span> Data Structure</h4>
+<div id="outline-container-org757fdee" class="outline-4">
+<h4 id="org757fdee"><span class="section-number-4">4.8.1</span> Data Structure</h4>
 <div class="outline-text-4" id="text-4-8-1">
 <p>
 Thread Cache就是每一个线程里面管理小对象分配的cache.tcmalloc应该是假设局部线程里面通常分配的都是小对象，这样可以减少锁竞争。
@@ -1805,8 +1805,8 @@ BecomeIdle触发条件现在还不是很清楚，但是作用是认为这个tc�
 </div>
 </div>
 
-<div id="outline-container-org4ac66b3" class="outline-4">
-<h4 id="org4ac66b3"><span class="section-number-4">4.8.8</span> Init</h4>
+<div id="outline-container-org2c581cc" class="outline-4">
+<h4 id="org2c581cc"><span class="section-number-4">4.8.8</span> Init</h4>
 <div class="outline-text-4" id="text-4-8-8">
 <p>
 注意这里Init已经在外围的NewHeap加锁了。这个地方进行初始化。设置一下最大分配多少空间以及初始化每一个slab
@@ -2227,8 +2227,8 @@ tcmalloc.h
 </p>
 </div>
 
-<div id="outline-container-orgb0f49ac" class="outline-3">
-<h3 id="orgb0f49ac"><span class="section-number-3">5.1</span> 函数入口</h3>
+<div id="outline-container-org73996af" class="outline-3">
+<h3 id="org73996af"><span class="section-number-3">5.1</span> 函数入口</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 我们还是以最初的函数入门进行分析，我们只是关注tc_malloc与tc_free.
