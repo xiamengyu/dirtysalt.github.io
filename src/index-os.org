@@ -17,7 +17,7 @@
   - [[http://warsus.github.io/lions-/][第六版莱昂斯 Unix 操作系统评述(A COMMENTARY ON THE SIXTH EDITION UNIX OPERATING SYSTEM)]]
   - [[file:tcp-on-linux.org][TCP Implementation in Linux: A Brief Tutorial]]
   - [[file:simd.org][SIMD]] Single Instruction Muitple Data 单指令多数据
-  - [[file:apue.org][APUE]] Unix环境高级编程(Advanced Programming Unix Environment), W. Richard Stevens的神作
+  - [[file:apue-v2.org][APUE]] Unix环境高级编程(Advanced Programming Unix Environment), W. Richard Stevens的神作
 
 
 - [[file:linux.org][linux]]
