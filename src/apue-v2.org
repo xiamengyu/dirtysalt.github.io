@@ -2028,21 +2028,21 @@ int main(int argc,char* argv[],char* envp[]);
 使用getenv这样的接口来使用。
 
 关于环境表操作有必要说说。环境表的接口有下面这些：
-   - char* getenv(const char* name);
-   - int putenv(const char* str);
-   - int setenv(const char* name,const char* value,int rewrite);
-   - int unsetenv(const char* name);
+- char* getenv(const char* name);
+- int putenv(const char* str);
+- int setenv(const char* name,const char* value,int rewrite);
+- int unsetenv(const char* name);
 关于putenv和setenv的差别可以看到，因为环境表存放的是name=value这样的表示，而setenv提供的是
 k,v单量，所以setenv内部是需要分配一个内存来合并name和value的。
 
 在上一节看到了程序启动时候，参数和环境变量都是安排在内存空间高端的。这就造成一个问题，那就是
 如果putenv和setenv需要添加环境表的内容怎么办？事实上这个问题也很好办，原则就是尽可能复用内存：
-   - 如果改写
-      - 如果name=value长度更短，那么覆盖原空间。
-      - 如果name=value长度更长，那么开辟新空间替换指针。
-   - 如果追加
-      - 如果环境表项足够，那么开辟name=value并且填写指针。
-      - 如果环境表项不够，那么重开一个环境表，然后开辟name=value并且填写指针。
+- 如果改写
+   - 如果name=value长度更短，那么覆盖原空间。
+   - 如果name=value长度更长，那么开辟新空间替换指针。
+- 如果追加
+   - 如果环境表项足够，那么开辟name=value并且填写指针。
+   - 如果环境表项不够，那么重开一个环境表，然后开辟name=value并且填写指针。
 
 *** 非局部跳转
 局部跳转是指在一个函数内的跳转，可以使用goto.非局部跳转就是指函数之间的跳转了。使用的
@@ -2138,9 +2138,9 @@ struct rlimit{
 };
 #+END_SRC
 对于资源限制分为硬限制和软限制，遵循下面三个规则：
-   - 任何进程都可以将软限制调整<=硬限制。
-   - 任何进程可以降低硬限制，但是必须>=软限制。
-   - 只有超级用户可以提高硬限制。
+- 任何进程都可以将软限制调整<=硬限制。
+- 任何进程可以降低硬限制，但是必须>=软限制。
+- 只有超级用户可以提高硬限制。
 常量RLIM_INFINITY可以指定无限量限制。
 
 关于resoruce有下面这几个常量：
@@ -2245,12 +2245,12 @@ Unix提供采用延迟重用算法，但是如果创建进程频繁的话，那�
 ID==2是页守护进程(page daemon),负责支持虚拟存储系统的分页操作。
 
 进程标识符接口有下面这些：
-   - getpid //pid
-   - getppid //parent pid
-   - getuid //实际用户id
-   - geteuid //有效用户id
-   - getgid //实际组id
-   - getegid  //有效组id
+- getpid //pid
+- getppid //parent pid
+- getuid //实际用户id
+- geteuid //有效用户id
+- getgid //实际组id
+- getegid  //有效组id
 
 *** 开辟子进程
 我们使用fork/vfork可以开辟子进程：
@@ -2266,25 +2266,25 @@ fork之后，子进程和父进程各自执行自己的逻辑。刚分开的时�
 线程来说，fork的子进程之后包含了该fork出来的线程，而不是拥有所有线程的副本。
 
 fork失败的原因通常有下面两种：
-   - 系统中已经存在太多的进程。
-   - 实际用户ID的进程总数已经超过了系统限制，CHILD_MAX.
+- 系统中已经存在太多的进程。
+- 实际用户ID的进程总数已经超过了系统限制，CHILD_MAX.
 
 fork出的子进程继承了父进程下面这些属性：
-   - uid,gid,euid,egid
-   - 附加组id,进程组id,会话id
-   - 设置用户id标记和设置组id标记
-   - 控制终端
-   - 当前工作目录/根目录
-   - 文件模式创建mask
-   - 文件描述符的文件标志(close-on-exec)
-   - 信号屏蔽和安排
-   - 存储映射
-   - 资源限制
+- uid,gid,euid,egid
+- 附加组id,进程组id,会话id
+- 设置用户id标记和设置组id标记
+- 控制终端
+- 当前工作目录/根目录
+- 文件模式创建mask
+- 文件描述符的文件标志(close-on-exec)
+- 信号屏蔽和安排
+- 存储映射
+- 资源限制
 下面是不同的部分：
-   - pid不同
-   - 进程时间被清空
-   - 文件锁没有继承
-   - 未处理信号被清空
+- pid不同
+- 进程时间被清空
+- 文件锁没有继承
+- 未处理信号被清空
 
 fork通常一种使用方法就是之后执行exec程序，因为大部分时候做一个COW内存映像也是没有必要的。
 vfork相对于fork就是这样一个差别，vfork子进程和父进程占用同一个内存映像，在子进程修改会影响父进程。
@@ -2423,17 +2423,17 @@ pid_t wait(int* statloc);
 pid_t waitpid(pid_t pid,int* statloc,int options);
 #+END_SRC
 行为是这样的：
-   - 如果没有任何子进程结束，那么默认阻塞。
-   - 如果任一子进程终止的话，那么父状态得到这个子进程终止状态返回，而子进程资源可以回收。
-   - 如果没有任何子进程的话，那么出错返回。
+- 如果没有任何子进程结束，那么默认阻塞。
+- 如果任一子进程终止的话，那么父状态得到这个子进程终止状态返回，而子进程资源可以回收。
+- 如果没有任何子进程的话，那么出错返回。
 对于waitpid是wait的升级版本，可以选择非阻塞返回，并且可以等待一个特定的子进程返回，
 而不是只是等待第一个结束的子进程返回。
 
 对于pid来说：
-   - ==-1.任意子进程
-   - >0.pid和pid相等的子进程
-   - ==0.组id和调用进程组id相同的任一子进程
-   - <0.组id等于pid的任一子进程
+- ==-1.任意子进程
+- >0.pid和pid相等的子进程
+- ==0.组id和调用进程组id相同的任一子进程
+- <0.组id等于pid的任一子进程
 这个关系到进程组的概念，后面会提到。
 
 对于statloc如果不为NULL的话，那么可以获得子进程终止状态，通过宏来处理这个值：
@@ -2446,9 +2446,9 @@ pid_t waitpid(pid_t pid,int* statloc,int options);
 这里关系到作业控制概念，后面会提到。
 
 对于options有下面几个值：
-   - WCONTINUED.
-   - WUNTRACED.
-   - WNOHANG.非阻塞的等待子进程结束。
+- WCONTINUED.
+- WUNTRACED.
+- WNOHANG.非阻塞的等待子进程结束。
 
 之前提到了对于子进程结束的话，内核是会维护子进程的一些资源使用和终止状态的。对于wait/waitpid来说，只是
 得到了终止状态信息，如果需要得到资源使用的饿话，那么可以使用wait3/wait4函数。这两个函数都是wait/waitpid
@@ -2470,28 +2470,28 @@ int execlp(const char* filename,const char* arg0,...); //end with NULL
 int execvp(const char* filename,char* const argv[]); //end with NULL
 #+END_SRC
 对于exec来说，如果传入的是filename的话，那么：
-   - 如果包含/的话，那么认为这是一个路径名pathname
-   - 否则在PATH环境变量里面查找到第一个可执行文件
-   - 如果可执行文件不是链接器产生的话，那么认为是一个shell文件，使用/bin/sh执行
+- 如果包含/的话，那么认为这是一个路径名pathname
+- 否则在PATH环境变量里面查找到第一个可执行文件
+- 如果可执行文件不是链接器产生的话，那么认为是一个shell文件，使用/bin/sh执行
 
 执行exec函数，下面属性是不发生变化的：
-   - 进程ID和父进程ID
-   - 实际用户ID和实际组ID
-   - 附加组ID
-   - 会话ID
-   - 控制终端
-   - 闹钟余留时间
-   - 当前工作目录
-   - 根目录
-   - umask
-   - 文件锁
-   - 进程信号屏蔽
-   - 未处理信号
-   - 资源限制
-   - 进程时间
+- 进程ID和父进程ID
+- 实际用户ID和实际组ID
+- 附加组ID
+- 会话ID
+- 控制终端
+- 闹钟余留时间
+- 当前工作目录
+- 根目录
+- umask
+- 文件锁
+- 进程信号屏蔽
+- 未处理信号
+- 资源限制
+- 进程时间
 而下面属性是发生变化的：
-   - 文件描述符如果存在close-on-exec标记的话，那么会关闭。
-   - 如果可执行程序存在设置用户ID和组ID位的话，那么有效用户ID和组ID会发生变化。
+- 文件描述符如果存在close-on-exec标记的话，那么会关闭。
+- 如果可执行程序存在设置用户ID和组ID位的话，那么有效用户ID和组ID会发生变化。
 
 *** 更改用户ID和组ID
 所涉及的函数包括下面几个：
@@ -2516,9 +2516,9 @@ int setegid(gid_t gid);
 通常保存的内容就是第一次exec文件使用的euid.
 
 对于setuid(uid)行为是这样的：
-   - 如果是超级用户进程的话，那么ruid=uid,euid=uid,saved_id=uid.
-   - 如果不是超级用户进程的话，如果uid==实际用户id或者是保存设置id的话，那么euid=uid.
-   - 出错那么返回-1并且errno=EPERM.
+- 如果是超级用户进程的话，那么ruid=uid,euid=uid,saved_id=uid.
+- 如果不是超级用户进程的话，如果uid==实际用户id或者是保存设置id的话，那么euid=uid.
+- 出错那么返回-1并且errno=EPERM.
 | id       | exec但是设置用户ID关闭 | exec设置用户ID打开 | setuid(uid)超级用户 | setuid(uid)非特权用户 |
 |----------+------------------------+--------------------+---------------------+-----------------------|
 | ruid     | 不变                   | 不变               | uid                 | 不变                  |
@@ -2528,13 +2528,13 @@ int setegid(gid_t gid);
 
 *** system函数
 system函数使用起来非常方便，但是需要了解其中细节才可能用好。system本身实现大致就是
-   - fork/exec
-   - 使用命令/bin/sh -c来执行cmdstring
-   - 父进程使用waitpid得到结果
+- fork/exec
+- 使用命令/bin/sh -c来执行cmdstring
+- 父进程使用waitpid得到结果
 对于system的返回值有下面三种：
-   - 如果fork或者是waitpid返回除EINTR之外的错误，那么返回-1并且设置errno
-   - 如果exec失败的话，那么/bin/sh返回值相当执行exit(127).
-   - 如果都成功的话，那么返回命令的终止状态。
+- 如果fork或者是waitpid返回除EINTR之外的错误，那么返回-1并且设置errno
+- 如果exec失败的话，那么/bin/sh返回值相当执行exit(127).
+- 如果都成功的话，那么返回命令的终止状态。
 因为cmdstring是通过/bin/sh来执行的话，那么允许里面包含glob符号和重定向等shell字符。
 
 值得一提的是，在waitpid出来之前，system使用wait函数来等待子进程返回，方式大概如下：
@@ -2638,8 +2638,8 @@ ruid=500,euid=0 //这个时候就修改成功了
 #!pathname [optional-arguments]
 #+END_EXAMPLE
 假设文件是X,我们正准备执行./X arg0 arg1.那么shell会做如下处理：
-   - 识别出是解释器文件X
-   - 直接调用pathname [optional-arguments] X arg0 arg1
+- 识别出是解释器文件X
+- 直接调用pathname [optional-arguments] X arg0 arg1
 #+BEGIN_SRC C++
 #include <cstdio>
 int main(int argc,char* const argv[]){
@@ -2673,8 +2673,8 @@ print("hello,world")
 #+END_SRC
 前面一种是解释器写法，后面一种是非解释器写法。对于非解释器文件来说，如果使用./X
 来执行的话，那么经过下面这几个步骤：
-   - shell尝试执行./X.(execlp)但是失败，发现这个是一个shell脚本文件。
-   - 那么会尝试启动/bin/sh来将这个文件作为输入，执行文件内容。
+- shell尝试执行./X.(execlp)但是失败，发现这个是一个shell脚本文件。
+- 那么会尝试启动/bin/sh来将这个文件作为输入，执行文件内容。
 可以看到相比较解释器文件的话，首先execlp会尝试判断是否为shell脚本，这个部分会试错，
 同时试错之后还要启动一个/bin/sh来执行shell脚本。另外一点可以看到，实际上我们
 是最终拿/bin/sh来执行shell脚本的，问题是如果我们shell脚本中使用了一些其他shell
@@ -2712,17 +2712,17 @@ clock_t times(struct tms* buf); //返回wall clock time.但是需要通过差值
 #note: 对于终端不是很了解，所以这里没有区分是从终端登录还是网络登录，只是统一说明为登录过程。但是介绍的时候，还是区分两种登录方式的。
 
 首先看看终端登录过程，这个过程是BSD的，但是Linux基本相同：
-   - 管理员创建/etc/ttys文件，每个终端设备有一行表明设备名和getty启动参数。
-   - 系统自举创建init进程，init进程读取/etc/ttys文件，对每个终端fork并且exec gettty.
-   - getty打开终端设备，这样就映射到了文件描述符0,1,2.然后初始化环境，exec login.
-   - login基本功能就是读取用户密码，然后验证。如果失败的话，那么直接退出。
-   - 失败的话，那么init会接收到失败的信号，然后重新fork一个getty出来。
+- 管理员创建/etc/ttys文件，每个终端设备有一行表明设备名和getty启动参数。
+- 系统自举创建init进程，init进程读取/etc/ttys文件，对每个终端fork并且exec gettty.
+- getty打开终端设备，这样就映射到了文件描述符0,1,2.然后初始化环境，exec login.
+- login基本功能就是读取用户密码，然后验证。如果失败的话，那么直接退出。
+- 失败的话，那么init会接收到失败的信号，然后重新fork一个getty出来。
 如果login成功的话，那么会执行下面这些动作：
-   - 更改目录为当前用户home目录
-   - chown终端权限所有权，使登录用户为所有者
-   - 将终端设备访问权限修改称为用户读写
-   - 调用setgid和initgroups设置进程的组id
-   - 设置环境变量，然后exec shell
+- 更改目录为当前用户home目录
+- chown终端权限所有权，使登录用户为所有者
+- 将终端设备访问权限修改称为用户读写
+- 调用setgid和initgroups设置进程的组id
+- 设置环境变量，然后exec shell
 bash启动之后会读取.bash_profile.这样用户最终的话，通过终端连接到终端设备驱动程序，
 而终端设备的读写被映射成为0,1,2文件描述符被shell使用。用户操作终端的话，会被终端设备驱动程序接收到，
 而对于shell来说，这些操作就是直接从0,1,2读取和写入数据。对于Linux来说，唯一不同的就是，对于
@@ -2762,19 +2762,19 @@ int setpgid(pid_t pid,pid_t pgid);
 pid_t setsid();
 #+END_SRC
 来建立一个新会话。如果调用此函数的进程不是进程组长的话，那么就会创建一个新的会话。那么此时会：
-   - 该进程称为会话首进程(session leader).
-   - 该进程称为进程组组长.
-   - 该进程没有控制终端，即使之前有控制终端那么这种联系也会断掉。
+- 该进程称为会话首进程(session leader).
+- 该进程称为进程组组长.
+- 该进程没有控制终端，即使之前有控制终端那么这种联系也会断掉。
 我们使用第三个特性来创建daemon进程。调用getsid可以获得会话首进程进程组pid,也就是会话首进程进程id.
 
 *** 控制终端
 会话和进程组有一些其他特性，包括下面这些：
-   - 一个会话持有一个控制终端(controlling terminal)，可以是终端设备也可以是伪终端
-   - 建立与控制终端连接的会话首进程被称为控制进程(controlling process).
-   - 一个会话有多个进程组，允许存在多个后台进程组(backgroup process group)和一个前台进程组(foregroup process group).
-   - 键入终端的中断键(Ctrl+C)会发送中断信号给前台进程组所有进程。
-   - 键入终端的退出键(Ctrl+\)会发送退出信号给前台进程组所有进程。
-   - 终端或者是网络断开的话，那么会将挂断信号发送给会话首进程。
+- 一个会话持有一个控制终端(controlling terminal)，可以是终端设备也可以是伪终端
+- 建立与控制终端连接的会话首进程被称为控制进程(controlling process).
+- 一个会话有多个进程组，允许存在多个后台进程组(backgroup process group)和一个前台进程组(foregroup process group).
+- 键入终端的中断键(Ctrl+C)会发送中断信号给前台进程组所有进程。
+- 键入终端的退出键(Ctrl+\)会发送退出信号给前台进程组所有进程。
+- 终端或者是网络断开的话，那么会将挂断信号发送给会话首进程。
 通常来说我们不必关心控制终端，因为在登录shell时候已经自动建立控制终端了。
 
 查看当前shell使用的控制终端可以
@@ -2799,13 +2799,13 @@ pid_t tcgetsid(int fd);
 *** 作业控制
 作业控制是在BSD后期版本加入的，允许一个终端上启动多个作业(进程组),控制哪一个作业可以访问该终端，
 以及哪些作业是在后台运行的。作业控制我们大体接触到这些信号：
-   - SIGTSTP(Ctrl+Z)
-   - SIGINT(Ctrl+C)
-   - SIGQUIT(Ctrl+\)
-   - SIGHUP(终端断开或者是网络断开)
-   - SIGCONT(fg,将后台进程组切换到前台进程组)
-   - SIGTTIN
-   - SIGTTOUT
+- SIGTSTP(Ctrl+Z)
+- SIGINT(Ctrl+C)
+- SIGQUIT(Ctrl+\)
+- SIGHUP(终端断开或者是网络断开)
+- SIGCONT(fg,将后台进程组切换到前台进程组)
+- SIGTTIN
+- SIGTTOUT
 这几种信号之间会有交互作用，比如对一个进程产生四种停止信号(SIGTSTP,SIGSTOP,SIGTTIN,SIGTTOUT)那么就会
 取消SIGCONT信号，而产生SIGCONT信号的话也会丢弃停止信号。
 
@@ -2937,14 +2937,14 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 *** 信号概念
 信号定义在头文件<signal.h>里面并且都是正整数，没有为0的信号。但是kill对于信号0有着特殊应用。信号出现
 情况有下面这些：
-   - 用户在控制终端按键
-   - 硬件异常产生信号
-   - kill
-   - 某种条件发生，比如SIGPIPE
+- 用户在控制终端按键
+- 硬件异常产生信号
+- kill
+- 某种条件发生，比如SIGPIPE
 信号是一个异步事件，我们不能够再某个点判断信号是否发生，而只能够告诉系统信号发生了我们应该怎么做：
-   - 忽略信号。但是SIGKILL和SIGSTOP是不可以忽略的，它们向超级用户提供了进程终止和停止的可靠方法。
-   - 捕捉系统。可以提供自定义函数来处理信号发生动作，但是不能够捕捉SIGKILL和SIGSTOP这两个信号。
-   - 执行系统默认动作，大多数系统默认动作是终止进程。
+- 忽略信号。但是SIGKILL和SIGSTOP是不可以忽略的，它们向超级用户提供了进程终止和停止的可靠方法。
+- 捕捉系统。可以提供自定义函数来处理信号发生动作，但是不能够捕捉SIGKILL和SIGSTOP这两个信号。
+- 执行系统默认动作，大多数系统默认动作是终止进程。
 
 *** 常见信号
 | 名字      | 说明             | 默认           | 其他 |
@@ -2985,10 +2985,10 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 | SIGXFSZ   | 超过文件长度限制 | 终止+core/忽略 |      |
 
 下面这些条件是不产生core文件的：
-   - 进程是设置用户ID或者是设置组ID的，但是程序文件的owner并不是当前用户。
-   - 用户没有写当前目录权限。
-   - core文件已经存在并且用户对文件有写权限。
-   - core文件过大超过允许core出大小。
+- 进程是设置用户ID或者是设置组ID的，但是程序文件的owner并不是当前用户。
+- 用户没有写当前目录权限。
+- core文件已经存在并且用户对文件有写权限。
+- core文件过大超过允许core出大小。
 
 对于SIGCHLD信号来说，如果忽略的话那么不会产生僵尸进程。子进程返回直接丢弃退出状态。
 而父进程如果调用wait的话，那么会等待到最后一个子进程结束，然后返回-1并且errno=ECHILD.
@@ -3054,8 +3054,8 @@ int main(){
 errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情，那么是唤醒阻塞的系统调用好机会。
 
 低速的系统调用，主要是针对那种很可能永久阻塞的系统调用，包括：
-   - 读写和打开某些类型文件(管道，终端和网络设备等)
-   - pause,wait以及某些ioctl操作
+- 读写和打开某些类型文件(管道，终端和网络设备等)
+- pause,wait以及某些ioctl操作
 需要注意的是，磁盘文件并不属于低速系统调用范围。
 
 对于存在中断的系统调用来说，我们必须显示处理中断情况写起来就相当恶心：
@@ -3080,13 +3080,13 @@ again:
 
 *** 可靠信号
 我们首先看看可靠信号下面存在哪些术语：
-   - 产生(generation).当系统认为某个时间时候，那么向进程通知这个信号发生。
-   - 递送(delivery).当信号处理函数被调用时候，那么说向进程递送了这个信号。
-   - 未决(pending).信号产生和信号递送这段时间，信号是未决的。
-   - 阻塞(blocking).进程屏蔽某个信号，并且处理方式不是忽略的话，那么信号会一直保持未决状态。直到更改为忽略处理方式，或者是不屏蔽。
-   - 排队(queue).阻塞时候如果对应信号发生多次的话，那么信号会累加。不过大部分系统而言Unix并不排队，而只是保存一次。
-   - 递送顺序(delivery order).系统并没有规定如果多个信号发生，那么哪个信号会首先被递送。但是通常来说是关系到当前进程状态信号被处理，比如SIGSEGV.
-   - 信号屏蔽字(signal mask)和信号集(sigset).保存多个信号集合。
+- 产生(generation).当系统认为某个时间时候，那么向进程通知这个信号发生。
+- 递送(delivery).当信号处理函数被调用时候，那么说向进程递送了这个信号。
+- 未决(pending).信号产生和信号递送这段时间，信号是未决的。
+- 阻塞(blocking).进程屏蔽某个信号，并且处理方式不是忽略的话，那么信号会一直保持未决状态。直到更改为忽略处理方式，或者是不屏蔽。
+- 排队(queue).阻塞时候如果对应信号发生多次的话，那么信号会累加。不过大部分系统而言Unix并不排队，而只是保存一次。
+- 递送顺序(delivery order).系统并没有规定如果多个信号发生，那么哪个信号会首先被递送。但是通常来说是关系到当前进程状态信号被处理，比如SIGSEGV.
+- 信号屏蔽字(signal mask)和信号集(sigset).保存多个信号集合。
 
 *** 信号集
 信号集是一堆信号的集合，POSIX.1定义了信号集上一系列操作。因为信号集的数量可能扩展，所以必须定义一个新的结构表示。
@@ -3301,10 +3301,10 @@ SIGUSR1 masked=0
 
 **** sigsuspend
 对于pause来说，如果我们还想只是等待某些信号的话，那么就必须这样进行：
-   - 首先获得当前屏蔽字
-   - 修改称为我们关心的屏蔽字
-   - 然后进行pause
-   - 然后恢复原始屏蔽字
+- 首先获得当前屏蔽字
+- 修改称为我们关心的屏蔽字
+- 然后进行pause
+- 然后恢复原始屏蔽字
 但是在修改屏蔽字和pause之间有一个短暂的时间间隔，如果这个时间信号到来的话，那么pause以后就会永久陷入阻塞。
 究其原因是因为这两个操作本来应该为一个操作，应该存在一个原子操作。
 #+BEGIN_SRC C++
@@ -3588,22 +3588,22 @@ const char* strsignal(int signo);
 ** 线程控制
 典型的Unix进程可以看成只有一个控制线程，一个进程在同一个时刻只允许做一件事情。
 使用了线程之后，那么一个进程就可以持有多个控制线程，允许做多件事情，这样做有很多好处：
-   - 为每种事件类型的处理分配单独的线程，这样简化处理异步事件的代码。
-   - 多个控制线程之间可以共享进程资源，比如内存和文件描述符。
-   - 多个控制线程可以改善程序的吞吐量，允许多个相互独立的任务交叉运行。
-   - 交互程序可以显著改善程序的响应时间，用专门线程处理UI专门线程处理后端事情。
+- 为每种事件类型的处理分配单独的线程，这样简化处理异步事件的代码。
+- 多个控制线程之间可以共享进程资源，比如内存和文件描述符。
+- 多个控制线程可以改善程序的吞吐量，允许多个相互独立的任务交叉运行。
+- 交互程序可以显著改善程序的响应时间，用专门线程处理UI专门线程处理后端事情。
 对于线程来说，包含了表示进程内执行环境所必须的信息，其中包括：
-   - 线程ID
-   - 寄存器堆
-   - 栈
-   - 调度优先级和策略
-   - 信号屏蔽字
-   - errno
-   - 线程私有数据
+- 线程ID
+- 寄存器堆
+- 栈
+- 调度优先级和策略
+- 信号屏蔽字
+- errno
+- 线程私有数据
 共享的进程资源主要包括：
-   - text段
-   - 数据段，堆，栈
-   - 文件描述符
+- text段
+- 数据段，堆，栈
+- 文件描述符
 我们使用的是POSIX.1-2001定义的线程接口，pthread or POSIX线程。可以使用_POSIX_THREADS/
 _SC_THREADS来测试是否支持POSIX线程。
 
@@ -3729,9 +3729,9 @@ int main(){
 *** 线程终止
 如果进程中任意线程调用了_exit,Exit,exit的话，或者是任意线程接收到了信号而处理动作是终止的话，那么整个进程就会终止。
 对于单个线程只有以下面三种方式退出的话，才可能在不终止整个进程情况下面停止它的控制流：
-   - 线程只是从启动例程中返回，返回值是线程的退出码。
-   - 线程可以被同一进程中的其他线程取消。
-   - 线程调用pthread_exit.
+- 线程只是从启动例程中返回，返回值是线程的退出码。
+- 线程可以被同一进程中的其他线程取消。
+- 线程调用pthread_exit.
 #+BEGIN_SRC C++
 void pthread_exit(void* ret_ptr); //返回ret_ptr
 int pthread_join(pthread_t tid,void** ret_ptr); //得到ret_ptr内容
@@ -3789,9 +3789,9 @@ push1
 
 *** 线程同步
 关于线程同步，pthread提供了三种最基本的机制，分别是：
-   - 互斥锁
-   - 读写锁
-   - 条件变量
+- 互斥锁
+- 读写锁
+- 条件变量
 **** 互斥锁
 互斥锁可以确保同一时间只有一个线程访问数据：
 #+BEGIN_SRC C++
@@ -3945,9 +3945,9 @@ int pthread_attr_setguardsize(pthread_attr_t* attr,size_t guardsize);
 
 **** 其他属性
 线程还有其他一些属性但是没有在attr里面反应包括：
-   - 可取消状态
-   - 可取消类型
-   - 并发度
+- 可取消状态
+- 可取消类型
+- 并发度
 并发度控制着用户线程可以映射的内核线程或者是进程数目，如果系统实现多个用户线程对应一个系统线程的话，那么增加
 可以运行的用户线程数目可以改善性能。
 #+BEGIN_SRC C++
@@ -4217,33 +4217,33 @@ int pthread_kill(pthread_t thread,int signo);
 
 **** attr
 ***** init
-     - pthread_attr_init
-     - pthread_attr_destroy
+  - pthread_attr_init
+  - pthread_attr_destroy
 
 ***** detach
-   - pthread_attr_getdetachstate
-   - pthread_attr_setdetachstate
+- pthread_attr_getdetachstate
+- pthread_attr_setdetachstate
 所谓detach就是指线程在运行完成之后会自己退出而不会被join.我们这里可以控制线程是处于detached状态，还是处于joinable的状态。
 
 ***** guard
-   - pthread_attr_setguardsize
-   - pthread_attr_getguardsize
+- pthread_attr_setguardsize
+- pthread_attr_getguardsize
 每个线程会存在自己的堆栈，如果访问超过自己的堆栈的话那么可能会修改到其他的线程堆栈的，如果这些堆栈是相连的话。
 如果我们设置了guardsize的话，线程堆栈会多开辟guarszie这么大小，当访问到这块多开辟大小的内存的话，那么就会触发SIGSEGV信号。
 
 ***** sched
-   - pthread_attr_getinheritsched
-   - pthread_attr_setinheritsched
-   - pthread_attr_getschedparam
-   - pthread_attr_setschedparam
-   - pthread_attr_getschedpolicy
-   - pthread_attr_setschedpolicy
+- pthread_attr_getinheritsched
+- pthread_attr_setinheritsched
+- pthread_attr_getschedparam
+- pthread_attr_setschedparam
+- pthread_attr_getschedpolicy
+- pthread_attr_setschedpolicy
 inheritsched可以设置如果我们调用pthread_create创建线程的话，调度策略是自己显示设置还是继承于创建线程的线程。
 schedpolicy可以设置调度策略，而schedparam可以设置调度策略所涉及的参数，不过从现在文件里面只有priority这个参数。
 调度策略有下面这些. #todo: 调度策略分别是怎么样的???
-   - SCHED_FIFO
-   - SCHED_RR
-   - SCHED_SPORADIC
+- SCHED_FIFO
+- SCHED_RR
+- SCHED_SPORADIC
 #+BEGIN_SRC C++
 // /usr/include/bits/sched.h
 struct sched_param
@@ -4253,138 +4253,138 @@ struct sched_param
 #+END_SRC
 
 ***** scope
-   - pthread_attr_setscope
-   - pthread_attr_getscope
+- pthread_attr_setscope
+- pthread_attr_getscope
 文档上面来说的话是说contention scope.包括
-   - PTHREAD_SCOPE_SYSTEM // signifying system scheduling contention scope
-   - PTHREAD_SCOPE_PROCESS // signifying process scheduling contention scope
+- PTHREAD_SCOPE_SYSTEM // signifying system scheduling contention scope
+- PTHREAD_SCOPE_PROCESS // signifying process scheduling contention scope
 process contention scope是指各个线程在同一个进程中竞争被调度的CPU时间，但是并不和其他进程中的线程竞争。
 system contention scope是只线程直接和系统范围内其他线程竞争，而不论它们和什么进程关联。
 
 ***** stack
-   - pthread_attr_getstack
-   - pthread_attr_setstack
-   - pthread_attr_getstackaddr
-   - pthread_attr_setstackaddr
-   - pthread_attr_getstacksize
-   - pthread_attr_setstacksize
+- pthread_attr_getstack
+- pthread_attr_setstack
+- pthread_attr_getstackaddr
+- pthread_attr_setstackaddr
+- pthread_attr_getstacksize
+- pthread_attr_setstacksize
 可以设置线程在什么地址上面运行(栈),以及栈大小
 
 **** sync
 ***** mutex
-   - pthread_mutex_init
-   - pthread_mutex_destroy
-   - pthread_mutex_lock
-   - pthread_mutex_timedlock
-   - pthread_mutex_trylock
-   - pthread_mutex_unlock
-   - pthread_mutex_getprioceiling // priority ceiling.
-   - pthread_mutex_setprioceiling
-   - pthread_mutexattr_init
-   - pthread_mutexattr_destroy
-   - pthread_mutexattr_getprioceiling
-   - pthread_mutexattr_setprioceiling
-   - pthread_mutexattr_getprotocol // protocol.
-   - pthread_mutexattr_setprotocol
-   - pthread_mutexattr_getpshared
-   - pthread_mutexattr_setpshared
-   - pthread_mutexattr_gettype
-   - pthread_mutexattr_settype
+- pthread_mutex_init
+- pthread_mutex_destroy
+- pthread_mutex_lock
+- pthread_mutex_timedlock
+- pthread_mutex_trylock
+- pthread_mutex_unlock
+- pthread_mutex_getprioceiling // priority ceiling.
+- pthread_mutex_setprioceiling
+- pthread_mutexattr_init
+- pthread_mutexattr_destroy
+- pthread_mutexattr_getprioceiling
+- pthread_mutexattr_setprioceiling
+- pthread_mutexattr_getprotocol // protocol.
+- pthread_mutexattr_setprotocol
+- pthread_mutexattr_getpshared
+- pthread_mutexattr_setpshared
+- pthread_mutexattr_gettype
+- pthread_mutexattr_settype
 shared允许在进程之间共享互斥锁状态，这样进程之间也可以使用互斥锁
-   - PTHREAD_PROCESS_SHARED
-   - PTHREAD_PROCESS_PRIVATE // 默认值
+- PTHREAD_PROCESS_SHARED
+- PTHREAD_PROCESS_PRIVATE // 默认值
 type是锁的类型包括下面这些
-   - PTHREAD_MUTEX_NORMAL // 我们最常用的
-   - PTHREAD_MUTEX_ERRORCHECK // 同一线程尝试锁多次会error,这样情况可能会在信号处理时候出现
-   - PTHREAD_MUTEX_RECURSIVE // 递归锁，允许多次加锁，但是也需要同样次数解锁
-   - PTHREAD_MUTEX_DEFAULT // ???
+- PTHREAD_MUTEX_NORMAL // 我们最常用的
+- PTHREAD_MUTEX_ERRORCHECK // 同一线程尝试锁多次会error,这样情况可能会在信号处理时候出现
+- PTHREAD_MUTEX_RECURSIVE // 递归锁，允许多次加锁，但是也需要同样次数解锁
+- PTHREAD_MUTEX_DEFAULT // ???
 
 
 ***** cond
-     - pthread_cond_init
-     - pthread_cond_destroy
-     - pthread_cond_signal
-     - pthread_cond_broadcast
-     - pthread_cond_timedwait
-     - pthread_cond_wait
-     - pthread_condattr_init
-     - pthread_condattr_destroy
-     - pthread_condattr_getclock // clock_id
-     - pthread_condattr_setclock
-     - pthread_condattr_getpshared
-     - pthread_condattr_setpshared
+- pthread_cond_init
+- pthread_cond_destroy
+- pthread_cond_signal
+- pthread_cond_broadcast
+- pthread_cond_timedwait
+- pthread_cond_wait
+- pthread_condattr_init
+- pthread_condattr_destroy
+- pthread_condattr_getclock // clock_id
+- pthread_condattr_setclock
+- pthread_condattr_getpshared
+- pthread_condattr_setpshared
 
 ***** rwlock
-     - pthread_rwlock_init
-     - pthread_rwlock_destroy
-     - pthread_rwlock_rdlock
-     - pthread_rwlock_timedrdlock
-     - pthread_rwlock_tryrdlock
-     - pthread_rwlock_wrlock
-     - pthread_rwlock_timedwrlock
-     - pthread_rwlock_trywrlock
-     - pthread_rwlock_unlock
-     - pthread_rwlockattr_init
-     - pthread_rwlockattr_destroy
-     - pthread_rwlockattr_getpshared
-     - pthread_rwlockattr_setpshared
+- pthread_rwlock_init
+- pthread_rwlock_destroy
+- pthread_rwlock_rdlock
+- pthread_rwlock_timedrdlock
+- pthread_rwlock_tryrdlock
+- pthread_rwlock_wrlock
+- pthread_rwlock_timedwrlock
+- pthread_rwlock_trywrlock
+- pthread_rwlock_unlock
+- pthread_rwlockattr_init
+- pthread_rwlockattr_destroy
+- pthread_rwlockattr_getpshared
+- pthread_rwlockattr_setpshared
 
 ***** spinlock
-     - pthread_spin_init
-     - pthread_spin_destroy
-     - pthread_spin_lock
-     - pthread_spin_trylock
-     - pthread_spin_unlock
+- pthread_spin_init
+- pthread_spin_destroy
+- pthread_spin_lock
+- pthread_spin_trylock
+- pthread_spin_unlock
 
 ***** barrier
-   - pthread_barrier_init // 以count初始化,表明有多少个线程需要同步
-   - pthread_barrier_destroy
-   - pthread_barrier_wait // 同步点，直到所有线程都到这个位置然后继续
-   - pthread_barrierattr_init
-   - pthread_barrierattr_destroy
-   - pthread_barrierattr_getpshared
-   - pthread_barrierattr_setpshared
+- pthread_barrier_init // 以count初始化,表明有多少个线程需要同步
+- pthread_barrier_destroy
+- pthread_barrier_wait // 同步点，直到所有线程都到这个位置然后继续
+- pthread_barrierattr_init
+- pthread_barrierattr_destroy
+- pthread_barrierattr_getpshared
+- pthread_barrierattr_setpshared
 barrier类似于muduo里面的countdownlatch机制
 
 **** control
 ***** run
-     - pthread_create
-     - pthread_exit
-     - pthread_join
-     - pthread_detach
+  - pthread_create
+  - pthread_exit
+  - pthread_join
+  - pthread_detach
 
 ***** cancel
-   - pthread_cancel
-   - pthread_testcancel
-   - pthread_setcancelstate
-   - pthread_setcanceltype
-   - pthread_cleanup_pop
-   - pthread_cleanup_push
+- pthread_cancel
+- pthread_testcancel
+- pthread_setcancelstate
+- pthread_setcanceltype
+- pthread_cleanup_pop
+- pthread_cleanup_push
 对于cancelstate有下面两种
-   - PTHREAD_CANCEL_ENABLE // 允许cancel
-   - PTHREAD_CANCEL_DISABLE // 不允许cancel
+- PTHREAD_CANCEL_ENABLE // 允许cancel
+- PTHREAD_CANCEL_DISABLE // 不允许cancel
 然后type有两种
-   - PTHREAD_CANCEL_DEFERRED // cancel被延迟到下一个cancellation point进行，默认行为
-   - PTHREAD_CANCEL_ASYNCHRONOUS // cancel立即触发，系统尝试取消线程但是并不保证。
+- PTHREAD_CANCEL_DEFERRED // cancel被延迟到下一个cancellation point进行，默认行为
+- PTHREAD_CANCEL_ASYNCHRONOUS // cancel立即触发，系统尝试取消线程但是并不保证。
 cancellation point有一类函数，如果我们希望在自己构造cancellation point的话，那么我们可以调用pthread_testcancel这个函数，
 如果其他线程已经尝试cancel我们的话，我们就会在这个点退出。pthread_cancel就是去cancel某个线程的，pthread_cancel不会阻塞立即返回。
 而push和pop就是注册被cancel之后cleanup的回调函数，可能以宏实现然后配合线程局部变量完成。
 
 ***** signal
-     - pthread_kill
-     - pthread_sigmask
-     - pthread_atfork // 设置线程在fork时候触发的回调
+- pthread_kill
+- pthread_sigmask
+- pthread_atfork // 设置线程在fork时候触发的回调
 
 ***** sched
-   - pthread_getschedparam
-   - pthread_setschedparam
-   - pthread_setschedprio
+- pthread_getschedparam
+- pthread_setschedparam
+- pthread_setschedprio
 这个和attr部分的sched差不多，允许线程动态地修改调度策略，参数以及运行优先级。
 
 ***** resource
-   - pthread_getcpuclockid
-   - pthread_getconcurrency
-   - pthread_setconcurrency
+- pthread_getcpuclockid
+- pthread_getconcurrency
+- pthread_setconcurrency
 getcpuclockid可以获得clock_id,每一个线程/进程都会绑定一个CPU-time clock,然后通过clock_id来区分。线程可以通过pthread_getcpuclockid获取，
 而进程可以通过clock_getcpuclockid获取。取得clock_id之后，我们可以clock_getres来获得时钟精度，clock_gettime来获得运行时间。
 还可以timer_create来创建高精度定时器。不过这些内容都是猜测从manpage里面看的，似乎没有任何一本手册提到过这些内容。这些内容都是rt(realtime)范畴的。
@@ -4437,12 +4437,12 @@ pthread_setconcurrency (level)
 #+END_SRC
 
 ***** specific
-     - pthread_once
-     - pthread_self
-     - pthread_key_create
-     - pthread_key_delete
-     - pthread_getspecific
-     - pthread_setspecific
+- pthread_once
+- pthread_self
+- pthread_key_create
+- pthread_key_delete
+- pthread_getspecific
+- pthread_setspecific
 
 *** 使用注意
 **** pthread cancel陷阱
@@ -4529,28 +4529,28 @@ int main() {
 ** 守护进程
 守护进程也是精灵进程(daemon),是一种生存期较长的进程，常常在系统自举时候启动，仅仅在系统关闭时终止。
 因为没有控制终端所有在后台运行。常见的守护进程有下面这些：
-   - init.系统守护进程，负责启动各个运行层次的特定系统服务。
-   - keventd.为内核中运行计划执行的函数提供进程上下文。
-   - kampd.对高级电源管理提供支持。
-   - kswapd.页面调度守护进程。
-   - bdflush.当可用内存到达某个下限的时候，将脏缓冲区从缓冲池(buffer cache)冲洗到磁盘上。
-   - kupdated.将脏页面冲洗到磁盘上，以便在系统失效时减少丢失的数据。
-   - portmap.将rpc程序号映射为网络端口号。
-   - syslogd.系统消息日志服务器。
-   - xinted.inted守护进程。
-   - nfsd,lockd,rpciod.支持NFS的一组守护进程。
-   - crond.在指定的日期和时间执行特定的命令。
-   - cupds.打印假脱机进程，处理对系统提出的所有打印请求。
+- init.系统守护进程，负责启动各个运行层次的特定系统服务。
+- keventd.为内核中运行计划执行的函数提供进程上下文。
+- kampd.对高级电源管理提供支持。
+- kswapd.页面调度守护进程。
+- bdflush.当可用内存到达某个下限的时候，将脏缓冲区从缓冲池(buffer cache)冲洗到磁盘上。
+- kupdated.将脏页面冲洗到磁盘上，以便在系统失效时减少丢失的数据。
+- portmap.将rpc程序号映射为网络端口号。
+- syslogd.系统消息日志服务器。
+- xinted.inted守护进程。
+- nfsd,lockd,rpciod.支持NFS的一组守护进程。
+- crond.在指定的日期和时间执行特定的命令。
+- cupds.打印假脱机进程，处理对系统提出的所有打印请求。
 
 *** daemonize
 产生一个daemon程序需要一系列的操作，步骤如下：
-   - umask(0).因为我们从shell创建的话，那么继承了shell的umask.这样导致守护进程创建文件会屏蔽某些权限。
-   - fork然后使得父进程退出。一方面shell认为父进程执行完毕，另外一方面子进程获得新的pid肯定不为进程组组长，这是setsid前提。
-   - setsid来创建新的会话。这时候进程称为会话首进程，称为第一个进程组组长进程同时失去了控制终端。
-   - 最好在这里再次fork。这样子进程不是会话首进程，那么永远没有机会获得控制终端。如果这里不fork的话那么会话首进程依然可能打开控制终端。
-   - 将当前工作目录更改为根目录。父进程继承过来的当前目录可能mount在一个文件系统上。如果不切换到根目录，那么这个文件系统不允许unmount.
-   - 关闭不需要的文件描述符。可以通过_SC_OPEN_MAX来判断最高文件描述符(不是很必须).
-   - 然后打开/dev/null复制到0,1,2(不是很必须).
+- umask(0).因为我们从shell创建的话，那么继承了shell的umask.这样导致守护进程创建文件会屏蔽某些权限。
+- fork然后使得父进程退出。一方面shell认为父进程执行完毕，另外一方面子进程获得新的pid肯定不为进程组组长，这是setsid前提。
+- setsid来创建新的会话。这时候进程称为会话首进程，称为第一个进程组组长进程同时失去了控制终端。
+- 最好在这里再次fork。这样子进程不是会话首进程，那么永远没有机会获得控制终端。如果这里不fork的话那么会话首进程依然可能打开控制终端。
+- 将当前工作目录更改为根目录。父进程继承过来的当前目录可能mount在一个文件系统上。如果不切换到根目录，那么这个文件系统不允许unmount.
+- 关闭不需要的文件描述符。可以通过_SC_OPEN_MAX来判断最高文件描述符(不是很必须).
+- 然后打开/dev/null复制到0,1,2(不是很必须).
 #+BEGIN_SRC C++
 void print_ids(const char* name){
     printf("%s:pid=%d,ppid=%d,pgid=%d,sid=%d\n",
@@ -4607,10 +4607,10 @@ void daemonize(){
 *** 出错处理
 我们假设daemon不会将错误信息输出到终端上。如果我们只是写到一个单独的文件，那么非常难以管理。所以有必要有
 一个集中设施来管理出错记录。BSD的syslog就是这个集中设施。设施大体分布是这样的：
-   - syslogd守护进程专门接受记录，然后决定写文件，本地或者发送到远程主机。配置文件是/etc/syslog.conf
-   - 用户进程通过syslog传递到syslogd,通信机制是unix domain socket,文件是/dev/log.
-   - TCP/IP可以通过访问UDP 514端口和syslogd通信提交日志。
-   - 内核例程通过log函数传递到syslogd,通信机制也是unix domain socket,文件是/dev/klog.
+- syslogd守护进程专门接受记录，然后决定写文件，本地或者发送到远程主机。配置文件是/etc/syslog.conf
+- 用户进程通过syslog传递到syslogd,通信机制是unix domain socket,文件是/dev/log.
+- TCP/IP可以通过访问UDP 514端口和syslogd通信提交日志。
+- 内核例程通过log函数传递到syslogd,通信机制也是unix domain socket,文件是/dev/klog.
 
 syslog的设施接口是下面这样的：
 #+BEGIN_SRC C++
@@ -4685,22 +4685,22 @@ int main(){
 *** 其他事项
 守护进程通常单实例运行的，为了保证是单例运行的话，我们可以通过文件标记或者是文件锁来完成。
 在Unix下面守护进程通常有下面这些惯例：
-   - 守护进程的锁文件，通常存放在/var/run/<name>.pid
-   - 如果守护进程有配置文件的话，那么文件存放在/etc/<name>.conf
-   - 守护进程可以使用命令行启动，但是通常是在系统初始化脚本之一存放在/etc/init.d/*下面。
-   - 守护进程终止的话我们通常希望重启。而守护进程的父进程通常为init.在/etc/inittab里面为守护进程包含_respawn选项的话，那么守护进程终止的话init会自动重启。
-   - 因为守护进程和终端不连接，所以永远接收不到SIGHUP信号。我们可以使用SIGHUP信号来通知守护进程重新载入配置文件。守护进程必须支持这个功能。
+- 守护进程的锁文件，通常存放在/var/run/<name>.pid
+- 如果守护进程有配置文件的话，那么文件存放在/etc/<name>.conf
+- 守护进程可以使用命令行启动，但是通常是在系统初始化脚本之一存放在/etc/init.d/*下面。
+- 守护进程终止的话我们通常希望重启。而守护进程的父进程通常为init.在/etc/inittab里面为守护进程包含_respawn选项的话，那么守护进程终止的话init会自动重启。
+- 因为守护进程和终端不连接，所以永远接收不到SIGHUP信号。我们可以使用SIGHUP信号来通知守护进程重新载入配置文件。守护进程必须支持这个功能。
 
 ** 高级IO
 *** 非阻塞IO
 首先必须明确为什么需要引入非阻塞IO这个概念。因为系统调用存在低速系统调用，可能使进程永久阻塞住。
 通常包括下面这些进程：
-   - 某些文件类型比如管道，终端设备和网络设备数据并不存在。
-   - 数据不能够被文件立即接受，比如管道无空间或者是网络流控制等。
-   - 打开某些类型文件比如调制解调器等等待应答。
-   - 对于文件加上了强制锁进行的读写。
-   - 某些ioctl操作。
-   - 某些进程间通信函数。
+- 某些文件类型比如管道，终端设备和网络设备数据并不存在。
+- 数据不能够被文件立即接受，比如管道无空间或者是网络流控制等。
+- 打开某些类型文件比如调制解调器等等待应答。
+- 对于文件加上了强制锁进行的读写。
+- 某些ioctl操作。
+- 某些进程间通信函数。
 但是我们必须区分磁盘IO相关的系统调用，这些并不是低速系统调用。对于非阻塞IO操作的话，如果没有成功的话，
 那么不会阻塞而是立即返回一个错误表示EAGAIN.
 
@@ -4714,10 +4714,10 @@ int main(){
 
 记录锁(record locking)的功能是当一个进程正在读或者是修改文件的某一个部分的话，它可以阻塞其他进程修改
 同一个文件区域。对于文件区域来说，是一个范围，可以锁几个字节也可以尝试锁一个文件。记录锁有下面这些属性：
-   - 进程终止时，进程建立的锁全部释放。
-   - 关闭任何一个描述符时，那么这个描述符可以引用的任何所都会被释放。
-   - fork出来的子进程继承文件描述符但是却不继承记录锁。
-   - exec之后会继承文件描述符和锁。但是如果文件标识设置了close-on-exec的话，那么会自动关闭。
+- 进程终止时，进程建立的锁全部释放。
+- 关闭任何一个描述符时，那么这个描述符可以引用的任何所都会被释放。
+- fork出来的子进程继承文件描述符但是却不继承记录锁。
+- exec之后会继承文件描述符和锁。但是如果文件标识设置了close-on-exec的话，那么会自动关闭。
 这里可以看到，记录锁是和文件描述符以及进程相关联的。在具体实现可以看到为什么是这样的。
 
 **** 接口
@@ -4798,12 +4798,12 @@ extern int pselect (int __nfds, fd_set *__restrict __readfds,
 #+END_SRC
 pselect相对于改进的话是首先时间信息使用timespect支持到纳秒级别，更加精确。同时时间不会发生修改。
 此外还提供了信号屏蔽字。其中nfds表示后面几个fdset里面最大的文件描述符+1.相当于我们告诉select/pselect:
-   - 我们关心的描述符有哪些。
-   - 关心描述符状态，比如是可读可写还是出现异常状态。
-   - 愿意等待多长时间可以永远等待或者是等待一个固定时间，或者是立即返回。
+- 我们关心的描述符有哪些。
+- 关心描述符状态，比如是可读可写还是出现异常状态。
+- 愿意等待多长时间可以永远等待或者是等待一个固定时间，或者是立即返回。
 而系统返回：
-   - 已准备好的文件描述符数量
-   - 哪些文件描述符准备好了。
+- 已准备好的文件描述符数量
+- 哪些文件描述符准备好了。
 如果返回-1的话，表示出错那么fds里面内容不变。如果返回0的话表示没有准备好的fd。我们不应该假设
 fds不会修改，所以最好每次都重新进行设置。对于timeout的话，如果提前返回的话，那么里面存放的是剩余时间。
 
@@ -4833,9 +4833,9 @@ typedef struct
 可以看到对于一个fd_set最多允许1024个文件描述符进行监听。
 
 这里准备好的情况是这样定义的：
-   - 对于读来说的话那么read操作将不会阻塞。
-   - 对于写来说的话那么write操作将不会阻塞。
-   - 对于异常状态集得话描述符中有一个未决的异常状态比如存在带外数据。
+- 对于读来说的话那么read操作将不会阻塞。
+- 对于写来说的话那么write操作将不会阻塞。
+- 对于异常状态集得话描述符中有一个未决的异常状态比如存在带外数据。
 文件描述符本身的阻塞与否不会影响到select/pselect的行为的，select/pselect给出的界面还是阻塞行为的。
 
 **** poll/ppoll
@@ -4897,9 +4897,9 @@ extern int ppoll (struct pollfd *__fds, nfds_t __nfds,
 异步IO是通过信号同时来实现的，并且异步IO对应的只有有限的几个信号。这样在信号处理函数中我们还必须仔细
 判断哪些文件描述符是可读，可写或者是异常的。对于BSD派生出来的系统，使用的信号是SIGIO和SIGURG(猜想linux和bsd应该走得很近).
 SIGIO是通用异步信号，而SIGURG是用药通知进程在网络连接上有带外数据。为了使用SIGIO的话，需要执行下面三个步骤：
-   - 调用signal为SIGIO建立处理函数
-   - 使用F_SETOWN为fd设置进程和进程组。因为一旦fd触发信号的话，系统是要决定信号投递到哪个进程和进程组的。
-   - 使用F_SETFL来设置O_ASYNC文件状态标志。对于BSD来说仅仅用于终端或者是网络的描述符。
+- 调用signal为SIGIO建立处理函数
+- 使用F_SETOWN为fd设置进程和进程组。因为一旦fd触发信号的话，系统是要决定信号投递到哪个进程和进程组的。
+- 使用F_SETFL来设置O_ASYNC文件状态标志。对于BSD来说仅仅用于终端或者是网络的描述符。
 对于SIGURG只需要设置前面两个步骤，信号仅仅是用于支持带外数据的网络连接描述符产生的。
 #+BEGIN_SRC C++
 #include <unistd.h>
@@ -5014,8 +5014,8 @@ extern int msync (void *__addr, size_t __len, int __flags);
 #+END_SRC
 
 对于mmap来说：
-   - addr表示我们希望映射到什么地址上，这只是一个建议通常设置为0即可。
-   - fd就是文件描述符，offset表示偏移位置，len表示开辟的内存空间大小。
+- addr表示我们希望映射到什么地址上，这只是一个建议通常设置为0即可。
+- fd就是文件描述符，offset表示偏移位置，len表示开辟的内存空间大小。
 对于prot(protection)有下面这几个值：
 | prot       | 说明             |
 |------------+------------------|
@@ -5069,24 +5069,24 @@ int main(){
 那么在上面操作都是允许的。如果底层没有文件对应的话，那么写就没有任何效果。
 
 mprotect可以修改内存的访问权限，prot字段和mmap的prot字段含义对应。msync的flags有下面这几个：
-   - MS_SYNC将页面冲洗到被映射的文件同步返回。
-   - MS_ASYNC将页面冲洗到被映射的文件中异步返回。
-   - MS_INVALIDATE通知操作系统丢弃与底层存储器没有永不的任何页。
+- MS_SYNC将页面冲洗到被映射的文件同步返回。
+- MS_ASYNC将页面冲洗到被映射的文件中异步返回。
+- MS_INVALIDATE通知操作系统丢弃与底层存储器没有永不的任何页。
 munmap不会使得映射区的内容写到磁盘文件上，MAP_SHARED磁盘文件的更新是通过系统自带的虚存算法来进行自动更新的，
 而对于MAP_PRIVATE的存储区域就直接丢弃。
 
 *** linux aio
 前几天准备公司内部关于异步编程交流的时候，想到看看linux aio。这个很早之前在百度的时候就听同事说过，但是一直没有机会看看API以及如何使用。
 趁着这个机会稍微翻了一些API这里稍微总结一下吧（其实看的还是不深入，不过稍微有点概念了）。可以参考下面这些链接：
-   - http://www.kernel.org/doc/man-pages/online/pages/man2/io_setup.2.html
-   - http://hi.baidu.com/_kouu/blog/item/e225f67b337841f42f73b341.html 深入分析
+- http://www.kernel.org/doc/man-pages/online/pages/man2/io_setup.2.html
+- http://hi.baidu.com/_kouu/blog/item/e225f67b337841f42f73b341.html 深入分析
 linux aio的API大抵包括下面这些：
-   - // #include <libaio.h>
-   - io_setup  // create aio context
-   - io_submit // submit aio task
-   - io_getevents // poll aio completion
-   - io_destroy // destroy aio context
-   - io_cancel // cancel aio task
+- // #include <libaio.h>
+- io_setup  // create aio context
+- io_submit // submit aio task
+- io_getevents // poll aio completion
+- io_destroy // destroy aio context
+- io_cancel // cancel aio task
 这个API接口只能够用于disk IO而不能够用于network IO上。
 
 #+BEGIN_SRC C++
@@ -5224,20 +5224,20 @@ int io_cancel(aio_context_t ctx_id, struct iocb *iocb,
 
 ** 进程间通信
 unix系统下面的IPC(inteprocess communication)主要分为下面这几种：
-   - pipe
-   - fifo
-   - 消息队列
-   - 信号量
-   - 共享存储
-   - uds(unix domain socket)
-   - 套接字
+- pipe
+- fifo
+- 消息队列
+- 信号量
+- 共享存储
+- uds(unix domain socket)
+- 套接字
 其中套接字可以跨机器进程通信，而之前几类都是单机进程之间通信。套接字有专门一节用于说明，
 这节仅仅说前面几类单机进程通信手段。unix domain socket也属于套接字范围，所以在这里没有单独叙述。
 
 *** pipe
 管道是最古老的unix ipc，几乎所有的unix系统上都会提供这种通信机制。但是管道有两种局限性：
-   - 半双工。
-   - 必须具备进程关系，比如父子进程。
+- 半双工。
+- 必须具备进程关系，比如父子进程。
 fifo没有第二种局限性，而uds两种局限性都没有。产生管道非常简单
 #+BEGIN_SRC C++
 #include <unistd.h>
@@ -5363,8 +5363,8 @@ IPC资源是全局的，所以在得到这个整数之前可能尝试获取多�
 int xxxget(key_t key,int flag); /返回IPC标识
 #+END_SRC
 这个key_t如何指定有几种方法：
-   - key_t指定为IPC_PRIVATE的话，那么每次都会创建一个新IPC标识。
-   - 通过ftok函数来生成一个key_t
+- key_t指定为IPC_PRIVATE的话，那么每次都会创建一个新IPC标识。
+- 通过ftok函数来生成一个key_t
 #+BEGIN_SRC C++
 #include <sys/ipc.h>
 key_t ftok(const char* path,int id); //id在[0,255]
@@ -5406,8 +5406,8 @@ XSI IPC有下面这些问题。首先IPC结构没有引用计数，这就意味�
 整个Unix系统的理念就是所有对象都是文件，比如open,read,write,select,poll都是操作文件描述符的，甚至unix socket也统一到了
 这个接口上，而ipc因为没有抽象导致需要提供一系列辅助的API来构建自己的体系。优点可能就是比较快吧，但是实测的时候
 发现其他设施效率并不会很差，但是却有着一致的接口。在后面打算提供几种代替的方案来尽可能地不使用XSI IPC.
-   - 消息队列使用unix domain socket来代替。
-   - 信号量通过进程共享的pthread和共享内存代替(另外实现方式).信号量主要注重于同步，所以我们给出的方案也是注重于同步。
+- 消息队列使用unix domain socket来代替。
+- 信号量通过进程共享的pthread和共享内存代替(另外实现方式).信号量主要注重于同步，所以我们给出的方案也是注重于同步。
 
 另外因为IPC是全局的并且没有引用计数，所以如果需要删除ipc的话那么必须使用外部命令ipcrm来删除。而ipcrm不允许批量删除所有的
 IPC对象，所以我们需要下面辅助脚本实现
@@ -5465,9 +5465,9 @@ struct msqid_ds
 通过这个结构我们可以看到消息队列记录了最后一次发送和接收消息时间以及当前有多少条消息和字节内容在消息队列中。
 
 因为消息队列是由内核来管理的，所以就存在一定的限制，包括：
-   - 一次可发送最大消息的字节数目，linux2.4.22为8192
-   - 一个特定队列中最大字节数，即所有消息字节数之和，linux2.4.22为16384
-   - 系统中最大消息队列数，linux2.4.22为16
+- 一次可发送最大消息的字节数目，linux2.4.22为8192
+- 一个特定队列中最大字节数，即所有消息字节数之和，linux2.4.22为16384
+- 系统中最大消息队列数，linux2.4.22为16
 
 关于消息队列的API有下面这些：
 #+BEGIN_SRC C++
@@ -5507,15 +5507,15 @@ struct msgbuf
 
 对于msgsnd来说，如果flag指定为IPC_NOWAIT的话，那么如果消息列队已满的话，那么不会阻塞而是理解返回EAGAIN.
 阻塞情况在下面情况会恢复：
-   - 消息队列有数据了。
-   - 消息队列删除了，返回错误EIDRM
-   - 发生信号中断而且没有自动重启，返回EINTR.
+- 消息队列有数据了。
+- 消息队列删除了，返回错误EIDRM
+- 发生信号中断而且没有自动重启，返回EINTR.
 
 对于msgrcv来说，如果flag被指定为IPC_NOWAIT的话，和msgsnd效果一样。如果flag指定为MSG_NOERROR的话，如果
 接收到的信息大于nbytes的话，那么信息被截断，如果没有设置的话那么会返回错误E2BIG.对于type参数来说：
-   - type==0.消息队列第一个消息
-   - type>0.消息队列第一个类型为type消息
-   - type<0.返回消息队列中类型<abs(type)的消息，如果存在多个的话那么返回第一个类型最小的消息。
+- type==0.消息队列第一个消息
+- type>0.消息队列第一个类型为type消息
+- type<0.返回消息队列中类型<abs(type)的消息，如果存在多个的话那么返回第一个类型最小的消息。
 
 可以看到消息队列是基于消息并且由内核管理，那么不可避免需要设置一个消息上限。但是这个上限可能是不可移植的。
 消息队列提供比较方便的功能一方面是信息的记录，另外一方面是消息的过滤，这点它的代替产物unix domain soket可能并没有直接提供，
@@ -5586,10 +5586,10 @@ struct semid_ds
 };
 #+END_SRC
 通常来说一个信号集包括下面这些属性：
-   - 信号集资源数目
-   - 最后操作这个信号集的pid
-   - 等待资源数目可用的进程数
-   - 等待资源数目==0的进程数(#todo: 什么应用场景)
+- 信号集资源数目
+- 最后操作这个信号集的pid
+- 等待资源数目可用的进程数
+- 等待资源数目==0的进程数(#todo: 什么应用场景)
 可以看到下面提供的接口都可以获取或者是设置这个属性。
 
 创建一个信号量集的话，可以使用下面这个接口：
@@ -5610,16 +5610,16 @@ union semun{
 int semctl(int semid,int semnum,int cmd,...(union semun* arg));
 #+END_SRC
 semnum用于选定集合中某个特性的信号量，不同cmd情况下面可能不使用这个字段。cmd有下面这些选项：
-   - IPC_STAT 得到semid_ds信息
-   - IPC_SET 设置semid_ds信息
-   - IPC_RMID 删除这个信号量集
-   - GETVAL +semnum,+val得到某个信号量的资源个数
-   - SETVAL +semnum,+val设置某个信号量的资源个数
-   - GETPID +semnum,得到最后操作某个信号量的pid
-   - GETNCNT +semnum,得到等待资源的进程个数
-   - GETZCNT +semnum,得到等待资源==0的进程个数
-   - GETALL +array得到所有信号量的资源个数
-   - SETALL +array设置所有信号量的资源个数
+- IPC_STAT 得到semid_ds信息
+- IPC_SET 设置semid_ds信息
+- IPC_RMID 删除这个信号量集
+- GETVAL +semnum,+val得到某个信号量的资源个数
+- SETVAL +semnum,+val设置某个信号量的资源个数
+- GETPID +semnum,得到最后操作某个信号量的pid
+- GETNCNT +semnum,得到等待资源的进程个数
+- GETZCNT +semnum,得到等待资源==0的进程个数
+- GETALL +array得到所有信号量的资源个数
+- SETALL +array设置所有信号量的资源个数
 
 最后一个接口是操作信号量集的接口。这个接口允许批量操作信号集并且以原子操作方式完成。
 #+BEGIN_SRC C++
@@ -5634,21 +5634,21 @@ int semop(int semid,struct sembuf semoparray[],size_t nops);
 语义就是进行每个semoparry里面的操作，并且以原子方式操作。sem_num表示我们操作第几个信号量。
 这里需要解释一下sem_op和sem_flag.首先如果sem_flag指定为SEM_UNDO的话，那么可以认为sem_op取了反就是，
 SEM_UNDO的意思就是说撤销刚才的操作。
-   - sem_op > 0,那么相当于释放资源
-   - sem_op < 0,那么相当于获取资源
-      - 如果资源充足的话，那么操作没有问题
-      - 如果资源不充足但是设置了IPC_NOWAIT的话，那么立即出错返回EAGAIN.
-      - 如果资源不充足没有设置IPC_NOTWAIT的话，等待资源进程个数+1,立即阻塞直到
-         - 资源可用
-         - 系统删除信号量，那么返回错误EIDRM
-         - 信号中断返回EINTR,等待资源进程个数-1
-   - sem_op==0,那么相当于等待信号量值变为0
-      - 如果为0那么立即返回
-      - 如果不为0并且设置IPC_NOWAIT的话，那么立即出错返回EAGAIN.
-      - 如果不为0并且没有设置IPC_NOWAIT的话，那么等待资源==0的进程个数+1,立即阻塞直到
-         - 资源个数==0
-         - 系统删除信号量，返回错误EIDRM
-         - 信号中断返回EINTR,等待资源==0的进程个数-1
+- sem_op > 0,那么相当于释放资源
+- sem_op < 0,那么相当于获取资源
+   - 如果资源充足的话，那么操作没有问题
+   - 如果资源不充足但是设置了IPC_NOWAIT的话，那么立即出错返回EAGAIN.
+   - 如果资源不充足没有设置IPC_NOTWAIT的话，等待资源进程个数+1,立即阻塞直到
+      - 资源可用
+      - 系统删除信号量，那么返回错误EIDRM
+      - 信号中断返回EINTR,等待资源进程个数-1
+- sem_op==0,那么相当于等待信号量值变为0
+   - 如果为0那么立即返回
+   - 如果不为0并且设置IPC_NOWAIT的话，那么立即出错返回EAGAIN.
+   - 如果不为0并且没有设置IPC_NOWAIT的话，那么等待资源==0的进程个数+1,立即阻塞直到
+      - 资源个数==0
+      - 系统删除信号量，返回错误EIDRM
+      - 信号中断返回EINTR,等待资源==0的进程个数-1
 
 其实信号量的接口还是非常易于理解的，但是却没有必要，很少有情况我们需要操作多个信号集。
 下面一个通过信号量来同步父子进程的例子
@@ -5738,8 +5738,8 @@ extern int shmdt (__const void *__shmaddr) __THROW;
 首先我们通过shmget来获得一个共享内存标识符，size这个字段表示共享存储大小内部会和PAGE_SIZE对齐。
 然后调用shmctl来操作这个共享内存包括IPC_STAT,IPC_SET以及IPC_RMID.如果进程需要连接到这个共享内存段的话，
 可以调用shmat,flag有下面这些选项：
-   - SHM_RND.如果addr不为0的话，那么会将addr向下取地址为SHMLBA的平方
-   - SHM_RDONLY.只读的共享内存段
+- SHM_RND.如果addr不为0的话，那么会将addr向下取地址为SHMLBA的平方
+- SHM_RDONLY.只读的共享内存段
 如果不想连接这个共享内存段的话，那么可以直接shmdt.这个时候shmid_ds里面的shm_nattch字段会-1.
 
 相对来说，共享内存是最好理解的IPC了，是一种非常自然的概念。
