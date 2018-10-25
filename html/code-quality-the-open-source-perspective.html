@@ -19,8 +19,12 @@
 <li>使用质量，比如使用的体验</li>
 <li>外部质量，外部进行测试所体现的质量</li>
 <li>内部质量，就是单纯对于单个部件进行评估</li>
-<li>过程质量。关注过程而不是产品本身有可能是值得的，而且有时候还是不可或缺的。想象一下如果需要制造一个航空母舰，海军绝对不可能知识通过检查完工的航空母舰就确定它是否符合需求，海军需要做的是检查与航母的建造过程相关的过程元素，这可能包括设计师的资质证明，焊点的X光板以及所有的组装好的部件的验收测试结果。但是千万不要把这个过程走向了极端，不管我们就会过分关注过程质量</li>
+<li>过程质量。关注过程而不是产品本身有可能是值得的，而且有时候还是不可或缺的。</li>
 </ol>
+
+<p>
+想象一下如果需要制造一个航空母舰，海军绝对不可能知识通过检查完工的航空母舰就确定它是否符合需求，海军需要做的是检查与航母的建造过程相关的过程元素，这可能包括设计师的资质证明，焊点的X光板以及所有的组装好的部件的验收测试结果。但是千万不要把这个过程走向了极端，不管我们就会过分关注过程质量
+</p>
 
 <hr />
 <p>
@@ -28,44 +32,44 @@
 </p>
 <ol class="org-ol">
 <li>功能性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>相配度，软件功能和用户是否相配</li>
 <li>准确性，计算结果的准确性</li>
 <li>互操作性，和其他软件的互操作性</li>
 <li>安全性，软件数据的安全保障</li>
-</ul></li>
+</ol></li>
 <li>可靠性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>成熟，软件不容易出故障</li>
 <li>容错，软件出现错误情况下依然能够继续工作</li>
 <li>可恢复性，恢复数据并且继续执行</li>
-</ul></li>
+</ol></li>
 <li>可用性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>易懂，用户能够非常容易快速使用</li>
 <li>可掌握性，掌握它需要付出的努力少</li>
 <li>可操作性，操作这个软件需要的精力少</li>
 <li>吸引力，用户愿意使用这个软件</li>
-</ul></li>
+</ol></li>
 <li>效率
-<ul class="org-ul">
+<ol class="org-ol">
 <li>时间和空间的权衡</li>
 <li>资源的使用，对于CPU，内存还有磁盘，网络这些使用需要越少越好</li>
-</ul></li>
+</ol></li>
 <li>可维护性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>可分析性，找到修正和改进地方的难易程度</li>
 <li>可变性，完成一个修改的难易程度</li>
 <li>稳定性，修改之后出现问题的程度</li>
 <li>易测性，是否能够验证修改的结果</li>
-</ul></li>
+</ol></li>
 <li>可移植性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>适应性，软件代码在不同环境中运行的能力</li>
 <li>可安装型，软件在各种环境中安装可行性</li>
 <li>共存，软件在拥挤的环境中表现如何</li>
 <li>可替代性，软件某个部分是否能够通过其他部分来代替</li>
-</ul></li>
+</ol></li>
 </ol>
 
 <hr />
@@ -165,41 +169,37 @@ real time=user time+sys time+idle time. 所以可以分析出下面3种情况:
 </p>
 <ol class="org-ol">
 <li>操作系统.
-<ul class="org-ul">
+<ol class="org-ol">
 <li>可选的程序,gcc,awk,sed,install,ln,ranlib</li>
 <li>库的存在curses,dbm,mp</li>
 <li>特性库函数的支持alloca,getpgr,mmap,strcol</li>
 <li>某些头文件的存在signal.h,dirent.h</li>
-</ul></li>
-</ol>
-<p>
-e. 某些结构如何定义的st_dev,st_blocks
-f. 各种类型的支持size_t,pid_t
-g. C编译器的支持，比如const,inline,##,long long
-h. 操作系统服务，如对X窗口的支持等
-</p>
-<ol class="org-ol">
+<li>某些结构如何定义的st_dev,st_blocks</li>
+<li>各种类型的支持size_t,pid_t</li>
+<li>C编译器的支持，比如const,inline,##,long long</li>
+<li>操作系统服务，如对X窗口的支持等</li>
+</ol></li>
 <li>处理器体系结构
-<ul class="org-ul">
+<ol class="org-ol">
 <li>数据的大小和长度</li>
 <li>数据存储的方式big endian或者是little endian</li>
 <li>特定的汇编指令</li>
-</ul></li>
+</ol></li>
 <li>编译器与语言特性
-<ul class="org-ul">
+<ol class="org-ol">
 <li>编译器错误</li>
 <li>非标准的扩展</li>
 <li>新语言的特性</li>
 <li>二进制兼容性</li>
-</ul></li>
+</ol></li>
 <li>图形界面用户环境(这个部分从来就没有统一过,跨平台的开发工具有)
-<ul class="org-ul">
+<ol class="org-ol">
 <li>Java</li>
 <li>Tcl/Tk</li>
 <li>Qt</li>
 <li>GTK</li>
 <li>wxWindows</li>
-</ul></li>
+</ol></li>
 <li>区域(这个没有看)</li>
 <li>硬件设备与平台</li>
 </ol>

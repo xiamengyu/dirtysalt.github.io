@@ -16,20 +16,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org916cb9c">1. ABSTRACT</a></li>
-<li><a href="#org93074dc">2. Introduction</a></li>
-<li><a href="#org00a101c">3. Related Work</a></li>
-<li><a href="#orgfcc4278">4. Kafka Architecture and Design Principles</a>
+<li><a href="#org3ce78fb">1. ABSTRACT</a></li>
+<li><a href="#org782bc20">2. Introduction</a></li>
+<li><a href="#org8da2948">3. Related Work</a></li>
+<li><a href="#org1148d27">4. Kafka Architecture and Design Principles</a>
 <ul>
-<li><a href="#orgfadd9be">4.1. Efficiency on a Single Partition</a></li>
-<li><a href="#org703f6c6">4.2. Distributed Coordination</a></li>
-<li><a href="#org11cd50a">4.3. Delivery Guarantees</a></li>
+<li><a href="#orge3dcacd">4.1. Efficiency on a Single Partition</a></li>
+<li><a href="#orgc9113a9">4.2. Distributed Coordination</a></li>
+<li><a href="#org657432f">4.3. Delivery Guarantees</a></li>
 </ul>
 </li>
-<li><a href="#orgc859819">5. Kafka Usage at LinkedIn</a></li>
-<li><a href="#orga602451">6. Experimental Results</a></li>
-<li><a href="#org0c801eb">7. Conclusion and Future Works</a></li>
-<li><a href="#org042fa17">8. Replication Since 0.8</a></li>
+<li><a href="#orgc78531d">5. Kafka Usage at LinkedIn</a></li>
+<li><a href="#orga6dba54">6. Experimental Results</a></li>
+<li><a href="#orgabdaeab">7. Conclusion and Future Works</a></li>
+<li><a href="#org29bb7aa">8. Replication Since 0.8</a></li>
 </ul>
 </div>
 </div>
@@ -38,11 +38,11 @@
 <li><a href="http://research.microsoft.com/en-us/um/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf">http://research.microsoft.com/en-us/um/people/srikanth/netdb11/netdb11papers/netdb11-final12.pdf</a></li>
 </ul>
 
-<div id="outline-container-org916cb9c" class="outline-2">
-<h2 id="org916cb9c"><span class="section-number-2">1</span> ABSTRACT</h2>
+<div id="outline-container-org3ce78fb" class="outline-2">
+<h2 id="org3ce78fb"><span class="section-number-2">1</span> ABSTRACT</h2>
 </div>
-<div id="outline-container-org93074dc" class="outline-2">
-<h2 id="org93074dc"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org782bc20" class="outline-2">
+<h2 id="org782bc20"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Many early systems for processing this kind of data relied on physically scraping log files off production servers for analysis. In recent years, several specialized distributed log aggregators have been built, including Facebook’s Scribe , Yahoo’s Data Highway , and Cloudera’s Flume. Those systems are primarily designed for collecting and loading the log data into a data warehouse or Hadoop for offline consumption. （一些现有的日志系统都是非实时系统，将数据导入到数据仓库或是Hadoop做离线处理）</li>
@@ -55,8 +55,8 @@
 </div>
 </div>
 
-<div id="outline-container-org00a101c" class="outline-2">
-<h2 id="org00a101c"><span class="section-number-2">3</span> Related Work</h2>
+<div id="outline-container-org8da2948" class="outline-2">
+<h2 id="org8da2948"><span class="section-number-2">3</span> Related Work</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Traditional enterprise messaging systems have existed for a long time and often play a critical role as an event bus for processing asynchronous data flows. However, there are a few reasons why they tend not to be a good fit for log processing. （传统的消息系统不适合做日志处理）
@@ -79,8 +79,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfcc4278" class="outline-2">
-<h2 id="orgfcc4278"><span class="section-number-2">4</span> Kafka Architecture and Design Principles</h2>
+<div id="outline-container-org1148d27" class="outline-2">
+<h2 id="org1148d27"><span class="section-number-2">4</span> Kafka Architecture and Design Principles</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>We first introduce the basic concepts in Kafka
@@ -128,8 +128,8 @@ for (message : streams[0]) {
 </div>
 </div>
 
-<div id="outline-container-orgfadd9be" class="outline-3">
-<h3 id="orgfadd9be"><span class="section-number-3">4.1</span> Efficiency on a Single Partition</h3>
+<div id="outline-container-orge3dcacd" class="outline-3">
+<h3 id="orge3dcacd"><span class="section-number-3">4.1</span> Efficiency on a Single Partition</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Simple storage
@@ -166,8 +166,8 @@ for (message : streams[0]) {
 </div>
 </div>
 
-<div id="outline-container-org703f6c6" class="outline-3">
-<h3 id="org703f6c6"><span class="section-number-3">4.2</span> Distributed Coordination</h3>
+<div id="outline-container-orgc9113a9" class="outline-3">
+<h3 id="orgc9113a9"><span class="section-number-3">4.2</span> Distributed Coordination</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Each producer can publish a message to either a randomly selected partition or a partition semantically determined by a partitioning key and a partitioning function.（procuder可以根据指定partition算法或者是随机选择发送到哪个partition. 就现在来说每个partition只能够在某一个broker上面）</li>
@@ -179,6 +179,9 @@ for (message : streams[0]) {
 <ul class="org-ul">
 <li>detecting the addition and the removal of brokers and consumers</li>
 </ul></li>
+</ul></li>
+</ul>
+<ul class="org-ul">
 <li>when each broker or consumer starts up, it stores its information in a broker or consumer registry in Zookeeper.（启动时候在上面进行注册）
 <ul class="org-ul">
 <li>The broker registry contains the broker’s host name and port, and the set of topics and partitions stored on it.（broker注册hostname和port,管理的topics以及partitions)</li>
@@ -190,18 +193,23 @@ The consumer registry includes the consumer group to which a consumer belongs an
 <li>Each consumer group is associated with an ownership registry and an offset registry in Zookeeper.</li>
 </ul>
 <ul class="org-ul">
-<li>The ownership registry has one path for every subscribed partition and the path value is the id of the consumer currently consuming from this partition（每个订阅partition是一个path, path value是这个consumer id, 这个consumer来消费这个partition的）
+<li><p>
+The ownership registry has one path for every subscribed partition and the path value is the id of the consumer currently consuming from this partition（每个订阅partition是一个path, path value是这个consumer id, 这个consumer来消费这个partition的）
+</p>
 <ul class="org-ul">
 <li>The offset registry stores for each subscribed partition, the offset of the last consumed message in the partition.（记录订阅partition的最后一个offset）</li>
-</ul></li>
+</ul>
+<ul class="org-ul">
 <li>triggering a rebalance process in each consumer when the above events happen,</li>
 <li>maintaining the consumption relationship and keeping track of the consumed offset of each partition.</li>
 </ul></li>
-</ul></li>
+</ul>
+<ul class="org-ul">
 <li>During the initial startup of a consumer or when the consumer is notified about a broker/consumer change through the watcher, the consumer initiates a rebalance process to determine the new subset of partitions that it should consume from.（consumer或者是broker发生变化的话，那么就会触发balance)
 <ul class="org-ul">
 <li>When there are multiple consumers within a group, each of them will be notified of a broker or a consumer change. However, the notification may come at slightly different times at the consumers. So, it is possible that one consumer tries to take ownership of a partition still owned by another consumer. When this happens, the first consumer simply releases all the partitions that it currently owns, waits a bit and retries the rebalance process. In practice, the rebalance process often stabilizes after only a few retries.（可能会出现一些颠簸的情况，但是这个情况最终是会稳定下来的）</li>
 <li>When a new consumer group is created, no offsets are available in the offset registry. In this case, the consumers will begin with either the smallest or the largest offset (depending on a configuration) available on each subscribed partition, using an API that we provide on the brokers.（新增的consume group可以选择最老的点开始读取，也可以选择最新的点开始读取）</li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -213,8 +221,8 @@ The consumer registry includes the consumer group to which a consumer belongs an
 </div>
 </div>
 
-<div id="outline-container-org11cd50a" class="outline-3">
-<h3 id="org11cd50a"><span class="section-number-3">4.3</span> Delivery Guarantees</h3>
+<div id="outline-container-org657432f" class="outline-3">
+<h3 id="org657432f"><span class="section-number-3">4.3</span> Delivery Guarantees</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>In general, Kafka only guarantees at-least-once delivery. Exactly- once delivery typically requires two-phase commits and is not necessary for our applications.（至少保证一次投递）</li>
@@ -227,8 +235,8 @@ The consumer registry includes the consumer group to which a consumer belongs an
 </div>
 </div>
 
-<div id="outline-container-orgc859819" class="outline-2">
-<h2 id="orgc859819"><span class="section-number-2">5</span> Kafka Usage at LinkedIn</h2>
+<div id="outline-container-orgc78531d" class="outline-2">
+<h2 id="orgc78531d"><span class="section-number-2">5</span> Kafka Usage at LinkedIn</h2>
 <div class="outline-text-2" id="text-5">
 
 <div class="figure">
@@ -249,11 +257,11 @@ The consumer registry includes the consumer group to which a consumer belongs an
 </div>
 </div>
 
-<div id="outline-container-orga602451" class="outline-2">
-<h2 id="orga602451"><span class="section-number-2">6</span> Experimental Results</h2>
+<div id="outline-container-orga6dba54" class="outline-2">
+<h2 id="orga6dba54"><span class="section-number-2">6</span> Experimental Results</h2>
 </div>
-<div id="outline-container-org0c801eb" class="outline-2">
-<h2 id="org0c801eb"><span class="section-number-2">7</span> Conclusion and Future Works</h2>
+<div id="outline-container-orgabdaeab" class="outline-2">
+<h2 id="orgabdaeab"><span class="section-number-2">7</span> Conclusion and Future Works</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 There are a number of directions that we’d like to pursue in the future.
@@ -270,8 +278,8 @@ There are a number of directions that we’d like to pursue in the future.
 </div>
 </div>
 
-<div id="outline-container-org042fa17" class="outline-2">
-<h2 id="org042fa17"><span class="section-number-2">8</span> Replication Since 0.8</h2>
+<div id="outline-container-org29bb7aa" class="outline-2">
+<h2 id="org29bb7aa"><span class="section-number-2">8</span> Replication Since 0.8</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 据说从0.8开始支持replication. 粗略地阅读了一下主页上的 <a href="http://kafka.apache.org/documentation.html">documentation</a> , 把一些比较关键东西记录下来。
