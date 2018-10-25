@@ -76,8 +76,8 @@ the "size of stack reserve" information in "optional header values".  Run
 ** Pointers and Arrays
 ** Interpositioning
 __attribute__ ((visibility (<value>))) 可以用来控制符号可见域，其中value可以指定为
-   - "default" # 对其他单元可见
-   - "hidden" # 仅对本单元可见
+- "default" # 对其他单元可见
+- "hidden" # 仅对本单元可见
 然后我们还能够通过编译选项-fvisibility来控制可见域默认值。
 
 ** Explicit Inlining
@@ -85,13 +85,13 @@ inline __attribute__((always _inline)) 可以强制inline.
 
 ** Vector Extensions
 通常编译器都会提供对应的头文件（提供指令以及数据类型）
-   - x86: x86intrin.h
-   - MMX: mmintrin.h
-   - SSE: xmmintrin.h
-   - SSE2: emmintrin.h
-   - SSE3: mm3dnow.h
-   - 3dnow: tmmintrin.h
-   - AVX: immintrin.h
+- x86: x86intrin.h
+- MMX: mmintrin.h
+- SSE: xmmintrin.h
+- SSE2: emmintrin.h
+- SSE3: mm3dnow.h
+- 3dnow: tmmintrin.h
+- AVX: immintrin.h
 
 SIMD指令操作参数通常要求字节对齐（比如16字节），头文件里面应该都会定义这些数据类型
 #+BEGIN_EXAMPLE

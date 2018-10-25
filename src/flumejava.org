@@ -16,15 +16,15 @@ These abstractions enable an entire pipeline to be ini-tially developed and test
 ** Background on MapReduce
 ** The FlumeJava Library
 data representation
-   - PCollection<T>
-   - PTable<K,V> extend PCollection<Pair<K,V>>
-   - PObject # to inspect PCollection and PTable
+- PCollection<T>
+- PTable<K,V> extend PCollection<Pair<K,V>>
+- PObject # to inspect PCollection and PTable
 
 primitive operation
-   - parallelDo # (PCollection<T>,...) => PCollection<S>
-   - groupByKey # PTable<K,V> => PTable<K, Collection<V>>
-   - combineValue # PTable<K, Collection<V>> => PTable<K, V>
-   - flatten # (PCollection<T>, PCollection<T>...) => PCollection<T>
+- parallelDo # (PCollection<T>,...) => PCollection<S>
+- groupByKey # PTable<K,V> => PTable<K, Collection<V>>
+- combineValue # PTable<K, Collection<V>> => PTable<K, V>
+- flatten # (PCollection<T>, PCollection<T>...) => PCollection<T>
 
 derived operation
 
