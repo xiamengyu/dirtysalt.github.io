@@ -50,8 +50,8 @@ Namespaces are one honking great idea -- let's do more of those!
 
 *** 字符编码(encoding)
 python字符串是unicode类型，二进制是str类型。
-   - encode是将unicode转换成为str
-   - decode是将str转换成为unicode
+- encode是将unicode转换成为str
+- decode是将str转换成为unicode
 #+BEGIN_EXAMPLE
 >>> a="中国"
 >>> a

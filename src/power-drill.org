@@ -27,24 +27,24 @@ Principally, any other technique of splitting up the data would work as well. In
 Basic Data-Structures
 
 数据结构是这样的:
-   - global_dict: 有序地存储列上面所有可能值并且分配global_id.
-   - chunk#idx: 按照first field分裂出来的一个数据单元块. 作用是可以有效地减少full-scan所touch的数据量.
-     - chunk_dict: # chunk_id <-> global_id 映射(global_id有序). 增加这个映射有两个好处:
-       - 能够迅速了解当前chunk所有出现过的values.
-       - 将global_id映射成为值范围更小的chunk_id可以提高elements压缩比率.
-     - elements:  # 和rows顺序相同. 表明这个row上的field对应的chunk_id.
-     - rows: # 整行的完整数据. 每个chunk应该只有一份. 这个数据应该存储在磁盘上.
+- global_dict: 有序地存储列上面所有可能值并且分配global_id.
+- chunk#idx: 按照first field分裂出来的一个数据单元块. 作用是可以有效地减少full-scan所touch的数据量.
+  - chunk_dict: # chunk_id <-> global_id 映射(global_id有序). 增加这个映射有两个好处:
+    - 能够迅速了解当前chunk所有出现过的values.
+    - 将global_id映射成为值范围更小的chunk_id可以提高elements压缩比率.
+  - elements:  # 和rows顺序相同. 表明这个row上的field对应的chunk_id.
+  - rows: # 整行的完整数据. 每个chunk应该只有一份. 这个数据应该存储在磁盘上.
 除了rows这个部分, 其他所有数据应该都是存储在内存里面的.
 
 file:images/power-drill-illustration.png
 
 ** Key Optimizations
 减少memory_footprint, 这样系统可以将更多的chunk_metadata放入内存.
-   - Partitioning the Data into Chunks.
-   - Optimize Encoding of Elements in Columns.
-   - Optimize Global-Dictionaries. # keys have long common prefixes -> handcrafted trie tree.
-   - Generic Compression Algorithm. # [[file:snappy.org][Snappy]] 来压缩不常用的chunk部分.
-   - Reordering Rows.
+- Partitioning the Data into Chunks.
+- Optimize Encoding of Elements in Columns.
+- Optimize Global-Dictionaries. # keys have long common prefixes -> handcrafted trie tree.
+- Generic Compression Algorithm. # [[file:snappy.org][Snappy]] 来压缩不常用的chunk部分.
+- Reordering Rows.
 
 ** Distributed Execution
 ** Extensions
