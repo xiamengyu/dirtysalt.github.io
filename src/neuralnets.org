@@ -79,10 +79,10 @@ BP可以告诉我们dE/dw(error deriviate). 为了得到一个完整的训练神
 file:images/nn-class-bengio-predicting-next-word.png
 
 这里稍微说明以下这个模型。假设我们统计出一共有n个词
-   - "index of word"就是一个大小为n全0的vector, 只有在这个词对应位置上为1.
-   - "learned distributed encoding"则是单词表示，包含了词性和语义等信息。假设长度为d.
-   - "units that ..."则是预测出来的单词表示。假设长度为k.
-   - "softmax units"是一个大小为n的vector, 每个位上表示某个词数出现概率。
+- "index of word"就是一个大小为n全0的vector, 只有在这个词对应位置上为1.
+- "learned distributed encoding"则是单词表示，包含了词性和语义等信息。假设长度为d.
+- "units that ..."则是预测出来的单词表示。假设长度为k.
+- "softmax units"是一个大小为n的vector, 每个位上表示某个词数出现概率。
 那么这个神经网络需要训练的参数是2nd + 2dk + kn. 如果n非常大的话(实际也是这样的)那么：k不能太大，除非有足够数据否则容易过拟合；同时k也不能太小，否则我们不能学不到东西。另外对于这么大的输出我们还必须要能正确处理小概率，其实这些小概率的词都是比较重要的。
 
 我们有什么办法来处理比较大规模输出呢？(减小输出集合), [[file:images/nn-class-lec4.pdf][ppt]] 最后面给出了三种方法。这里只是稍微简单地说一下，具体描述可以看 [[file:images/nn-class-lec4.pdf][ppt]]
@@ -97,13 +97,13 @@ file:images/nn-class-bengio-predicting-next-word.png
 使用mini-batch的时候，我们需要确保每个batch里面的数据分布应该是尽可能典型的。如果数据集合比较大并且冗余度非常高的话，那么使用mini-batch相比full-batch是更加合适的。
 
 mini-batch梯度下降一些技巧
-  - initial weight.
+- initial weight.
     1. 如果两个unit的weight(input/output weight)完全一致的话，那么它们学到的feature也是一致的。所以需要在weight增加随机性确保不完全一样。
     2. 如果hidden unit fan-in 比较大的话，那么初始权值最好设置小点，不然会造成拥塞(saturation). 相反如果fan-in比较小的话，那么weight可以设置大一些。可以考虑和1/sqrt(fan-in)成比例。
     3. 和2一样，我们也可以同样这样来scale learning rate. 这样 x * w 就和 1/fan-in成比例了。
-  - shift input. # 比如(100, 99) -> 0, (101, 100) -> 1的话，我们可以考虑平移100，这样变为(1, -1) -> 0, (1, 0) -> 1. 数据预处理
-  - scaling input. # 和shift input类似，也是数据预处理。比如(0.1, 100) -> 0, (-0.2, -100) -> 1的话变换成为(1, 1) -> 0, (-2, -1) -> 1.
-  - decorrelate input. # dimensionality reduction. PCA. 这样可以去除那些两者之间呈线性关系的feature，使得error surface看上去在各个方向上半径一致呈圆球状。
+- shift input. # 比如(100, 99) -> 0, (101, 100) -> 1的话，我们可以考虑平移100，这样变为(1, -1) -> 0, (1, 0) -> 1. 数据预处理
+- scaling input. # 和shift input类似，也是数据预处理。比如(0.1, 100) -> 0, (-0.2, -100) -> 1的话变换成为(1, 1) -> 0, (-2, -1) -> 1.
+- decorrelate input. # dimensionality reduction. PCA. 这样可以去除那些两者之间呈线性关系的feature，使得error surface看上去在各个方向上半径一致呈圆球状。
 
 多层网络常见错误：1. 初始learning rate过大，导致一些unit的输出值非常大或者是非常小。但是两种情况都会导致derivative非常小，使得error变化非常小。 2. 过早减小learning rate：过早减小learning rate虽然可能马上有改善，但是之后改善幅度可能会非常小。
 

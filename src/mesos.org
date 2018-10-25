@@ -105,9 +105,9 @@ Fragmentation: When tasks have heterogeneous re-source demands, a distributed co
 Interdependent framework constraints: It’s possible to construct scenarios where, because of esoteric inter- dependencies between frameworks’ performance, only a single global allocation of the cluster resources performs well. We argue such scenarios are rare in practice. In the model discussed in this section, where frameworks only have preferences over placement, we showed that allocations approximate those of optimal schedulers. # framework之间的相互资源限制造成必须使用中央调度器才能够有好的性能. 但是这种情况非常少见.
 
 ** Implementation
-   - 10000 loc in C++, running on Linux, Solaris, Mac OS X
-   - use SWIG to generate interface bindings for Java, Ruby, Python
-   - libprocess # an actor-based programming model using efficient asyn-chronous I/O mechanisms
+- 10000 loc in C++, running on Linux, Solaris, Mac OS X
+- use SWIG to generate interface bindings for Java, Ruby, Python
+- libprocess # an actor-based programming model using efficient asyn-chronous I/O mechanisms
 
 ** Evaluation
 ** Related Work

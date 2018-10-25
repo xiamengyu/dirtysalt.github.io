@@ -20,9 +20,9 @@ file:images/castbox-android-app.png
 3. 对数据结构和算法有比较好的理解和实践;
 4. 对网络爬虫，Web服务开发，并发并行编程，数据库系统有较深入的理解;
 5. 有如下经验者优先：
-   - Flask, MongoDB, ElasticSearch开发
-   - AWS开发和部署
-   - 数据挖掘，机器学习，推荐系统
+  0. Flask, MongoDB, ElasticSearch开发
+  1. AWS开发和部署
+  2. 数据挖掘，机器学习，推荐系统
 
 ** Android工程师
 岗位职责：

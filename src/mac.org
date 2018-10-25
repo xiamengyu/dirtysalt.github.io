@@ -47,9 +47,9 @@ brew的常用选项有下面这些：
 系统偏好设置 => 触控板 => 设置"轻拍来点按". 不然每次左键都要用力按下.
 
 ** 控制休眠
-  - 系统偏好设置=》节能器
-  - 电池模式下面使用默认配置
-  - 电源适配器下面使用默认配置，然后修改”电脑进入睡眠“为”永不“
+- 系统偏好设置=》节能器
+- 电池模式下面使用默认配置
+- 电源适配器下面使用默认配置，然后修改”电脑进入睡眠“为”永不“
 
 ** VirtualBox启动问题
 启动遇到如下错误"VM (VERR_SUPLIB_WORLD_WRITABLE) with following details: code d'erreur: NS_ERROR_FAILURE (0x80004005) composant: console interface: IConsole {515e8e8d-f932-4d8e-9f32-79a52aead882}". 查看日志之后发现/Applications权限存在问题，修改权限到755之后正常启动。

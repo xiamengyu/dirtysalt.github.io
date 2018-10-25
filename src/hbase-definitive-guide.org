@@ -238,10 +238,10 @@ file:images/hbase-keyvalue-format.png
 file:images/hbase-store-files-in-minor-compaction.png
 
 **** Major
-  - It triggers a check on a regular basis, controlled by *hbase.server.thread.wakefrequency* (multiplied by *hbase.server.thread.wakefrequency.multiplier*, set to 1000, to run it less often than the other thread based tasks). （定期去检查是否需要做major compaction）
-  - If you call the major_compact command, or the majorCompact() API call, then you force the major compaction to run.（手动调用的话那么就强制进行major compaction）
-  - Otherwise the server checks first if the major compaction is due, based on *hbase.hregion.majorcompaction* (set to 24 hours) from the last it ran. The *hbase.hregion.majorcompaction.jitter* (set to 0.2, in other words 20%) causes this time to be spread out for the stores. Without the jitter all stores would run a major compaction at the same time, every 24 hours.（否则根据两个参数来控制，第一个是检查一下这次major compaction是否到期，另外一个是控制不要让所有的major compaction同时启动）
-  - If no major compaction is due, then a minor is assumed. Based on the above configuration properties, the server determines if enough files for a minor compaction are available and continues if that is the case.（如果检查没有不需要做major compaction的话，那么就会检查是否需要做minor compaction）
+- It triggers a check on a regular basis, controlled by *hbase.server.thread.wakefrequency* (multiplied by *hbase.server.thread.wakefrequency.multiplier*, set to 1000, to run it less often than the other thread based tasks). （定期去检查是否需要做major compaction）
+- If you call the major_compact command, or the majorCompact() API call, then you force the major compaction to run.（手动调用的话那么就强制进行major compaction）
+- Otherwise the server checks first if the major compaction is due, based on *hbase.hregion.majorcompaction* (set to 24 hours) from the last it ran. The *hbase.hregion.majorcompaction.jitter* (set to 0.2, in other words 20%) causes this time to be spread out for the stores. Without the jitter all stores would run a major compaction at the same time, every 24 hours.（否则根据两个参数来控制，第一个是检查一下这次major compaction是否到期，另外一个是控制不要让所有的major compaction同时启动）
+- If no major compaction is due, then a minor is assumed. Based on the above configuration properties, the server determines if enough files for a minor compaction are available and continues if that is the case.（如果检查没有不需要做major compaction的话，那么就会检查是否需要做minor compaction）
 
 *** WAL
 file:images/hbase-wal-structure.png
@@ -262,10 +262,10 @@ Currently the WAL is using a Hadoop SequenceFile, which stores records as sets o
   - 这样进行replay就能够以原子的方式进行。
 
 **** LogRoller
-  - The LogRoller class runs as a background thread and takes care of rolling log files at certain intervals. This is controlled by the *hbase.regionserver.logroll.period* property, set by default to one hour.（单独的线程运行，每隔一段时间进行日志的回滚）
-  - Every 60 minutes the log is closed and a new one started. Over time the system accumulates an increasing number of log files that need to be maintained as well. The HLog.rollWriter() method, which is called by the LogRoller to do the above rolling of the current log file, is taking care of that as well by calling HLog.cleanOldLogs() subsequently.（关闭原来的log文件重新打开新的log文件进行记录，同时会做一些清除日志的操作，应该是move到oldlogs目录下面）
-  - It checks what the highest sequence number written to a storage file is, because up to that number all edits are persisted. It then checks if there is a log left that has edits which are all less than that number. If that is the case it moves said logs into the .oldlogs directory, and leaves just those that are still needed.（清理的过程也非常直接，首先检查在存储文件里面最高的sequence number, 然后判断日志如果里面所有的sequence number都是小于这个sequence number的话，那么可以确定这个文件是不需要的了）
-  - The other parameters controlling the log rolling are *hbase.regionserver.hlog.blocksize* (set to the file system default block size, or fs.local.block.size, defaulting to 32MB) and *hbase.regionserver.logroll.multiplier* (set to 0.95), which will rotate logs when they are at 95% of the block size. So logs are switched out when either the they are considered full, or a certain amount of time has passed - whatever comes first. （另外一个触发roll log的事件是，当log超过一定大小）
+- The LogRoller class runs as a background thread and takes care of rolling log files at certain intervals. This is controlled by the *hbase.regionserver.logroll.period* property, set by default to one hour.（单独的线程运行，每隔一段时间进行日志的回滚）
+- Every 60 minutes the log is closed and a new one started. Over time the system accumulates an increasing number of log files that need to be maintained as well. The HLog.rollWriter() method, which is called by the LogRoller to do the above rolling of the current log file, is taking care of that as well by calling HLog.cleanOldLogs() subsequently.（关闭原来的log文件重新打开新的log文件进行记录，同时会做一些清除日志的操作，应该是move到oldlogs目录下面）
+- It checks what the highest sequence number written to a storage file is, because up to that number all edits are persisted. It then checks if there is a log left that has edits which are all less than that number. If that is the case it moves said logs into the .oldlogs directory, and leaves just those that are still needed.（清理的过程也非常直接，首先检查在存储文件里面最高的sequence number, 然后判断日志如果里面所有的sequence number都是小于这个sequence number的话，那么可以确定这个文件是不需要的了）
+- The other parameters controlling the log rolling are *hbase.regionserver.hlog.blocksize* (set to the file system default block size, or fs.local.block.size, defaulting to 32MB) and *hbase.regionserver.logroll.multiplier* (set to 0.95), which will rotate logs when they are at 95% of the block size. So logs are switched out when either the they are considered full, or a certain amount of time has passed - whatever comes first. （另外一个触发roll log的事件是，当log超过一定大小）
 
 **** LogSyncer
 #note: sync不是针对本地磁盘，而是将所写数据的offset写到namenode上面

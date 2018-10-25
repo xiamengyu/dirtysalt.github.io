@@ -250,9 +250,9 @@ location: class com.dirlt.X
 这个import顺序intellj认为是正确的，而且只需要反转两个import的顺序就可以正常编译。
 
 我不太理解java的导入顺序，但是猜想和C++的include非常类似，出现上面的问题可能就是循环依赖导致的问题
-   - 当我们引入com.dirlt.X.B.A的时候，javac会去分析这个文件X.java(or X.class)
-   - 因为引入的是B下面的子类，因此肯定需要分析B这个类
-   - 而B继承ArrayList这个类，但是javac在当前的名字空间下面找不到ArrayList所以报错
+- 当我们引入com.dirlt.X.B.A的时候，javac会去分析这个文件X.java(or X.class)
+- 因为引入的是B下面的子类，因此肯定需要分析B这个类
+- 而B继承ArrayList这个类，但是javac在当前的名字空间下面找不到ArrayList所以报错
 
 解决这个问题最好的办法，我觉得应该就是：对于文件内部本身的类，不要使用import来导入，直接使用全称即可。
 
@@ -280,20 +280,20 @@ java里面异常都是派生于Throwable，但是分解成为两个分支：
    2. Exception.分解为RuntimeException（运行时异常）和其他（编译时异常）。
 
 RuntimeException包括下面几种情况：
-   - 错误类型转换。
-   - 数组访问越界。
-   - 访问空指针。
+- 错误类型转换。
+- 数组访问越界。
+- 访问空指针。
 
 java语言规范将派生于Error或者是RuntimeException的所有异常称为未检查异常(unchecked exception),而将所有其他异常（也就是编译时异常）称为已检查异常(checked).称为已检查异常原因是因为，java的异常规格也是作为函数声明的一部分的。因此如果方法foo抛出异常X,那么调用foo的方法，要么检查异常X,要么就在自己的规则里面写上throws X传给上层处理，无论如何你都是需要面对这个异常的，所以称为已检查。
 
-   - 抛出异常非常简单，使用new Exception()即可
-   - 创建异常的话继承Throwable即可，构造参数可以传入message表示这个异常的详细信息。
-   - 如果重新抛出异常的话会将异常链断开，可以通过调用initCause将原始的cause保存起来，getCause可以取出。这样可以保持异常链完整信息。
+- 抛出异常非常简单，使用new Exception()即可
+- 创建异常的话继承Throwable即可，构造参数可以传入message表示这个异常的详细信息。
+- 如果重新抛出异常的话会将异常链断开，可以通过调用initCause将原始的cause保存起来，getCause可以取出。这样可以保持异常链完整信息。
 
 *** StackTrace
-   - 使用Thread.getStackTrace获得某个线程的堆栈信息
-   - 使用Thread.getAllStackTrace可以获得所有线程的堆栈信息
-   - 异常对象可以使用e.printStackTrace打印堆栈信息
+- 使用Thread.getStackTrace获得某个线程的堆栈信息
+- 使用Thread.getAllStackTrace可以获得所有线程的堆栈信息
+- 异常对象可以使用e.printStackTrace打印堆栈信息
 
 *** Proxy
 使用代理可以动态地生成一些类或者是接口（但是不是动态生成代码）。创建一个代理对象，使用Proxy类的newProxyInstance方法，有下面三个参数：
@@ -330,9 +330,9 @@ class X{
 }
 #+END_SRC
 
-   - java没有定义代理类的名字，sun虚拟机中的Proxy类将生成一个以字符串$Proxy开头的类名。
-   - 对于特定的类加载器和预设的一组接口来说，只能够有一个代理类。也就是说，如果使用同一个类加载器刚和接口数组调用newProxyInstance方法两次的话，那么只能够得到同一个类的两个对象。
-   - 可以使用Proxy.getProxyClass获得对应代理类，通过Proxy.isProxyClass判断某个类是否为代理类。
+- java没有定义代理类的名字，sun虚拟机中的Proxy类将生成一个以字符串$Proxy开头的类名。
+- 对于特定的类加载器和预设的一组接口来说，只能够有一个代理类。也就是说，如果使用同一个类加载器刚和接口数组调用newProxyInstance方法两次的话，那么只能够得到同一个类的两个对象。
+- 可以使用Proxy.getProxyClass获得对应代理类，通过Proxy.isProxyClass判断某个类是否为代理类。
 
 *** Class
 Class类本身表示这个类的一些元信息。通常拿到这个类的元信息之后，就可以完成一些动态事情比如反射。java有三种方式可以获得Class类：
@@ -358,20 +358,20 @@ Class类本身表示这个类的一些元信息。通常拿到这个类的元信
 守护线程（daemon）和unix操作系统的daemon有些差别。在java里面如果还有存活的线程的话，即使main线程完毕那么程序依然不会结束（这个在c/c++程序里面则不然）。如果将线程设置成为daemon状态的话，那么最后剩下的线程都是daemon的话，那么jvm也会自动退出。
 
 Runnable的run方法是不允许抛出任何异常的，对于可检查的异常可以在代码里面完成，而对于不可检查的异常因为不能够处理，因此如果触发的话那么线程终止。而对于可检查异常如果没有处理的话，那么在线程死亡之前，异常会被一个异常处理器处理：
-   - Thread.UncaughtExceptionHandler接口（void uncaughtException(Thread t,Throwable e) )，通过setUncaughtExceptionHandler为单个线程安装处理器，也可以通过setDefaultUncaughtExceptionHandler为所有线程安装。
-   - 默认处理器为空。如果线程安装的话，那么使用该线程的ThreadGroup对象作为异常处理器
-     - 如果这个线程存在父线程组，那么交给父线程组处理。
-     - 如果Thread.getDefaultUncaughtExceptionHandler为非空的话那么调用。
-     - 如果Throwable为ThreadDeath实例，那么什么也不做。
-     - 将线程名字和Throwable的stacktrace输出到stderr上面。
+- Thread.UncaughtExceptionHandler接口（void uncaughtException(Thread t,Throwable e) )，通过setUncaughtExceptionHandler为单个线程安装处理器，也可以通过setDefaultUncaughtExceptionHandler为所有线程安装。
+- 默认处理器为空。如果线程安装的话，那么使用该线程的ThreadGroup对象作为异常处理器
+  - 如果这个线程存在父线程组，那么交给父线程组处理。
+  - 如果Thread.getDefaultUncaughtExceptionHandler为非空的话那么调用。
+  - 如果Throwable为ThreadDeath实例，那么什么也不做。
+  - 将线程名字和Throwable的stacktrace输出到stderr上面。
 
 synchronized关键字其实有两个场景
-   - 如果作用于对象或者是对象方法的话，那么其实相当是同步这个对象(对象存在一个mutex lock)
-   - 如果作用于静态字段或者是静态方法的话，那么其实相当是同步这个类（类有一个mutex lock)
+- 如果作用于对象或者是对象方法的话，那么其实相当是同步这个对象(对象存在一个mutex lock)
+- 如果作用于静态字段或者是静态方法的话，那么其实相当是同步这个类（类有一个mutex lock)
 一旦理解这点之后，就比较好理解為什麼存在
-   - wait
-   - notify
-   - notifyAll
+- wait
+- notify
+- notifyAll
 这些方法了。其实都是相当于这个lock对应的condition本身提供的方法。
 
 volatile关键字为 *实例字段* 的同步访问提供了一种免锁机制。如果声明一个字段为volatile的话，那么编译器和虚拟机就可以知道这个字段很可能会被另外一个线程并发更新。
@@ -382,55 +382,55 @@ volatile关键字为 *实例字段* 的同步访问提供了一种免锁机制�
 #todo:
 
 *** JMX
-   - jmxtrans/jmxtrans · GitHub https://github.com/jmxtrans/jmxtrans
-   - Trail: Java Management Extensions (JMX) (The Java™ Tutorials) http://docs.oracle.com/javase/tutorial/jmx/index.html
-   - Lesson: Introducing MBeans (The Java™ Tutorials > Java Management Extensions (JMX)) http://docs.oracle.com/javase/tutorial/jmx/mbeans/index.html
-   - Standard MBeans (The Java™ Tutorials > Java Management Extensions (JMX) > Introducing MBeans) http://docs.oracle.com/javase/tutorial/jmx/mbeans/standard.html
+- jmxtrans/jmxtrans · GitHub https://github.com/jmxtrans/jmxtrans
+- Trail: Java Management Extensions (JMX) (The Java™ Tutorials) http://docs.oracle.com/javase/tutorial/jmx/index.html
+- Lesson: Introducing MBeans (The Java™ Tutorials > Java Management Extensions (JMX)) http://docs.oracle.com/javase/tutorial/jmx/mbeans/index.html
+- Standard MBeans (The Java™ Tutorials > Java Management Extensions (JMX) > Introducing MBeans) http://docs.oracle.com/javase/tutorial/jmx/mbeans/standard.html
 
 jmx似乎是一个标准，在JDK里面有默认的实现。通过jmx可以暴露jvm进程的一些运行参数以及系统状态（jdk默认实现），也可以暴露应用程序状态（需要自己实现），在jvm内部用单独的线程以server运行。外部client可以通过jmx协议访问，然后输出到其他terminal上面（比如opentsdb, ganglia等，jmxtrans就是做这个事情的）。
 
 我大致阅读了一下代码，在server有两个比较重要的概念:agent(mbean server)和mxbean. agent(mbean server)类似server启动，mxbean则是各个data source. 但是从jdk默认的实现（ManagementFactory::getPlatformMBeanServer)里面可以看到，mxbean不是一个静态基类，而是通过反射的方式将mxbean类转换成为DynamicMBean（猜测数据传输格式应该是JPO，Java Persistent Object,也就是java对象自带序列化方式，这种方式的好处就是没有限制data source format，但是却复杂了实现）。
-   - com.dirlt.java.tomb.SimpleJMX 例子比较简单，显示和修改数据 #note:只有基本类型可以显示和修改。如果数据类型为object的话，那么不能显示和修改
-   - MXBean允许做RMI
-   - Notifcation允许RMI之后做通知
-   - *so advanced, so powerful, yet so complex*
+- com.dirlt.java.tomb.SimpleJMX 例子比较简单，显示和修改数据 #note:只有基本类型可以显示和修改。如果数据类型为object的话，那么不能显示和修改
+- MXBean允许做RMI
+- Notifcation允许RMI之后做通知
+- *so advanced, so powerful, yet so complex*
 
 *** Future
 -----
 关于Future的一点个人感想：
 
 *Future这个概念非常好，可以做成一个Callable对象的continuation.*  但是曾经一段时间我非常希望将其当作一个类似Nio下面的Channel对象来看待，因为一旦如此那么便可以使用类似Select/Epoll这种多路复用组件，来管理众多的continuation，可以检测continuation是否ready或者是是否超时，并且触发回调，整个过程和Nio多路复用非常类似，然后在这上面做异步就非常容易了。但是后来考虑清楚了，这件事情是不靠谱的。原因如下：
-   - 检测continuation是否ready非常容易，只需要把continuation逻辑写在发起的Callable之后即可。因此在JDK里面也有FutureTask并且衍生了一些辅助类比如ExecutorCompletionService, 但是这些组件实际上都是封装，没有解决实际问题。
-   - 事实上Future和Channel存在本质的不同，Future发起的是一个Callable操作也就是CPU操作，虽然这里面可能有IO操作，但是如果当作通用的CPU操作来看的话，这个操作即使检测到超时也不能够停止，而Channel上read/write是不同的，Channel上面的操作是允许中断的。
-   - 就像之前所说的，Future本质发起的Callable对象是一个CPU操作，里面可能也带有IO操作，将Callable对象放在线程池里面执行，也就是说实际上需要靠线程池数量来支撑Callable并发，这点和异步是相反思路的。
+- 检测continuation是否ready非常容易，只需要把continuation逻辑写在发起的Callable之后即可。因此在JDK里面也有FutureTask并且衍生了一些辅助类比如ExecutorCompletionService, 但是这些组件实际上都是封装，没有解决实际问题。
+- 事实上Future和Channel存在本质的不同，Future发起的是一个Callable操作也就是CPU操作，虽然这里面可能有IO操作，但是如果当作通用的CPU操作来看的话，这个操作即使检测到超时也不能够停止，而Channel上read/write是不同的，Channel上面的操作是允许中断的。
+- 就像之前所说的，Future本质发起的Callable对象是一个CPU操作，里面可能也带有IO操作，将Callable对象放在线程池里面执行，也就是说实际上需要靠线程池数量来支撑Callable并发，这点和异步是相反思路的。
 
 ** Tool
 *** jvisualvm
-   - 远程调试需要程序启动的时候加上下面这些选项：
-     - -Dcom.sun.management.jmxremote.port=1999
-     - -Dcom.sun.management.jmxremote.ssl=false 不走ssl
-     - -Dcom.sun.management.jmxremote.authenticate=false 不做验证
-     - -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.ssl=false  -Dcom.sun.management.jmxremote.authenticate=false
-   - #note: 我始终没有搞懂profiler和sampler两者的区别。从官方指南来看 Profiling Applications with VisualVM — Java.net http://visualvm.java.net/profiler.html 应该是使用profiler.
-   - #note: 可能对于profiler是通过在function前后加上instructment来完成的，而sampler就是纯粹的采样。
+- 远程调试需要程序启动的时候加上下面这些选项：
+  - -Dcom.sun.management.jmxremote.port=1999
+  - -Dcom.sun.management.jmxremote.ssl=false 不走ssl
+  - -Dcom.sun.management.jmxremote.authenticate=false 不做验证
+  - -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.ssl=false  -Dcom.sun.management.jmxremote.authenticate=false
+- #note: 我始终没有搞懂profiler和sampler两者的区别。从官方指南来看 Profiling Applications with VisualVM — Java.net http://visualvm.java.net/profiler.html 应该是使用profiler.
+- #note: 可能对于profiler是通过在function前后加上instructment来完成的，而sampler就是纯粹的采样。
 
 插件 *Tools->Plugins*
-   -  https://visualvm.java.net/pluginscenters.html
-   - VisualGC 可以用来观察GC执行情况
-   - VisualVM-MBeans 用来察看mbean对象
+-  https://visualvm.java.net/pluginscenters.html
+- VisualGC 可以用来观察GC执行情况
+- VisualVM-MBeans 用来察看mbean对象
 
 *** hprof
 HPROF: A Heap/CPU Profiling Tool
-   - http://docs.oracle.com/javase/7/docs/technotes/samples/hprof.html
+- http://docs.oracle.com/javase/7/docs/technotes/samples/hprof.html
 
-   - HPROF is actually a JVM native agent library which is dynamically loaded through a command line option, at JVM startup, and becomes part of the JVM process.
-   - The binary format file from HPROF can be used with tools such as [[https://hat.dev.java.net/][HAT]] to browse the allocated objects in the heap. 二进制输出可以使用HAT这个工具来察看
-   - HPROF is capable of presenting
-     - CPU usage,
-     - heap allocation statistics,
-     - and monitor contention profiles.
-     - complete heap dumps and
-     - states of all the monitors and threads
+- HPROF is actually a JVM native agent library which is dynamically loaded through a command line option, at JVM startup, and becomes part of the JVM process.
+- The binary format file from HPROF can be used with tools such as [[https://hat.dev.java.net/][HAT]] to browse the allocated objects in the heap. 二进制输出可以使用HAT这个工具来察看
+- HPROF is capable of presenting
+  - CPU usage,
+  - heap allocation statistics,
+  - and monitor contention profiles.
+  - complete heap dumps and
+  - states of all the monitors and threads
 
 使用java -agentlib:hprof=help可以察看hprof的调用方式
 #+BEGIN_EXAMPLE
@@ -465,7 +465,7 @@ Examples
 --------
   - Get sample cpu information every 20 millisec, with a stack depth of 3:
       java -agentlib:hprof=cpu=samples,interval=20,depth=3 classname
-  - Get heap usage information based on the allocation sites:
+- Get heap usage information based on the allocation sites:
       java -agentlib:hprof=heap=sites classname
 
 Notes
@@ -481,32 +481,32 @@ Warnings
 --------
   - This is demonstration code for the JVMTI interface and use of BCI,
     it is not an official product or formal part of the JDK.
-  - The -Xrunhprof interface will be removed in a future release.
-  - The option format=b is considered experimental, this format may change
+- The -Xrunhprof interface will be removed in a future release.
+- The option format=b is considered experimental, this format may change
     in a future release.
 #+END_EXAMPLE
-   - force=y 会删除原来的文件，如果是多个VM来同时使用hprof的话那么需要使用force=n
-   - heap= sites能够看到所有的分配以及热点，而dump能够看到所有引用的对象，而all则能看到两个
-     - #note: dump，all能够消耗大量内存，最好别使用，而且没有太大意义
-     - 如果不希望对heap做分析的话，那么不要指定这个选项。
-   - cpu=samples采用采样方式来做分析,interval则是设置采样间隔。 #note: 可能比较使用于长期运行的程序profiling
-   - cpu=times采用代码注入的方式在函数entry和return部分加上代码来做profile.
-   - thread=y 可以针对将不同线程区分开，每个线程单独进行profile.
-   - depth=n 控制stacktrace的深度，加大深度可以看到更详细的调用栈。
-   - doe=n 在exit的时候不dump任何数据
+- force=y 会删除原来的文件，如果是多个VM来同时使用hprof的话那么需要使用force=n
+- heap= sites能够看到所有的分配以及热点，而dump能够看到所有引用的对象，而all则能看到两个
+  - #note: dump，all能够消耗大量内存，最好别使用，而且没有太大意义
+  - 如果不希望对heap做分析的话，那么不要指定这个选项。
+- cpu=samples采用采样方式来做分析,interval则是设置采样间隔。 #note: 可能比较使用于长期运行的程序profiling
+- cpu=times采用代码注入的方式在函数entry和return部分加上代码来做profile.
+- thread=y 可以针对将不同线程区分开，每个线程单独进行profile.
+- depth=n 控制stacktrace的深度，加大深度可以看到更详细的调用栈。
+- doe=n 在exit的时候不dump任何数据
 
 代码处理选项部分还是比较诡异的，可以看看代码是如何处理的 https://cluster.earlham.edu/trac/bccd-ng/browser/branches/skylar-install_jdk/trees/software/bccd/software/jdk1.6.0_14/demo/jvmti/hprof/src/hprof_init.c?rev=1854
 
 -----
 How Does HPROF Work?
-   - a dynamically-linked native library that uses JVM TI and writes out profiling information either to a file descriptor or to a socket in ascii or binary format. （native动态链接库完成的，使用了JVM TI接口，将数据写到socket或者是文件）
-     - [[http://docs.oracle.com/javase/7/docs/technotes/guides/jvmti/index.html][JVM TI]] Java Virtual Machine Tool Interface
-     - calls to JVM TI
-     - event callbacks from JVM TI,
-     - and through Byte Code Insertion (BCI)
-   - The cpu=samples option doesn't use BCI, HPROF just spawns a separate thread that sleeps for a fixed number of micro seconds, and wakes up and samples all the running thread stacks using JVM TI. 通过另外线程通过JVM TI来监控其他线程栈
-   - The cpu=times option attempts to track the running stack of all threads, and keep accurate CPU time usage on all methods. This option probably places the greatest strain on the VM, where every method entry and method exit is tracked. Applications that make many method calls will be impacted more than others.
-   - The heap=sites and heap=dump options are the ones that need to track object allocations. These options can be memory intensive (less so with hprof=sites) and applications that allocate many objects or allocate and free many objects will be impacted more with these options. On each object allocation, the stack must be sampled so we know where the object was allocated, and that stack information must be saved. HPROF has a series of tables allocated in the C or malloc() heap that track all it's information. HPROF currently does not allocate any Java objects.
+- a dynamically-linked native library that uses JVM TI and writes out profiling information either to a file descriptor or to a socket in ascii or binary format. （native动态链接库完成的，使用了JVM TI接口，将数据写到socket或者是文件）
+  - [[http://docs.oracle.com/javase/7/docs/technotes/guides/jvmti/index.html][JVM TI]] Java Virtual Machine Tool Interface
+  - calls to JVM TI
+  - event callbacks from JVM TI,
+  - and through Byte Code Insertion (BCI)
+- The cpu=samples option doesn't use BCI, HPROF just spawns a separate thread that sleeps for a fixed number of micro seconds, and wakes up and samples all the running thread stacks using JVM TI. 通过另外线程通过JVM TI来监控其他线程栈
+- The cpu=times option attempts to track the running stack of all threads, and keep accurate CPU time usage on all methods. This option probably places the greatest strain on the VM, where every method entry and method exit is tracked. Applications that make many method calls will be impacted more than others.
+- The heap=sites and heap=dump options are the ones that need to track object allocations. These options can be memory intensive (less so with hprof=sites) and applications that allocate many objects or allocate and free many objects will be impacted more with these options. On each object allocation, the stack must be sampled so we know where the object was allocated, and that stack information must be saved. HPROF has a series of tables allocated in the C or malloc() heap that track all it's information. HPROF currently does not allocate any Java objects.
 
 *** jmap
 #todo:

@@ -36,11 +36,11 @@ file:images/nn-dl-fp-layer.png file:images/nn-dl-bp-layer.png file:images/nn-dl-
 iteration flow如下图：
 1. 初始化parameters
 2. 迭代下面几步
-   - fp并且保存每层的cache
-   - 计算cost, 并且计算dAL
-   - 根据dAL，结合每层的cache，做bp
-   - 在bp的过程中得到每层的parameters的delta
-   - 更新parameters
+  1. fp并且保存每层的cache
+  2. 计算cost, 并且计算dAL
+  3. 根据dAL，结合每层的cache，做bp
+  4. 在bp的过程中得到每层的parameters的delta
+  5. 更新parameters
 
 file:images/nn-dl-flow.png
 

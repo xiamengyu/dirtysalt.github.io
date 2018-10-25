@@ -15,7 +15,7 @@
      </property>
 </configuration>
 #+END_SRC
-   - conf/hdfs-site.xml
+- conf/hdfs-site.xml
 #+BEGIN_SRC XML
 <configuration>
      <property>
@@ -25,7 +25,7 @@
 </configuration>
 #+END_SRC
 
-   - conf/mapred-site.xml
+- conf/mapred-site.xml
 #+BEGIN_SRC XML
 <configuration>
      <property>

@@ -20,40 +20,40 @@
 #+END_SRC
 
 ** table configuration
-  - DATA_BLOCK_ENCODING => 'FAST_DIFF'(PREFIX,DIFF) # block压缩算法（偏向应用层）
-  - ENCODE_ON_DISK => 'false' # 以上encoding是否需要作用在disk上
-  - BLOOMFILTER => 'ROW'(ROWCOL) # 按照row还是按照row+qualifier做bloom filter.
-  - COMPRESSION => 'SNAPPY' # block压缩算法（偏向系统层）
-  - BLOCKSIZE => '32768' # 对于随机查询高的table,blocksize缩小可以减少LRUCache使用
-  - VERSIONS => '100' # 保存历史版本数目
-  - NAME => 'info' # column family
+- DATA_BLOCK_ENCODING => 'FAST_DIFF'(PREFIX,DIFF) # block压缩算法（偏向应用层）
+- ENCODE_ON_DISK => 'false' # 以上encoding是否需要作用在disk上
+- BLOOMFILTER => 'ROW'(ROWCOL) # 按照row还是按照row+qualifier做bloom filter.
+- COMPRESSION => 'SNAPPY' # block压缩算法（偏向系统层）
+- BLOCKSIZE => '32768' # 对于随机查询高的table,blocksize缩小可以减少LRUCache使用
+- VERSIONS => '100' # 保存历史版本数目
+- NAME => 'info' # column family
 
 ** hbase shell
-   - scan 'test'
-     - STARTROW=>'xyz'
-     - ENDROW=>'uvw'
-     - COLUMN=>['cf:url']
-     - LIMIT=>10
-     - VERSIONS=>3
-   - count 'test'
-   - create 'test', { NAME=>'cf' }
-   - get 'test', 'rowkey',
-     - COLUMN = > ['cf:url']
-   - put 'test', 'rowkey', 'cf:url', 'value'
-   - balance_switch (true/false) # 是否允许balance
-   - balancer # 执行balance. 和balance_switch有关
-     - 如果存在region in transition的话，那么直接返回false
-   - assign <region_name>
-     - 如果存在某些region in transition一直没有成功的话，说明这个region一直处于unassigned状态，可以手动assign.
-     - hadoop - Repair HBase table (unassigned region in transition) - Stack Overflow : http://stackoverflow.com/questions/11010167/repair-hbase-table-unassigned-region-in-transition
-   - flush 'test' 将in-memory数据刷到文件中
-   - compact / major_compact 'test' 将表格做major compaction.
+- scan 'test'
+  - STARTROW=>'xyz'
+  - ENDROW=>'uvw'
+  - COLUMN=>['cf:url']
+  - LIMIT=>10
+  - VERSIONS=>3
+- count 'test'
+- create 'test', { NAME=>'cf' }
+- get 'test', 'rowkey',
+  - COLUMN = > ['cf:url']
+- put 'test', 'rowkey', 'cf:url', 'value'
+- balance_switch (true/false) # 是否允许balance
+- balancer # 执行balance. 和balance_switch有关
+  - 如果存在region in transition的话，那么直接返回false
+- assign <region_name>
+  - 如果存在某些region in transition一直没有成功的话，说明这个region一直处于unassigned状态，可以手动assign.
+  - hadoop - Repair HBase table (unassigned region in transition) - Stack Overflow : http://stackoverflow.com/questions/11010167/repair-hbase-table-unassigned-region-in-transition
+- flush 'test' 将in-memory数据刷到文件中
+- compact / major_compact 'test' 将表格做major compaction.
 
 如果需要输入二进制的话，可以使用\x1e这样的方式表示，但是务必使用". 比如"stat:abc\x1exyz"
 
 ** hbase hbck
-  - 默认检查hbase状态
-  - 如果出现不一致状态，可以使用参数 -fix 来修复 #note: 存在丢失数据的风险
+- 默认检查hbase状态
+- 如果出现不一致状态，可以使用参数 -fix 来修复 #note: 存在丢失数据的风险
 
 ** hbase increment
 http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html
@@ -62,12 +62,12 @@ http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html
 
 ** python client
 使用python来访问hbase确实可以很大地提高开发效率，但是通过thrift server来进行中转的话对于性能还是存在影响的，因此比较适合测试。
-   - 启动thrift server
-     - hbase-deamon.sh start thrift
-   - 安装happybase
-     - pip install happybase
-     - github: https://github.com/wbolster/happybase
-     - doc: http://happybase.readthedocs.org/en/latest/index.html
+- 启动thrift server
+  - hbase-deamon.sh start thrift
+- 安装happybase
+  - pip install happybase
+  - github: https://github.com/wbolster/happybase
+  - doc: http://happybase.readthedocs.org/en/latest/index.html
 使用起来还是比较简单的，documentation也非常详细。
 
 #note: 发现还是存在一些不兼容的thrift协议，比如使用scan似乎就存在问题
@@ -85,44 +85,44 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 #+END_EXAMPLE
 
 ** 获取集群运行状况
-  - [[file:codes/java/hbase/src/main/java/com/dirlt/java/hbase/ClusterSummary.java][code on github]]
-  - HBaseAdmin可以获取节点信息
-  - HTable可以获取table信息
+- [[file:codes/java/hbase/src/main/java/com/dirlt/java/hbase/ClusterSummary.java][code on github]]
+- HBaseAdmin可以获取节点信息
+- HTable可以获取table信息
 
 ** bulk load
-  - http://hbase.apache.org/book/arch.bulk.load.html
-  - Preparing data via a MapReduce job
-    - 将输入文件转换成为HFile格式
-    - [[file:codes/java/mr/src/main/java/com/dirlt/java/mr/HBaseLoaderMR.java][code on github]]
-    - region，reduce，output对应，也就是说有多少个region就有多少个reduce
-      - #note: 所以需要关注region分布。如果过于集中的话需要考虑使用做pre-split或者是将key做hash-prefix等
-    - configureIncrementalLoad会改写reducer实现，所以这个转换过程只能够由单独任务完成。
-    - In order to function efficiently, HFileOutputFormat must be configured such that each output HFile fits within a single region. In order to do this, jobs whose output will be bulk loaded into HBase use Hadoop's TotalOrderPartitioner class to partition the map output into disjoint ranges of the key space, corresponding to the key ranges of the regions in the table. HFileOutputFormat includes a convenience function, configureIncrementalLoad(), which automatically sets up a TotalOrderPartitioner based on the current region boundaries of a table.
-  - Completing the data load
-    - 将上步产生的HFile移动到相应目录并且通知对应的rs
-    - If the region boundaries have changed during the course of bulk load preparation, or between the preparation and completion steps, the completebulkloads utility will automatically split the data files into pieces corresponding to the new boundaries. This process is not optimally efficient, so users should take care to minimize the delay between preparing a bulk load and importing it into the cluster, especially if other clients are simultaneously loading data through other means.
-    - 如果在产生HFile和load之间rs出现分裂的话，bulkload工具能够自动处理，但是相对来说效率不是最佳。
-    - hadoop jar hbase-VERSION.jar completebulkload [-c /path/to/hbase/config/hbase-site.xml] /user/todd/myoutput mytable
-  - #note: 实际上上面命令可能会出现权限问题，如果转换程序输出是hdfs owner的话，而要将文件移动到hbase那么必须是hbase owner. 所以通常使用下面命令完成
-    - sudo -u hdfs hadoop fs -chmod -R 0777 <hfile-path> # 修改权限
-    - sudo -u hdfs hadoop fs -chown -R hbase <hfile-path> # 修改owner
-    - sudo -u hbase hadoop jar /usr/lib/hbase/hbase-0.94.6-cdh4.3.0-security.jar completebulkload <hfile-path> <table>
+- http://hbase.apache.org/book/arch.bulk.load.html
+- Preparing data via a MapReduce job
+  - 将输入文件转换成为HFile格式
+  - [[file:codes/java/mr/src/main/java/com/dirlt/java/mr/HBaseLoaderMR.java][code on github]]
+  - region，reduce，output对应，也就是说有多少个region就有多少个reduce
+    - #note: 所以需要关注region分布。如果过于集中的话需要考虑使用做pre-split或者是将key做hash-prefix等
+  - configureIncrementalLoad会改写reducer实现，所以这个转换过程只能够由单独任务完成。
+  - In order to function efficiently, HFileOutputFormat must be configured such that each output HFile fits within a single region. In order to do this, jobs whose output will be bulk loaded into HBase use Hadoop's TotalOrderPartitioner class to partition the map output into disjoint ranges of the key space, corresponding to the key ranges of the regions in the table. HFileOutputFormat includes a convenience function, configureIncrementalLoad(), which automatically sets up a TotalOrderPartitioner based on the current region boundaries of a table.
+- Completing the data load
+  - 将上步产生的HFile移动到相应目录并且通知对应的rs
+  - If the region boundaries have changed during the course of bulk load preparation, or between the preparation and completion steps, the completebulkloads utility will automatically split the data files into pieces corresponding to the new boundaries. This process is not optimally efficient, so users should take care to minimize the delay between preparing a bulk load and importing it into the cluster, especially if other clients are simultaneously loading data through other means.
+  - 如果在产生HFile和load之间rs出现分裂的话，bulkload工具能够自动处理，但是相对来说效率不是最佳。
+  - hadoop jar hbase-VERSION.jar completebulkload [-c /path/to/hbase/config/hbase-site.xml] /user/todd/myoutput mytable
+- #note: 实际上上面命令可能会出现权限问题，如果转换程序输出是hdfs owner的话，而要将文件移动到hbase那么必须是hbase owner. 所以通常使用下面命令完成
+  - sudo -u hdfs hadoop fs -chmod -R 0777 <hfile-path> # 修改权限
+  - sudo -u hdfs hadoop fs -chown -R hbase <hfile-path> # 修改owner
+  - sudo -u hbase hadoop jar /usr/lib/hbase/hbase-0.94.6-cdh4.3.0-security.jar completebulkload <hfile-path> <table>
 
 ** hbase merge
-  - #note: 需要停表或者是停集群
-  - hbase org.apache.hadoop.hbase.util.Merge <table> <region1> <region2>
-  - 工作原理大致是
+- #note: 需要停表或者是停集群
+- hbase org.apache.hadoop.hbase.util.Merge <table> <region1> <region2>
+- 工作原理大致是
     1. 读取region1,region2对应hbase的目录下面数据文件
     2. 检查.regioninfo是否相连
     3. 合并文件内容输出到另外一个目录下面
     4. 修改hbase的.META文件信息
-  - #note: 这个对于修复数据非常有效
+- #note: 这个对于修复数据非常有效
 ** hbase export/import
 使用导出导入功能可以用来做数据迁移，这只是数据迁移的一种办法。这里介绍了许多办法 http://hbase.apache.org/book/ops.backup.html 包括
-   - distcp
-   - replication
-   - copy table
-   - export / import
+- distcp
+- replication
+- copy table
+- export / import
 运行原理我猜测是export对table做scan操作然后转换成为Put/Del对象，然后import就是执行这些对象。 *因为export这里允许执行时间戳，所以实际上可以完成增量备份*
 
 Export
@@ -131,19 +131,19 @@ Usage: Export [-D <property=value>]* <tablename> <outputdir> [<versions> [<start
 
   Note: -D properties will be applied to the conf used.
   For example:
-   -D mapred.output.compress=true
-   -D mapred.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec
-   -D mapred.output.compression.type=BLOCK
+-D mapred.output.compress=true
+-D mapred.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec
+-D mapred.output.compression.type=BLOCK
   Additionally, the following SCAN properties can be specified
   to control/limit what is exported..
-   -D hbase.mapreduce.scan.column.family=<familyName>
-   -D hbase.mapreduce.include.deleted.rows=true
+-D hbase.mapreduce.scan.column.family=<familyName>
+-D hbase.mapreduce.include.deleted.rows=true
 For performance consider the following properties:
-   -Dhbase.client.scanner.caching=100
-   -Dmapred.map.tasks.speculative.execution=false
-   -Dmapred.reduce.tasks.speculative.execution=false
+-Dhbase.client.scanner.caching=100
+-Dmapred.map.tasks.speculative.execution=false
+-Dmapred.reduce.tasks.speculative.execution=false
 For tables with very wide rows consider setting the batch size as below:
-   -Dhbase.export.scanner.batch=10
+-Dhbase.export.scanner.batch=10
 #+END_QUOTE
 
 Import
@@ -151,14 +151,14 @@ Import
 Usage: Import [options] <tablename> <inputdir>
 By default Import will load data directly into HBase. To instead generate
 HFiles of data to prepare for a bulk data load, pass the option:
-  -Dimport.bulk.output=/path/for/output
+-Dimport.bulk.output=/path/for/output
  To apply a generic org.apache.hadoop.hbase.filter.Filter to the input, use
-  -Dimport.filter.class=<name of filter class>
-  -Dimport.filter.args=<comma separated list of args for filter
+-Dimport.filter.class=<name of filter class>
+-Dimport.filter.args=<comma separated list of args for filter
  NOTE: The filter will be applied BEFORE doing key renames via the HBASE_IMPORTER_RENAME_CFS property. Futher, filters will only use theFilter#filterKeyValue(KeyValue) method to determine if the KeyValue should be added; Filter.ReturnCode#INCLUDE and #INCLUDE_AND_NEXT_COL will be considered as including the KeyValue.
 For performance consider the following options:
-  -Dmapred.map.tasks.speculative.execution=false
-  -Dmapred.reduce.tasks.speculative.execution=false
+-Dmapred.map.tasks.speculative.execution=false
+-Dmapred.reduce.tasks.speculative.execution=false
 #+END_QUOTE
 
 
@@ -454,13 +454,13 @@ file:images/hbase-architecture.png
 HRegion类似于tablet，每个HRegion有很多Store存储不同的column family。
 
 对于memstore内存大小限制的话，有两个方面：
-   - HRegion如果总体内存比较大的话，那么会选择几个Store里面的memstore进行flush
-   - 如果Store里面的memstore本身比较大的话，也会进行flush
+- HRegion如果总体内存比较大的话，那么会选择几个Store里面的memstore进行flush
+- 如果Store里面的memstore本身比较大的话，也会进行flush
 
 scan过程大致是这样的：
-   - 首先scanner得到memstore以及所有的hfile，以及这个似乎时候的timestamp（hbase使用timestamp作为version)进行归并排序。
-   - 如果期间memstore发生写，或者是flush，或者是进行compaction的话，那么会通知scanner
-   - scanner会重新组织这些内容，根据上次读取到的value,忽路duplicated的数据。
+- 首先scanner得到memstore以及所有的hfile，以及这个似乎时候的timestamp（hbase使用timestamp作为version)进行归并排序。
+- 如果期间memstore发生写，或者是flush，或者是进行compaction的话，那么会通知scanner
+- scanner会重新组织这些内容，根据上次读取到的value,忽路duplicated的数据。
 这样的好处就是通常在scanner的时候不会阻塞其他操作。
 
 -----
@@ -576,26 +576,26 @@ connection是一个virtual class,HConnection,默认实现是HConnectionImplement
 #+END_SRC
 
 processBatch代码比较冗长，大致意思如下：
-   - prcessBatch会尝试执行多次，从配置hbase.client.retries.number获得，默认10
-   - 每次重试之前都会sleep一段时间，这个时间从getPauseTime获得，是个大致指数退避的算法。
-   - 根据每个row获得对应的HServerAddress,以HServerAddress为key将相同地址请求放在HashMap，HashMap类型是Map<HServerAddress, MultiAction>
-   - 将每个MultiAction放到ExecutorService里面得到future对象，然后阻塞等待future对象返回并且逐个检查。
-   - 处理每个请求返回的结果，检查过程比较麻烦没有仔细阅读。
+- prcessBatch会尝试执行多次，从配置hbase.client.retries.number获得，默认10
+- 每次重试之前都会sleep一段时间，这个时间从getPauseTime获得，是个大致指数退避的算法。
+- 根据每个row获得对应的HServerAddress,以HServerAddress为key将相同地址请求放在HashMap，HashMap类型是Map<HServerAddress, MultiAction>
+- 将每个MultiAction放到ExecutorService里面得到future对象，然后阻塞等待future对象返回并且逐个检查。
+- 处理每个请求返回的结果，检查过程比较麻烦没有仔细阅读。
 
 我们最关心的问题就是这个ExecutorService的线程池是什么，从HTable里面我们可以找到答案
-   - new ThreadPoolExecutor(1, maxThreads, 60, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), new DaemonThreadFactory());
-   - maxThreads从属性hbase.htable.threads.max获得。
+- new ThreadPoolExecutor(1, maxThreads, 60, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), new DaemonThreadFactory());
+- maxThreads从属性hbase.htable.threads.max获得。
 
 ** asynchbase
 https://github.com/stumbleupon/asynchbase
 
-   - asynchbase和HTable的性能对比 http://www.tsunanet.net/~tsuna/asynchbase/benchmark/viz.html
-   - [[file:opentsdb.org][OpenTSDB]] is a distributed, scalable Time Series Database (TSDB)  http://opentsdb.net/index.html
+- asynchbase和HTable的性能对比 http://www.tsunanet.net/~tsuna/asynchbase/benchmark/viz.html
+- [[file:opentsdb.org][OpenTSDB]] is a distributed, scalable Time Series Database (TSDB)  http://opentsdb.net/index.html
 
 从看asynchbase介绍来看，我猜想asynchbase用在MR范围还是有限的。
-   - asynchbase就是一个异步client，能够很好地解决一个app里面对于hbase有很多个连接的场景。
-   - 但是在MR里面，拿我们现在的HourlyProcedure来说，每次get都是一个同步过程，一定要取回结果才能够进行下一步的操作。整个MR框架就限制了异步client的作用。
-   - asynchbase现在使用的场景应该是OpenTSDB，因为没有MR框架限制，所以异步client可以工作很好。
+- asynchbase就是一个异步client，能够很好地解决一个app里面对于hbase有很多个连接的场景。
+- 但是在MR里面，拿我们现在的HourlyProcedure来说，每次get都是一个同步过程，一定要取回结果才能够进行下一步的操作。整个MR框架就限制了异步client的作用。
+- asynchbase现在使用的场景应该是OpenTSDB，因为没有MR框架限制，所以异步client可以工作很好。
 
 #note@2012-12-10: code/java/asynchbase下面有一些使用的示例代码，并且在自己的fast-hbase-rest里面也使用了asynchbase. 使用还是比较方便的。
 实现上asynchbase没有使用任何org.apache.hbase的代码，从头完成了自己的协议访问，这个可以从HBaseClient的构造参数可以看到，在里面没有使用configuration,
@@ -684,8 +684,8 @@ rs2最近写入的数据是v2，而接下来如果从rs2查询"latest"的数据�
 http://stackoverflow.com/questions/11327316/how-to-join-tables-in-hbase
 
 其实对于join来说无非三种：
-   - sort join 两路排序，之后进行merge。
-   - loop join 没有任何排序，直接循环匹配。
-   - hash join 遍历一路的时候去查另外一路。
+- sort join 两路排序，之后进行merge。
+- loop join 没有任何排序，直接循环匹配。
+- hash join 遍历一路的时候去查另外一路。
 
 对于MR来说，个人认为sort join通常是效率最高的方式，而hash join次之（hbase的read效率不是很高）。

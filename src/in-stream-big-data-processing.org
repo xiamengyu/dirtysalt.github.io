@@ -3,20 +3,20 @@
 http://highlyscalable.wordpress.com/2013/08/20/in-stream-big-data-processing/
 
 In recent years, this idea got a lot of traction and a whole bunch of solutions like *Twitter’s Storm,  Yahoo’s S4, Cloudera’s Impala, Apache Spark, and Apache Tez* appeared and joined the army of Big Data and NoSQL systems. This article is an effort to 
-   - explore techniques used by developers of in-stream data processing systems,
-   - trace the connections of these techniques to massive batch processing and OLTP/OLAP databases,
-   - and discuss how one unified query engine can support in-stream, batch, and OLAP processing at the same time.
+- explore techniques used by developers of in-stream data processing systems,
+- trace the connections of these techniques to massive batch processing and OLTP/OLAP databases,
+- and discuss how one unified query engine can support in-stream, batch, and OLAP processing at the same time.
 
 At Grid Dynamics, we recently faced a necessity to build an in-stream data processing system that aimed to crunch about 8 billion events daily providing fault-tolerance and strict transactioanlity i.e. none of these events can be lost or duplicated. This system has been designed to supplement and succeed the existing Hadoop-based system that had too high latency of data processing and too high maintenance costs.（使用Hadoop系统来处理数据会产生比较高的延迟，是流式系统出现的重要原因） A high-level overview of the environment we worked with is shown in the figure below:
 
 file:images/in-stream-big-data-processing-arch.png
 
 Our goal was to equip all facilities with a new in-stream engine (shown in the bottom of the figure) that processes most intensive data flows and ships the pre-aggregated data to the central facility, thus decreasing the amount of raw data and heavy batch jobs in Hadoop. The design of the in-stream processing engine itself was driven by the following requirements: 流式处理系统通常比较重要的特征是：
-   - SQL-like functionality. The engine has to evaluate SQL-like queries continuously, including joins over time windows and different aggregation functions that implement quite complex custom business logic. The engine can also involve relatively static data (admixtures) loaded from the stores of Aggregated Data. Complex multi-pass data mining algorithms are beyond the immediate goals. （使用SQL的方式来处理多个时间窗口的数据，并且这个处理是持续的）
-   - Modularity and flexibility. It is not to say that one can simply issue a SQL-like query and the corresponding pipeline will be created and deployed automatically, but it should be relatively easy to assemble quite complex data processing chains by linking one block to another.（模块化和灵活性，这样能够组织成为更加复杂的查询）
-   - Fault-tolerance. Strict fault-tolerance is a principal requirement for the engine. As it sketched in the bottom part of the figure, one possible design of the engine is to use distributed data processing pipelines that implement operations like joins and aggregations or chains of such operations, and connect these pipelines by means of fault-tolerant persistent buffers. These buffers also improve modularity of the system by enabling publish/subscribe communication style and easy addition/removal of the pipelines. The pipelines can be stateful and the engine’s middleware should provide a persistent storage to enable state checkpointing. All these topics will be discussed in the later sections of the article.（pipeline之间使用buffer来进行持久化来解决容错问题）
-   - Interoperability with Hadoop. The engine should be able to ingest both streaming data and data from Hadoop i.e. serve as a custom query engine atop of HDFS.（和HDFS做交互）
-   - High performance and mobility. The system should deliver performance of tens of thousands messages per second even on clusters of minimal size. The engine should be compact and efficient, so one can deploy it in multiple datacenters on small clusters.（在小规模集群上处理到w级别的QPS，并且容易部署） #note: 部署和可维护性其实在很大程度上需要考虑
+- SQL-like functionality. The engine has to evaluate SQL-like queries continuously, including joins over time windows and different aggregation functions that implement quite complex custom business logic. The engine can also involve relatively static data (admixtures) loaded from the stores of Aggregated Data. Complex multi-pass data mining algorithms are beyond the immediate goals. （使用SQL的方式来处理多个时间窗口的数据，并且这个处理是持续的）
+- Modularity and flexibility. It is not to say that one can simply issue a SQL-like query and the corresponding pipeline will be created and deployed automatically, but it should be relatively easy to assemble quite complex data processing chains by linking one block to another.（模块化和灵活性，这样能够组织成为更加复杂的查询）
+- Fault-tolerance. Strict fault-tolerance is a principal requirement for the engine. As it sketched in the bottom part of the figure, one possible design of the engine is to use distributed data processing pipelines that implement operations like joins and aggregations or chains of such operations, and connect these pipelines by means of fault-tolerant persistent buffers. These buffers also improve modularity of the system by enabling publish/subscribe communication style and easy addition/removal of the pipelines. The pipelines can be stateful and the engine’s middleware should provide a persistent storage to enable state checkpointing. All these topics will be discussed in the later sections of the article.（pipeline之间使用buffer来进行持久化来解决容错问题）
+- Interoperability with Hadoop. The engine should be able to ingest both streaming data and data from Hadoop i.e. serve as a custom query engine atop of HDFS.（和HDFS做交互）
+- High performance and mobility. The system should deliver performance of tens of thousands messages per second even on clusters of minimal size. The engine should be compact and efficient, so one can deploy it in multiple datacenters on small clusters.（在小规模集群上处理到w级别的QPS，并且容易部署） #note: 部署和可维护性其实在很大程度上需要考虑
 
 ** Basics of Distributed Query Processing
 It is clear that distributed in-stream data processing has something to do with query processing in distributed relational databases. Many standard query processing techniques can be employed by in-stream processing engine, so it is extremely useful to understand classical algorithms of distributed query processing and see how it all relates to in-stream processing and other popular paradigms like MapReduce.
@@ -25,8 +25,8 @@ It is clear that distributed in-stream data processing has something to do with 
 Although optimal partitioning for selection and projection operations can be tricky (e.g. for range queries),  *we can assume that for in-stream data filtering it is practically enough to distribute data among the processors using a hash-based partitioning.*
 
 Processing of distributed joins is not so easy and requires a more thorough examination. There are two main data partitioning techniques that can be employed by distributed join processing:
-   - Disjoint data partitioning
-   - Divide and broadcast join
+- Disjoint data partitioning
+- Divide and broadcast join
 In a distributed database, division typically is not a part of the query processing itself because data sets are initially distributed among multiple nodes.
 
 Disjoint data partitioning technique shuffles the data into several partitions in such a way that join keys in different partitions do not overlap.
@@ -61,22 +61,22 @@ file:images/in-stream-stream-replay.png
 
 *** Lineage Tracking
 In a streaming system, events flow through a chain of processors until the result reaches the final destination (like an external database). Each input event produces a directed graph of descendant events (lineage) that ends by the final results. To guarantee reliable data processing, it is necessary to ensure that the entire graph was processed successfully and to restart processing in case of failures. （所谓lineage tracking就是，追踪output对应的input以及对应的pipelines. 如果output失败的话那么可以从input开始重新构建这个output)
-   - twitter storm lineage tracking
-   - apache spark lineage tracking
+- twitter storm lineage tracking
+- apache spark lineage tracking
 
 **** storm lineage tracking
 这个算法比较fancy，有一定的概率会造成数据丢失但是没有重传，不过概率非常小。
-   - 每个消息分配一个ID和签名sig
-   - 对于发送节点来说，会有一张表来做[ID,sig']映射关系，初始时候这个表是[ID,0]
-   - 对于处理节点（包括发送节点）来说，假设接收消息[ID,sig]，（对于发送节点来说，接受消息就是[ID,0]）
-     - 输出消息使用和接受消息相同的ID，但是不同的签名比如[ID,sig1],[ID,sig2],...
-     - 处理完成之后，将输出消息和接收消息一起发送给我发送节点
-     - 发送节点以这个ID为key，value更新为 sig XOR sig1 XOR sig2 ...
+- 每个消息分配一个ID和签名sig
+- 对于发送节点来说，会有一张表来做[ID,sig']映射关系，初始时候这个表是[ID,0]
+- 对于处理节点（包括发送节点）来说，假设接收消息[ID,sig]，（对于发送节点来说，接受消息就是[ID,0]）
+  - 输出消息使用和接受消息相同的ID，但是不同的签名比如[ID,sig1],[ID,sig2],...
+  - 处理完成之后，将输出消息和接收消息一起发送给我发送节点
+  - 发送节点以这个ID为key，value更新为 sig XOR sig1 XOR sig2 ...
 
 举个例子，假设发送端产生数据[0,01111], 处理节点1产生数据[0,10000], 处理节点2直接输出到数据库不产生数据
-   - 发送端因为只发送给处理节点1数据，所以表更新为[0, 01111 XOR 0] = [0,011111]
-   - 处理节点1处理完成之后，将表更新为[0, 01111 XOR 01111 XOR 10000] = [0,10000]
-   - 处理节点2处理完成之后，将表更新为[0, 10000 XOR 10000] = [0,0]
+- 发送端因为只发送给处理节点1数据，所以表更新为[0, 01111 XOR 0] = [0,011111]
+- 处理节点1处理完成之后，将表更新为[0, 01111 XOR 01111 XOR 10000] = [0,10000]
+- 处理节点2处理完成之后，将表更新为[0, 10000 XOR 10000] = [0,0]
 
 因此一个正常的逻辑下来，某个ID对应的sig最终应该是0的。然后发送端从发送完成数据之后，就可以定期检查ID是否都为0. 如果超过一定时间不为0的话，那么说明数据中途丢失，也可能是处理超时，那么发送端就会触发重传的逻辑。
 
@@ -95,8 +95,8 @@ This simple but powerful paradigm enables centralized transaction management and
 #todo:
 
 *** Additive State and Sketches
-   - Additivity of intermediate and final computational results is an important property that drastically simplifies design, implementation, maintenance, and recovery of in-stream data processing systems. Additivity means that the computational result for a larger time range or a larger data partition can be calculated as a combination of results for smaller time ranges or smaller partitions.
-   - Sketches is a very efficient way to transform non-additive values into additive. Sketches are very popular in certain areas like internet advertising and can be considered as an independent pattern of in-stream processing. 
+- Additivity of intermediate and final computational results is an important property that drastically simplifies design, implementation, maintenance, and recovery of in-stream data processing systems. Additivity means that the computational result for a larger time range or a larger data partition can be calculated as a combination of results for smaller time ranges or smaller partitions.
+- Sketches is a very efficient way to transform non-additive values into additive. Sketches are very popular in certain areas like internet advertising and can be considered as an independent pattern of in-stream processing. 
 
 *** Logical Time Tracking
 It is very common for in-stream computations to depend on time: aggregations and joins are often performed on sliding time windows; processing logic often depends on a time interval between events and so on. Obviously, the in-stream processing system should have a notion of application’s view of time, instead of CPU wall-clock. However, proper time tracking is not trivial because data streams and particular events can be replayed in case of failures. Each processor in a pipeline tracks the maximal timestamp it has seen in a stream and updates a global persistent clock by this timestamp if the global clock is behind. All other processors synchronize their time with the global clock.#todo: 为什么需要同步这个global clock?
@@ -116,8 +116,8 @@ file:images/in-stream-aggregation-on-a-sliding-window.png
 ** Query Processing Pipeline: Storm, Cassandra, Kafka
 ** Towards Unified Big Data Processing
 The key observation is that relational query processing, MapReduce, and in-stream processing could be implemented using exactly the same concepts and techniques like shuffling and pipelining. At the same time:
-   - In-stream processing could require strict data delivery guarantees and persistence of the intermediate state. These properties are not crucial for batch processing where computations can be easily restarted.
-   - In-stream processing is inseparable from pipelining. For batch processing, pipelining is not so crucial and even inapplicable in certain cases. Systems like Apache Hive are based on staged MapReduce with materialization of the intermediate state and do not take full advantage of pipelining.
+- In-stream processing could require strict data delivery guarantees and persistence of the intermediate state. These properties are not crucial for batch processing where computations can be easily restarted.
+- In-stream processing is inseparable from pipelining. For batch processing, pipelining is not so crucial and even inapplicable in certain cases. Systems like Apache Hive are based on staged MapReduce with materialization of the intermediate state and do not take full advantage of pipelining.
 
 #note: stream和batch之间的差异主要还是在数据量上。spark被称为stream系统但是内部还是按照batch来做处理的，只不过在实时性上spark和mapreduce区分开来。实时性一方面来源于input/output性质, 一方面来源于pipelining的中间状态是否需要保存以及如何保存
 
@@ -127,19 +127,19 @@ frameworks:
 file:images/in-stream-unified-big-data-processing-arch.png
 
 Among the emerging technologies, the following two are especially notable in the context of this discussion:
-   - Apache Tez, a part of the Stinger Initiative. Apache Tez is designed to succeed the MapReduce framework introducing a set of fine-grained query processing primitives. The goal is to enable frameworks like Apache Pig and Apache Hive to decompose their queries and
+- Apache Tez, a part of the Stinger Initiative. Apache Tez is designed to succeed the MapReduce framework introducing a set of fine-grained query processing primitives. The goal is to enable frameworks like Apache Pig and Apache Hive to decompose their queries and
 scripts into efficient query processing pipelines instead of sequences of MapReduce jobs that are generally slow due to materialization of intermediate results.
-   - Apache Spark. This project is probably the most advanced and promising technology for *unified Big Data processing that already includes a batch processing framework, SQL query engine, and a stream processing framework.* 
+- Apache Spark. This project is probably the most advanced and promising technology for *unified Big Data processing that already includes a batch processing framework, SQL query engine, and a stream processing framework.* 
 
 ** References
-   - A. Wilschut and P. Apers, “Dataflow Query Execution in a Parallel Main-Memory Environment “
-   - T. Urhan and M. Franklin, “XJoin: A Reactively-Scheduled Pipelined Join Operator“
-   - M. Zaharia, T. Das, H. Li, S. Shenker, and I. Stoica, “Discretized Streams: An Efficient and Fault-Tolerant Model for Stream Processing on Large Clusters”
-   - E. Jacobsen and R. Lyons, “The Sliding DFT“
-   - A. Elmagarmid, Data Streams Models and Algorithms
-   - N. Marz, “Big Data Lambda Architecture”
-   - J. Kinley, “The Lambda architecture: principles for architecting realtime Big Data systems”
-   - http://hortonworks.com/hadoop/tez/
-   - http://hortonworks.com/stinger/
-   - http://spark-project.org/
+- A. Wilschut and P. Apers, “Dataflow Query Execution in a Parallel Main-Memory Environment “
+- T. Urhan and M. Franklin, “XJoin: A Reactively-Scheduled Pipelined Join Operator“
+- M. Zaharia, T. Das, H. Li, S. Shenker, and I. Stoica, “Discretized Streams: An Efficient and Fault-Tolerant Model for Stream Processing on Large Clusters”
+- E. Jacobsen and R. Lyons, “The Sliding DFT“
+- A. Elmagarmid, Data Streams Models and Algorithms
+- N. Marz, “Big Data Lambda Architecture”
+- J. Kinley, “The Lambda architecture: principles for architecting realtime Big Data systems”
+- http://hortonworks.com/hadoop/tez/
+- http://hortonworks.com/stinger/
+- http://spark-project.org/
 
