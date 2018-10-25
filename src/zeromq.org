@@ -1141,11 +1141,11 @@ We live in a connected world, and modern software has to navigate this world. So
 ZMQ是一个 *消息队列* 的实现，提供了很多MQ上的patterns. 在设计应用代码时，要尽可能地从MQ的角度出发，而不要从socket/thread这类primitive出发。
 
 Having seen some examples, you're eager to start using ZMQ in some apps. Before you start that, take a deep breath, chillax, and reflect on some basic advice that will save you stress and confusion.
-   - Learn ZMQ step by step. It's just one simple API but it hides a world of possibilities. Take the possibilities slowly, master each one.
-   - Write nice code. Ugly code hides problems and makes it hard for others to help you. You might get used to meaningless variable names, but people reading your code won't. Use names that are real words, that say something other than "I'm too careless to tell you what this variable is really for". Use consistent indentation, clean layout. Write nice code and your world will be more comfortable.
-   - Test what you make as you make it. When your program doesn't work, you should know what five lines are to blame. This is especially true when you do ZMQ magic, which just won't work the first times you try it.
-   - When you find that things don't work as expected, break your code into pieces, test each one, see which one is not working. ZMQ lets you make essentially modular code, use that to your advantage.
-   - Make abstractions (classes, methods, whatever) as you need them. If you copy/paste a lot of code you're going to copy/paste errors too.
+- Learn ZMQ step by step. It's just one simple API but it hides a world of possibilities. Take the possibilities slowly, master each one.
+- Write nice code. Ugly code hides problems and makes it hard for others to help you. You might get used to meaningless variable names, but people reading your code won't. Use names that are real words, that say something other than "I'm too careless to tell you what this variable is really for". Use consistent indentation, clean layout. Write nice code and your world will be more comfortable.
+- Test what you make as you make it. When your program doesn't work, you should know what five lines are to blame. This is especially true when you do ZMQ magic, which just won't work the first times you try it.
+- When you find that things don't work as expected, break your code into pieces, test each one, see which one is not working. ZMQ lets you make essentially modular code, use that to your advantage.
+- Make abstractions (classes, methods, whatever) as you need them. If you copy/paste a lot of code you're going to copy/paste errors too.
 
 In the ZMQ universe, sockets are clever multithreaded applications that manage a whole set of connections automagically for you. You can't see, work with, open, close, or attach state to these connections. Whether you use blocking send or receive, or poll, all you can talk to is the socket, not the connections it manages for you. The connections are private and invisible, and this is the key to ZMQ's scalability.
 
@@ -1159,17 +1159,17 @@ If you're reading this Guide for the first time, realize that until you actually
 Many applications these days consist of components that stretch across some kind of network, either a LAN or the Internet. So many application developers end up doing some kind of messaging. Some developers use message queuing products, but most of the time they do it themselves, using TCP or UDP. These protocols are not hard to use, but there is a great difference between sending a few bytes from A to B, and doing messaging in any kind of reliable way.
 
 Let's look at the typical problems we face when we start to connect pieces using raw TCP. Any reusable messaging layer would need to solve all or most these:
-   - How do we handle I/O? Does our application block, or do we handle I/O in the background? This is a key design decision. Blocking I/O creates architectures that do not scale well. But background I/O can be very hard to do right.
-   - How do we handle dynamic components, i.e. pieces that go away temporarily? Do we formally split components into "clients" and "servers" and mandate that servers cannot disappear? What then if we want to connect servers to servers? Do we try to reconnect every few seconds?
-   - How do we represent a message on the wire? How do we frame data so it's easy to write and read, safe from buffer overflows, efficient for small messages, yet adequate for the very largest videos of dancing cats wearing party hats?
-   - How do we handle messages that we can't deliver immediately? Particularly, if we're waiting for a component to come back on-line? Do we discard messages, put them into a database, or into a memory queue?
-   - Where do we store message queues? What happens if the component reading from a queue is very slow, and causes our queues to build up? What's our strategy then?
-   - How do we handle lost messages? Do we wait for fresh data, request a resend, or do we build some kind of reliability layer that ensures messages cannot be lost? What if that layer itself crashes?
-   - What if we need to use a different network transport. Say, multicast instead of TCP unicast? Or IPv6? Do we need to rewrite the applications, or is the transport abstracted in some layer?
-   - How do we route messages? Can we send the same message to multiple peers? Can we send replies back to an original requester?
-   - How do we write an API for another language? Do we re-implement a wire-level protocol or do we repackage a library? If the former, how can we guarantee efficient and stable stacks? If the latter, how can we guarantee interoperability?
-   - How do we represent data so that it can be read between different architectures? Do we enforce a particular encoding for data types? How far is this the job of the messaging system rather than a higher layer?
-   - How do we handle network errors? Do we wait and retry, ignore them silently, or abort?
+- How do we handle I/O? Does our application block, or do we handle I/O in the background? This is a key design decision. Blocking I/O creates architectures that do not scale well. But background I/O can be very hard to do right.
+- How do we handle dynamic components, i.e. pieces that go away temporarily? Do we formally split components into "clients" and "servers" and mandate that servers cannot disappear? What then if we want to connect servers to servers? Do we try to reconnect every few seconds?
+- How do we represent a message on the wire? How do we frame data so it's easy to write and read, safe from buffer overflows, efficient for small messages, yet adequate for the very largest videos of dancing cats wearing party hats?
+- How do we handle messages that we can't deliver immediately? Particularly, if we're waiting for a component to come back on-line? Do we discard messages, put them into a database, or into a memory queue?
+- Where do we store message queues? What happens if the component reading from a queue is very slow, and causes our queues to build up? What's our strategy then?
+- How do we handle lost messages? Do we wait for fresh data, request a resend, or do we build some kind of reliability layer that ensures messages cannot be lost? What if that layer itself crashes?
+- What if we need to use a different network transport. Say, multicast instead of TCP unicast? Or IPv6? Do we need to rewrite the applications, or is the transport abstracted in some layer?
+- How do we route messages? Can we send the same message to multiple peers? Can we send replies back to an original requester?
+- How do we write an API for another language? Do we re-implement a wire-level protocol or do we repackage a library? If the former, how can we guarantee efficient and stable stacks? If the latter, how can we guarantee interoperability?
+- How do we represent data so that it can be read between different architectures? Do we enforce a particular encoding for data types? How far is this the job of the messaging system rather than a higher layer?
+- How do we handle network errors? Do we wait and retry, ignore them silently, or abort?
 
 早期需要设计可靠消息系统比如AMQP.但是这种方式引入了single-point broker。对于需要这种可靠消息系统的应用来说，需要在broker上面做相当多的事情确保可靠性以及性能。但是这样对于中小应用陷入了尴尬，为了使用这种方便的消息系统他们需要引入broker这么东西是不能够忍受的。我们需要的一种简单方便的消息传输系统，没有任何附加代价(比如所有数据都流经broker)，这就是ZeroMQ设计初衷。
 
@@ -1184,18 +1184,18 @@ So small to medium application developers are trapped. Either they avoid network
 What we need is something that does the job of messaging but does it in such a simple and cheap way that it can work in any application, with close to zero cost. It should be a library that you just link with, without any other dependencies. No additional moving pieces, so no additional risk. It should run on any OS and work with any programming language.
 
 And this is ZMQ: an efficient, embeddable library that solves most of the problems an application needs to become nicely elastic across a network, without much cost. Specifically:
-   - It handles I/O asynchronously, in background threads. These communicate with application threads using lock-free data structures, so ZMQ applications need no locks, semaphores, or other wait states.
-   - Components can come and go dynamically and ZMQ will automatically reconnect. This means you can start components in any order. You can create "service-oriented architectures" (SOAs) where services can join and leave the network at any time.
-   - It queues messages automatically when needed. It does this intelligently, pushing messages to as close as possible to the receiver before queuing them.
-   - It has ways of dealing with over-full queues (called "high water mark"). When a queue is full, ZMQ automatically blocks senders, or throws away messages, depending on the kind of messaging you are doing (the so-called "pattern").
-   - It lets your applications talk to each other over arbitrary transports: TCP, multicast, in-process, inter-process. You don't need to change your code to use a different transport.
-   - It handles slow/blocked readers safely, using different strategies that depend on the messaging pattern.
-   - It lets you route messages using a variety of patterns such as request-reply and publish-subscribe. These patterns are how you create the topology, the structure of your network.
-   - It lets you place pattern-extending "devices" (small brokers) in the network when you need to reduce the complexity of interconnecting many pieces.
-   - It delivers whole messages exactly as they were sent, using a simple framing on the wire. If you write a 10k message, you will receive a 10k message.
-   - It does not impose any format on messages. They are blobs of zero to gigabytes large. When you want to represent data you choose some other product on top, such as Google's protocol buffers, XDR, and others.
-   - It handles network errors intelligently. Sometimes it retries, sometimes it tells you an operation failed.
-   - It reduces your carbon footprint. Doing more with less CPU means your boxes use less power, and you can keep your old boxes in use for longer. Al Gore would love ZMQ.
+- It handles I/O asynchronously, in background threads. These communicate with application threads using lock-free data structures, so ZMQ applications need no locks, semaphores, or other wait states.
+- Components can come and go dynamically and ZMQ will automatically reconnect. This means you can start components in any order. You can create "service-oriented architectures" (SOAs) where services can join and leave the network at any time.
+- It queues messages automatically when needed. It does this intelligently, pushing messages to as close as possible to the receiver before queuing them.
+- It has ways of dealing with over-full queues (called "high water mark"). When a queue is full, ZMQ automatically blocks senders, or throws away messages, depending on the kind of messaging you are doing (the so-called "pattern").
+- It lets your applications talk to each other over arbitrary transports: TCP, multicast, in-process, inter-process. You don't need to change your code to use a different transport.
+- It handles slow/blocked readers safely, using different strategies that depend on the messaging pattern.
+- It lets you route messages using a variety of patterns such as request-reply and publish-subscribe. These patterns are how you create the topology, the structure of your network.
+- It lets you place pattern-extending "devices" (small brokers) in the network when you need to reduce the complexity of interconnecting many pieces.
+- It delivers whole messages exactly as they were sent, using a simple framing on the wire. If you write a 10k message, you will receive a 10k message.
+- It does not impose any format on messages. They are blobs of zero to gigabytes large. When you want to represent data you choose some other product on top, such as Google's protocol buffers, XDR, and others.
+- It handles network errors intelligently. Sometimes it retries, sometimes it tells you an operation failed.
+- It reduces your carbon footprint. Doing more with less CPU means your boxes use less power, and you can keep your old boxes in use for longer. Al Gore would love ZMQ.
 
 ZMQ为我们在编写网络应用程序上面带了颠覆性的效果。表面上看是一系列socket API但是当应用规模不断变大开始以消息传输为中心的时候，ZMQ的优势就会凸显出来。
 

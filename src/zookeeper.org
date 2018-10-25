@@ -3,11 +3,11 @@ http://research.yahoo.com/pub/3280 @ 2010
 
 ** Abstract
 ** Introduction
-  - coordination方面具体应用包括: 1)configuration. 2)group-membership and leader election. 3)lock-service. etc.
-  - coordination-kernel. # 没有直接提供具体primitives, 而是允许客户通过API实现自己的primitives.
-  - wait-free operation. # 相对于blocking方式来说不管是服务端实现和客户端使用都会更加简单.
-  - order-guarantee. # 所有客户端(异步)操作顺序保证FIFO, 服务端写入都是linearizable writes(zab = zookeeper atomic broadcast)
-  - watch mechanism. # 解决blocking方式可以完成但是wait-free不可以完成问题.
+- coordination方面具体应用包括: 1)configuration. 2)group-membership and leader election. 3)lock-service. etc.
+- coordination-kernel. # 没有直接提供具体primitives, 而是允许客户通过API实现自己的primitives.
+- wait-free operation. # 相对于blocking方式来说不管是服务端实现和客户端使用都会更加简单.
+- order-guarantee. # 所有客户端(异步)操作顺序保证FIFO, 服务端写入都是linearizable writes(zab = zookeeper atomic broadcast)
+- watch mechanism. # 解决blocking方式可以完成但是wait-free不可以完成问题.
 
 ** The ZooKeeper service
 -----
@@ -30,13 +30,13 @@ A client connects to ZooKeeper and initiates a session. Sessions have an associa
 client API
 
 All methods have both a synchronous and an asyn-chronous version available through the API.
-   - create(path, data, flags)
-   - delete(path, version) # only when version matches. set version = -1 to match any.
-   - exists(path, watch)
-   - getData(path, watch)
-   - setData(path, data, version)
-   - getChildren(path, watch)
-   - sync(path) # block直到pending writes全部作用上.
+- create(path, data, flags)
+- delete(path, version) # only when version matches. set version = -1 to match any.
+- exists(path, watch)
+- getData(path, watch)
+- setData(path, data, version)
+- getChildren(path, watch)
+- sync(path) # block直到pending writes全部作用上.
 
 -----
 guarantees
