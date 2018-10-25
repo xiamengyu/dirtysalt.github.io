@@ -24,9 +24,9 @@
    3. 对于写频率较高的应用而言，一台region server上不适合有太多的region； (hbase.hregion.max.filesize = 64G)
    4. Pre-Sharding可以不做，建议做；
    5. 对于日志应用可以考虑关闭compact/split
-     - hbase.regionserver.regionSplitLimit 1关闭split
-     - hbase.hstore.compactionThreshold Integer.MAX_VALUE关闭Compact
-     - hbase.hstore.blockingStoreFiles Integer.MAX_VALUE不要因为store file数量而产生阻塞
+     1. hbase.regionserver.regionSplitLimit 1关闭split
+     2. hbase.hstore.compactionThreshold Integer.MAX_VALUE关闭Compact
+     3. hbase.hstore.blockingStoreFiles Integer.MAX_VALUE不要因为store file数量而产生阻塞
 
 风险点：集群稳定/容灾
    - regionserver的单点问题
