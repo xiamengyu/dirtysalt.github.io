@@ -1,14 +1,14 @@
 #+title: tcmalloc
 
 ** 写在前面
-   - 内存管理内幕 http://www.ibm.com/developerworks/cn/linux/l-memory/
-   - hoard内存分配器 http://www.hoard.org/
-   - dlmalloc内存分配器 http://gee.cs.oswego.edu/dl/html/malloc.html
-   - ptmalloc2内存分配器 http://www.malloc.de/en/index.html
-   - jemalloc内存分配器 http://people.freebsd.org/%7Ejasone/jemalloc/bsdcan2006/jemalloc.pdf
-   - jemalloc地址 http://www.canonware.com/download/jemalloc/
-   - tcmalloc内存分配器 [[http://google-perftools.googlecode.com/svn/trunk/doc/tcmalloc.html]]
-   - tcmalloc地址 http://google-perftools.googlecode.com/files/google-perftools-1.8.3.tar.gz
+- 内存管理内幕 http://www.ibm.com/developerworks/cn/linux/l-memory/
+- hoard内存分配器 http://www.hoard.org/
+- dlmalloc内存分配器 http://gee.cs.oswego.edu/dl/html/malloc.html
+- ptmalloc2内存分配器 http://www.malloc.de/en/index.html
+- jemalloc内存分配器 http://people.freebsd.org/%7Ejasone/jemalloc/bsdcan2006/jemalloc.pdf
+- jemalloc地址 http://www.canonware.com/download/jemalloc/
+- tcmalloc内存分配器 [[http://google-perftools.googlecode.com/svn/trunk/doc/tcmalloc.html]]
+- tcmalloc地址 http://google-perftools.googlecode.com/files/google-perftools-1.8.3.tar.gz
 
 *如果你对使用tcmalloc有什么问题的话，请给我发邮件。我会尽量给你答复，对于常见的问题也会整理到FAQ上面。*
 
@@ -16,8 +16,8 @@ jemalloc论文上面谈到了很多关于内存分配器方面的基本概念与
 性能指标主要体现在分配时间以及平均和高峰内存使用大小上面。但是两个指标很难单独测量，所以现在比较权威的测量方式还是使用benchmark然后看看运行时间以及内存使用量。内存碎片分为内部碎片和外部碎片。
 内部碎片通常都是因为分配的话会进行round之后而没有使用的部分，而外部碎片指已经回收但是因为地址不连续等原因没有办法被应用程序使用的部分。
 jemalloc提高CPU Cache命中率有两个途径：
-   - 首先尽可能地让内存使用更小。working set可以放在cache-line里面全部存放效率就会比较好。
-   - 另外就是应该让连续开辟的对象放在一起。jemalloc是假设在一个线程内部调用两次的malloc的话，那么通常是在一起访问的。
+- 首先尽可能地让内存使用更小。working set可以放在cache-line里面全部存放效率就会比较好。
+- 另外就是应该让连续开辟的对象放在一起。jemalloc是假设在一个线程内部调用两次的malloc的话，那么通常是在一起访问的。
 第一个假设非常合理，但是第二个假设不一定是合理的。jemalloc首先确保第一个前提，然后尽可能地保证第二个条件。
 另外cache命中率的一个问题就是false-cache-line.简单的说就是两个线程开辟的对象(A,B)可能连在一起，可以一起载入cache-line.线程1对于A的修改会造成线程2下一次读取B的时候，需要重新从内存载入，因为对于A的修改会使得所在的cache-line失效。解决这个问题的办法就是有多个allocation arena.不同的线程尽可能在不同的arena下面开辟。
 
@@ -103,8 +103,8 @@ extern void* TCMalloc_SystemAlloc(size_t bytes, size_t *actual_bytes,
 extern void TCMalloc_SystemRelease(void* start, size_t length);
 #+END_SRC
 基本可以认为Release部分没有任何操作。对于SystemAlloc底层实现非常巧妙.首先tcmalloc定义了SysAllocator这个接口，然后底层有两个实现：
-   - SbrkSysAllocator.使用sbrk来分配内存
-   - MmapSysAllocator.使用mmap来分配内存
+- SbrkSysAllocator.使用sbrk来分配内存
+- MmapSysAllocator.使用mmap来分配内存
 SysAllocator需要实现一个接口void* Alloc(size_t size, size_t *actual_size, size_t alignment);因为全局只是需要一个这样的对象，
 所以这个对象可以静态分配即可.然后定义了一个DefaultSysAllocator允许设置Children.
 #+BEGIN_SRC C++
@@ -152,15 +152,15 @@ void* DefaultSysAllocator::Alloc(size_t size, size_t *actual_size,
 此外还需要注意的是，因为会有多线程调用这个东西，所以在SystemAlloc之前的话会调用自选锁进行锁定。SpinLockHolder lock_holder(&spinlock);
 
 ** 管理对象
-   - tcmalloc_guard.h
-   - static_vars.h
-   - page_heap_allocator.h
-   - common.h
-   - central_freelist.h
-   - page_heap.h
-   - page_map.h
-   - packed-cache-inl.h
-   - thread_cache.h
+- tcmalloc_guard.h
+- static_vars.h
+- page_heap_allocator.h
+- common.h
+- central_freelist.h
+- page_heap.h
+- page_map.h
+- packed-cache-inl.h
+- thread_cache.h
 
 *** TCMallocGuard
 tcmalloc_guard.h
@@ -370,12 +370,12 @@ class CentralFreeList {
 #+END_SRC
 
 CentralFreeList的接口非常少
-   - void Init(size_t cl); // 初始化,cl表示自己是第几个class
-   - void InsertRange(void *start, void *end, int N); // 回收部分objects.
-   - int RemoveRange(void **start, void **end, int N); // 分配部分objects.
-   - length // 在cache里面存在多少个free objects(不包含transfer cache)
-   - tc_length // transfer cache里面包含多少free objects.
-   - OverheadBytes // 因为内部碎片造成的额外开销
+- void Init(size_t cl); // 初始化,cl表示自己是第几个class
+- void InsertRange(void *start, void *end, int N); // 回收部分objects.
+- int RemoveRange(void **start, void **end, int N); // 分配部分objects.
+- length // 在cache里面存在多少个free objects(不包含transfer cache)
+- tc_length // transfer cache里面包含多少free objects.
+- OverheadBytes // 因为内部碎片造成的额外开销
 因为cc是被全局操作的，所以这些接口在实际操作的时候内部都会首先尝试加上自选锁。很明显cc里面使用了free list链表结构管理这些free object.
 之前说过ptmalloc2会有这么一个问题，就是如果局部线程分配过多的话没有机制将内存返回给主区域。而tcmalloc解决了这个问题。
 对于每一个slab的tc返回的对象个数都是固定的，如果cc可以将这个返回的部分特殊处理的话，那么下次tc还需要这个部分的话，
@@ -457,7 +457,7 @@ void CentralFreeList::ReleaseToSpans(void* object) {
     counter_ -= ((span->length<<kPageShift) /
                  Static::sizemap()->ByteSizeForClass(span->sizeclass));
     tcmalloc::DLL_Remove(span);
-    --num_spans_;
+--num_spans_;
 
     // Release central list lock while operating on pageheap
     lock_.Unlock();
@@ -662,16 +662,16 @@ static const int kAddressBits = 8 * sizeof(void*);
 #+END_SRC
 
 对于PageHeap比较重要的接口包括下面这些：
-   - Span* New(Length n); // 分配n个pages并且返回Span对象
-   - void Delete(Span* span); // 删除Span对象管理的内存
-   - void RegisterSizeClass(Span* span, size_t sc); // 注册这个span对象管理的slab大小多少(0表示不是用于分配小内存)
-   - Span* Split(Span* span, Length n); // 将当前的span切分，一个管理n个页面的span,一个是剩余的。
-   - inline Span* GetDescriptor(PageID p) const //根据PageID得到管理这个Page的Span对象
-   - void Dump(TCMalloc_Printer* out); // Dump出PageHeap信息
-   - bool GetNextRange(PageID start, base::MallocRange* r); // 如果page heap管理了>=start的span,那么返回这个信息
-   - Length ReleaseAtLeastNPages(Length num_pages); // 尝试至少释放num_pages个页面
-   - size_t GetSizeClassIfCached(PageID p) // 在cache中返回这个page id对应的slab class
-   - void CacheSizeClass(PageID p, size_t cl) // 在cache中存放page id对应的slab class.
+- Span* New(Length n); // 分配n个pages并且返回Span对象
+- void Delete(Span* span); // 删除Span对象管理的内存
+- void RegisterSizeClass(Span* span, size_t sc); // 注册这个span对象管理的slab大小多少(0表示不是用于分配小内存)
+- Span* Split(Span* span, Length n); // 将当前的span切分，一个管理n个页面的span,一个是剩余的。
+- inline Span* GetDescriptor(PageID p) const //根据PageID得到管理这个Page的Span对象
+- void Dump(TCMalloc_Printer* out); // Dump出PageHeap信息
+- bool GetNextRange(PageID start, base::MallocRange* r); // 如果page heap管理了>=start的span,那么返回这个信息
+- Length ReleaseAtLeastNPages(Length num_pages); // 尝试至少释放num_pages个页面
+- size_t GetSizeClassIfCached(PageID p) // 在cache中返回这个page id对应的slab class
+- void CacheSizeClass(PageID p, size_t cl) // 在cache中存放page id对应的slab class.
 这里有一个点可能有疑问，就是为什么span需要上面标记slab class.原因非常简单，就是如果用户在释放内存的时候，根据ptr查找到对应的span.
 然后肯定想知道这个ptr到底应该如何归还，本身带有多少内存。此外还需要注意的是，对于page来说的话，一共管理了(kMaxPages)种页面大小。
 tcmalloc代码里面kMaxPages==1 << (20- kPageShift) 相同于有256种页面。但是最后一种页面大小的话可以超过255 pages,这样才可以用于分配大内存。
@@ -1066,11 +1066,11 @@ page_map.h
   }
 #+END_SRC
 初次之外，这个pagemap还有两个比较重要的接口
-   - bool Ensure(Number start, size_t n)
+- bool Ensure(Number start, size_t n)
 因为get,set接口的话都是假设每一层对应的array都是存在的，所以基本上在调用之前的话都必须确保这个array存在。
 而Ensure就是做这件事情的，确保[start,start+n-1]这些PageId对应的每一层array都存在。
 
-   - void* Next(Number k) const
+- void* Next(Number k) const
 Next接口就纯粹想知道>=k的这些PageId首先映射到的span对象是什么，实现起来非常巧妙可以仔细阅读一下
 #+BEGIN_SRC C++
   void* Next(Number k) const {
@@ -1130,20 +1130,20 @@ thread_cache.h
 Thread Cache就是每一个线程里面管理小对象分配的cache.tcmalloc应该是假设局部线程里面通常分配的都是小对象，这样可以减少锁竞争。
 而如果是分配大对象的话，那么会直接从page heap里面进行分配。如果本地小对象不够的话，那么会尝试从central cache里面要。
 Thread Cache比较重要的接口有下面这些：
-   - void Init(pthread_t tid); // 初始化
-   - void Cleanup();
-   - void* Allocate(size_t size, size_t cl); // 从class里面分配size大小
-   - void Deallocate(void* ptr, size_t size_class); // 将ptr放回class对应slab里面
-   - void Scavenge(); // 回收内存到central cache.就是文档里面说的GC
-   - bool SampleAllocation(size_t k); // 是否认为这次分配的k字节需要进行采样.
+- void Init(pthread_t tid); // 初始化
+- void Cleanup();
+- void* Allocate(size_t size, size_t cl); // 从class里面分配size大小
+- void Deallocate(void* ptr, size_t size_class); // 将ptr放回class对应slab里面
+- void Scavenge(); // 回收内存到central cache.就是文档里面说的GC
+- bool SampleAllocation(size_t k); // 是否认为这次分配的k字节需要进行采样.
 还有一些静态方法也非常值得关注
-   - InitModule // 初始化模块
-   - InitTSD // 初始化thread storage data.
-   - GetThreadHeap // thread cache.
-   - GetCache // tc
-   - GetCacheIfPresent // tc
-   - CreateCacheIfNecessary // 如果tc不存在就创建
-   - BecomeIdle // 标记这个thread已经idle，所以可以释放这个tc了
+- InitModule // 初始化模块
+- InitTSD // 初始化thread storage data.
+- GetThreadHeap // thread cache.
+- GetCache // tc
+- GetCacheIfPresent // tc
+- CreateCacheIfNecessary // 如果tc不存在就创建
+- BecomeIdle // 标记这个thread已经idle，所以可以释放这个tc了
 
 涉及到的静态变量有下面这些
 #+BEGIN_SRC C++

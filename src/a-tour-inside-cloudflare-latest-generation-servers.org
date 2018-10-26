@@ -28,9 +28,9 @@ We liked the build quality and reliability of the HP gear and it continues to po
 
 ** Storage
 CloudFlare uses SSDs exclusively at the edge of our network. SSDs give us three advantages. (SSD优势）
-  - First, they tend to fail gradually over time rather than catastrophically, which allows us to predictably schedule their replacement and not keep staff on hand at all our locations around the world.（故障率可预测）
-  - Second, SSDs consume significantly less power than spinning HDDs. Less power means we can put more equipment less expensively in the data centers where we are located. （功耗更小）
-  - Finally, SSDs have faster random seek and write performance, which is important given the nature of our traffic.（性能更好）
+- First, they tend to fail gradually over time rather than catastrophically, which allows us to predictably schedule their replacement and not keep staff on hand at all our locations around the world.（故障率可预测）
+- Second, SSDs consume significantly less power than spinning HDDs. Less power means we can put more equipment less expensively in the data centers where we are located. （功耗更小）
+- Finally, SSDs have faster random seek and write performance, which is important given the nature of our traffic.（性能更好）
 
 We went through a number of different models of SSDs over the life of our G3 hardware. The best price performance we found were the *240GB Intel 520 SSD drives* , which is what we are using in the first shipments of the new G4 servers. Intel reports that the 520-series drives have a *mean time between failure (MTBF) of 1,200,000 hours (about 137 years).* While we haven't been running enough of the drives long enough to confirm that MTBF, we have been pleased with their low failure rate in our production environment.
 

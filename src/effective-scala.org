@@ -46,10 +46,10 @@ The collections library is large: in addition to an elaborate hierarchy — the 
 Iterable[T] 是所有可遍历的集合，它提供了迭代的方法(foreach)。Seq[T] 是有序集合，Set[T]是数学上的集合(无序且不重复)，Map[T]是关联数组，也是无序的。
 
 file:images/scala-collection-hierarchy-simple.png
-   - Iterable[T] is any collection that may be iterated over, they provide an iterator method (and thus foreach). 
-   - Seq[T]s are collections that are ordered, 
-   - Set[T]s are mathematical sets (unordered collections of unique items), 
-   - and Map[T]s are associative arrays, also unordered.
+- Iterable[T] is any collection that may be iterated over, they provide an iterator method (and thus foreach). 
+- Seq[T]s are collections that are ordered, 
+- Set[T]s are mathematical sets (unordered collections of unique items), 
+- and Map[T]s are associative arrays, also unordered.
 
 Prefer using immutable collections. They are applicable in most circumstances, and make programs easier to reason about since they are referentially transparent and are thus also threadsafe by default. Use the mutable namespace explicitly. 
 
@@ -119,10 +119,10 @@ require and assert both serve as executable documentation. Both are useful for s
 
 ** Functional programming
 Value oriented programming confers many advantages, especially when used in conjunction with functional programming constructs. This style emphasizes 
-   - the transformation of values over stateful mutation, 
-   - yielding code that is referentially transparent, 
-   - providing stronger invariants and thus also easier to reason about. 
-   - Case classes, pattern matching, destructuring bindings, type inference, and lightweight closure- and method-creation syntax are the tools of this trade.
+- the transformation of values over stateful mutation, 
+- yielding code that is referentially transparent, 
+- providing stronger invariants and thus also easier to reason about. 
+- Case classes, pattern matching, destructuring bindings, type inference, and lightweight closure- and method-creation syntax are the tools of this trade.
 
 > 面向值（value-oriented ）编程有很多优势，特别是用在与函数式编程结构相结合。这种风格强调值的转换（译注：由一个不变的值生成另一个不变的值）而非状态的改变，生成的代码是指称透明的(referentially transparent)，提供了更强的不变型(invariants)，因此容易实现。Case类(也被翻译为样本类)，模式匹配，解构绑定(destructuring bindings)，类型推断，轻量级的闭包和方法创建语法都是这一类的工具。
 

@@ -5,12 +5,12 @@ https://www.myssl.cn/ 这个应该是RapidSSL在中国的代理商. 这里有一
 1. 选择通配符证书
 2. 证书有效期1年
 3. 系统自动生成CSR (或者使用 [[https://www.myssl.cn/tools/create-csr.html][CSR在线生成]]) 另存为server.csr
- - Corporation: Your company name
- - Department: IT Department
- - City: Beijing
- - Province: Beijing
- - Country: CN
- - Domain name: https://*.your-domain-name
+  - Corporation: Your company name
+  - Department: IT Department
+  - City: Beijing
+  - Province: Beijing
+  - Country: CN
+  - Domain name: https://*.your-domain-name
 4. 下载密钥文件 ssl.key (内容开头和结尾有 =PRIVATE KEY=) 重命名为server.key. *(特别重要，不要再修改)*
 5. 添加管理员信息，主要是管理员邮箱。这个邮箱会被通知颁发的certificate证书
 6. 选择审批电子邮件地址. 比如admin, webmaster@<your-domain-name>. 通过邮件来验证你对该域名的所有权

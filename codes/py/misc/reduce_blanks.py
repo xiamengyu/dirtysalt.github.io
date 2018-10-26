@@ -4,15 +4,26 @@
 import sys
 
 
+def flush_buffers(output, buffers):
+    if not buffers: return
+    min_indent = min([x.find('-') for x in buffers])
+    for x in buffers:
+        indent = x.find('-')
+        output.append(' ' * (indent - min_indent) + x[indent:])
+    buffers.clear()
+
+
 def reduce_blanks(lines):
     output = []
+    buffers = []
     for x in lines:
         y = x
         if x.strip().startswith('-'):
-            index = x.find('-')
-            if index >= 3:
-                y = ' ' * (index - 3) + x[index:]
-        output.append(y)
+            buffers.append(x)
+        else:
+            flush_buffers(output, buffers)
+            output.append(y)
+    flush_buffers(output, buffers)
     return output
 
 

@@ -19,9 +19,9 @@ oprofile由下面三个部分组成
 
 *** 内核驱动
 内核驱动工作的时候分为三种模式：
-   - 硬件事件计数器模式
-   - RTC模式
-   - TimeInterrupt模式
+- 硬件事件计数器模式
+- RTC模式
+- TimeInterrupt模式
 
 关于RTC模式和TimeInterrupt模式之间的差别并不是非常了解。RTC(RealTimeClock)和TimeInterrupt模式工作方式，大致都是在底层开启一个定时器并且定时触发中断，然后知道当时PC的位置，然后把这段时间都作为这条PC所执行的时间。定位相对来说粗糙的，但是对于大部分的情况都是管用的。但是如果执行代码部分是屏蔽了中断的话，那么实际上这个部分是不会被profile的。
 
@@ -41,10 +41,10 @@ oprofile由下面三个部分组成
 
 *** 工具附件
 通过读取dump出来的外部文件得到采样数据进行加工：
-   - ophelp //显示帮助信息
-   - opcontrol //oprofile控制程序
-   - opreport //产生报表信息
-   - opannotate //annotate代码，包括源代码和汇编代码
+- ophelp //显示帮助信息
+- opcontrol //oprofile控制程序
+- opreport //产生报表信息
+- opannotate //annotate代码，包括源代码和汇编代码
 
 ** Getting Started
 - Installation http://oprofile.sourceforge.net/doc/install.html

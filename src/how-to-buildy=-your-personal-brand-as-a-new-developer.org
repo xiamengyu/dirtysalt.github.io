@@ -16,17 +16,17 @@ I’m sure at other companies though, this could well be a different story.
 作为一个新手，下面是几个很容易上手的打造个人品牌的方法：
 
 *Start and maintain a blog*
-  - This isn’t about getting 1,000’s of visitors to your website. This is about developing a personal brand. And ultimately, it’s about what happens when a prospective employer or customer types your name into Google. 不用一味地追求UV/PV, 记住这个只是为了展示你的个人品牌，而不是产生更多的流量
-  - Your actual blog doesn’t need to be anything flashy or expensive. A Wordpress blog with a free theme will be more than enough to get you started. There are other platforms that you could use like Jekyll. Wordpress was so easy for me to set up and get started with that I never felt the need to try anything else. 展现形式不是特别重要，wordpress/jekyll都可以。或者是像我一样使用 [[file:use-emacs-org-mode-to-build-site.org][emacs]] 来创建站点。
-  - Don’t get too caught up on what to write or spend hours and hours tinkering with your blog. It shouldn’t take any time away from your learning or your family time. Try to post regularly and be consistent with it. 不要让blogging占据你太多的时间，牺牲你学习以及和家人相处的时间。经常花一点时间在上面，然后坚持下去。
-  - Finally, try and remember that all your posts don’t have to be too technical. Even if you are a complete beginner, you will always have 1 day, 1 week or 1 month’s more experience than someone else. Someone will find value in what you have to say. 写的东西不一定要是特别技术性的。我理解这点对于developer蛮重要的，因为作为dev很容易过于陷入技术细节。
-  - Don’t be afraid to take the opportunity to write about something non-technical. Write about a hobby or interest. Use your blog as a way to show your personality and interests outside of code. Just try not to be too controversial.
+- This isn’t about getting 1,000’s of visitors to your website. This is about developing a personal brand. And ultimately, it’s about what happens when a prospective employer or customer types your name into Google. 不用一味地追求UV/PV, 记住这个只是为了展示你的个人品牌，而不是产生更多的流量
+- Your actual blog doesn’t need to be anything flashy or expensive. A Wordpress blog with a free theme will be more than enough to get you started. There are other platforms that you could use like Jekyll. Wordpress was so easy for me to set up and get started with that I never felt the need to try anything else. 展现形式不是特别重要，wordpress/jekyll都可以。或者是像我一样使用 [[file:use-emacs-org-mode-to-build-site.org][emacs]] 来创建站点。
+- Don’t get too caught up on what to write or spend hours and hours tinkering with your blog. It shouldn’t take any time away from your learning or your family time. Try to post regularly and be consistent with it. 不要让blogging占据你太多的时间，牺牲你学习以及和家人相处的时间。经常花一点时间在上面，然后坚持下去。
+- Finally, try and remember that all your posts don’t have to be too technical. Even if you are a complete beginner, you will always have 1 day, 1 week or 1 month’s more experience than someone else. Someone will find value in what you have to say. 写的东西不一定要是特别技术性的。我理解这点对于developer蛮重要的，因为作为dev很容易过于陷入技术细节。
+- Don’t be afraid to take the opportunity to write about something non-technical. Write about a hobby or interest. Use your blog as a way to show your personality and interests outside of code. Just try not to be too controversial.
 
 *Sign up for a Twitter account*
-  - twitter上面还是有很多技术业界大拿的，而且他们在twitter上面也非常活跃，可以很好地形成自己的social network.
-  - As well as being part of a community, it’s a great way to keep up to date with industry news and events. It’s also a great way to break the ice and say a virtual “hello” before bumping into someone at an in-person conference or meet-up. 跟上业界的发展趋势，创建自己的社交网络
-  - Remember that your tweets are there for the whole world to see. So with that in mind please be helpful, be kind, and try and offer some kind of value. Pointless tweets about what you had for dinner and auntie Madge’s bad back are going to get you swiftly un-followed. 因为在twitter上你的信息会出现在别人的news feed上的，所以你的tweet应该尽可能地对别人有价值。
-  - Social media is a great opportunity to build your personal brand so use it correctly to network, and share your enthusiasm and knowledge.
+- twitter上面还是有很多技术业界大拿的，而且他们在twitter上面也非常活跃，可以很好地形成自己的social network.
+- As well as being part of a community, it’s a great way to keep up to date with industry news and events. It’s also a great way to break the ice and say a virtual “hello” before bumping into someone at an in-person conference or meet-up. 跟上业界的发展趋势，创建自己的社交网络
+- Remember that your tweets are there for the whole world to see. So with that in mind please be helpful, be kind, and try and offer some kind of value. Pointless tweets about what you had for dinner and auntie Madge’s bad back are going to get you swiftly un-followed. 因为在twitter上你的信息会出现在别人的news feed上的，所以你的tweet应该尽可能地对别人有价值。
+- Social media is a great opportunity to build your personal brand so use it correctly to network, and share your enthusiasm and knowledge.
 
 *Be consistent across all platforms*
 

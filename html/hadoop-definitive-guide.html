@@ -38,21 +38,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8eeac99">1. 初识Hadoop</a></li>
-<li><a href="#org053d826">2. 关于MapReduce</a></li>
-<li><a href="#orge29ca0c">3. Hadoop分布式文件系统</a></li>
-<li><a href="#org8487e05">4. Hadoop IO</a></li>
-<li><a href="#orgf9f7ccb">5. MapReduce应用开发</a></li>
-<li><a href="#org8534084">6. MapReduce的工作机制</a></li>
-<li><a href="#org2f4e5a2">7. MapReduce的类型与格式</a></li>
-<li><a href="#orgeeac3a6">8. MapReduce的特性</a></li>
-<li><a href="#org5ecbf12">9. 构建Hadoop集群</a></li>
-<li><a href="#org24f92e8">10. 管理Hadoop</a></li>
+<li><a href="#orgfef3d32">1. 初识Hadoop</a></li>
+<li><a href="#org1c7a352">2. 关于MapReduce</a></li>
+<li><a href="#org23887dc">3. Hadoop分布式文件系统</a></li>
+<li><a href="#orgad25abe">4. Hadoop IO</a></li>
+<li><a href="#org454ca14">5. MapReduce应用开发</a></li>
+<li><a href="#org5f3f46d">6. MapReduce的工作机制</a></li>
+<li><a href="#org8ddcdca">7. MapReduce的类型与格式</a></li>
+<li><a href="#org877a7d7">8. MapReduce的特性</a></li>
+<li><a href="#org0eb9a2a">9. 构建Hadoop集群</a></li>
+<li><a href="#org524620d">10. 管理Hadoop</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8eeac99" class="outline-2">
-<h2 id="org8eeac99"><span class="section-number-2">1</span> 初识Hadoop</h2>
+<div id="outline-container-orgfef3d32" class="outline-2">
+<h2 id="orgfef3d32"><span class="section-number-2">1</span> 初识Hadoop</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 古代，人们用牛来拉中午，当一头牛拉不动一根圆木的时候，他们不曾想过培育更大更壮的牛。同样，我们也不需要尝试开发超级计算机，而应试着结合使用更多计算机系统。
@@ -60,8 +60,8 @@
 </div>
 </div>
 
-<div id="outline-container-org053d826" class="outline-2">
-<h2 id="org053d826"><span class="section-number-2">2</span> 关于MapReduce</h2>
+<div id="outline-container-org1c7a352" class="outline-2">
+<h2 id="org1c7a352"><span class="section-number-2">2</span> 关于MapReduce</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>设置HADOOP_CLASSPATH就可以直接使用hadoop CLASSNAME来在本地运行mapreduce程序。</li>
@@ -84,8 +84,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge29ca0c" class="outline-2">
-<h2 id="orge29ca0c"><span class="section-number-2">3</span> Hadoop分布式文件系统</h2>
+<div id="outline-container-org23887dc" class="outline-2">
+<h2 id="org23887dc"><span class="section-number-2">3</span> Hadoop分布式文件系统</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>使用hadoop archive能够将大量小文档打包，存档文件之能够只读访问
@@ -108,8 +108,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8487e05" class="outline-2">
-<h2 id="org8487e05"><span class="section-number-2">4</span> Hadoop IO</h2>
+<div id="outline-container-orgad25abe" class="outline-2">
+<h2 id="orgad25abe"><span class="section-number-2">4</span> Hadoop IO</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
 <ul class="org-ul">
@@ -199,6 +199,9 @@
 <ul class="org-ul">
 <li>SequenceFile 主要用来存储KV数据结构，多条记录之间会穿插一些同步标记，因此允许进行切分。</li>
 </ul></li>
+</ul></li>
+</ul>
+<ul class="org-ul">
 <li>使用SequenceFileInputFormat和SequenceFileOutputFormat来读取和输出SequenceFile
 <ul class="org-ul">
 <li>hadoop fs -text 可以用来读取文件</li>
@@ -212,8 +215,10 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 <li>如果使用块压缩的话，那么格式为 numberRecord(1-5byte) + keyLength(4byte) + compressedKeys + valueLength(4byte) + compressedValues.每个block之间会插入sync标记</li>
 </ul>
 <ul class="org-ul">
-<li>块压缩大小可以使用io.seqfile.compress.blocksize来控制，默认1MB</li>
+<li>块压缩大小可以使用io.seqfile.compress.blocksize来控制，默认1MB
+<ul class="org-ul">
 <li>MapFile 也是用来存储KV数据结构，但是可以认为已经按照了Key进行排序 #note: 要求添加顺序就按照Key排序</li>
+</ul></li>
 </ul></li>
 <li>存储格式实际上也是SequenceFile，data，index都是。</li>
 <li>底层会建立index，index在搜索的时候会加载到内存里面，这样可以减少data上的随机查询次数。
@@ -232,13 +237,12 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 <li>然后调用hadoop MapFileFixer来建立索引</li>
 </ul></li>
 </ul></li>
-</ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf9f7ccb" class="outline-2">
-<h2 id="orgf9f7ccb"><span class="section-number-2">5</span> MapReduce应用开发</h2>
+<div id="outline-container-org454ca14" class="outline-2">
+<h2 id="org454ca14"><span class="section-number-2">5</span> MapReduce应用开发</h2>
 <div class="outline-text-2" id="text-5">
 <hr />
 <ul class="org-ul">
@@ -276,9 +280,7 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 
 <hr />
 <ul class="org-ul">
-<li><p>
-使用hadoop启动MapReduce任务的常用参数
-</p>
+<li>使用hadoop启动MapReduce任务的常用参数
 <ol class="org-ol">
 <li>-D property=value 覆盖默认配置属性</li>
 <li>-conf filename 添加配置文件</li>
@@ -286,13 +288,13 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 <li>-jt host:port 设置jobtracker</li>
 <li>-files file,file2 这些文件可以在tasktracker工作目录下面访问</li>
 <li>-archives archive,archive2 和files类似，但是是存档文件</li>
-</ol>
+</ol></li>
+</ul>
 <ul class="org-ul">
 <li>突然觉得这个差别在files只能是平级结构，而archive可以是层级结构。
 <ol class="org-ol">
 <li>-libjars jar1,jar2 和files类似，通常这些JAR文件是MapReduce所需要的。</li>
 </ol></li>
-</ul></li>
 </ul>
 
 <hr />
@@ -370,6 +372,9 @@ job，task and attempt
 <li>setProfileEnabled 打开profile功能，默认false，属性 mapred.task.profile</li>
 <li>setProfileParams 设置profile参数</li>
 </ul></li>
+</ul></li>
+</ul>
+<ul class="org-ul">
 <li>属性 mapred.task.profile.params
 <ul class="org-ul">
 <li>默认使用hprof -agentlib:hprof=cpu=samples,heap=sites,force=n,thread=y,verbose=n,file=%s"</li>
@@ -385,8 +390,8 @@ job，task and attempt
 </ul></li>
 <li>参数1表示针对map还是reduce task做profile, true表示map, false表示reduce</li>
 <li>参数2表示针对哪些tasks做优化，"0-2"表示针对0，1，2三个任务，默认也是"0-2"</li>
-<li>map task对应属性mapred.task.profile.maps，reduce task对应属性mapred.task.profile.reduces</li>
-</ul></li>
+<li>map task对应属性mapred.task.profile.maps，reduce task对应属性mapred.task.profile.reduces
+<ul class="org-ul">
 <li>任务重现
 <ul class="org-ul">
 <li>首先将keep.failed.task.files设置为true,这样如果任务失败的话，那么这个任务的输入和输出都会保留下来
@@ -398,12 +403,13 @@ job，task and attempt
 </ul></li>
 <li>如果希望任务都保留而不仅仅是失败任务保留的话，那么可以设置 keep.task.files.pattern 为正则表达式（与保留的任务ID匹配）</li>
 </ul></li>
+</ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8534084" class="outline-2">
-<h2 id="org8534084"><span class="section-number-2">6</span> MapReduce的工作机制</h2>
+<div id="outline-container-org5f3f46d" class="outline-2">
+<h2 id="org5f3f46d"><span class="section-number-2">6</span> MapReduce的工作机制</h2>
 <div class="outline-text-2" id="text-6">
 <hr />
 <p>
@@ -596,8 +602,8 @@ shuffle和排序
 </div>
 </div>
 
-<div id="outline-container-org2f4e5a2" class="outline-2">
-<h2 id="org2f4e5a2"><span class="section-number-2">7</span> MapReduce的类型与格式</h2>
+<div id="outline-container-org8ddcdca" class="outline-2">
+<h2 id="org8ddcdca"><span class="section-number-2">7</span> MapReduce的类型与格式</h2>
 <div class="outline-text-2" id="text-7">
 <hr />
 <p>
@@ -777,8 +783,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-orgeeac3a6" class="outline-2">
-<h2 id="orgeeac3a6"><span class="section-number-2">8</span> MapReduce的特性</h2>
+<div id="outline-container-org877a7d7" class="outline-2">
+<h2 id="org877a7d7"><span class="section-number-2">8</span> MapReduce的特性</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>计数器
@@ -832,8 +838,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org5ecbf12" class="outline-2">
-<h2 id="org5ecbf12"><span class="section-number-2">9</span> 构建Hadoop集群</h2>
+<div id="outline-container-org0eb9a2a" class="outline-2">
+<h2 id="org0eb9a2a"><span class="section-number-2">9</span> 构建Hadoop集群</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>很多教程说hadoop集群需要配置ssh,但是配置这个前提是你希望使用start-all.sh这个脚本来启动集群
@@ -937,8 +943,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org24f92e8" class="outline-2">
-<h2 id="org24f92e8"><span class="section-number-2">10</span> 管理Hadoop</h2>
+<div id="outline-container-org524620d" class="outline-2">
+<h2 id="org524620d"><span class="section-number-2">10</span> 管理Hadoop</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>永久性数据结构

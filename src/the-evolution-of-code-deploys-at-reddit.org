@@ -48,11 +48,11 @@ file:images/reddit-unshuffled.png
 ** A reworked deploy tool (2012)
 
 部署脚本 `push `使用python重写了，做了下面这些改进
-  - 从DNS上获取hosts列表而不是hard coded
-  - 不再顺序地遍历服务器部署，而是打乱列表顺序。这样可以更加安全地加快部署速度。
-  - 打乱列表顺序可以使用某个seed. 这样如果修复的时候也是按照同样的顺序回滚
-  - 不再使用master而是使用revision code
-  - 将部署逻辑和部署实现代码上相分离
+- 从DNS上获取hosts列表而不是hard coded
+- 不再顺序地遍历服务器部署，而是打乱列表顺序。这样可以更加安全地加快部署速度。
+- 打乱列表顺序可以使用某个seed. 这样如果修复的时候也是按照同样的顺序回滚
+- 不再使用master而是使用revision code
+- 将部署逻辑和部署实现代码上相分离
 
 file:images/reddit-shuffled.png
 
@@ -60,10 +60,10 @@ file:images/reddit-shuffled.png
 ** The autoscaler (2013)
 
 开始往cloud/ec2上面迁移了，也开始使用autoscaler
-  - 迁移到云上节省了不少开销，并且可以自动扩容处理突发情况
-  - 得益于之前的push的重构，从DNS上获取hosts这个过程非常适合autoscaler
-  - autoscaler也对push提出一些挑战和需求，比如正在部署期间某台机器自动下线该如何处理
-  - 把uWSGI切换到了gunicorn
+- 迁移到云上节省了不少开销，并且可以自动扩容处理突发情况
+- 得益于之前的push的重构，从DNS上获取hosts这个过程非常适合autoscaler
+- autoscaler也对push提出一些挑战和需求，比如正在部署期间某台机器自动下线该如何处理
+- 把uWSGI切换到了gunicorn
 
 ** Too many servers (2014)
 

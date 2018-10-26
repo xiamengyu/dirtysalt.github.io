@@ -2,21 +2,21 @@
 
 ** Unix基础知识
  整个Unix体系结构包括这么几个部分：
- - 内核(kernel)
- - 系统调用(system call)
- - 库函数(library)
- - shell
- - 应用程序(application)
+- 内核(kernel)
+- 系统调用(system call)
+- 库函数(library)
+- shell
+- 应用程序(application)
 
 *** 登录
  系统的口令文件存放在/etc/passwd下面，每行是一条记录。每条记录以:分隔包含7个字段
- - username
- - password
- - uid(user id)
- - gid(group id)
- - comment
- - home directory
- - shell
+- username
+- password
+- uid(user id)
+- gid(group id)
+- comment
+- home directory
+- shell
  但是现在所有的系统都将这些信息放在其他文件(which file).Linux默认是Bourne-again shell(bash).
 
 *** 帮助
@@ -96,9 +96,9 @@
 
 *** 用户标识
  用户标识包括
- - 用户id(uid,user id)
- - 组id(gid,group id)
- - 附加组id(sgid,supplementary group id)
+- 用户id(uid,user id)
+- 组id(gid,group id)
+- 附加组id(sgid,supplementary group id)
 
  对于uid来说是系统为了简化区别用户的方式(不然使用字符串区别非常麻烦).uid在登录时候确定
  并且不能够修改。uid=0的用户为根用户(root),这是一个超级用户对于系统都一切支配权。同理也是
@@ -107,9 +107,9 @@
 
 *** 信号
  信号(signal)是通知进程已经发生某种情况的一种技术。通常用户接收到信息有三个选择：
- - 忽略
- - 默认方式(系统提供)
- - 自定义处理
+- 忽略
+- 默认方式(系统提供)
+- 自定义处理
  在终端下面有两种产生信号的方式，分别是中断键(interrupt key,C-c)和退出键(quit key,C-\).
  另外我们可以调用kill函数或者是在shell下面使用kill命令来给进程发送信号。
 
@@ -121,9 +121,9 @@
 
  一种是CPU时间，用于度量进程使用的中央处理机资源。CPU时间以时钟滴答计算，使用sysconf可以获得每秒
  时钟滴答数。使用clock_t来表示。这是一个相对时间。度量一个进程的执行时间，Unix使用三个时间值：
- - 时钟时间(wall clock time).
- - 用户CPU时间(user cpu time).
- - 系统CPU时间(sys cpu time).
+- 时钟时间(wall clock time).
+- 用户CPU时间(user cpu time).
+- 系统CPU时间(sys cpu time).
  #+BEGIN_SRC C++
  #include <cstdio>
  #include <cstdlib>
@@ -4217,8 +4217,8 @@ int pthread_kill(pthread_t thread,int signo);
 
 **** attr
 ***** init
-  - pthread_attr_init
-  - pthread_attr_destroy
+- pthread_attr_init
+- pthread_attr_destroy
 
 ***** detach
 - pthread_attr_getdetachstate
@@ -4348,10 +4348,10 @@ barrier类似于muduo里面的countdownlatch机制
 
 **** control
 ***** run
-  - pthread_create
-  - pthread_exit
-  - pthread_join
-  - pthread_detach
+- pthread_create
+- pthread_exit
+- pthread_join
+- pthread_detach
 
 ***** cancel
 - pthread_cancel

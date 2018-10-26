@@ -117,15 +117,15 @@ file:images/cnn-fc-to-conv.png file:images/cnn-conv-impl-of-sliding-windows.png
 物体检测上state-of-art技术应该是YOLO(you only look once). 实现上分为下面几步：（先假设我们只detect一种object)
 1. 将输入图片分为9x9或者是19x19个grids.
 2. 每个grid上单独进行预测，输出包括(P, bx, by, bh, bw). 每个五元组为一个box, 可以有很多boxes
-   - P 表示检测到物体的概率
-   - 其中bx, by是这个物体的middle point, bh, bw则是长宽
-   - 数值上都是grid的比例，比如bx, by = 0.5, 0.5, 表示middle point在grid的中心
-   - bh, bw可以超过1， 也就是说占据多个grids
+  1. P 表示检测到物体的概率
+  2. 其中bx, by是这个物体的middle point, bh, bw则是长宽
+  3. 数值上都是grid的比例，比如bx, by = 0.5, 0.5, 表示middle point在grid的中心
+  4. bh, bw可以超过1， 也就是说占据多个grids
 3. 针对这些boxes, 运行non-max suppression. 算法很简单
-   1. 将boxes中P低于某个值(0.4)去掉，这些box是object概率很小
-   2. 从boxes中选择P最大的box(A)，认为A里面有Object
-   3. 然后剩余boxes中，如果和A的重合比例超过某个值(0.5)的话，那么丢弃
-   4. 重复2，直到没有boxes为止
+  1. 将boxes中P低于某个值(0.4)去掉，这些box是object概率很小
+  2. 从boxes中选择P最大的box(A)，认为A里面有Object
+  3. 然后剩余boxes中，如果和A的重合比例超过某个值(0.5)的话，那么丢弃
+  4. 重复2，直到没有boxes为止
 重合比例计算可以用IOU(intersect over union), 也就是重合面积 / （A + B - 重合面积)。IOU很高的话，认为其实两个box重复。
 
 如果需要检测多个物体的话，那么在一个grid里面可能会检测到多个objects，那么需要anchor box来帮助。anchor box实际上是帮助定位是哪一类objects的。比如下图：

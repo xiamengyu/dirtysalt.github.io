@@ -88,13 +88,13 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 因为python有自己的构建扩展的方式。
 
 ** options
-   - -c++ // 使用C++编写扩展
-   - -python // 生成python扩展
-   - -globals // 如果不加的话全局变量是在module.cvar对象下面定义的，如果加上的话那么全局变量直接出现在module下面。
+- -c++ // 使用C++编写扩展
+- -python // 生成python扩展
+- -globals // 如果不加的话全局变量是在module.cvar对象下面定义的，如果加上的话那么全局变量直接出现在module下面。
 
 ** instructions
-   - %rename(x) y; // 能够将y重名为x
-   - %template(x) y<z>; // 将y<z>这个模板实例化定义为类型x导出
+- %rename(x) y; // 能够将y重名为x
+- %template(x) y<z>; // 将y<z>这个模板实例化定义为类型x导出
 
 ** about types
 默认情况下面的话SWIG只是支持几个C/C++类型比如char,unsigned char,int,unsigned int等，而对于其他类型都认为是opaque pointer.我们经常遇到的问题就是

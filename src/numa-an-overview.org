@@ -48,11 +48,11 @@ file:images/numa-illustrated.png
 
 There are several broad categories in which modern production operating systems allow for the
 management of NUMA: （总的来说操作系统使用NUMA的方式是下面5类）
-   - accepting the performance mismatch, （啥都不做，效果取决于运气）
-   - hardware memory striping, （硬件按照cache line作为单元，然后在NUMA nodes上以round robin方式做placement，效果相同于local/remote均分，效果可能最差）
-   - heuristic memory placement,
-   - a static NUMA configurations,
-   - and application-controlled NUMA placement.
+- accepting the performance mismatch, （啥都不做，效果取决于运气）
+- hardware memory striping, （硬件按照cache line作为单元，然后在NUMA nodes上以round robin方式做placement，效果相同于local/remote均分，效果可能最差）
+- heuristic memory placement,
+- a static NUMA configurations,
+- and application-controlled NUMA placement.
 
 启发式如何工作：
 
@@ -107,8 +107,8 @@ a process override the system policy, and policies for a specific memory range o
 policy.(内存策略可以针对一段内存地址，也可以针对一个进程，也可以针对整个系统）
 
 The most important memory policies are:（下面是两种最主要的内存策略）
-   - NODE LOCAL. The allocation occurs from the memory node local to where the code is currently executing. （分配在local于当前执行代码node上）
-   - INTERLEAVE. Allocation occurs round-robin. First a page will be allocated from node 0, then from node 1, then again from node 0, etc. Interleaving is used to distribute memory accesses for structures that may be accessed from multiple processors in the system in order to have an even load on the interconnect and the memory of each node.（按照page使用RR算法在各个nodes上进行分配）
+- NODE LOCAL. The allocation occurs from the memory node local to where the code is currently executing. （分配在local于当前执行代码node上）
+- INTERLEAVE. Allocation occurs round-robin. First a page will be allocated from node 0, then from node 1, then again from node 0, etc. Interleaving is used to distribute memory accesses for structures that may be accessed from multiple processors in the system in order to have an even load on the interconnect and the memory of each node.（按照page使用RR算法在各个nodes上进行分配）
 
 The Linux kernel will use the INTERLEAVE policy by default on boot-up. Kernel structures created
 during bootstrap are distributed over all the available nodes in order to avoid putting excessive load
@@ -163,8 +163,8 @@ The impact of reclaim on the system can therefore vary. In a NUMA system multipl
 memory will be allocated on each node. The amount of free space on each node will vary. So if there
 is a request for memory and using memory on the local node would require reclaim but another
 node has enough memory to satisfy the request without reclaim, the kernel has two choices:（如果当前node不够使用的话，那么有两种策略，尝试回收local node, 或者是使用remote node）
-   - Run a reclaim pass on the local node (causing kernel processing overhead) and then allocate node-local memory to the process.
-   - Just allocate from another node that does not need a reclaim pass. Memory will not be node local, but we avoid frequent reclaim passes. Reclaim will be performed when all zones are low on free memory. This approach reduces the frequency of reclaim and allows more of the reclaim work to be done in a single pass.
+- Run a reclaim pass on the local node (causing kernel processing overhead) and then allocate node-local memory to the process.
+- Just allocate from another node that does not need a reclaim pass. Memory will not be node local, but we avoid frequent reclaim passes. Reclaim will be performed when all zones are low on free memory. This approach reduces the frequency of reclaim and allows more of the reclaim work to be done in a single pass.
 
 For small NUMA systems (such as the typical two-node servers) the kernel defaults to the second
 approach. For larger NUMA systems (four or more nodes) the kernel will perform a reclaim in order

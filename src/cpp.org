@@ -99,12 +99,12 @@ C++来提供了内存分配失败的回调函数，但是这个只能够处理�
 
 **** operator new与new operator
 此外在很多书籍里面会提到operator new和new operator这两个说法，这两个是不一样的概念。operator new就是我们重写运算符函数，而new operator使我们调用new这个表达式。本质上说new这个表达式调用了分配类型里面的operator new函数，同时调用这个类型的初始化构造函数。同理operator delete和delete operator差别也是一样的。通常new operator的动作是这样的:
-   - void *raw=operaotor new(sizeof(A)); //使用operator new进行内存分配
-   - call A::A on *raw; //在raw上面调用构造函数
-   - A *a=static_castraw; //最后进行一次强制转换
+- void *raw=operaotor new(sizeof(A)); //使用operator new进行内存分配
+- call A::A on *raw; //在raw上面调用构造函数
+- A *a=static_castraw; //最后进行一次强制转换
 同理通常delete operator的动作是这样的:
-   - a->~A();//调用一次析构函数
-   - operator delete(a);//进行内存释放
+- a->~A();//调用一次析构函数
+- operator delete(a);//进行内存释放
 说到这里，我们需要清楚为什么需要有new []和delete []的方法了。对于operator new和delete来说真的不关心这些，因为只是分配内存，而对于new operator和delete operator就需要关心了，因为需要关心有多少个对象，这样的话才能够调用每个对象的构造函数。调用了new []分配的对象也一定需要使用delete []来释放，不然只会调用第一个元素析构函数和释放它的空间。
 
 *** static assert
@@ -294,8 +294,8 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 *编译时hook*
 
 在gcc编译的时候需要加入-finstrument-functions这个选项之后，那么每个函数调用之前和之后都会调用
-   - __cyg_profile_func_enter
-   - __cyg_profile_func_exit
+- __cyg_profile_func_enter
+- __cyg_profile_func_exit
 这两个函数是gcc内置函数，_enter函数能够在函数调用之前进行调用，_exit函数能够在函数调用退出之后调用，原型分别是
 #+BEGIN_SRC C++
 // this是这个callee函数地址
@@ -491,9 +491,9 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 另外我让同事在其他机器上使用g++3.4.5编译运行，时间差别也非常大
 
 多谢 @Thomas 的指导，通过strace发现确实是glibc的内存分配问题。strace两个binary发现：
-   - action调用了很多brk（8288次）,mmap（17次）来分配内存，每次都是分配小内存.运行完成之后这些内存buffer起来了。
-   - 在action调用之后的action2没有调用任何系统调用分配内存，都是在用户态完成。
-   - 而如果没有action先调用的话，action2就需要自己调用brk（4737次）,mmap（17次），所以比较耗时。
+- action调用了很多brk（8288次）,mmap（17次）来分配内存，每次都是分配小内存.运行完成之后这些内存buffer起来了。
+- 在action调用之后的action2没有调用任何系统调用分配内存，都是在用户态完成。
+- 而如果没有action先调用的话，action2就需要自己调用brk（4737次）,mmap（17次），所以比较耗时。
 改用 [[file:tcmalloc.org][tcmalloc]] 之后没有这个问题了。tcmalloc调用brk（541次），mmap（500次）。
 ** library
 *** boost::bind

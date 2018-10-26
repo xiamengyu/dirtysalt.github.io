@@ -16,12 +16,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge699296">1. Introduction</a></li>
-<li><a href="#org94e725d">2. Command</a></li>
-<li><a href="#orgece6fb3">3. Data Container</a></li>
-<li><a href="#org3499671">4. Dockerfile</a></li>
-<li><a href="#org12f5980">5. assign static ip to container</a></li>
-<li><a href="#org81e03dd">6. Understanding Docker</a></li>
+<li><a href="#org74ec9cc">1. Introduction</a></li>
+<li><a href="#orgc49fd2f">2. Command</a></li>
+<li><a href="#orgf32a792">3. Data Container</a></li>
+<li><a href="#orge58bd9a">4. Dockerfile</a></li>
+<li><a href="#org76d5689">5. assign static ip to container</a></li>
+<li><a href="#org125d1dc">6. Understanding Docker</a></li>
 </ul>
 </div>
 </div>
@@ -32,8 +32,8 @@
 <li>AUFS <a href="http://en.wikipedia.org/wiki/Aufs">http://en.wikipedia.org/wiki/Aufs</a></li>
 </ul>
 
-<div id="outline-container-orge699296" class="outline-2">
-<h2 id="orge699296"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-org74ec9cc" class="outline-2">
+<h2 id="org74ec9cc"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="https://www.docker.com/tryit/">https://www.docker.com/tryit/</a></li>
@@ -91,8 +91,8 @@ DOCKER_OPTS="-e lxc"
 </div>
 </div>
 
-<div id="outline-container-org94e725d" class="outline-2">
-<h2 id="org94e725d"><span class="section-number-2">2</span> Command</h2>
+<div id="outline-container-orgc49fd2f" class="outline-2">
+<h2 id="orgc49fd2f"><span class="section-number-2">2</span> Command</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>overview</b>
@@ -104,7 +104,7 @@ DOCKER_OPTS="-e lxc"
 <pre class="example">
 ➜  docker  docker
 Usage: docker [OPTIONS] COMMAND [arg...]
- -H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use
+-H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use
 
 A self-sufficient runtime for linux containers.
 
@@ -431,8 +431,8 @@ inspect可以看到container和image内部具体信息。下面是一个containe
 </div>
 </div>
 
-<div id="outline-container-orgece6fb3" class="outline-2">
-<h2 id="orgece6fb3"><span class="section-number-2">3</span> Data Container</h2>
+<div id="outline-container-orgf32a792" class="outline-2">
+<h2 id="orgf32a792"><span class="section-number-2">3</span> Data Container</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://docs.docker.com/userguide/dockervolumes/">https://docs.docker.com/userguide/dockervolumes/</a></li>
@@ -452,8 +452,8 @@ hello
 </div>
 </div>
 
-<div id="outline-container-org3499671" class="outline-2">
-<h2 id="org3499671"><span class="section-number-2">4</span> Dockerfile</h2>
+<div id="outline-container-orge58bd9a" class="outline-2">
+<h2 id="orge58bd9a"><span class="section-number-2">4</span> Dockerfile</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 使用Dockerfile可以很容易地构建image. 常用命令是docker build -t &lt;image-name&gt; .
@@ -493,8 +493,8 @@ Dockerfile格式很简单的:
 </div>
 </div>
 
-<div id="outline-container-org12f5980" class="outline-2">
-<h2 id="org12f5980"><span class="section-number-2">5</span> assign static ip to container</h2>
+<div id="outline-container-org76d5689" class="outline-2">
+<h2 id="org76d5689"><span class="section-number-2">5</span> assign static ip to container</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 可以在启动container时候使用lxc-conf指定lxc配置来分配固定IP(必须保证容器格式是lxc)
@@ -535,8 +535,8 @@ pipework br1 -i eth2 &lt;container&gt; 192.168.1.1/24
 </div>
 </div>
 
-<div id="outline-container-org81e03dd" class="outline-2">
-<h2 id="org81e03dd"><span class="section-number-2">6</span> Understanding Docker</h2>
+<div id="outline-container-org125d1dc" class="outline-2">
+<h2 id="org125d1dc"><span class="section-number-2">6</span> Understanding Docker</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="https://docs.docker.com/introduction/understanding-docker/">https://docs.docker.com/introduction/understanding-docker/</a>

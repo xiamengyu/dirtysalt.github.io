@@ -77,8 +77,8 @@ Summary
 大致上， 面试官在开始面试前， 会收到一封email, 里面回大致说明每个人需要侧重于考察面试者的哪个方面。 对于coding来说， 一般有三类问题， 每个面试官会被分配到一类问题。
 
 solid coding. 这类问题说白了， 谁都知道怎么做， 纯粹就是考察coding是不是扎实， 平时自己写code多不多， 能不能快速的把自己的idea转化为code。 对于面试者来说属于必考种类， new grad 一般会有两轮甚至三轮这样的题目, 有很多工作经验的人可能就只有1轮了。  这类题目不过关， 很可能电面死掉或者前几轮突然死亡。 solid coding又一般可以分成两个小类：
- - 1.1 考察你对算法的基本理解以及边界条件的运用， 比如findkth largest integer, search in rotate array, bit manipulation 等等。
- - 1.2 考察你对基本数据结构以及复杂度的理解。 比如binary search tree, linkedlist vs array, stack, tree dfs, tree bfs 等等。
+- 1.1 考察你对算法的基本理解以及边界条件的运用， 比如findkth largest integer, search in rotate array, bit manipulation 等等。
+- 1.2 考察你对基本数据结构以及复杂度的理解。 比如binary search tree, linkedlist vs array, stack, tree dfs, tree bfs 等等。
 按难度来分， easy的比如3 sum, tree level order iterator.  medium 难度的比如 reverse linked list from index m to index n, course schedule，string multiplication, hard 难度的比如valid number, 复杂的calculator等。
 
 应对策略：

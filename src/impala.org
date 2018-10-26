@@ -91,7 +91,7 @@ Returned 1 row(s) in 0.65s
 如果启动sudo impalad start出现下面错误
 #+BEGIN_EXAMPLE
 0314 16:41:13.884233 18187 impala-server.cc:573] ERROR: short-circuit local reads is disabled because
-  - dfs.client.read.shortcircuit is not enabled.
+- dfs.client.read.shortcircuit is not enabled.
 E0314 16:41:13.884558 18187 impala-server.cc:575] Impala is aborted due to improper configurations.
 #+END_EXAMPLE
 
