@@ -1,4 +1,4 @@
-#+title: Yan Zhang's CV
+#+title: My CV
 
 * Contact
 - Yan Zhang, dirtysalt1987 AT gmail DOT com
