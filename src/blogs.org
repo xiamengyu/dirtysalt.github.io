@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2018
+- 201811 [[file:whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.org][{Ask HN}What's the largest amount of bad code you have ever seen work?]]
 - 201811 [[file:interview-with-gmail-creator-and-y-combinator-partner-paul-buchheit.org][Interview with Gmail Creator Paul Buchheit]]
 - 201811 [[file:the-economics-of-getting-hired-as-a-data-scientist.org][The economics of getting hired as a data scientist]]
 - 201811 [[file:keras-author-on-software-engineering.org][Keras之父写给年轻程序员的33条忠告]]

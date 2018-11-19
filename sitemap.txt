@@ -722,6 +722,7 @@ https://dirtysalt.github.io/html/what-makes-a-great-software-engineer.html
 https://dirtysalt.github.io/html/what-would-it-take-to-prove-me-wrong.html
 https://dirtysalt.github.io/html/what-you-can-do-and-what-you-should-do.html
 https://dirtysalt.github.io/html/whats-a-senior-engineers-job.html
+https://dirtysalt.github.io/html/whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.html
 https://dirtysalt.github.io/html/why-cant-programmers-program.html
 https://dirtysalt.github.io/html/why-cd-just-keeps-on-giving.html
 https://dirtysalt.github.io/html/why-chinese-people-anxious.html
