@@ -13,7 +13,6 @@ import uuid
 from datetime import datetime, timedelta
 from urllib.parse import quote
 
-import gen_podcast_rss_conf
 import mutagen.mp3
 from jinja2 import Template
 
@@ -145,6 +144,7 @@ sites = {
 
 
 def main():
+    import gen_podcast_rss_conf
     sites = gen_podcast_rss_conf.sites
     for site in sys.argv[1:]:
         print('Generating RSS XML for {}'.format(site))
