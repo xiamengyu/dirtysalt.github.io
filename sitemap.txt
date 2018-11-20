@@ -728,6 +728,7 @@ https://dirtysalt.github.io/html/why-cd-just-keeps-on-giving.html
 https://dirtysalt.github.io/html/why-chinese-people-anxious.html
 https://dirtysalt.github.io/html/why-did-so-many-startups-choose-nosql.html
 https://dirtysalt.github.io/html/why-google-stores-billions-of-lines-of-code-in-a-single-repository.html
+https://dirtysalt.github.io/html/why-i-quit-google-to-work-for-myself.html
 https://dirtysalt.github.io/html/why-i-stopped-paying-attention-to-industry-news.html
 https://dirtysalt.github.io/html/why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity.html
 https://dirtysalt.github.io/html/why-mit-stopped-teaching-SICP.html
