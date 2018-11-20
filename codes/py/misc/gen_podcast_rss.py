@@ -50,7 +50,7 @@ RSS_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
             <itunes:image href="{{ t.image_url }}"/>
             <!-- <itunes:order>{{ t.itunes_order }}</itunes:order> -->
             <enclosure url="{{ t.audio_url }}" type="audio/mp3" length="{{ t.audio_size or 0}}"/>
-            <itunes:duration>{{ t.audio_duration or 0 }}</itunes:duration>
+            <itunes:duration>{{ t.audio_duration_text or 0 }}</itunes:duration>
             <guid isPermaLink="false">{{ t.guid }}</guid>
             <pubDate>{{ t.releaseDate }}</pubDate>
             <itunes:explicit>no</itunes:explicit>
@@ -60,23 +60,21 @@ RSS_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
 </rss>
 """
 
-template = Template(RSS_TEMPLATE)
+rss_template = Template(RSS_TEMPLATE)
 
 
 def get_audio_duration(f):
     x = mutagen.mp3.MP3(f)
-    return x.info.length
+    res = x.info.length
+    return res
 
 
-def audio_duration_text(v):
+def audio_duration_in_text(v):
     return '%02d:%02d:%02d' % (v / 3600, (v % 3600) / 60, v % 60)
 
 
 def get_file_size(f):
     return os.path.getsize(f)
-
-
-now = datetime.now()
 
 
 def to_rfc822_datetime(nowdt):
@@ -111,11 +109,9 @@ def run(ctx):
         base_name = os.path.basename(name)
         t = {
             'title': base_name,
-            'audio_url': 'http://{}/'.format(ctx['domain']) + quote('%s/mp3/%s' % (ctx['name'], base_name)),
-            # 'audio_size': size,
+            'audio_url': 'http://{}/'.format(ctx['domain']) + quote('{}/mp3/{}'.format(ctx['name'], base_name)),
             'audio_size': get_file_size(name),
-            # 'audio_duration': duration,
-            'audio_duraiton': get_audio_duration(name),
+            'audio_duration_text': audio_duration_in_text(get_audio_duration(name)),
             'guid': gen_uuid(name),
             'releaseDate': to_rfc822_datetime(now - timedelta(hours=order)),
             'itunes_order': order + 1,
@@ -123,7 +119,7 @@ def run(ctx):
         }
         tracks.append(t)
 
-    rss = template.render(**ctx)
+    rss = rss_template.render(**ctx)
     with open(os.path.join(ctx['rss_dir'], '%s.xml' % ctx['name']), 'w') as fh:
         fh.write(rss)
 
