@@ -71,6 +71,7 @@ def serve():
         t.start()
         ts.append(t)
 
+    # see also https://github.com/grpc/grpc/issues/10084
     # otherwise you be caught error
     # E1128 13:49:24.647594000 4728202688 server.cc:1330]
     # assertion failed: gpr_atm_acq_load(&server->shutdown_flag) || !server->listeners
