@@ -109,7 +109,7 @@ def run(ctx):
         base_name = os.path.basename(name)
         t = {
             'title': base_name,
-            'audio_url': 'http://{}/'.format(ctx['domain']) + quote('{}/mp3/{}'.format(ctx['name'], base_name)),
+            'audio_url': 'http://{}/'.format(ctx['domain']) + quote('mp3/{}/{}'.format(ctx['name'], base_name)),
             'audio_size': get_file_size(name),
             'audio_duration_text': audio_duration_in_text(get_audio_duration(name)),
             'guid': gen_uuid(name),
@@ -142,7 +142,9 @@ sites = {
 def main():
     import gen_podcast_rss_conf
     sites = gen_podcast_rss_conf.sites
-    for site in sys.argv[1:]:
+    reqs = sites.keys() if len(sys.argv) == 1 else sys.argv[1:]
+
+    for site in reqs:
         print('Generating RSS XML for {}'.format(site))
         ctx = sites[site]
         run(ctx)
