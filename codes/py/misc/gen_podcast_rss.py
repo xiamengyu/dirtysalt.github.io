@@ -64,9 +64,12 @@ rss_template = Template(RSS_TEMPLATE)
 
 
 def get_audio_duration(f):
-    x = mutagen.mp3.MP3(f)
-    res = x.info.length
-    return res
+    try:
+        x = mutagen.mp3.MP3(f)
+        res = x.info.length
+        return res
+    except mutagen.mp3.HeaderNotFoundError:
+        return 0
 
 
 def audio_duration_in_text(v):
@@ -96,6 +99,7 @@ def run(ctx):
     mp3_dir = ctx['mp3_dir']
 
     myfiles = glob.glob(os.path.join(mp3_dir, ctx['name'], '*.mp3'))
+    myfiles += glob.glob(os.path.join(mp3_dir, ctx['name'], '*.m4a'))
     myfiles.sort()
 
     now = datetime.now()
