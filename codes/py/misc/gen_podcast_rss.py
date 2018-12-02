@@ -95,7 +95,7 @@ def gen_uuid(s):
 def run(ctx):
     mp3_dir = ctx['mp3_dir']
 
-    myfiles = glob.glob(mp3_dir + '/*.mp3')
+    myfiles = glob.glob(os.path.join(mp3_dir, ctx['name'], '*.mp3'))
     myfiles.sort()
 
     now = datetime.now()
@@ -132,8 +132,8 @@ sites = {
         'author': 'dirtysalt',
         'email': 'dirtysalt1987@gmail.com',
         'domain': 'dirtysalt.github.io',
-        'mp3_dir': 'podcast_mp3/TestMP3',
-        'rss_dir': 'podcast_xml'
+        'mp3_dir': 'podcast_mp3',
+        'rss_dir': 'podcast_rss'
     },
 }
 """
