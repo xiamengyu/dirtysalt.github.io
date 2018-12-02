@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from urllib.parse import quote
 
 import mutagen.mp3
+from tinytag import TinyTag
 from jinja2 import Template
 
 RSS_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
@@ -64,12 +65,14 @@ rss_template = Template(RSS_TEMPLATE)
 
 
 def get_audio_duration(f):
-    try:
-        x = mutagen.mp3.MP3(f)
-        res = x.info.length
-        return res
-    except mutagen.mp3.HeaderNotFoundError:
-        return 0
+    # try:
+    #     x = mutagen.mp3.MP3(f)
+    #     res = x.info.length
+    #     return res
+    # except mutagen.mp3.HeaderNotFoundError:
+    #     return 0
+    tag = TinyTag.get(f)
+    return tag.duration
 
 
 def audio_duration_in_text(v):
