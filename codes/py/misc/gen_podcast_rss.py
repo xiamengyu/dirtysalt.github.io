@@ -129,6 +129,7 @@ def run(ctx):
     rss = rss_template.render(**ctx)
     with open(os.path.join(ctx['rss_dir'], '%s.xml' % ctx['name']), 'w') as fh:
         fh.write(rss)
+    print('rss url = http://{}/rss/{}.xml'.format(ctx['domain'], ctx['name']))
 
 
 """
@@ -155,7 +156,6 @@ def main():
         print('Generating RSS XML for {}'.format(site))
         ctx = sites[site]
         run(ctx)
-
 
 if __name__ == '__main__':
     main()
