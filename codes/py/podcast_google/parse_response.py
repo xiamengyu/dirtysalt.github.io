@@ -2,6 +2,10 @@
 # coding:utf-8
 # Copyright (C) dirlt
 
+import brotli
+
+from .req_pb2 import SearchResponse
+
 with open('response.content', 'rb') as fh:
     data = fh.read()
 
@@ -18,13 +22,9 @@ def ensure_bytes(s, encoding='utf8'):
     return s
 
 
-import gzip
-import brotli
-
 data = brotli.decompress(data)
 # print(data)
 
-from req_pb2 import SearchResponse
 
 resp = SearchResponse()
 resp.ParseFromString(data[2:])

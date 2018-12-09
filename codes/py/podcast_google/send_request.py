@@ -2,8 +2,9 @@
 # coding:utf-8
 # Copyright (C) dirlt
 
-from req_pb2 import SearchRequest
 import base64
+
+from .req_pb2 import SearchRequest
 
 
 def ensure_string(s, encoding='utf8'):
@@ -39,6 +40,7 @@ req_b64 = ensure_string(base64.b64encode(req_bytes))
 print(req_b64)
 
 import requests
+
 url = 'https://www.google.com'
 path = '/httpservice/web/WernickeService/GetSearchResults'
 headers = {
