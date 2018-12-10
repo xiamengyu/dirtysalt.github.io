@@ -4,7 +4,7 @@
 
 import brotli
 
-from .req_pb2 import SearchResponse
+from req_pb2 import SearchResponse
 
 with open('response.content', 'rb') as fh:
     data = fh.read()

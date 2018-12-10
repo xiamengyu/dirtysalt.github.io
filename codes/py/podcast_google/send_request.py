@@ -4,7 +4,7 @@
 
 import base64
 
-from .req_pb2 import SearchRequest
+from req_pb2 import SearchRequest
 
 
 def ensure_string(s, encoding='utf8'):
