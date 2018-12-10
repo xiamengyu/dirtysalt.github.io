@@ -118,6 +118,7 @@ topics = ['Accounting', 'Accounting Education', 'Acoustic', 'Activism', 'Activis
 client = pymongo.MongoClient()
 db = client['playfm']
 cache_table = db['cache']
+cache_table_page = db['cache_page']
 
 
 def get_cache_data(key):
@@ -129,13 +130,15 @@ def set_cache_data(key, data):
     cache_table.update_one({'_id': key}, {'$set': {'data': data}}, upsert=True)
 
 
-def get_cache_links(key):
-    r = cache_table.find_one({'_id': key}) or {}
+def get_cache_links(key, page=False):
+    table = cache_table_page if page else cache_table
+    r = table.find_one({'_id': key}) or {}
     return r.get('links')
 
 
-def set_cache_links(key, links):
-    cache_table.update_one({'_id': key}, {'$set': {'links': links}}, upsert=True)
+def set_cache_links(key, links, page=False):
+    table = cache_table_page if page else cache_table
+    table.update_one({'_id': key}, {'$set': {'links': links}}, upsert=True)
 
 
 seen = set()
@@ -179,16 +182,18 @@ def visit_url(url):
         else:
             return 'https://player.fm/mu' + x
 
-    def get_url_links(url):
-        links = get_cache_links(url)
+    # 翻页数据只记录links, 非翻页数据保存links和data.
+    def get_url_links(url, page=False):
+        links = get_cache_links(url, page)
         if links is None:
             r = requests.get(url)
             data = r.content
             bs = BeautifulSoup(data, "lxml")
             links = [x.attrs.get('href', '') for x in bs.findAll('a')]
             links = [x for x in links if is_follow_url(x)]
-            set_cache_data(url, data)
-            set_cache_links(url, links)
+            if not page:
+                set_cache_data(url, data)
+            set_cache_links(url, links, page)
         return links
 
     url = make_follow_url(url)
@@ -202,7 +207,7 @@ def visit_url(url):
         while True:
             actual_url = url + '/series?active=true&limit=%d&order=popular&container=false&offset=%d' % (limit, offset)
             print(actual_url)
-            sub_links = get_url_links(url)
+            sub_links = get_url_links(actual_url, page=True)
             if not sub_links:
                 print('BREAK AT %d!!!' % offset)
                 break
