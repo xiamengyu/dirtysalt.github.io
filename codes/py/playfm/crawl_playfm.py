@@ -187,6 +187,7 @@ def visit_url(url):
             bs = BeautifulSoup(data, "lxml")
             links = [x.attrs.get('href', '') for x in bs.findAll('a')]
             links = [x for x in links if is_follow_url(x)]
+            set_cache_data(url, data)
             set_cache_links(url, links)
         return links
 
