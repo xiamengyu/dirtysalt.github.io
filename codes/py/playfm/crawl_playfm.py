@@ -2,22 +2,17 @@
 # coding:utf-8
 # Copyright (C) dirlt
 
-import platform
-import traceback
-from queue import Empty as QueueEmpty, Queue
+from gevent import monkey
+
+monkey.patch_all()
 
 import pymongo
 import requests
+import traceback
 from bs4 import BeautifulSoup
+from queue import Empty as QueueEmpty, Queue
 
-jython = False
-if platform.system() == 'Java':
-    jython = True
-
-if not jython:
-    from gevent import monkey
-
-    monkey.patch_all()
+# urllib3.disable_warnings()
 
 topics = ['Accounting', 'Accounting Education', 'Acoustic', 'Activism', 'Activism Roundup', 'Adventist',
           'African American', 'After Life', 'Agile', 'Agriculture', 'Agriculture Roundup', 'Alcatraz', 'Alternative',
@@ -121,19 +116,29 @@ topics = ['Accounting', 'Accounting Education', 'Acoustic', 'Activism', 'Activis
           'Worldbuilding', 'Writing', 'X Factor', 'X-Files', 'Xbox', 'Yoga']
 
 client = pymongo.MongoClient()
-db = client['cache']
-cache_table = db['playfm']
+db = client['playfm']
+cache_table = db['cache']
 
-def get_cache(key):
+
+def get_cache_data(key):
     r = cache_table.find_one({'_id': key}) or {}
     return r.get('data')
 
-def set_cache(key, data):
+
+def set_cache_data(key, data):
     cache_table.update_one({'_id': key}, {'$set': {'data': data}}, upsert=True)
 
 
-seen = set()
+def get_cache_links(key):
+    r = cache_table.find_one({'_id': key}) or {}
+    return r.get('links')
 
+
+def set_cache_links(key, links):
+    cache_table.update_one({'_id': key}, {'$set': {'links': links}}, upsert=True)
+
+
+seen = set()
 
 Q = Queue()
 
@@ -158,6 +163,7 @@ def worker():
 def visit_url(url):
     if url in seen:
         return []
+
     seen.add(url)
 
     def is_follow_url(x):
@@ -173,16 +179,20 @@ def visit_url(url):
         else:
             return 'https://player.fm/mu' + x
 
+    def get_url_links(url):
+        links = get_cache_links(url)
+        if links is None:
+            r = requests.get(url)
+            data = r.content
+            bs = BeautifulSoup(data, "lxml")
+            links = [x.attrs.get('href', '') for x in bs.findAll('a')]
+            links = [x for x in links if is_follow_url(x)]
+            set_cache_links(url, links)
+        return links
+
     url = make_follow_url(url)
     print('visit url = %s' % url)
-    cache = get_cache(url)
-    if cache is None:
-        r = requests.get(url)
-        data = r.content
-        set_cache(url, data)
-        cache = data
-    bs = BeautifulSoup(cache)
-    links = [x.attrs.get('href', '') for x in bs.findAll('a')]
+    links = get_url_links(url)
 
     # 处理翻页问题
     if url.find('/series/') == -1:
@@ -191,72 +201,34 @@ def visit_url(url):
         while True:
             actual_url = url + '/series?active=true&limit=%d&order=popular&container=false&offset=%d' % (limit, offset)
             print(actual_url)
-            cache = get_cache(actual_url)
-            if cache is None:
-                r = requests.get(actual_url)
-                data = r.content if r.status_code == 200 else ''
-                set_cache(actual_url, data)
-                cache = data
-            if len(cache.strip()) == 0:
+            sub_links = get_url_links(url)
+            if not sub_links:
                 print('BREAK AT %d!!!' % offset)
                 break
             if offset >= 1000:
                 print('WARNING URL = %s' % actual_url)
+                break
             offset += 50
-            bs = BeautifulSoup(cache)
-            links.extend([x.attrs.get('href', '') for x in bs.findAll('a')])
-    links = [x for x in links if is_follow_url(x)]
+            links.extend(sub_links)
     links = list(set(links))
-    # print('return links')
-    # print(links)
     return links
 
-def clear_cache():
-    rs = cache_table.find({}, ('_id',))
-    urls = []
-    for r in rs:
-        url = r['_id']
-        # if url.find('/series?active') != -1:
-        #     urls.append(url)
-        p = url.find('/series/')
-        if p != -1 and len(url[p:].split('/')) != 3:
-            urls.append(url)
-            
-    print('ready to clean # of urls = %d' % len(urls))
-    print(urls[:10])
-    from pymongo import DeleteOne
-    ops = [DeleteOne({'_id': url}) for url in urls]
-    cache_table.bulk_write(ops, ordered=False)
-    print('clean OK')
 
-def main():
+def start_cralwer():
     for t in topics:
         t = t.replace("'", '').replace(' ', '-').lower()
         url = '/featured/' + t
         Q.put(url)
 
     n_threads = 10
-    if not jython:
-        from gevent.pool import Pool as ThreadPoolExecutor
+    from gevent.pool import Pool as ThreadPoolExecutor
 
-        pool = ThreadPoolExecutor()
-        for i in range(n_threads):
-            pool.spawn(worker)
-        pool.join()
-    else:
-        import sys
-
-        sys.setrecursionlimit(64)
-        pool = []
-        import threading
-
-        for i in range(n_threads):
-            t = threading.Thread(target=worker)
-            t.start()
-            pool.append(t)
-        for t in pool:
-            t.join()
+    pool = ThreadPoolExecutor()
+    for i in range(n_threads):
+        pool.spawn(worker)
+    pool.join()
     print('main quit')
 
-# clear_cache()
-main()
+
+if __name__ == '__main__':
+    start_cralwer()

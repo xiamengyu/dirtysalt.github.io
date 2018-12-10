@@ -23,12 +23,14 @@ TSeries = db['series']
 db = client['cache']
 TCache = db['playfm']
 
+
 def get_series_items():
     rs = TCache.find()
     for r in rs:
         url = r['_id']
         if url.startswith('https://player.fm/series/'):
             yield r
+
 
 def get_featured_items():
     rs = TCache.find()
@@ -60,6 +62,7 @@ def handle_series(r):
     print('write down data of url = %s' % url)
     TSeries.update({'_id': url}, {'$set': data}, upsert=True)
 
+
 def load_all_series_urls_from_cache():
     print('load series urls from cache')
     rs = TCache.find({}, ('_id',))
@@ -70,10 +73,12 @@ def load_all_series_urls_from_cache():
             urls.append(url)
     return urls
 
+
 def load_all_series_urls_from_table():
     print('load series urls from table')
     urls = [x['_id'] for x in TSeries.find({}, ('_id'))]
     return urls
+
 
 # def update_series_items():
 #     n_threads = 10
@@ -93,12 +98,12 @@ def update_series_items():
     pool = ThreadPoolExecutor(n_threads)
     for url in diff_urls:
         r = TCache.find_one({'_id': url})
-        assert(r is not None)
+        assert (r is not None)
         pool.spawn(handle_series, r)
     pool.join()
 
 
-def get_featured_tags_hierarchy():
+def get_featured_tags():
     def pred(x):
         if not hasattr(x, 'attrs'): return False
         return x.attrs.get('data-toggle', '') == 'popover'
@@ -127,4 +132,7 @@ def get_featured_tags_hierarchy():
             result[k].extend(d[k])
     return result
 
-update_series_items()
+
+if __name__ == '__main__':
+    update_series_items()
+    # get_featured_tags()
