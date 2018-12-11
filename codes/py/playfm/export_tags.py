@@ -38,14 +38,14 @@ def get_featured_tags():
             d[text] = subs
         return d
 
-    result = defaultdict(list)
+    tags = defaultdict(list)
     for r in get_featured_items():
         print('handling url = {}'.format(r['_id']))
         data = r['data']
         d = parse_single_page(data)
         for k in d:
-            result[k].extend(d[k])
-    return result
+            tags[k].extend(d[k])
+    return tags
 
 
 if __name__ == '__main__':
