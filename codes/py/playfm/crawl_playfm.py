@@ -220,7 +220,8 @@ def visit_url(url):
     return links
 
 
-def start_cralwer():
+def main():
+    # seed urls.
     for t in topics:
         t = t.replace("'", '').replace(' ', '-').lower()
         url = '/featured/' + t
@@ -237,4 +238,4 @@ def start_cralwer():
 
 
 if __name__ == '__main__':
-    start_cralwer()
+    main()
