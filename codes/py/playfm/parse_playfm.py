@@ -20,8 +20,8 @@ if not ipython:
 client = pymongo.MongoClient()
 db = client['playfm']
 TSeries = db['series']
-db = client['cache']
-TCache = db['playfm']
+db = client['playfm']
+TCache = db['cache']
 
 
 def get_series_items():
