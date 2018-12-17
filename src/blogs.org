@@ -331,7 +331,7 @@
 - [[file:images/cjy-baidu-blog-archive.html][百度空间存档(baidu space archive)]]
 - [[file:to-death.org][写给离去的亲人(to my dears)]]
 - [[file:cola-and-water.org][可乐和矿泉水(cola and water)]]
-- [[file:poem-and-movie.org][诗歌和电影(poet and film)]]
+- [[file:poetry-and-movie.org][诗歌和电影(poetry and movie)]]
 - [[file:cross-ocean.org][远渡重洋(cross ocean)]]
 - [[file:house.org][房子(house)]] - [[file:car.org][车子(car)]] - [[file:pregnancy.org][要孩子(preganancy)]]
 - [[file:baby-sleep-training.org][(ZZ)有关宝宝睡眠的那些事儿(睡眠训练实战操作经验)]]
