@@ -43,7 +43,7 @@
 - 201805 [[file:why-study-history.org][为什么学习历史]] 摘自得到的《硅谷来信》
 - 201804 [[file:ssh-proxycommand-on-ssr.org][ssh proxycommand on ssr]]
 - 201804 [[file:getting-started-elk-beat.org][本地跑跑ELK + Beat(日志收集和指标收集)]]
-- 201803 [[file:nginx-https-redirect-loop.org][Nginx的https重定向循环问题]]
+- 201803 [[file:nginx-https-redirect-loop.org][nginx的https重定向循环问题]]
 - 201803 [[file:what-habits-make-a-programmer-great.org][What habits make a programmer great?]] about meta-habit
 - 201803 [[file:how-to-build-your-own-alpha-zero-ai.org][How to build your own AlphaZero AI using Python and Keras]]
 - 201803 [[file:on-being-a-senior-engineer.org][On Being A Senior Engineer]]
