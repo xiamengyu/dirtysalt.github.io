@@ -5,13 +5,13 @@
 <head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nginx的https重定向循环问题</title>
+<title>nginx的https重定向循环问题</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="dirtysalt" />
 <link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
 <body>
 <div id="content">
-<h1 class="title">Nginx的https重定向循环问题</h1>
+<h1 class="title">nginx的https重定向循环问题</h1>
 <p>
 <b>TL;DR https重定向循环问题有可能是因为aws elb配置不当造成的。</b>
 </p>
@@ -72,6 +72,62 @@ server {
 <li>elb解析https请求，转发http请求给后端nginx. 也就是请求 <a href="http://castbox.fm">http://castbox.fm</a></li>
 <li>nginx接收到 <a href="http://castbox.fm">http://castbox.fm</a> 请求，触发重定向到 <a href="https://castbox.fm">https://castbox.fm</a></li>
 </ul>
+
+<hr />
+
+<p>
+update@201812: 最近有遇到了一个类似的问题，就是我们的页面会出现从https到http的跳转. nginx里面的相关配置是
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Nginx">
+server {
+    listen 80;
+    listen 443 ssl;
+    ssl_certificate server.crt;
+    ssl_certificate_key server.key;
+    server_name m.castbox.fm;
+    location / {
+        alias /public/static/m/;
+    }
+    location /.git/ {
+        return 403;
+    }
+}
+</pre>
+</div>
+
+<p>
+当我们访问 <a href="https://m.castbox.fm/ios">https://m.castbox.fm/ios</a> 会自动跳转到 <a href="http://m.castbox.fm/ios/">http://m.castbox.fm/ios/</a>. 开始我们没有定位这个问题，是因为在 "ios/"之后带上了很长的
+utm_*等字段，导致我们没有发现多了一个slash. 用chrome devtools检查的时候才发现有了这个多余的跳转。
+</p>
+
+<p>
+原来 <a href="https://m.castbox.fm/ios">https://m.castbox.fm/ios</a> 其实是需要找到 /public/static/m/ios/index.html 这个文件，而nginx会对这种请求自动增加trailing slash.
+这时我们的aws elb上已经配置了证书以及ssl termination，导致所有从elb过来的请求都是http的。
+</p>
+
+
+<div class="figure">
+<p><img src="images/nginx-https-redirect-loop-elb2.png" alt="nginx-https-redirect-loop-elb2.png" />
+</p>
+</div>
+
+<p>
+所以当nginx增加trailing slash的时候，其实跳转的url是 <a href="http://m.castbox.fm/ios/">http://m.castbox.fm/ios/</a>.
+</p>
+
+<p>
+解决这个问题也不是麻烦，就是显示地指定这种情况：当出现类似directory结尾的情况时，去查找是否有目录下面index.html文件
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Nginx">location / {
+    try_files $uri $uri/index.html $uri/ =404;
+    alias /root/www/;
+}
+</pre>
+</div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/nginx-https-redirect-loop.html';this.page.identifier = 'nginx-https-redirect-loop.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>
