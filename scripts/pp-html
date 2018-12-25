@@ -119,7 +119,7 @@ def file_modified_datetime(f):
 with open('./sitemap.xml', 'w') as fh:
     fh.write("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">""")
-    lines = ['<url><loc>{}</loc><lastmod>{}</lastmod><!-- <changefreq>weekly</changefreq> --></url>\n'.format(
+    lines = ['<url><loc>{}</loc><!-- <lastmod>{}</lastmod><changefreq>weekly</changefreq> --></url>\n'.format(
         site + x[len(HTML_DIR):-4] + 'html', file_modified_datetime(x)) for x in html_files]
     lines.sort()
     fh.writelines(lines)
