@@ -5,6 +5,8 @@
 import glob
 import string
 import re
+import os
+import datetime
 
 site = 'https://dirtysalt.github.io/html/'
 
@@ -109,10 +111,16 @@ with open('./sitemap.txt', 'w') as fh:
     lines.sort()
     fh.writelines(lines)
 
+def file_modified_datetime(f):
+    st = os.stat(f)
+    dt = datetime.datetime.fromtimestamp(st.st_mtime)
+    return dt.strftime('%Y-%m-%d')
+
 with open('./sitemap.xml', 'w') as fh:
     fh.write("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">""")
-    lines = ['<url><loc>{}</loc></url>\n'.format(site + x[len(HTML_DIR):-4] + 'html') for x in html_files]
+    lines = ['<url><loc>{}</loc><lastmod>{}</lastmod><!-- <changefreq>weekly</changefreq> --></url>\n'.format(
+        site + x[len(HTML_DIR):-4] + 'html', file_modified_datetime(x)) for x in html_files]
     lines.sort()
     fh.writelines(lines)
     fh.write('</urlset>\n')
