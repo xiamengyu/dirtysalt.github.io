@@ -16,13 +16,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb87c417">1. Bias/Variance</a></li>
-<li><a href="#org8668ef1">2. Regularization</a></li>
-<li><a href="#orgd9d2c4e">3. Batch Normalization</a></li>
-<li><a href="#orgd171dea">4. Hyperparameter Tunning</a></li>
-<li><a href="#org97da874">5. Optimization</a></li>
-<li><a href="#orga553926">6. Gradient Check</a></li>
-<li><a href="#org14692da">7. Multiclass</a></li>
+<li><a href="#orgd50638d">1. Bias/Variance</a></li>
+<li><a href="#orgf564827">2. Regularization</a></li>
+<li><a href="#org57c3398">3. Batch Normalization</a></li>
+<li><a href="#org31eaf7c">4. Hyperparameter Tunning</a></li>
+<li><a href="#org878f319">5. Optimization</a></li>
+<li><a href="#orgfe43fba">6. Gradient Check</a></li>
+<li><a href="#org325ea32">7. Multiclass</a></li>
 </ul>
 </div>
 </div>
@@ -34,8 +34,8 @@
 这门课程主要将的是如何优化深度神经网络，包括如何调参，如何减少bias/variance，如何更好地优化缩短训练时间等等。按照这么课程标题划分的话包括三个部分：超参数微调，正则化和优化。
 </p>
 
-<div id="outline-container-orgb87c417" class="outline-2">
-<h2 id="orgb87c417"><span class="section-number-2">1</span> Bias/Variance</h2>
+<div id="outline-container-orgd50638d" class="outline-2">
+<h2 id="orgd50638d"><span class="section-number-2">1</span> Bias/Variance</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 bias强调的是，训练得到的准确率(train error), 和最优准确率(optimal error/bayes error/human level error)，之间的差距。如果这个差距过大的话，那么称为high bias.
@@ -65,8 +65,8 @@ high variance意味着训练算法得到的是overfit的结果，需要使用更
 </div>
 </div>
 
-<div id="outline-container-org8668ef1" class="outline-2">
-<h2 id="org8668ef1"><span class="section-number-2">2</span> Regularization</h2>
+<div id="outline-container-orgf564827" class="outline-2">
+<h2 id="orgf564827"><span class="section-number-2">2</span> Regularization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Regularization的最终作用，就是让模型尽可能地简单。
@@ -102,8 +102,8 @@ Dropout可以让在一个layers上，某些neuron可以尽可能地不依赖于�
 </div>
 </div>
 
-<div id="outline-container-orgd9d2c4e" class="outline-2">
-<h2 id="orgd9d2c4e"><span class="section-number-2">3</span> Batch Normalization</h2>
+<div id="outline-container-org57c3398" class="outline-2">
+<h2 id="org57c3398"><span class="section-number-2">3</span> Batch Normalization</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 BN是在一个mini-batch上面对输入进行normalization，并且这个BN是作用在每一个layer上面的，每个layer上面都会有两个参数gamma, beta.
@@ -121,8 +121,8 @@ BN在每层有两个超参数，并且最终训练完成之后也有两个参数
 </div>
 </div>
 
-<div id="outline-container-orgd171dea" class="outline-2">
-<h2 id="orgd171dea"><span class="section-number-2">4</span> Hyperparameter Tunning</h2>
+<div id="outline-container-org31eaf7c" class="outline-2">
+<h2 id="org31eaf7c"><span class="section-number-2">4</span> Hyperparameter Tunning</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 超参数(hyper-param)和普通参数(param)的区别是，普通参数是我们希望最终得到的，而超参数是为了更好地获得这些参数使用的参数。
@@ -142,8 +142,8 @@ BN在每层有两个超参数，并且最终训练完成之后也有两个参数
 </div>
 </div>
 
-<div id="outline-container-org97da874" class="outline-2">
-<h2 id="org97da874"><span class="section-number-2">5</span> Optimization</h2>
+<div id="outline-container-org878f319" class="outline-2">
+<h2 id="org878f319"><span class="section-number-2">5</span> Optimization</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 DL优化，并不是要解决local optima，因为cost function是一个非常高纬度的函数，不太可能在所有dimension上都是最低点，更多的是sadle point(鞍点，在某些dimension是最低点，但是另外一些dimension上并不是）。DL优化其实解决的是plateau, 在plateau上没有办法再继续优化/尝试了（或者是迭代很缓慢）。
@@ -173,8 +173,8 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </div>
 </div>
 
-<div id="outline-container-orga553926" class="outline-2">
-<h2 id="orga553926"><span class="section-number-2">6</span> Gradient Check</h2>
+<div id="outline-container-orgfe43fba" class="outline-2">
+<h2 id="orgfe43fba"><span class="section-number-2">6</span> Gradient Check</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 优化阶段为了证明BP写正确了，最好做梯度检查(gradient checking). 梯度有两种方法可以求解：
@@ -195,8 +195,8 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </div>
 </div>
 
-<div id="outline-container-org14692da" class="outline-2">
-<h2 id="org14692da"><span class="section-number-2">7</span> Multiclass</h2>
+<div id="outline-container-org325ea32" class="outline-2">
+<h2 id="org325ea32"><span class="section-number-2">7</span> Multiclass</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 如何处理多分类:

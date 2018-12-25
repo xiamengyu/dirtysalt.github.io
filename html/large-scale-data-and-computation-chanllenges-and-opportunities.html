@@ -16,18 +16,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org15e2b61">1. Replication</a></li>
-<li><a href="#org2d00dbf">2. Shared Environment</a></li>
-<li><a href="#org06bab09">3. Tolerating Faults vs.Tolerating Variability</a></li>
-<li><a href="#org50fc149">4. Latency Tolerating Techniques</a></li>
-<li><a href="#org32fa31c">5. Cluster-Level Services</a></li>
-<li><a href="#org1c10735">6. Higher Level Systems</a></li>
+<li><a href="#org96d4718">1. Replication</a></li>
+<li><a href="#org9edeb9b">2. Shared Environment</a></li>
+<li><a href="#orge71e2a8">3. Tolerating Faults vs.Tolerating Variability</a></li>
+<li><a href="#org3101c6a">4. Latency Tolerating Techniques</a></li>
+<li><a href="#orgfe8d831">5. Cluster-Level Services</a></li>
+<li><a href="#org2586bb8">6. Higher Level Systems</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org15e2b61" class="outline-2">
-<h2 id="org15e2b61"><span class="section-number-2">1</span> Replication</h2>
+<div id="outline-container-org96d4718" class="outline-2">
+<h2 id="org96d4718"><span class="section-number-2">1</span> Replication</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 replication对于large-scale system的意义
@@ -57,8 +57,8 @@ replication对于large-scale system的意义
 </div>
 </div>
 
-<div id="outline-container-org2d00dbf" class="outline-2">
-<h2 id="org2d00dbf"><span class="section-number-2">2</span> Shared Environment</h2>
+<div id="outline-container-org9edeb9b" class="outline-2">
+<h2 id="org9edeb9b"><span class="section-number-2">2</span> Shared Environment</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 large-scale system都采用共享环境，有利也有弊
@@ -85,8 +85,8 @@ large-scale system都采用共享环境，有利也有弊
 </div>
 </div>
 
-<div id="outline-container-org06bab09" class="outline-2">
-<h2 id="org06bab09"><span class="section-number-2">3</span> Tolerating Faults vs.Tolerating Variability</h2>
+<div id="outline-container-orge71e2a8" class="outline-2">
+<h2 id="orge71e2a8"><span class="section-number-2">3</span> Tolerating Faults vs.Tolerating Variability</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 容忍错误和可变性的相似之处，都需要使用额外资源来解决。解决思路都是在unpredictable parts上面构建出predictable part. 两者的差别是时间范围，faults通常在10s/day. 而variability通常在1000s/sec.
@@ -114,8 +114,8 @@ large-scale system都采用共享环境，有利也有弊
 </div>
 </div>
 
-<div id="outline-container-org50fc149" class="outline-2">
-<h2 id="org50fc149"><span class="section-number-2">4</span> Latency Tolerating Techniques</h2>
+<div id="outline-container-org3101c6a" class="outline-2">
+<h2 id="org3101c6a"><span class="section-number-2">4</span> Latency Tolerating Techniques</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 延迟容忍技术主要有下面两种,单位是request.
@@ -142,8 +142,8 @@ large-scale system都采用共享环境，有利也有弊
 </div>
 </div>
 
-<div id="outline-container-org32fa31c" class="outline-2">
-<h2 id="org32fa31c"><span class="section-number-2">5</span> Cluster-Level Services</h2>
+<div id="outline-container-orgfe8d831" class="outline-2">
+<h2 id="orgfe8d831"><span class="section-number-2">5</span> Cluster-Level Services</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 提供cross-cluster的服务，比如spanner系统
@@ -172,8 +172,8 @@ Spanner:Worldwide Storage
 </p>
 </div>
 </div>
-<div id="outline-container-org1c10735" class="outline-2">
-<h2 id="org1c10735"><span class="section-number-2">6</span> Higher Level Systems</h2>
+<div id="outline-container-org2586bb8" class="outline-2">
+<h2 id="org2586bb8"><span class="section-number-2">6</span> Higher Level Systems</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 有了这些"just works"的抽象组件(GFS, MapReduce, BigTable, Spanner, tied requests, etc.)后，我们就能开搞更加牛X的东西比如深度学习。

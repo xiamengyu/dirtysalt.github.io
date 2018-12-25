@@ -16,276 +16,276 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org799e14e">1. Unix基础知识</a>
+<li><a href="#orgfe4562d">1. Unix基础知识</a>
 <ul>
-<li><a href="#org4f9e6fe">1.1. 登录</a></li>
-<li><a href="#org89cccd7">1.2. 帮助</a></li>
-<li><a href="#org8099a89">1.3. 文件和目录</a></li>
-<li><a href="#orga7bc356">1.4. 输入和输出</a></li>
-<li><a href="#org2f6c0ef">1.5. 程序和进程</a></li>
-<li><a href="#orge1b08ab">1.6. 错误处理</a></li>
-<li><a href="#org4209eef">1.7. 用户标识</a></li>
-<li><a href="#orga185a2f">1.8. 信号</a></li>
-<li><a href="#org639005c">1.9. 时间值</a></li>
-<li><a href="#orge86ddb9">1.10. 系统调用和库函数</a></li>
+<li><a href="#org3563910">1.1. 登录</a></li>
+<li><a href="#orgb4e781f">1.2. 帮助</a></li>
+<li><a href="#org851fddd">1.3. 文件和目录</a></li>
+<li><a href="#org6572d77">1.4. 输入和输出</a></li>
+<li><a href="#org555aa4c">1.5. 程序和进程</a></li>
+<li><a href="#org468dcc4">1.6. 错误处理</a></li>
+<li><a href="#orgb16acc4">1.7. 用户标识</a></li>
+<li><a href="#org19d1b2b">1.8. 信号</a></li>
+<li><a href="#orgbd5e4c1">1.9. 时间值</a></li>
+<li><a href="#orgdc5f164">1.10. 系统调用和库函数</a></li>
 </ul>
 </li>
-<li><a href="#org47b25e4">2. Unix标准化以及实现</a>
+<li><a href="#orgd272c65">2. Unix标准化以及实现</a>
 <ul>
-<li><a href="#org033b30b">2.1. Unix标准化</a>
+<li><a href="#org1c28071">2.1. Unix标准化</a>
 <ul>
-<li><a href="#orge171a1f">2.1.1. ISO C</a></li>
-<li><a href="#orgfb149b0">2.1.2. IEEE POSIX</a></li>
-<li><a href="#orgbe9e9ee">2.1.3. SUS</a></li>
-<li><a href="#org1ceeb6c">2.1.4. FIPS</a></li>
+<li><a href="#org7c12563">2.1.1. ISO C</a></li>
+<li><a href="#orgd2e177b">2.1.2. IEEE POSIX</a></li>
+<li><a href="#orged7a707">2.1.3. SUS</a></li>
+<li><a href="#org9d3d0ed">2.1.4. FIPS</a></li>
 </ul>
 </li>
-<li><a href="#orgea40794">2.2. Unix系统实现</a>
+<li><a href="#org32fdb00">2.2. Unix系统实现</a>
 <ul>
-<li><a href="#org1a7bf5e">2.2.1. 限制</a></li>
-<li><a href="#org696d067">2.2.2. 选项</a></li>
-<li><a href="#org449f6ea">2.2.3. 功能测试宏</a></li>
-<li><a href="#org4ca39d6">2.2.4. 基本系统数据类型</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org0adb341">3. 文件IO</a>
-<ul>
-<li><a href="#org9cc5360">3.1. open/create</a></li>
-<li><a href="#org68918f6">3.2. close</a></li>
-<li><a href="#orga14f8f6">3.3. lseek</a></li>
-<li><a href="#org8d1296d">3.4. read</a></li>
-<li><a href="#orga701f36">3.5. readahead</a></li>
-<li><a href="#orgffdcd28">3.6. write</a></li>
-<li><a href="#orgcc3f524">3.7. pread/pwrite</a></li>
-<li><a href="#org2f635cb">3.8. dup/dup2</a></li>
-<li><a href="#orgad12b6d">3.9. sync/fsync/fdatasync</a></li>
-<li><a href="#org75879ac">3.10. fcntl</a></li>
-<li><a href="#orgc4f1942">3.11. ioctl</a></li>
-<li><a href="#orgd492d66">3.12. /dev/fd/n</a></li>
-<li><a href="#org35e31be">3.13. 底层实现</a></li>
-</ul>
-</li>
-<li><a href="#orgc61bcda">4. 文件和目录</a>
-<ul>
-<li><a href="#org852a3f1">4.1. 文件系统</a></li>
-<li><a href="#org611d2e6">4.2. 文件类型</a></li>
-<li><a href="#org38c4da8">4.3. 设置用户ID和设置组ID</a></li>
-<li><a href="#orgb5e77f8">4.4. 文件访问权限</a>
-<ul>
-<li><a href="#orgc7fa47c">4.4.1. access</a></li>
-<li><a href="#orgad63c00">4.4.2. umask</a></li>
-<li><a href="#orgd47fc3e">4.4.3. chmod/fchmod</a></li>
-<li><a href="#orgdf24569">4.4.4. chown/fchown/lchown</a></li>
-</ul>
-</li>
-<li><a href="#org0339d6f">4.5. 文件长度</a></li>
-<li><a href="#org66b3d6f">4.6. 文件截断</a></li>
-<li><a href="#org921b013">4.7. 文件链接</a></li>
-<li><a href="#org8292f0f">4.8. 文件删除和重命名</a></li>
-<li><a href="#orge04f807">4.9. 文件时间</a></li>
-<li><a href="#orgf937453">4.10. 目录操作</a></li>
-<li><a href="#org2a342fb">4.11. 特殊设备文件</a></li>
-<li><a href="#org61d7db7">4.12. inotify</a></li>
-</ul>
-</li>
-<li><a href="#org74dce50">5. 标准IO</a>
-<ul>
-<li><a href="#org806567b">5.1. 流和定向</a></li>
-<li><a href="#org0b7f8d9">5.2. 缓冲</a></li>
-<li><a href="#org903fa94">5.3. 打开和关闭流</a></li>
-<li><a href="#org449e5bb">5.4. 读写流</a>
-<ul>
-<li><a href="#org866370a">5.4.1. 字符IO</a></li>
-<li><a href="#org8839fbf">5.4.2. 行IO</a></li>
-<li><a href="#org92de5c1">5.4.3. 二进制IO</a></li>
-<li><a href="#orga4e7835">5.4.4. 格式化IO</a></li>
-</ul>
-</li>
-<li><a href="#org11b0120">5.5. 定位流</a></li>
-<li><a href="#orgd507b10">5.6. 临时文件</a></li>
-</ul>
-</li>
-<li><a href="#orgcb5b98a">6. 系统数据文件和信息</a>
-<ul>
-<li><a href="#orga722240">6.1. 口令文件</a></li>
-<li><a href="#orge053be3">6.2. 阴影口令</a></li>
-<li><a href="#orga04cc55">6.3. 组文件</a></li>
-<li><a href="#orgd274623">6.4. 其他数据文件</a></li>
-<li><a href="#org42e757a">6.5. 登录账户记录</a></li>
-<li><a href="#orgf95ea9b">6.6. 系统标识</a></li>
-<li><a href="#orgb51beaf">6.7. 时间和日期例程</a></li>
-</ul>
-</li>
-<li><a href="#org2ab1803">7. 进程环境</a>
-<ul>
-<li><a href="#org3b5f6d4">7.1. 进程启动</a></li>
-<li><a href="#org445348d">7.2. 进程终止</a></li>
-<li><a href="#org82cf9f9">7.3. C程序存储空间布局</a></li>
-<li><a href="#orged9f5b4">7.4. 存储器分配</a></li>
-<li><a href="#orgdac8107">7.5. 命令行参数和环境表</a></li>
-<li><a href="#org864afe5">7.6. 非局部跳转</a></li>
-<li><a href="#org1ee35c8">7.7. 资源限制</a></li>
-<li><a href="#org896c4d2">7.8. 进程调度</a>
-<ul>
-<li><a href="#org64b81e5">7.8.1. 控制进程和CPU亲和性</a></li>
+<li><a href="#orge65e5e1">2.2.1. 限制</a></li>
+<li><a href="#org57d1d87">2.2.2. 选项</a></li>
+<li><a href="#org017503a">2.2.3. 功能测试宏</a></li>
+<li><a href="#orgf90c0e8">2.2.4. 基本系统数据类型</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7c9cb04">8. 进程控制</a>
+<li><a href="#org754f4f2">3. 文件IO</a>
 <ul>
-<li><a href="#orgc75633a">8.1. 进程标识符</a></li>
-<li><a href="#org5bfafed">8.2. 开辟子进程</a></li>
-<li><a href="#org3a95be8">8.3. _exit函数</a></li>
-<li><a href="#org5056571">8.4. 等待子进程结束</a></li>
-<li><a href="#org5f02ad2">8.5. exec函数</a></li>
-<li><a href="#org76c023e">8.6. 更改用户ID和组ID</a></li>
-<li><a href="#orgc39f098">8.7. system函数</a></li>
-<li><a href="#orgb6e21bc">8.8. 解释器文件</a></li>
-<li><a href="#org22a7cfb">8.9. 用户标识</a></li>
-<li><a href="#org389e2de">8.10. 进程时间</a></li>
+<li><a href="#orga11c24d">3.1. open/create</a></li>
+<li><a href="#org7ca5eb5">3.2. close</a></li>
+<li><a href="#org7eb995d">3.3. lseek</a></li>
+<li><a href="#orga478b30">3.4. read</a></li>
+<li><a href="#org48113e7">3.5. readahead</a></li>
+<li><a href="#orgd1cd80e">3.6. write</a></li>
+<li><a href="#org5b12b30">3.7. pread/pwrite</a></li>
+<li><a href="#org5e08d18">3.8. dup/dup2</a></li>
+<li><a href="#org5bc4b00">3.9. sync/fsync/fdatasync</a></li>
+<li><a href="#orgb21df73">3.10. fcntl</a></li>
+<li><a href="#org8bd3faa">3.11. ioctl</a></li>
+<li><a href="#org6fa52ea">3.12. /dev/fd/n</a></li>
+<li><a href="#orgef89d1a">3.13. 底层实现</a></li>
 </ul>
 </li>
-<li><a href="#orgde10952">9. 进程关系</a>
+<li><a href="#org0bb3120">4. 文件和目录</a>
 <ul>
-<li><a href="#orge19e0b0">9.1. 登录过程</a></li>
-<li><a href="#org2953d6c">9.2. 进程组</a></li>
-<li><a href="#org99fc7a8">9.3. 会话</a></li>
-<li><a href="#org0632868">9.4. 控制终端</a></li>
-<li><a href="#orgebfb26c">9.5. 作业控制</a></li>
-<li><a href="#org998494f">9.6. 孤儿进程组</a></li>
+<li><a href="#org90e9039">4.1. 文件系统</a></li>
+<li><a href="#org58c28fd">4.2. 文件类型</a></li>
+<li><a href="#orga7d148e">4.3. 设置用户ID和设置组ID</a></li>
+<li><a href="#org03f4186">4.4. 文件访问权限</a>
+<ul>
+<li><a href="#orgae444da">4.4.1. access</a></li>
+<li><a href="#orgbd72486">4.4.2. umask</a></li>
+<li><a href="#org8d8e07e">4.4.3. chmod/fchmod</a></li>
+<li><a href="#org91d66a2">4.4.4. chown/fchown/lchown</a></li>
 </ul>
 </li>
-<li><a href="#org9203252">10. 信号处理</a>
-<ul>
-<li><a href="#org255a7bd">10.1. 信号概念</a></li>
-<li><a href="#org5e6b0e8">10.2. 常见信号</a></li>
-<li><a href="#org5c8d9fd">10.3. 不可靠信号</a></li>
-<li><a href="#orgc436944">10.4. 中断的系统调用</a></li>
-<li><a href="#org46da0ba">10.5. 可重入函数</a></li>
-<li><a href="#orgea5e5b4">10.6. 可靠信号</a></li>
-<li><a href="#org01ec799">10.7. 信号集</a>
-<ul>
-<li><a href="#org46ccd00">10.7.1. sigprocmask/sigpending</a></li>
-<li><a href="#orga080afd">10.7.2. sigaction</a></li>
-<li><a href="#orgfd28fee">10.7.3. sigsetjmp/siglongjmp</a></li>
-<li><a href="#orgd467f12">10.7.4. sigsuspend</a></li>
+<li><a href="#org1f4bf41">4.5. 文件长度</a></li>
+<li><a href="#org62dac03">4.6. 文件截断</a></li>
+<li><a href="#org1520257">4.7. 文件链接</a></li>
+<li><a href="#org781733e">4.8. 文件删除和重命名</a></li>
+<li><a href="#org4f26c2b">4.9. 文件时间</a></li>
+<li><a href="#org0092b39">4.10. 目录操作</a></li>
+<li><a href="#org5cb14fb">4.11. 特殊设备文件</a></li>
+<li><a href="#orgd81d71e">4.12. inotify</a></li>
 </ul>
 </li>
-<li><a href="#org7bd583b">10.8. 常用函数</a>
+<li><a href="#org0f6705f">5. 标准IO</a>
 <ul>
-<li><a href="#orgc9bc8c5">10.8.1. signal</a></li>
-<li><a href="#orgb46283d">10.8.2. kill/raise</a></li>
-<li><a href="#orgde01530">10.8.3. alarm/pause</a></li>
-<li><a href="#org451d2e0">10.8.4. abort</a></li>
-<li><a href="#org8d15c38">10.8.5. system</a></li>
-<li><a href="#orgca70281">10.8.6. 其他函数</a></li>
+<li><a href="#org92fdbd1">5.1. 流和定向</a></li>
+<li><a href="#orgc56dd0d">5.2. 缓冲</a></li>
+<li><a href="#org855d0d1">5.3. 打开和关闭流</a></li>
+<li><a href="#org8ffbea4">5.4. 读写流</a>
+<ul>
+<li><a href="#org123bf1d">5.4.1. 字符IO</a></li>
+<li><a href="#orgc75ffe1">5.4.2. 行IO</a></li>
+<li><a href="#orgcf8b887">5.4.3. 二进制IO</a></li>
+<li><a href="#org0381d78">5.4.4. 格式化IO</a></li>
 </ul>
 </li>
+<li><a href="#org6a7c90e">5.5. 定位流</a></li>
+<li><a href="#orgd279e4e">5.6. 临时文件</a></li>
 </ul>
 </li>
-<li><a href="#org27adab2">11. 线程控制</a>
+<li><a href="#org3395b76">6. 系统数据文件和信息</a>
 <ul>
-<li><a href="#org6ca2496">11.1. 线程标识</a></li>
-<li><a href="#org501fbf5">11.2. 线程创建</a></li>
-<li><a href="#org3dbe786">11.3. 线程终止</a></li>
-<li><a href="#org9ed2e73">11.4. 线程同步</a>
-<ul>
-<li><a href="#org60d099a">11.4.1. 互斥锁</a></li>
-<li><a href="#org981f6fe">11.4.2. 读写锁</a></li>
-<li><a href="#orgcd1d2d9">11.4.3. 条件变量</a></li>
+<li><a href="#org20aaf14">6.1. 口令文件</a></li>
+<li><a href="#orgdad5fb3">6.2. 阴影口令</a></li>
+<li><a href="#org7b08adb">6.3. 组文件</a></li>
+<li><a href="#org6fd3e51">6.4. 其他数据文件</a></li>
+<li><a href="#org3379ae5">6.5. 登录账户记录</a></li>
+<li><a href="#org38a640e">6.6. 系统标识</a></li>
+<li><a href="#orge7b8e9d">6.7. 时间和日期例程</a></li>
 </ul>
 </li>
-<li><a href="#orgc8f0f77">11.5. 线程限制</a></li>
-<li><a href="#org456ae55">11.6. 线程属性</a>
+<li><a href="#orgbff6bb1">7. 进程环境</a>
 <ul>
-<li><a href="#orgff74324">11.6.1. 分离状态</a></li>
-<li><a href="#org9c5ae99">11.6.2. 线程栈</a></li>
-<li><a href="#orgabf707a">11.6.3. 其他属性</a></li>
-</ul>
-</li>
-<li><a href="#org9c9ce0f">11.7. 同步属性</a>
+<li><a href="#org49c2742">7.1. 进程启动</a></li>
+<li><a href="#org509360b">7.2. 进程终止</a></li>
+<li><a href="#orgde8ba74">7.3. C程序存储空间布局</a></li>
+<li><a href="#orga70690f">7.4. 存储器分配</a></li>
+<li><a href="#orgd4280ed">7.5. 命令行参数和环境表</a></li>
+<li><a href="#orgd4b437f">7.6. 非局部跳转</a></li>
+<li><a href="#org9c89e01">7.7. 资源限制</a></li>
+<li><a href="#orge2f45ff">7.8. 进程调度</a>
 <ul>
-<li><a href="#org1b3a344">11.7.1. 进程共享</a></li>
-<li><a href="#org50a6885">11.7.2. 互斥量类型</a></li>
-</ul>
-</li>
-<li><a href="#org6a87a76">11.8. 可重入与线程安全</a></li>
-<li><a href="#org727b745">11.9. 线程私有数据</a></li>
-<li><a href="#orgeb996b6">11.10. 取消选项</a></li>
-<li><a href="#org84f8075">11.11. 线程和信号</a></li>
-<li><a href="#org098236d">11.12. 线程和fork</a></li>
-<li><a href="#orgfa01a69">11.13. 线程和IO</a></li>
-<li><a href="#org1f306ca">11.14. API</a>
-<ul>
-<li><a href="#orgf5e9077">11.14.1. attr</a></li>
-<li><a href="#org0195cca">11.14.2. sync</a></li>
-<li><a href="#org96861a3">11.14.3. control</a></li>
-</ul>
-</li>
-<li><a href="#org2643ec6">11.15. 使用注意</a>
-<ul>
-<li><a href="#org5200a8b">11.15.1. pthread cancel陷阱</a></li>
+<li><a href="#org7f0f8bd">7.8.1. 控制进程和CPU亲和性</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga6c9000">12. 守护进程</a>
+<li><a href="#org442fc05">8. 进程控制</a>
 <ul>
-<li><a href="#orgebddf0e">12.1. daemonize</a></li>
-<li><a href="#org7f1c8c9">12.2. 出错处理</a></li>
-<li><a href="#org272f64b">12.3. 其他事项</a></li>
+<li><a href="#org57f6271">8.1. 进程标识符</a></li>
+<li><a href="#orgf03a186">8.2. 开辟子进程</a></li>
+<li><a href="#org7cb2ba1">8.3. _exit函数</a></li>
+<li><a href="#orgbb77bca">8.4. 等待子进程结束</a></li>
+<li><a href="#org646e820">8.5. exec函数</a></li>
+<li><a href="#orgbf7b4db">8.6. 更改用户ID和组ID</a></li>
+<li><a href="#org430c331">8.7. system函数</a></li>
+<li><a href="#orga05d728">8.8. 解释器文件</a></li>
+<li><a href="#org7a49be7">8.9. 用户标识</a></li>
+<li><a href="#orge8ae66c">8.10. 进程时间</a></li>
 </ul>
 </li>
-<li><a href="#org0e7b617">13. 高级IO</a>
+<li><a href="#orga160d56">9. 进程关系</a>
 <ul>
-<li><a href="#org4c0be33">13.1. 非阻塞IO</a></li>
-<li><a href="#org08257d0">13.2. 记录锁</a>
-<ul>
-<li><a href="#org2680075">13.2.1. 接口</a></li>
-<li><a href="#org65577d4">13.2.2. 实现</a></li>
+<li><a href="#org5462d80">9.1. 登录过程</a></li>
+<li><a href="#org1daf4ee">9.2. 进程组</a></li>
+<li><a href="#org1740b19">9.3. 会话</a></li>
+<li><a href="#orgcde408f">9.4. 控制终端</a></li>
+<li><a href="#orgf55598d">9.5. 作业控制</a></li>
+<li><a href="#org762a5ae">9.6. 孤儿进程组</a></li>
 </ul>
 </li>
-<li><a href="#org65a1419">13.3. IO多路转接</a>
+<li><a href="#orge62d5f4">10. 信号处理</a>
 <ul>
-<li><a href="#org532b255">13.3.1. select/pselect</a></li>
-<li><a href="#orgbe1d01e">13.3.2. poll/ppoll</a></li>
-<li><a href="#org0f36241">13.3.3. 自动重启</a></li>
+<li><a href="#org577ae8f">10.1. 信号概念</a></li>
+<li><a href="#org76e1e3e">10.2. 常见信号</a></li>
+<li><a href="#org61ae959">10.3. 不可靠信号</a></li>
+<li><a href="#org4e1000d">10.4. 中断的系统调用</a></li>
+<li><a href="#orgac60e82">10.5. 可重入函数</a></li>
+<li><a href="#org1c04d54">10.6. 可靠信号</a></li>
+<li><a href="#org398c831">10.7. 信号集</a>
+<ul>
+<li><a href="#org6cd4164">10.7.1. sigprocmask/sigpending</a></li>
+<li><a href="#orgdd469ac">10.7.2. sigaction</a></li>
+<li><a href="#org7b45631">10.7.3. sigsetjmp/siglongjmp</a></li>
+<li><a href="#orgb0995e7">10.7.4. sigsuspend</a></li>
 </ul>
 </li>
-<li><a href="#orgaab575b">13.4. 异步IO</a></li>
-<li><a href="#orgb9d16e0">13.5. readv/writev</a></li>
-<li><a href="#org8384bda">13.6. 存储映射IO</a></li>
-<li><a href="#org4b95068">13.7. linux aio</a></li>
+<li><a href="#org0ceda65">10.8. 常用函数</a>
+<ul>
+<li><a href="#org430d22f">10.8.1. signal</a></li>
+<li><a href="#org35dc6a9">10.8.2. kill/raise</a></li>
+<li><a href="#orgf146d17">10.8.3. alarm/pause</a></li>
+<li><a href="#org29aaf9a">10.8.4. abort</a></li>
+<li><a href="#orgb4f266c">10.8.5. system</a></li>
+<li><a href="#orgfe37c40">10.8.6. 其他函数</a></li>
 </ul>
 </li>
-<li><a href="#org064dea8">14. 进程间通信</a>
-<ul>
-<li><a href="#orga47d805">14.1. pipe</a></li>
-<li><a href="#orge50c3fd">14.2. fifo</a></li>
-<li><a href="#org8c97a89">14.3. XSI IPC</a>
-<ul>
-<li><a href="#org4b2ca27">14.3.1. 创建标识</a></li>
-<li><a href="#org0a5c3d7">14.3.2. 权限结构</a></li>
-<li><a href="#org60e64da">14.3.3. 资源限制</a></li>
-<li><a href="#orgca88084">14.3.4. 优点和缺点</a></li>
 </ul>
 </li>
-<li><a href="#orgb8a0925">14.4. 消息队列</a></li>
-<li><a href="#org996e540">14.5. 信号量</a></li>
-<li><a href="#org2764e0e">14.6. 共享存储</a></li>
-<li><a href="#orgb925faa">14.7. mmap共享内存</a></li>
-<li><a href="#orgdc7c226">14.8. 进程pthread锁</a></li>
+<li><a href="#org9e0a1ab">11. 线程控制</a>
+<ul>
+<li><a href="#org22510c2">11.1. 线程标识</a></li>
+<li><a href="#org41aacea">11.2. 线程创建</a></li>
+<li><a href="#orgc1a4f8e">11.3. 线程终止</a></li>
+<li><a href="#orge0c941b">11.4. 线程同步</a>
+<ul>
+<li><a href="#org7256dd5">11.4.1. 互斥锁</a></li>
+<li><a href="#orgf67b925">11.4.2. 读写锁</a></li>
+<li><a href="#org9987020">11.4.3. 条件变量</a></li>
+</ul>
+</li>
+<li><a href="#org2a6f86a">11.5. 线程限制</a></li>
+<li><a href="#org0827256">11.6. 线程属性</a>
+<ul>
+<li><a href="#org5940198">11.6.1. 分离状态</a></li>
+<li><a href="#org5e5b042">11.6.2. 线程栈</a></li>
+<li><a href="#orge0581e2">11.6.3. 其他属性</a></li>
+</ul>
+</li>
+<li><a href="#org1534e27">11.7. 同步属性</a>
+<ul>
+<li><a href="#org588dfae">11.7.1. 进程共享</a></li>
+<li><a href="#orgcc85acf">11.7.2. 互斥量类型</a></li>
+</ul>
+</li>
+<li><a href="#org28f2ae7">11.8. 可重入与线程安全</a></li>
+<li><a href="#org6ffc9aa">11.9. 线程私有数据</a></li>
+<li><a href="#orgef4a9ae">11.10. 取消选项</a></li>
+<li><a href="#orgc6d7338">11.11. 线程和信号</a></li>
+<li><a href="#orga5f9979">11.12. 线程和fork</a></li>
+<li><a href="#org70a87a0">11.13. 线程和IO</a></li>
+<li><a href="#org01a56eb">11.14. API</a>
+<ul>
+<li><a href="#orgfb160c2">11.14.1. attr</a></li>
+<li><a href="#org32b97f4">11.14.2. sync</a></li>
+<li><a href="#orgbfffcac">11.14.3. control</a></li>
+</ul>
+</li>
+<li><a href="#orgf53a73f">11.15. 使用注意</a>
+<ul>
+<li><a href="#orgafc3161">11.15.1. pthread cancel陷阱</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org56aebab">12. 守护进程</a>
+<ul>
+<li><a href="#org8620bc9">12.1. daemonize</a></li>
+<li><a href="#org44026cf">12.2. 出错处理</a></li>
+<li><a href="#orgfd17612">12.3. 其他事项</a></li>
+</ul>
+</li>
+<li><a href="#orgbf2d11f">13. 高级IO</a>
+<ul>
+<li><a href="#org1d3d4dc">13.1. 非阻塞IO</a></li>
+<li><a href="#org522a0ac">13.2. 记录锁</a>
+<ul>
+<li><a href="#org4d8f883">13.2.1. 接口</a></li>
+<li><a href="#org583724f">13.2.2. 实现</a></li>
+</ul>
+</li>
+<li><a href="#orgdfcff6d">13.3. IO多路转接</a>
+<ul>
+<li><a href="#org665ab2a">13.3.1. select/pselect</a></li>
+<li><a href="#orga314521">13.3.2. poll/ppoll</a></li>
+<li><a href="#org4d5c300">13.3.3. 自动重启</a></li>
+</ul>
+</li>
+<li><a href="#orgaaaaad4">13.4. 异步IO</a></li>
+<li><a href="#org550fc96">13.5. readv/writev</a></li>
+<li><a href="#org56de7b6">13.6. 存储映射IO</a></li>
+<li><a href="#orgfcb0596">13.7. linux aio</a></li>
+</ul>
+</li>
+<li><a href="#org3953229">14. 进程间通信</a>
+<ul>
+<li><a href="#org01dcb81">14.1. pipe</a></li>
+<li><a href="#orge1e7978">14.2. fifo</a></li>
+<li><a href="#org221f626">14.3. XSI IPC</a>
+<ul>
+<li><a href="#orgf8bb2a2">14.3.1. 创建标识</a></li>
+<li><a href="#org45dac3c">14.3.2. 权限结构</a></li>
+<li><a href="#orgeeb896a">14.3.3. 资源限制</a></li>
+<li><a href="#orge917f65">14.3.4. 优点和缺点</a></li>
+</ul>
+</li>
+<li><a href="#orgde32b3c">14.4. 消息队列</a></li>
+<li><a href="#org3e9000f">14.5. 信号量</a></li>
+<li><a href="#org5133c43">14.6. 共享存储</a></li>
+<li><a href="#orgd05a2aa">14.7. mmap共享内存</a></li>
+<li><a href="#org2e6ad55">14.8. 进程pthread锁</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org799e14e" class="outline-2">
-<h2 id="org799e14e"><span class="section-number-2">1</span> Unix基础知识</h2>
+<div id="outline-container-orgfe4562d" class="outline-2">
+<h2 id="orgfe4562d"><span class="section-number-2">1</span> Unix基础知识</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 整个Unix体系结构包括这么几个部分：
@@ -299,8 +299,8 @@
 </ul>
 </div>
 
-<div id="outline-container-org4f9e6fe" class="outline-3">
-<h3 id="org4f9e6fe"><span class="section-number-3">1.1</span> 登录</h3>
+<div id="outline-container-org3563910" class="outline-3">
+<h3 id="org3563910"><span class="section-number-3">1.1</span> 登录</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 系统的口令文件存放在/etc/passwd下面，每行是一条记录。每条记录以:分隔包含7个字段
@@ -318,8 +318,8 @@
 </div>
 </div>
 
-<div id="outline-container-org89cccd7" class="outline-3">
-<h3 id="org89cccd7"><span class="section-number-3">1.2</span> 帮助</h3>
+<div id="outline-container-orgb4e781f" class="outline-3">
+<h3 id="orgb4e781f"><span class="section-number-3">1.2</span> 帮助</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 早期的Unix系统把8个部分都集中在一本手册上面，现在趋势是将他们安排在不同的手册上面，
@@ -329,8 +329,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8099a89" class="outline-3">
-<h3 id="org8099a89"><span class="section-number-3">1.3</span> 文件和目录</h3>
+<div id="outline-container-org851fddd" class="outline-3">
+<h3 id="org851fddd"><span class="section-number-3">1.3</span> 文件和目录</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 目录的起点为根，名字是/.目录是包含多个目录项的文件，逻辑上来说目录包含文件名还包括文件
@@ -359,8 +359,8 @@ lstat函数可以返回某个文件的属性信息。
 </div>
 </div>
 
-<div id="outline-container-orga7bc356" class="outline-3">
-<h3 id="orga7bc356"><span class="section-number-3">1.4</span> 输入和输出</h3>
+<div id="outline-container-org6572d77" class="outline-3">
+<h3 id="org6572d77"><span class="section-number-3">1.4</span> 输入和输出</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 对于进程需要访问文件的话，系统调用提供的界面是文件描述符(file descriptor).一个fd是一个小的非负
@@ -383,8 +383,8 @@ getchar/fputs这样的调用。是否带缓冲的区别是是否在用户态是�
 </div>
 </div>
 
-<div id="outline-container-org2f6c0ef" class="outline-3">
-<h3 id="org2f6c0ef"><span class="section-number-3">1.5</span> 程序和进程</h3>
+<div id="outline-container-org555aa4c" class="outline-3">
+<h3 id="org555aa4c"><span class="section-number-3">1.5</span> 程序和进程</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 程序和进程的区别是逻辑上的区别。程序是静态的存储在磁盘的可执行文件，用户启动程序的话，那么
@@ -405,8 +405,8 @@ getchar/fputs这样的调用。是否带缓冲的区别是是否在用户态是�
 </div>
 </div>
 
-<div id="outline-container-orge1b08ab" class="outline-3">
-<h3 id="orge1b08ab"><span class="section-number-3">1.6</span> 错误处理</h3>
+<div id="outline-container-org468dcc4" class="outline-3">
+<h3 id="org468dcc4"><span class="section-number-3">1.6</span> 错误处理</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 当Unix函数出错时，常常返回一个负值并且使用errno来表示这个错误号。
@@ -442,8 +442,8 @@ exrern <span class="org-type">int</span>* <span class="org-function-name">__errn
 </div>
 </div>
 
-<div id="outline-container-org4209eef" class="outline-3">
-<h3 id="org4209eef"><span class="section-number-3">1.7</span> 用户标识</h3>
+<div id="outline-container-orgb16acc4" class="outline-3">
+<h3 id="orgb16acc4"><span class="section-number-3">1.7</span> 用户标识</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 用户标识包括
@@ -465,8 +465,8 @@ gid和sgid存在的理由。gid就好比用户所属部门的一个编号，而s
 </div>
 </div>
 
-<div id="outline-container-orga185a2f" class="outline-3">
-<h3 id="orga185a2f"><span class="section-number-3">1.8</span> 信号</h3>
+<div id="outline-container-org19d1b2b" class="outline-3">
+<h3 id="org19d1b2b"><span class="section-number-3">1.8</span> 信号</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 信号(signal)是通知进程已经发生某种情况的一种技术。通常用户接收到信息有三个选择：
@@ -481,8 +481,8 @@ gid和sgid存在的理由。gid就好比用户所属部门的一个编号，而s
 </div>
 </div>
 
-<div id="outline-container-org639005c" class="outline-3">
-<h3 id="org639005c"><span class="section-number-3">1.9</span> 时间值</h3>
+<div id="outline-container-orgbd5e4c1" class="outline-3">
+<h3 id="orgbd5e4c1"><span class="section-number-3">1.9</span> 时间值</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 长期以来，Unix系统使用两种不同的时间值。
@@ -539,8 +539,8 @@ gid和sgid存在的理由。gid就好比用户所属部门的一个编号，而s
 </div>
 </div>
 
-<div id="outline-container-orge86ddb9" class="outline-3">
-<h3 id="orge86ddb9"><span class="section-number-3">1.10</span> 系统调用和库函数</h3>
+<div id="outline-container-orgdc5f164" class="outline-3">
+<h3 id="orgdc5f164"><span class="section-number-3">1.10</span> 系统调用和库函数</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 系统调用是内核态函数，而库函数是用户态函数。但是对于用户来说实际上是不关心的。
@@ -552,16 +552,16 @@ Reaserch Unix提供了50个系统调用，BSD4.4提供了110个，SVR4提供了1
 </div>
 </div>
 </div>
-<div id="outline-container-org47b25e4" class="outline-2">
-<h2 id="org47b25e4"><span class="section-number-2">2</span> Unix标准化以及实现</h2>
+<div id="outline-container-orgd272c65" class="outline-2">
+<h2 id="orgd272c65"><span class="section-number-2">2</span> Unix标准化以及实现</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org033b30b" class="outline-3">
-<h3 id="org033b30b"><span class="section-number-3">2.1</span> Unix标准化</h3>
+<div id="outline-container-org1c28071" class="outline-3">
+<h3 id="org1c28071"><span class="section-number-3">2.1</span> Unix标准化</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orge171a1f" class="outline-4">
-<h4 id="orge171a1f"><span class="section-number-4">2.1.1</span> ISO C</h4>
+<div id="outline-container-org7c12563" class="outline-4">
+<h4 id="org7c12563"><span class="section-number-4">2.1.1</span> ISO C</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>ANSI(Americann National Standard Institute).</li>
@@ -710,8 +710,8 @@ ISO C标准现在由ISO/IEC JTC1/SC22/WG14这个工作组进行维护和开发�
 </div>
 </div>
 
-<div id="outline-container-orgfb149b0" class="outline-4">
-<h4 id="orgfb149b0"><span class="section-number-4">2.1.2</span> IEEE POSIX</h4>
+<div id="outline-container-orgd2e177b" class="outline-4">
+<h4 id="orgd2e177b"><span class="section-number-4">2.1.2</span> IEEE POSIX</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>IEEE(Institute of Electrical and Electronics Engineers).</li>
@@ -1040,8 +1040,8 @@ POSIX标准定义的必选和可选头文件如下：
 </div>
 </div>
 
-<div id="outline-container-orgbe9e9ee" class="outline-4">
-<h4 id="orgbe9e9ee"><span class="section-number-4">2.1.3</span> SUS</h4>
+<div id="outline-container-orged7a707" class="outline-4">
+<h4 id="orged7a707"><span class="section-number-4">2.1.3</span> SUS</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 SUS(Signe Unix Specification)
@@ -1057,8 +1057,8 @@ Unix系统实现的选项一节介绍。
 </div>
 </div>
 
-<div id="outline-container-org1ceeb6c" class="outline-4">
-<h4 id="org1ceeb6c"><span class="section-number-4">2.1.4</span> FIPS</h4>
+<div id="outline-container-org9d3d0ed" class="outline-4">
+<h4 id="org9d3d0ed"><span class="section-number-4">2.1.4</span> FIPS</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 FIPS(Federal Information Processing Standard).
@@ -1072,8 +1072,8 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 </div>
 
-<div id="outline-container-orgea40794" class="outline-3">
-<h3 id="orgea40794"><span class="section-number-3">2.2</span> Unix系统实现</h3>
+<div id="outline-container-org32fdb00" class="outline-3">
+<h3 id="org32fdb00"><span class="section-number-3">2.2</span> Unix系统实现</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 现有的Unix系统实现包括：
@@ -1094,8 +1094,8 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </ul>
 </div>
 
-<div id="outline-container-org1a7bf5e" class="outline-4">
-<h4 id="org1a7bf5e"><span class="section-number-4">2.2.1</span> 限制</h4>
+<div id="outline-container-orge65e5e1" class="outline-4">
+<h4 id="orge65e5e1"><span class="section-number-4">2.2.1</span> 限制</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 限制主要包括下面三种：
@@ -1108,7 +1108,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 
 <ol class="org-ol">
-<li><a id="org26fae7a"></a>编译时限制<br />
+<li><a id="orgc3342c7"></a>编译时限制<br />
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
 对于编译时限制，对于编译器相关的限制有必要了解之外，对于操作系统的限制
@@ -1118,7 +1118,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 </li>
 
-<li><a id="org8dedbcd"></a>sysconf限制<br />
+<li><a id="org5a658b9"></a>sysconf限制<br />
 <div class="outline-text-5" id="text-2-2-1-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1229,7 +1229,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 </li>
 
-<li><a id="orgd387522"></a>pathconf/fpathconf限制<br />
+<li><a id="org35a015f"></a>pathconf/fpathconf限制<br />
 <div class="outline-text-5" id="text-2-2-1-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1293,8 +1293,8 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 
 
-<div id="outline-container-org696d067" class="outline-4">
-<h4 id="org696d067"><span class="section-number-4">2.2.2</span> 选项</h4>
+<div id="outline-container-org57d1d87" class="outline-4">
+<h4 id="org57d1d87"><span class="section-number-4">2.2.2</span> 选项</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 选项主要包括下面三种：
@@ -1307,7 +1307,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 
 <ol class="org-ol">
-<li><a id="org7689254"></a>编译时选项<br />
+<li><a id="orged37f83"></a>编译时选项<br />
 <div class="outline-text-5" id="text-2-2-2-1">
 <p>
 包含unistd.h这个头文件然后使用宏来判断。对于宏和参数对应关系是,X那么宏是_POSIX_&lt;X&gt;,
@@ -1316,7 +1316,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 </li>
 
-<li><a id="org0076150"></a>sysconf选项<br />
+<li><a id="orga7834a5"></a>sysconf选项<br />
 <div class="outline-text-5" id="text-2-2-2-2">
 <p>
 关于每个可选接口组提供的接口，可以通过posixoptions获得。
@@ -1661,7 +1661,7 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </div>
 </li>
 
-<li><a id="orgc99a63a"></a>pathconf/fpathconf选项<br />
+<li><a id="orgaae9bd4"></a>pathconf/fpathconf选项<br />
 <div class="outline-text-5" id="text-2-2-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1714,8 +1714,8 @@ FIPS的作用是要求任何希望向美国政府销售POSIX兼容的计算机�
 </ol>
 </div>
 
-<div id="outline-container-org449f6ea" class="outline-4">
-<h4 id="org449f6ea"><span class="section-number-4">2.2.3</span> 功能测试宏</h4>
+<div id="outline-container-org017503a" class="outline-4">
+<h4 id="org017503a"><span class="section-number-4">2.2.3</span> 功能测试宏</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 如果使用编译时限制或者是选项的话，有时候各个厂商会有自己的定义。如果想撇开这些
@@ -1732,8 +1732,8 @@ __cplusplus来判断。
 </div>
 </div>
 
-<div id="outline-container-org4ca39d6" class="outline-4">
-<h4 id="org4ca39d6"><span class="section-number-4">2.2.4</span> 基本系统数据类型</h4>
+<div id="outline-container-orgf90c0e8" class="outline-4">
+<h4 id="orgf90c0e8"><span class="section-number-4">2.2.4</span> 基本系统数据类型</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 在头文件&lt;sys/types.h&gt;里面定义了某些与实现相关的数据类型，称为基本系统数据类型。常见的有下面这些：
@@ -1864,8 +1864,8 @@ __cplusplus来判断。
 </div>
 </div>
 
-<div id="outline-container-org0adb341" class="outline-2">
-<h2 id="org0adb341"><span class="section-number-2">3</span> 文件IO</h2>
+<div id="outline-container-org754f4f2" class="outline-2">
+<h2 id="org754f4f2"><span class="section-number-2">3</span> 文件IO</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 文件IO通常来说只需要用到下面5个函数：
@@ -1899,8 +1899,8 @@ SUS的组成部分。
 </p>
 </div>
 
-<div id="outline-container-org9cc5360" class="outline-3">
-<h3 id="org9cc5360"><span class="section-number-3">3.1</span> open/create</h3>
+<div id="outline-container-orga11c24d" class="outline-3">
+<h3 id="orga11c24d"><span class="section-number-3">3.1</span> open/create</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 open打开文件返回文件描述符。允许指定读写方式，是否创建(O_CREAT)，如果文件存在并且创建是否会出错(O_EXCL,exclusive)，
@@ -1929,8 +1929,8 @@ O_CREAT也非常关键，语义是入如果不存在就创建，这样使得这�
 </div>
 </div>
 
-<div id="outline-container-org68918f6" class="outline-3">
-<h3 id="org68918f6"><span class="section-number-3">3.2</span> close</h3>
+<div id="outline-container-org7ca5eb5" class="outline-3">
+<h3 id="org7ca5eb5"><span class="section-number-3">3.2</span> close</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 close允许关闭文件描述符。关闭一个文件会释放该进程在文件上所有记录锁。程序退出的时候
@@ -1939,8 +1939,8 @@ close允许关闭文件描述符。关闭一个文件会释放该进程在文件
 </div>
 </div>
 
-<div id="outline-container-orga14f8f6" class="outline-3">
-<h3 id="orga14f8f6"><span class="section-number-3">3.3</span> lseek</h3>
+<div id="outline-container-org7eb995d" class="outline-3">
+<h3 id="org7eb995d"><span class="section-number-3">3.3</span> lseek</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 lseek允许显示设置文件当前偏移量。如果文件描述符是一个管道，FIFO或者是网络套接字的话，那么
@@ -1987,8 +1987,8 @@ lseek允许显示设置文件当前偏移量。如果文件描述符是一个管
 </div>
 </div>
 
-<div id="outline-container-org8d1296d" class="outline-3">
-<h3 id="org8d1296d"><span class="section-number-3">3.4</span> read</h3>
+<div id="outline-container-orga478b30" class="outline-3">
+<h3 id="orga478b30"><span class="section-number-3">3.4</span> read</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 read从文件当前偏移开始读出数据，并且修改当前文件偏移。read允许指定需要读取数据多少，但是并不一定
@@ -1999,8 +1999,8 @@ read从文件当前偏移开始读出数据，并且修改当前文件偏移。r
 </div>
 </div>
 
-<div id="outline-container-orga701f36" class="outline-3">
-<h3 id="orga701f36"><span class="section-number-3">3.5</span> readahead</h3>
+<div id="outline-container-org48113e7" class="outline-3">
+<h3 id="org48113e7"><span class="section-number-3">3.5</span> readahead</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 readahead可以异步地发起IO操作将所需要读入磁盘内容读入page cache,这样后续发起的read则不会从磁盘上
@@ -2010,8 +2010,8 @@ readahead可以异步地发起IO操作将所需要读入磁盘内容读入page c
 </div>
 </div>
 
-<div id="outline-container-orgffdcd28" class="outline-3">
-<h3 id="orgffdcd28"><span class="section-number-3">3.6</span> write</h3>
+<div id="outline-container-orgd1cd80e" class="outline-3">
+<h3 id="orgd1cd80e"><span class="section-number-3">3.6</span> write</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 write也是从当前偏移开始写数据的，然后修改当前文件偏移。如果设置了O_APPEND选项打开文件的话，
@@ -2085,8 +2085,8 @@ O_DIRECT 和 RAW设备最根本的区别是O_DIRECT是基于文件系统的，�
 </div>
 </div>
 
-<div id="outline-container-orgcc3f524" class="outline-3">
-<h3 id="orgcc3f524"><span class="section-number-3">3.7</span> pread/pwrite</h3>
+<div id="outline-container-org5b12b30" class="outline-3">
+<h3 id="org5b12b30"><span class="section-number-3">3.7</span> pread/pwrite</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 pread/pwrite相当于一个方便的lseek+read/write操作，并且有一个特点就是不修改当前文件偏移。
@@ -2113,8 +2113,8 @@ pread/pwrite相当于一个方便的lseek+read/write操作，并且有一个特�
 </div>
 </div>
 
-<div id="outline-container-org2f635cb" class="outline-3">
-<h3 id="org2f635cb"><span class="section-number-3">3.8</span> dup/dup2</h3>
+<div id="outline-container-org5e08d18" class="outline-3">
+<h3 id="org5e08d18"><span class="section-number-3">3.8</span> dup/dup2</h3>
 <div class="outline-text-3" id="text-3-8">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">dup</span>(<span class="org-type">int</span> <span class="org-variable-name">fd</span>);
@@ -2128,8 +2128,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-orgad12b6d" class="outline-3">
-<h3 id="orgad12b6d"><span class="section-number-3">3.9</span> sync/fsync/fdatasync</h3>
+<div id="outline-container-org5bc4b00" class="outline-3">
+<h3 id="org5bc4b00"><span class="section-number-3">3.9</span> sync/fsync/fdatasync</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 操作系统为了提高文件读写效率，在内核层提供了读写缓冲区。对于磁盘的写并不是立刻写入磁盘，
@@ -2144,8 +2144,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-org75879ac" class="outline-3">
-<h3 id="org75879ac"><span class="section-number-3">3.10</span> fcntl</h3>
+<div id="outline-container-orgb21df73" class="outline-3">
+<h3 id="orgb21df73"><span class="section-number-3">3.10</span> fcntl</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 全称是file control,可以改变已经打开文件的性质，共有下面5种功能：
@@ -2160,8 +2160,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-orgc4f1942" class="outline-3">
-<h3 id="orgc4f1942"><span class="section-number-3">3.11</span> ioctl</h3>
+<div id="outline-container-org8bd3faa" class="outline-3">
+<h3 id="org8bd3faa"><span class="section-number-3">3.11</span> ioctl</h3>
 <div class="outline-text-3" id="text-3-11">
 <p>
 全称是io control.ioctl是IO操作杂物箱，终端IO是ioctl的最大使用方面。ioctl包含的头文件是
@@ -2227,8 +2227,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-orgd492d66" class="outline-3">
-<h3 id="orgd492d66"><span class="section-number-3">3.12</span> /dev/fd/n</h3>
+<div id="outline-container-org6fa52ea" class="outline-3">
+<h3 id="org6fa52ea"><span class="section-number-3">3.12</span> /dev/fd/n</h3>
 <div class="outline-text-3" id="text-3-12">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2285,8 +2285,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-org35e31be" class="outline-3">
-<h3 id="org35e31be"><span class="section-number-3">3.13</span> 底层实现</h3>
+<div id="outline-container-orgef89d1a" class="outline-3">
+<h3 id="orgef89d1a"><span class="section-number-3">3.13</span> 底层实现</h3>
 <div class="outline-text-3" id="text-3-13">
 <p>
 这节主要说文件描述符是如何管理的，假设在一个系统中存在很多进程(process),每个进程里面有一个文件
@@ -2324,8 +2324,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-orgc61bcda" class="outline-2">
-<h2 id="orgc61bcda"><span class="section-number-2">4</span> 文件和目录</h2>
+<div id="outline-container-org0bb3120" class="outline-2">
+<h2 id="org0bb3120"><span class="section-number-2">4</span> 文件和目录</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上一章主要是围绕文件系统IO来展开的，而这章主要说明文件系统的其他特征和文件的性质(文件属性)。
@@ -2363,8 +2363,8 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 </div>
 </div>
 
-<div id="outline-container-org852a3f1" class="outline-3">
-<h3 id="org852a3f1"><span class="section-number-3">4.1</span> 文件系统</h3>
+<div id="outline-container-org90e9039" class="outline-3">
+<h3 id="org90e9039"><span class="section-number-3">4.1</span> 文件系统</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 首先我们可以将一块磁盘进行分区，这样每个区就可以在上面建立一个文件系统。
@@ -2444,8 +2444,8 @@ lrwxrwxrwx 1 dirlt dirlt 38 05-19 08:15 b2 -&gt; /home/dirlt/cvs/opencode/zyspac
 </div>
 </div>
 
-<div id="outline-container-org611d2e6" class="outline-3">
-<h3 id="org611d2e6"><span class="section-number-3">4.2</span> 文件类型</h3>
+<div id="outline-container-org58c28fd" class="outline-3">
+<h3 id="org58c28fd"><span class="section-number-3">4.2</span> 文件类型</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 对应的是st_mode这个字段。文件类型有下面这几类，系统也提供了特殊的宏来判断到底是
@@ -2472,8 +2472,8 @@ lrwxrwxrwx 1 dirlt dirlt 38 05-19 08:15 b2 -&gt; /home/dirlt/cvs/opencode/zyspac
 </div>
 </div>
 
-<div id="outline-container-org38c4da8" class="outline-3">
-<h3 id="org38c4da8"><span class="section-number-3">4.3</span> 设置用户ID和设置组ID</h3>
+<div id="outline-container-orga7d148e" class="outline-3">
+<h3 id="orga7d148e"><span class="section-number-3">4.3</span> 设置用户ID和设置组ID</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 对于一个进程来说，相关联的ID有下面几个：
@@ -2563,8 +2563,8 @@ owner gid:0
 </div>
 </div>
 
-<div id="outline-container-orgb5e77f8" class="outline-3">
-<h3 id="orgb5e77f8"><span class="section-number-3">4.4</span> 文件访问权限</h3>
+<div id="outline-container-org03f4186" class="outline-3">
+<h3 id="org03f4186"><span class="section-number-3">4.4</span> 文件访问权限</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 文件访问权限也可以通过访问st_mode来获得，有下面9个权限位：
@@ -2657,8 +2657,8 @@ owner gid:0
 </p>
 </div>
 
-<div id="outline-container-orgc7fa47c" class="outline-4">
-<h4 id="orgc7fa47c"><span class="section-number-4">4.4.1</span> access</h4>
+<div id="outline-container-orgae444da" class="outline-4">
+<h4 id="orgae444da"><span class="section-number-4">4.4.1</span> access</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 检测访问权限。但是需要注意的是，access函数是按照实际uid和gid来检测的，而不是按照进程的
@@ -2667,8 +2667,8 @@ owner gid:0
 </div>
 </div>
 
-<div id="outline-container-orgad63c00" class="outline-4">
-<h4 id="orgad63c00"><span class="section-number-4">4.4.2</span> umask</h4>
+<div id="outline-container-orgbd72486" class="outline-4">
+<h4 id="orgbd72486"><span class="section-number-4">4.4.2</span> umask</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 传入参数mask是权限位的组合，对于open和mkdir创建文件和目录权限的话，会除去mask中的标记。比如
@@ -2677,8 +2677,8 @@ mask为S_IRUSR | S_IWUSR的话，那么在创建文件和目录时，那么用�
 </div>
 </div>
 
-<div id="outline-container-orgd47fc3e" class="outline-4">
-<h4 id="orgd47fc3e"><span class="section-number-4">4.4.3</span> chmod/fchmod</h4>
+<div id="outline-container-org8d8e07e" class="outline-4">
+<h4 id="org8d8e07e"><span class="section-number-4">4.4.3</span> chmod/fchmod</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <p>
 修改现有文件的访问权限。出了上面列列举权限位可以使用之外，还有下面这些：
@@ -2751,8 +2751,8 @@ mask为S_IRUSR | S_IWUSR的话，那么在创建文件和目录时，那么用�
 </div>
 </div>
 
-<div id="outline-container-orgdf24569" class="outline-4">
-<h4 id="orgdf24569"><span class="section-number-4">4.4.4</span> chown/fchown/lchown</h4>
+<div id="outline-container-org91d66a2" class="outline-4">
+<h4 id="org91d66a2"><span class="section-number-4">4.4.4</span> chown/fchown/lchown</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <p>
 修改文件的uid和gid.如果值为-1的话表明对应id不变。如果开启了_POSIX_CHOWN_RESTRICTED的话，那么
@@ -2768,8 +2768,8 @@ mask为S_IRUSR | S_IWUSR的话，那么在创建文件和目录时，那么用�
 </div>
 </div>
 
-<div id="outline-container-org0339d6f" class="outline-3">
-<h3 id="org0339d6f"><span class="section-number-3">4.5</span> 文件长度</h3>
+<div id="outline-container-org1f4bf41" class="outline-3">
+<h3 id="org1f4bf41"><span class="section-number-3">4.5</span> 文件长度</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 文件长度对应st_size字段，而文件使用的块大小对应st_blksize字段，占用块数对应st_blocks字段。
@@ -2804,8 +2804,8 @@ size:1073741860,st_blksize:4096,st_blocks:40
 </div>
 </div>
 
-<div id="outline-container-org66b3d6f" class="outline-3">
-<h3 id="org66b3d6f"><span class="section-number-3">4.6</span> 文件截断</h3>
+<div id="outline-container-org62dac03" class="outline-3">
+<h3 id="org62dac03"><span class="section-number-3">4.6</span> 文件截断</h3>
 <div class="outline-text-3" id="text-4-6">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">truncate</span>(<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">filename</span>,<span class="org-type">off_t</span> <span class="org-variable-name">length</span>);
@@ -2841,8 +2841,8 @@ size:1073741824,st_blksize:4096,st_blocks:8
 </div>
 </div>
 
-<div id="outline-container-org921b013" class="outline-3">
-<h3 id="org921b013"><span class="section-number-3">4.7</span> 文件链接</h3>
+<div id="outline-container-org1520257" class="outline-3">
+<h3 id="org1520257"><span class="section-number-3">4.7</span> 文件链接</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 关于文件链接分为硬链接和软链接，软链接也称为符号链接在之前提到过。
@@ -3000,8 +3000,8 @@ size:1073741824,st_blksize:4096,st_blocks:8
 </div>
 </div>
 
-<div id="outline-container-org8292f0f" class="outline-3">
-<h3 id="org8292f0f"><span class="section-number-3">4.8</span> 文件删除和重命名</h3>
+<div id="outline-container-org781733e" class="outline-3">
+<h3 id="org781733e"><span class="section-number-3">4.8</span> 文件删除和重命名</h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 为了解除硬链接可以使用下面这个函数：
@@ -3069,8 +3069,8 @@ size:1073741824,st_blksize:4096,st_blocks:8
 </div>
 </div>
 
-<div id="outline-container-orge04f807" class="outline-3">
-<h3 id="orge04f807"><span class="section-number-3">4.9</span> 文件时间</h3>
+<div id="outline-container-org4f26c2b" class="outline-3">
+<h3 id="org4f26c2b"><span class="section-number-3">4.9</span> 文件时间</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 文件时间分为：
@@ -3319,8 +3319,8 @@ size:1073741824,st_blksize:4096,st_blocks:8
 </div>
 </div>
 
-<div id="outline-container-orgf937453" class="outline-3">
-<h3 id="orgf937453"><span class="section-number-3">4.10</span> 目录操作</h3>
+<div id="outline-container-org0092b39" class="outline-3">
+<h3 id="org0092b39"><span class="section-number-3">4.10</span> 目录操作</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 创建目录函数是mkdir和rmdir.mkdir常犯错误是权限为0666和文件相同，通常来说目录是
@@ -3353,8 +3353,8 @@ B执行完成之后，A的工作目录不会发生变化。
 </div>
 </div>
 
-<div id="outline-container-org2a342fb" class="outline-3">
-<h3 id="org2a342fb"><span class="section-number-3">4.11</span> 特殊设备文件</h3>
+<div id="outline-container-org5cb14fb" class="outline-3">
+<h3 id="org5cb14fb"><span class="section-number-3">4.11</span> 特殊设备文件</h3>
 <div class="outline-text-3" id="text-4-11">
 <p>
 st_dev是设备号，分为主次设备号：
@@ -3429,8 +3429,8 @@ tmpfs                   127628         0    127628   0% /dev/shm
 </div>
 </div>
 
-<div id="outline-container-org61d7db7" class="outline-3">
-<h3 id="org61d7db7"><span class="section-number-3">4.12</span> inotify</h3>
+<div id="outline-container-orgd81d71e" class="outline-3">
+<h3 id="orgd81d71e"><span class="section-number-3">4.12</span> inotify</h3>
 <div class="outline-text-3" id="text-4-12">
 <p>
 <a href="http://www.ibm.com/developerworks/cn/linux/l-inotifynew/index.html">http://www.ibm.com/developerworks/cn/linux/l-inotifynew/index.html</a>
@@ -3608,12 +3608,12 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org74dce50" class="outline-2">
-<h2 id="org74dce50"><span class="section-number-2">5</span> 标准IO</h2>
+<div id="outline-container-org0f6705f" class="outline-2">
+<h2 id="org0f6705f"><span class="section-number-2">5</span> 标准IO</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org806567b" class="outline-3">
-<h3 id="org806567b"><span class="section-number-3">5.1</span> 流和定向</h3>
+<div id="outline-container-org92fdbd1" class="outline-3">
+<h3 id="org92fdbd1"><span class="section-number-3">5.1</span> 流和定向</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 对于文件IO来说，所有IO函数都是针对文件描述符展开的。而对于标准IO而言，所有函数
@@ -3655,8 +3655,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org0b7f8d9" class="outline-3">
-<h3 id="org0b7f8d9"><span class="section-number-3">5.2</span> 缓冲</h3>
+<div id="outline-container-orgc56dd0d" class="outline-3">
+<h3 id="orgc56dd0d"><span class="section-number-3">5.2</span> 缓冲</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 标准IO相对于文件IO最便利的地方就是提供了缓冲。缓冲的话大部分情况能够改善程序的性能，
@@ -3786,8 +3786,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org903fa94" class="outline-3">
-<h3 id="org903fa94"><span class="section-number-3">5.3</span> 打开和关闭流</h3>
+<div id="outline-container-org855d0d1" class="outline-3">
+<h3 id="org855d0d1"><span class="section-number-3">5.3</span> 打开和关闭流</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 打开流提供了下面这些函数：
@@ -3878,12 +3878,12 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org449e5bb" class="outline-3">
-<h3 id="org449e5bb"><span class="section-number-3">5.4</span> 读写流</h3>
+<div id="outline-container-org8ffbea4" class="outline-3">
+<h3 id="org8ffbea4"><span class="section-number-3">5.4</span> 读写流</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-org866370a" class="outline-4">
-<h4 id="org866370a"><span class="section-number-4">5.4.1</span> 字符IO</h4>
+<div id="outline-container-org123bf1d" class="outline-4">
+<h4 id="org123bf1d"><span class="section-number-4">5.4.1</span> 字符IO</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 包括下面这些：
@@ -3922,8 +3922,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org8839fbf" class="outline-4">
-<h4 id="org8839fbf"><span class="section-number-4">5.4.2</span> 行IO</h4>
+<div id="outline-container-orgc75ffe1" class="outline-4">
+<h4 id="orgc75ffe1"><span class="section-number-4">5.4.2</span> 行IO</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 包括下面这些：
@@ -3942,8 +3942,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org92de5c1" class="outline-4">
-<h4 id="org92de5c1"><span class="section-number-4">5.4.3</span> 二进制IO</h4>
+<div id="outline-container-orgcf8b887" class="outline-4">
+<h4 id="orgcf8b887"><span class="section-number-4">5.4.3</span> 二进制IO</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 包括下面这些：
@@ -3960,8 +3960,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-orga4e7835" class="outline-4">
-<h4 id="orga4e7835"><span class="section-number-4">5.4.4</span> 格式化IO</h4>
+<div id="outline-container-org0381d78" class="outline-4">
+<h4 id="org0381d78"><span class="section-number-4">5.4.4</span> 格式化IO</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 输出包括下面这些函数：
@@ -3995,8 +3995,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-org11b0120" class="outline-3">
-<h3 id="org11b0120"><span class="section-number-3">5.5</span> 定位流</h3>
+<div id="outline-container-org6a7c90e" class="outline-3">
+<h3 id="org6a7c90e"><span class="section-number-3">5.5</span> 定位流</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 包括下面这些：
@@ -4026,8 +4026,8 @@ inotify events
 </div>
 </div>
 
-<div id="outline-container-orgd507b10" class="outline-3">
-<h3 id="orgd507b10"><span class="section-number-3">5.6</span> 临时文件</h3>
+<div id="outline-container-orgd279e4e" class="outline-3">
+<h3 id="orgd279e4e"><span class="section-number-3">5.6</span> 临时文件</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 创建临时文件的接口有：
@@ -4137,8 +4137,8 @@ mkstemp要求template是一个路径名称，最后面是6个XXXXXX,然后会修
 </div>
 </div>
 
-<div id="outline-container-orgcb5b98a" class="outline-2">
-<h2 id="orgcb5b98a"><span class="section-number-2">6</span> 系统数据文件和信息</h2>
+<div id="outline-container-org3395b76" class="outline-2">
+<h2 id="org3395b76"><span class="section-number-2">6</span> 系统数据文件和信息</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Unix系统正常允许需要使用大量和系统相关的数据文件，有些数据文件是ASCII文件有些
@@ -4146,8 +4146,8 @@ Unix系统正常允许需要使用大量和系统相关的数据文件，有些�
 </p>
 </div>
 
-<div id="outline-container-orga722240" class="outline-3">
-<h3 id="orga722240"><span class="section-number-3">6.1</span> 口令文件</h3>
+<div id="outline-container-org20aaf14" class="outline-3">
+<h3 id="org20aaf14"><span class="section-number-3">6.1</span> 口令文件</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 口令文件存储于/ect/passwd下面，每一行是一个记录按照:进行分隔：
@@ -4224,8 +4224,8 @@ dbus:x:81:81:System message bus:/:/sbin/nologin
 </div>
 </div>
 
-<div id="outline-container-orge053be3" class="outline-3">
-<h3 id="orge053be3"><span class="section-number-3">6.2</span> 阴影口令</h3>
+<div id="outline-container-orgdad5fb3" class="outline-3">
+<h3 id="orgdad5fb3"><span class="section-number-3">6.2</span> 阴影口令</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 虽然密码是进行单向加密算法加密的，但是如果攻击者如果进行密码碰撞检测的话，并且配合
@@ -4263,8 +4263,8 @@ dirlt:$1$BRt79uEo$PtCKwZNuUB7x5zyOKVRi00:14927:0:99999:7:::
 </div>
 </div>
 
-<div id="outline-container-orga04cc55" class="outline-3">
-<h3 id="orga04cc55"><span class="section-number-3">6.3</span> 组文件</h3>
+<div id="outline-container-org7b08adb" class="outline-3">
+<h3 id="org7b08adb"><span class="section-number-3">6.3</span> 组文件</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 格式和/etc/passwd一样，最后一个字段按照,分开：
@@ -4325,8 +4325,8 @@ dirlt:x:500
 </div>
 </div>
 
-<div id="outline-container-orgd274623" class="outline-3">
-<h3 id="orgd274623"><span class="section-number-3">6.4</span> 其他数据文件</h3>
+<div id="outline-container-org6fd3e51" class="outline-3">
+<h3 id="org6fd3e51"><span class="section-number-3">6.4</span> 其他数据文件</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 其他数据文件所提供的接口和上面很相似，包括遍历接口和查找接口。
@@ -4415,8 +4415,8 @@ dirlt:x:500
 </div>
 </div>
 
-<div id="outline-container-org42e757a" class="outline-3">
-<h3 id="org42e757a"><span class="section-number-3">6.5</span> 登录账户记录</h3>
+<div id="outline-container-org3379ae5" class="outline-3">
+<h3 id="org3379ae5"><span class="section-number-3">6.5</span> 登录账户记录</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 Unix提供了下面这两个数据文件utmp和wtmp.其中utmp记录当前登录进入系统的各个用户，
@@ -4473,8 +4473,8 @@ utmp和wtmp虽然都是二进制文件，但是Linux系统了系统命令可以�
 </div>
 </div>
 
-<div id="outline-container-orgf95ea9b" class="outline-3">
-<h3 id="orgf95ea9b"><span class="section-number-3">6.6</span> 系统标识</h3>
+<div id="outline-container-org38a640e" class="outline-3">
+<h3 id="org38a640e"><span class="section-number-3">6.6</span> 系统标识</h3>
 <div class="outline-text-3" id="text-6-6">
 <p>
 uname函数可以返回和当前主机和操作系统相关信息：
@@ -4541,8 +4541,8 @@ hostname:localhost.localdomain
 </div>
 </div>
 
-<div id="outline-container-orgb51beaf" class="outline-3">
-<h3 id="orgb51beaf"><span class="section-number-3">6.7</span> 时间和日期例程</h3>
+<div id="outline-container-orge7b8e9d" class="outline-3">
+<h3 id="orge7b8e9d"><span class="section-number-3">6.7</span> 时间和日期例程</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 Unix所提供的时间和日期是存放在一个量值里面的，就是time_t.表示从国际标准时间1970年
@@ -4649,12 +4649,12 @@ time_t是一个秒的概念，Unix还提供了下面结构可以表达日期时�
 </div>
 </div>
 
-<div id="outline-container-org2ab1803" class="outline-2">
-<h2 id="org2ab1803"><span class="section-number-2">7</span> 进程环境</h2>
+<div id="outline-container-orgbff6bb1" class="outline-2">
+<h2 id="orgbff6bb1"><span class="section-number-2">7</span> 进程环境</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org3b5f6d4" class="outline-3">
-<h3 id="org3b5f6d4"><span class="section-number-3">7.1</span> 进程启动</h3>
+<div id="outline-container-org49c2742" class="outline-3">
+<h3 id="org49c2742"><span class="section-number-3">7.1</span> 进程启动</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 对于一个C程序来说，在调用main之前首先调用一个特殊例程，链接器在链接成为可执行程序的时候，
@@ -4664,8 +4664,8 @@ time_t是一个秒的概念，Unix还提供了下面结构可以表达日期时�
 </div>
 </div>
 
-<div id="outline-container-org445348d" class="outline-3">
-<h3 id="org445348d"><span class="section-number-3">7.2</span> 进程终止</h3>
+<div id="outline-container-org509360b" class="outline-3">
+<h3 id="org509360b"><span class="section-number-3">7.2</span> 进程终止</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 有下面8中终止方式，其中5种为正常方式：
@@ -4701,8 +4701,8 @@ _Exit是ISO C所定义的。
 </div>
 </div>
 
-<div id="outline-container-org82cf9f9" class="outline-3">
-<h3 id="org82cf9f9"><span class="section-number-3">7.3</span> C程序存储空间布局</h3>
+<div id="outline-container-orgde8ba74" class="outline-3">
+<h3 id="orgde8ba74"><span class="section-number-3">7.3</span> C程序存储空间布局</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 从历史上讲，C程序一直有下面这几个部分组成：
@@ -4745,8 +4745,8 @@ _Exit是ISO C所定义的。
 </div>
 </div>
 
-<div id="outline-container-orged9f5b4" class="outline-3">
-<h3 id="orged9f5b4"><span class="section-number-3">7.4</span> 存储器分配</h3>
+<div id="outline-container-orga70690f" class="outline-3">
+<h3 id="orga70690f"><span class="section-number-3">7.4</span> 存储器分配</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 关于存储器的分配，包括两个区域存储分配，一个是heap一个是stack.对于heap来说，
@@ -4789,8 +4789,8 @@ ISO C提供了下面这些函数来分配heap上空间：
 </div>
 </div>
 
-<div id="outline-container-orgdac8107" class="outline-3">
-<h3 id="orgdac8107"><span class="section-number-3">7.5</span> 命令行参数和环境表</h3>
+<div id="outline-container-orgd4280ed" class="outline-3">
+<h3 id="orgd4280ed"><span class="section-number-3">7.5</span> 命令行参数和环境表</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 对于标准main函数界面应该是这样的：
@@ -4838,8 +4838,8 @@ k,v单量，所以setenv内部是需要分配一个内存来合并name和value�
 </div>
 </div>
 
-<div id="outline-container-org864afe5" class="outline-3">
-<h3 id="org864afe5"><span class="section-number-3">7.6</span> 非局部跳转</h3>
+<div id="outline-container-orgd4b437f" class="outline-3">
+<h3 id="orgd4b437f"><span class="section-number-3">7.6</span> 非局部跳转</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 局部跳转是指在一个函数内的跳转，可以使用goto.非局部跳转就是指函数之间的跳转了。使用的
@@ -4935,8 +4935,8 @@ jmp from foo
 </div>
 </div>
 
-<div id="outline-container-org1ee35c8" class="outline-3">
-<h3 id="org1ee35c8"><span class="section-number-3">7.7</span> 资源限制</h3>
+<div id="outline-container-org9c89e01" class="outline-3">
+<h3 id="org9c89e01"><span class="section-number-3">7.7</span> 资源限制</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 每个进程都有一组资源限制，可以设置和查看这些资源限制。
@@ -5093,12 +5093,12 @@ file locks                      (-x) unlimited
 </div>
 </div>
 
-<div id="outline-container-org896c4d2" class="outline-3">
-<h3 id="org896c4d2"><span class="section-number-3">7.8</span> 进程调度</h3>
+<div id="outline-container-orge2f45ff" class="outline-3">
+<h3 id="orge2f45ff"><span class="section-number-3">7.8</span> 进程调度</h3>
 <div class="outline-text-3" id="text-7-8">
 </div>
-<div id="outline-container-org64b81e5" class="outline-4">
-<h4 id="org64b81e5"><span class="section-number-4">7.8.1</span> 控制进程和CPU亲和性</h4>
+<div id="outline-container-org7f0f8bd" class="outline-4">
+<h4 id="org7f0f8bd"><span class="section-number-4">7.8.1</span> 控制进程和CPU亲和性</h4>
 <div class="outline-text-4" id="text-7-8-1">
 <p>
 <a href="http://www.blogkid.net/archives/2670.html">http://www.blogkid.net/archives/2670.html</a>
@@ -5155,12 +5155,12 @@ file locks                      (-x) unlimited
 </div>
 </div>
 
-<div id="outline-container-org7c9cb04" class="outline-2">
-<h2 id="org7c9cb04"><span class="section-number-2">8</span> 进程控制</h2>
+<div id="outline-container-org442fc05" class="outline-2">
+<h2 id="org442fc05"><span class="section-number-2">8</span> 进程控制</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgc75633a" class="outline-3">
-<h3 id="orgc75633a"><span class="section-number-3">8.1</span> 进程标识符</h3>
+<div id="outline-container-org57f6271" class="outline-3">
+<h3 id="org57f6271"><span class="section-number-3">8.1</span> 进程标识符</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 每个进程都有一个表示非负整数的唯一进程ID，但是这个ID是可以重复使用的。
@@ -5189,8 +5189,8 @@ ID==2是页守护进程(page daemon),负责支持虚拟存储系统的分页操�
 </div>
 </div>
 
-<div id="outline-container-org5bfafed" class="outline-3">
-<h3 id="org5bfafed"><span class="section-number-3">8.2</span> 开辟子进程</h3>
+<div id="outline-container-orgf03a186" class="outline-3">
+<h3 id="orgf03a186"><span class="section-number-3">8.2</span> 开辟子进程</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 我们使用fork/vfork可以开辟子进程：
@@ -5306,8 +5306,8 @@ Segmentation fault
 </div>
 </div>
 
-<div id="outline-container-org3a95be8" class="outline-3">
-<h3 id="org3a95be8"><span class="section-number-3">8.3</span> _exit函数</h3>
+<div id="outline-container-org7cb2ba1" class="outline-3">
+<h3 id="org7cb2ba1"><span class="section-number-3">8.3</span> _exit函数</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 库函数调用exit最终调用_exit函数时候，会关闭所有打开的文件描述符，并且释放它所使用
@@ -5387,8 +5387,8 @@ dirlt     9482  0.0  0.0      0     0 pts/0    Z    17:04   0:00 [main] &lt;defu
 </div>
 </div>
 
-<div id="outline-container-org5056571" class="outline-3">
-<h3 id="org5056571"><span class="section-number-3">8.4</span> 等待子进程结束</h3>
+<div id="outline-container-orgbb77bca" class="outline-3">
+<h3 id="orgbb77bca"><span class="section-number-3">8.4</span> 等待子进程结束</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 当一个进程正常或者是异常终止的时候，内核就会向父进程发送一个SIGCHLD信号，父进程可以对
@@ -5496,8 +5496,8 @@ wait/waitpid来得到子进程终止状态。
 </div>
 </div>
 
-<div id="outline-container-org5f02ad2" class="outline-3">
-<h3 id="org5f02ad2"><span class="section-number-3">8.5</span> exec函数</h3>
+<div id="outline-container-org646e820" class="outline-3">
+<h3 id="org646e820"><span class="section-number-3">8.5</span> exec函数</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 exec函数并不创建任何新进程，所以前后进程关系是没有发生任何改变的。exec所做的事情就是替换当前
@@ -5550,8 +5550,8 @@ exec函数并不创建任何新进程，所以前后进程关系是没有发生�
 </div>
 </div>
 
-<div id="outline-container-org76c023e" class="outline-3">
-<h3 id="org76c023e"><span class="section-number-3">8.6</span> 更改用户ID和组ID</h3>
+<div id="outline-container-orgbf7b4db" class="outline-3">
+<h3 id="orgbf7b4db"><span class="section-number-3">8.6</span> 更改用户ID和组ID</h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
 所涉及的函数包括下面几个：
@@ -5644,8 +5644,8 @@ exec函数并不创建任何新进程，所以前后进程关系是没有发生�
 </div>
 </div>
 
-<div id="outline-container-orgc39f098" class="outline-3">
-<h3 id="orgc39f098"><span class="section-number-3">8.7</span> system函数</h3>
+<div id="outline-container-org430c331" class="outline-3">
+<h3 id="org430c331"><span class="section-number-3">8.7</span> system函数</h3>
 <div class="outline-text-3" id="text-8-7">
 <p>
 system函数使用起来非常方便，但是需要了解其中细节才可能用好。system本身实现大致就是
@@ -5777,8 +5777,8 @@ ruid=500,euid=0 //这个时候就修改成功了
 </div>
 </div>
 
-<div id="outline-container-orgb6e21bc" class="outline-3">
-<h3 id="orgb6e21bc"><span class="section-number-3">8.8</span> 解释器文件</h3>
+<div id="outline-container-orga05d728" class="outline-3">
+<h3 id="orga05d728"><span class="section-number-3">8.8</span> 解释器文件</h3>
 <div class="outline-text-3" id="text-8-8">
 <p>
 解释器文件是以#!开头的文件，格式是
@@ -5847,8 +5847,8 @@ print("hello,world")
 </div>
 </div>
 
-<div id="outline-container-org22a7cfb" class="outline-3">
-<h3 id="org22a7cfb"><span class="section-number-3">8.9</span> 用户标识</h3>
+<div id="outline-container-org7a49be7" class="outline-3">
+<h3 id="org7a49be7"><span class="section-number-3">8.9</span> 用户标识</h3>
 <div class="outline-text-3" id="text-8-9">
 <p>
 如果多个用户对应同样一个uid的话，那么我们这个时候就没有办法区分用户了。Unix系统
@@ -5863,8 +5863,8 @@ print("hello,world")
 </div>
 </div>
 
-<div id="outline-container-org389e2de" class="outline-3">
-<h3 id="org389e2de"><span class="section-number-3">8.10</span> 进程时间</h3>
+<div id="outline-container-orge8ae66c" class="outline-3">
+<h3 id="orge8ae66c"><span class="section-number-3">8.10</span> 进程时间</h3>
 <div class="outline-text-3" id="text-8-10">
 <p>
 使用下面函数可以获得进程执行时间：
@@ -5887,8 +5887,8 @@ print("hello,world")
 </div>
 </div>
 
-<div id="outline-container-orgde10952" class="outline-2">
-<h2 id="orgde10952"><span class="section-number-2">9</span> 进程关系</h2>
+<div id="outline-container-orga160d56" class="outline-2">
+<h2 id="orga160d56"><span class="section-number-2">9</span> 进程关系</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 关于进程关系会涉及到进程组和会话，以及和会话相关的控制终端等话题。这里我们主要关注几个概念，
@@ -5897,8 +5897,8 @@ print("hello,world")
 </p>
 </div>
 
-<div id="outline-container-orge19e0b0" class="outline-3">
-<h3 id="orge19e0b0"><span class="section-number-3">9.1</span> 登录过程</h3>
+<div id="outline-container-org5462d80" class="outline-3">
+<h3 id="org5462d80"><span class="section-number-3">9.1</span> 登录过程</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 #note: 对于终端不是很了解，所以这里没有区分是从终端登录还是网络登录，只是统一说明为登录过程。但是介绍的时候，还是区分两种登录方式的。
@@ -5948,8 +5948,8 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 </div>
 </div>
 
-<div id="outline-container-org2953d6c" class="outline-3">
-<h3 id="org2953d6c"><span class="section-number-3">9.2</span> 进程组</h3>
+<div id="outline-container-org1daf4ee" class="outline-3">
+<h3 id="org1daf4ee"><span class="section-number-3">9.2</span> 进程组</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 进程组是一个或者是多个进程的集合，通常和一个作业相关联，可以接受来自同一终端的各种信号。每个进程组有一个唯一的进程组ID,
@@ -5977,8 +5977,8 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 </div>
 </div>
 
-<div id="outline-container-org99fc7a8" class="outline-3">
-<h3 id="org99fc7a8"><span class="section-number-3">9.3</span> 会话</h3>
+<div id="outline-container-org1740b19" class="outline-3">
+<h3 id="org1740b19"><span class="section-number-3">9.3</span> 会话</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 会话是一个或者是多个进程组集合。进程可以通过调用
@@ -6001,8 +6001,8 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 </div>
 </div>
 
-<div id="outline-container-org0632868" class="outline-3">
-<h3 id="org0632868"><span class="section-number-3">9.4</span> 控制终端</h3>
+<div id="outline-container-orgcde408f" class="outline-3">
+<h3 id="orgcde408f"><span class="section-number-3">9.4</span> 控制终端</h3>
 <div class="outline-text-3" id="text-9-4">
 <p>
 会话和进程组有一些其他特性，包括下面这些：
@@ -6047,8 +6047,8 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 </div>
 </div>
 
-<div id="outline-container-orgebfb26c" class="outline-3">
-<h3 id="orgebfb26c"><span class="section-number-3">9.5</span> 作业控制</h3>
+<div id="outline-container-orgf55598d" class="outline-3">
+<h3 id="orgf55598d"><span class="section-number-3">9.5</span> 作业控制</h3>
 <div class="outline-text-3" id="text-9-5">
 <p>
 作业控制是在BSD后期版本加入的，允许一个终端上启动多个作业(进程组),控制哪一个作业可以访问该终端，
@@ -6135,8 +6135,8 @@ x
 </div>
 </div>
 
-<div id="outline-container-org998494f" class="outline-3">
-<h3 id="org998494f"><span class="section-number-3">9.6</span> 孤儿进程组</h3>
+<div id="outline-container-org762a5ae" class="outline-3">
+<h3 id="org762a5ae"><span class="section-number-3">9.6</span> 孤儿进程组</h3>
 <div class="outline-text-3" id="text-9-6">
 <p>
 孤儿进程组定义为：该组中每个成员的父进程要么是该组的一个成员，要么不是该组所属会话的成员。
@@ -6207,8 +6207,8 @@ read from tty error,errno=Input/output error
 </div>
 </div>
 
-<div id="outline-container-org9203252" class="outline-2">
-<h2 id="org9203252"><span class="section-number-2">10</span> 信号处理</h2>
+<div id="outline-container-orge62d5f4" class="outline-2">
+<h2 id="orge62d5f4"><span class="section-number-2">10</span> 信号处理</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 Unix早期版本就提供了信号机制，但是这些系统提供的信号模型并不可靠。信号可能丢失，并且可能存在临界情况。
@@ -6217,8 +6217,8 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 </p>
 </div>
 
-<div id="outline-container-org255a7bd" class="outline-3">
-<h3 id="org255a7bd"><span class="section-number-3">10.1</span> 信号概念</h3>
+<div id="outline-container-org577ae8f" class="outline-3">
+<h3 id="org577ae8f"><span class="section-number-3">10.1</span> 信号概念</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 信号定义在头文件&lt;signal.h&gt;里面并且都是正整数，没有为0的信号。但是kill对于信号0有着特殊应用。信号出现
@@ -6241,8 +6241,8 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 </div>
 </div>
 
-<div id="outline-container-org5e6b0e8" class="outline-3">
-<h3 id="org5e6b0e8"><span class="section-number-3">10.2</span> 常见信号</h3>
+<div id="outline-container-org76e1e3e" class="outline-3">
+<h3 id="org76e1e3e"><span class="section-number-3">10.2</span> 常见信号</h3>
 <div class="outline-text-3" id="text-10-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -6545,8 +6545,8 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 </div>
 </div>
 
-<div id="outline-container-org5c8d9fd" class="outline-3">
-<h3 id="org5c8d9fd"><span class="section-number-3">10.3</span> 不可靠信号</h3>
+<div id="outline-container-org61ae959" class="outline-3">
+<h3 id="org61ae959"><span class="section-number-3">10.3</span> 不可靠信号</h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 早期的Unix版本提供的信号机制是不可靠的。首先信号可能会丢失。也就是说信号发生但是进程却可能不知道这点。
@@ -6591,8 +6591,8 @@ signal设置信号处理之后，每次都会复位。那么在调用处理函�
 </div>
 </div>
 
-<div id="outline-container-orgc436944" class="outline-3">
-<h3 id="orgc436944"><span class="section-number-3">10.4</span> 中断的系统调用</h3>
+<div id="outline-container-org4e1000d" class="outline-3">
+<h3 id="org4e1000d"><span class="section-number-3">10.4</span> 中断的系统调用</h3>
 <div class="outline-text-3" id="text-10-4">
 <p>
 早期Unix特征是如果进程在执行一个低速的系统调用的时候，如果捕捉到了一个信号的话，那么会返回错误，
@@ -6630,8 +6630,8 @@ errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情�
 </div>
 </div>
 
-<div id="outline-container-org46da0ba" class="outline-3">
-<h3 id="org46da0ba"><span class="section-number-3">10.5</span> 可重入函数</h3>
+<div id="outline-container-orgac60e82" class="outline-3">
+<h3 id="orgac60e82"><span class="section-number-3">10.5</span> 可重入函数</h3>
 <div class="outline-text-3" id="text-10-5">
 <p>
 假设我们正在执行函数A,而正在这个时候出发了信号处理函数，里面也调用了A.我们必须确保两次调用A的结果都完全正确。
@@ -6645,8 +6645,8 @@ errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情�
 </div>
 </div>
 
-<div id="outline-container-orgea5e5b4" class="outline-3">
-<h3 id="orgea5e5b4"><span class="section-number-3">10.6</span> 可靠信号</h3>
+<div id="outline-container-org1c04d54" class="outline-3">
+<h3 id="org1c04d54"><span class="section-number-3">10.6</span> 可靠信号</h3>
 <div class="outline-text-3" id="text-10-6">
 <p>
 我们首先看看可靠信号下面存在哪些术语：
@@ -6663,8 +6663,8 @@ errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情�
 </div>
 </div>
 
-<div id="outline-container-org01ec799" class="outline-3">
-<h3 id="org01ec799"><span class="section-number-3">10.7</span> 信号集</h3>
+<div id="outline-container-org398c831" class="outline-3">
+<h3 id="org398c831"><span class="section-number-3">10.7</span> 信号集</h3>
 <div class="outline-text-3" id="text-10-7">
 <p>
 信号集是一堆信号的集合，POSIX.1定义了信号集上一系列操作。因为信号集的数量可能扩展，所以必须定义一个新的结构表示。
@@ -6682,8 +6682,8 @@ errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情�
 </div>
 </div>
 
-<div id="outline-container-org46ccd00" class="outline-4">
-<h4 id="org46ccd00"><span class="section-number-4">10.7.1</span> sigprocmask/sigpending</h4>
+<div id="outline-container-org6cd4164" class="outline-4">
+<h4 id="org6cd4164"><span class="section-number-4">10.7.1</span> sigprocmask/sigpending</h4>
 <div class="outline-text-4" id="text-10-7-1">
 <p>
 sigprocmask可以设置当前信号屏蔽字，sigpending可以返回当前未决信号集。
@@ -6726,8 +6726,8 @@ pending SIGUSR2=1
 </div>
 </div>
 
-<div id="outline-container-orga080afd" class="outline-4">
-<h4 id="orga080afd"><span class="section-number-4">10.7.2</span> sigaction</h4>
+<div id="outline-container-orgdd469ac" class="outline-4">
+<h4 id="orgdd469ac"><span class="section-number-4">10.7.2</span> sigaction</h4>
 <div class="outline-text-4" id="text-10-7-2">
 <p>
 sigaction是signal的替代品，但是提供了更多的功能：
@@ -6880,8 +6880,8 @@ sigaction是signal的替代品，但是提供了更多的功能：
 </div>
 </div>
 
-<div id="outline-container-orgfd28fee" class="outline-4">
-<h4 id="orgfd28fee"><span class="section-number-4">10.7.3</span> sigsetjmp/siglongjmp</h4>
+<div id="outline-container-org7b45631" class="outline-4">
+<h4 id="org7b45631"><span class="section-number-4">10.7.3</span> sigsetjmp/siglongjmp</h4>
 <div class="outline-text-4" id="text-10-7-3">
 <p>
 对于setjmp和longjmp并没有规定如何来处理信号屏蔽字。
@@ -6953,8 +6953,8 @@ SIGUSR1 masked=0
 </div>
 </div>
 
-<div id="outline-container-orgd467f12" class="outline-4">
-<h4 id="orgd467f12"><span class="section-number-4">10.7.4</span> sigsuspend</h4>
+<div id="outline-container-orgb0995e7" class="outline-4">
+<h4 id="orgb0995e7"><span class="section-number-4">10.7.4</span> sigsuspend</h4>
 <div class="outline-text-4" id="text-10-7-4">
 <p>
 对于pause来说，如果我们还想只是等待某些信号的话，那么就必须这样进行：
@@ -6979,12 +6979,12 @@ SIGUSR1 masked=0
 </div>
 </div>
 
-<div id="outline-container-org7bd583b" class="outline-3">
-<h3 id="org7bd583b"><span class="section-number-3">10.8</span> 常用函数</h3>
+<div id="outline-container-org0ceda65" class="outline-3">
+<h3 id="org0ceda65"><span class="section-number-3">10.8</span> 常用函数</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
-<div id="outline-container-orgc9bc8c5" class="outline-4">
-<h4 id="orgc9bc8c5"><span class="section-number-4">10.8.1</span> signal</h4>
+<div id="outline-container-org430d22f" class="outline-4">
+<h4 id="org430d22f"><span class="section-number-4">10.8.1</span> signal</h4>
 <div class="outline-text-4" id="text-10-8-1">
 <p>
 signal函数是最常见的信号机制相关函数，原型是这样的：
@@ -7093,8 +7093,8 @@ SIG_ERR表示调用signal错误，SIG_DFL表示默认处理函数，SIG_IGN表�
 </div>
 </div>
 
-<div id="outline-container-orgb46283d" class="outline-4">
-<h4 id="orgb46283d"><span class="section-number-4">10.8.2</span> kill/raise</h4>
+<div id="outline-container-org35dc6a9" class="outline-4">
+<h4 id="org35dc6a9"><span class="section-number-4">10.8.2</span> kill/raise</h4>
 <div class="outline-text-4" id="text-10-8-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;signal.h&gt;</span>
@@ -7143,8 +7143,8 @@ No such process
 </div>
 </div>
 
-<div id="outline-container-orgde01530" class="outline-4">
-<h4 id="orgde01530"><span class="section-number-4">10.8.3</span> alarm/pause</h4>
+<div id="outline-container-orgf146d17" class="outline-4">
+<h4 id="orgf146d17"><span class="section-number-4">10.8.3</span> alarm/pause</h4>
 <div class="outline-text-4" id="text-10-8-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
@@ -7186,8 +7186,8 @@ Alarm clock received
 </div>
 </div>
 
-<div id="outline-container-org451d2e0" class="outline-4">
-<h4 id="org451d2e0"><span class="section-number-4">10.8.4</span> abort</h4>
+<div id="outline-container-org29aaf9a" class="outline-4">
+<h4 id="org29aaf9a"><span class="section-number-4">10.8.4</span> abort</h4>
 <div class="outline-text-4" id="text-10-8-4">
 <p>
 此函数向自身发送SIGABRT信号。如果进程设置了捕获SIGABRT的话，即使从处理函数返回的话，那么仍然不会返回到调用者。
@@ -7238,8 +7238,8 @@ jump frm abort
 </div>
 </div>
 
-<div id="outline-container-org8d15c38" class="outline-4">
-<h4 id="org8d15c38"><span class="section-number-4">10.8.5</span> system</h4>
+<div id="outline-container-orgb4f266c" class="outline-4">
+<h4 id="orgb4f266c"><span class="section-number-4">10.8.5</span> system</h4>
 <div class="outline-text-4" id="text-10-8-5">
 <p>
 POSIX规定调用system进程需要忽略SIGINT,SIGQUIT信号，阻塞SIGCHLD信号。同时对于返回值来说，如果/bin/sh没有正常执行的话，
@@ -7305,8 +7305,8 @@ wait,然后在触发SIGCHLD操作。似乎这样做更加合理。
 </div>
 </div>
 
-<div id="outline-container-orgca70281" class="outline-4">
-<h4 id="orgca70281"><span class="section-number-4">10.8.6</span> 其他函数</h4>
+<div id="outline-container-orgfe37c40" class="outline-4">
+<h4 id="orgfe37c40"><span class="section-number-4">10.8.6</span> 其他函数</h4>
 <div class="outline-text-4" id="text-10-8-6">
 <p>
 和errno对应的strerror以及perror一样，对于信号也提供了相应的方便打印的函数：
@@ -7322,8 +7322,8 @@ wait,然后在触发SIGCHLD操作。似乎这样做更加合理。
 </div>
 </div>
 
-<div id="outline-container-org27adab2" class="outline-2">
-<h2 id="org27adab2"><span class="section-number-2">11</span> 线程控制</h2>
+<div id="outline-container-org9e0a1ab" class="outline-2">
+<h2 id="org9e0a1ab"><span class="section-number-2">11</span> 线程控制</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 典型的Unix进程可以看成只有一个控制线程，一个进程在同一个时刻只允许做一件事情。
@@ -7366,8 +7366,8 @@ pthread函数在调用失败的时候通常会返回错误码，它们并不像�
 </p>
 </div>
 
-<div id="outline-container-org6ca2496" class="outline-3">
-<h3 id="org6ca2496"><span class="section-number-3">11.1</span> 线程标识</h3>
+<div id="outline-container-org22510c2" class="outline-3">
+<h3 id="org22510c2"><span class="section-number-3">11.1</span> 线程标识</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 线程使用线程id来标识自己，thread_t这个数据结构。我们不能够使用一种可移植的方式来打印该数据类型的值。
@@ -7451,8 +7451,8 @@ _syscall0(<span class="org-type">pid_t</span>,gettid)
 </div>
 </div>
 
-<div id="outline-container-org501fbf5" class="outline-3">
-<h3 id="org501fbf5"><span class="section-number-3">11.2</span> 线程创建</h3>
+<div id="outline-container-org41aacea" class="outline-3">
+<h3 id="org41aacea"><span class="section-number-3">11.2</span> 线程创建</h3>
 <div class="outline-text-3" id="text-11-2">
 <p>
 创建接口为
@@ -7510,8 +7510,8 @@ _syscall0(<span class="org-type">pid_t</span>,gettid)
 </div>
 </div>
 
-<div id="outline-container-org3dbe786" class="outline-3">
-<h3 id="org3dbe786"><span class="section-number-3">11.3</span> 线程终止</h3>
+<div id="outline-container-orgc1a4f8e" class="outline-3">
+<h3 id="orgc1a4f8e"><span class="section-number-3">11.3</span> 线程终止</h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 如果进程中任意线程调用了_exit,Exit,exit的话，或者是任意线程接收到了信号而处理动作是终止的话，那么整个进程就会终止。
@@ -7588,8 +7588,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-org9ed2e73" class="outline-3">
-<h3 id="org9ed2e73"><span class="section-number-3">11.4</span> 线程同步</h3>
+<div id="outline-container-orge0c941b" class="outline-3">
+<h3 id="orge0c941b"><span class="section-number-3">11.4</span> 线程同步</h3>
 <div class="outline-text-3" id="text-11-4">
 <p>
 关于线程同步，pthread提供了三种最基本的机制，分别是：
@@ -7600,8 +7600,8 @@ push1
 <li>条件变量</li>
 </ul>
 </div>
-<div id="outline-container-org60d099a" class="outline-4">
-<h4 id="org60d099a"><span class="section-number-4">11.4.1</span> 互斥锁</h4>
+<div id="outline-container-org7256dd5" class="outline-4">
+<h4 id="org7256dd5"><span class="section-number-4">11.4.1</span> 互斥锁</h4>
 <div class="outline-text-4" id="text-11-4-1">
 <p>
 互斥锁可以确保同一时间只有一个线程访问数据：
@@ -7628,8 +7628,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-org981f6fe" class="outline-4">
-<h4 id="org981f6fe"><span class="section-number-4">11.4.2</span> 读写锁</h4>
+<div id="outline-container-orgf67b925" class="outline-4">
+<h4 id="orgf67b925"><span class="section-number-4">11.4.2</span> 读写锁</h4>
 <div class="outline-text-4" id="text-11-4-2">
 <p>
 对于部分应用来说是读多写少的应用，而读因为不会修改状态所以是允许读之间并发的。而互斥锁不管是读读之间，
@@ -7664,8 +7664,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-orgcd1d2d9" class="outline-4">
-<h4 id="orgcd1d2d9"><span class="section-number-4">11.4.3</span> 条件变量</h4>
+<div id="outline-container-org9987020" class="outline-4">
+<h4 id="org9987020"><span class="section-number-4">11.4.3</span> 条件变量</h4>
 <div class="outline-text-4" id="text-11-4-3">
 <p>
 条件变量允许线程以一种更加友好的协作方式来运行。比如典型的生产和消费者模型来说，如果生产者停滞的话那么
@@ -7736,8 +7736,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-orgc8f0f77" class="outline-3">
-<h3 id="orgc8f0f77"><span class="section-number-3">11.5</span> 线程限制</h3>
+<div id="outline-container-org2a6f86a" class="outline-3">
+<h3 id="org2a6f86a"><span class="section-number-3">11.5</span> 线程限制</h3>
 <div class="outline-text-3" id="text-11-5">
 <p>
 线程限制有下面这些方面：
@@ -7784,8 +7784,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-org456ae55" class="outline-3">
-<h3 id="org456ae55"><span class="section-number-3">11.6</span> 线程属性</h3>
+<div id="outline-container-org0827256" class="outline-3">
+<h3 id="org0827256"><span class="section-number-3">11.6</span> 线程属性</h3>
 <div class="outline-text-3" id="text-11-6">
 <p>
 在创建线程的时候我们可以指定线程属性，接口是：
@@ -7837,8 +7837,8 @@ push1
 </table>
 </div>
 
-<div id="outline-container-orgff74324" class="outline-4">
-<h4 id="orgff74324"><span class="section-number-4">11.6.1</span> 分离状态</h4>
+<div id="outline-container-org5940198" class="outline-4">
+<h4 id="org5940198"><span class="section-number-4">11.6.1</span> 分离状态</h4>
 <div class="outline-text-4" id="text-11-6-1">
 <p>
 对于detachstate来说，我们可以控制线程启动时候属性是分离的，还是可以join的。如果我们不设置的话，默认
@@ -7855,8 +7855,8 @@ push1
 </div>
 </div>
 
-<div id="outline-container-org9c5ae99" class="outline-4">
-<h4 id="org9c5ae99"><span class="section-number-4">11.6.2</span> 线程栈</h4>
+<div id="outline-container-org5e5b042" class="outline-4">
+<h4 id="org5e5b042"><span class="section-number-4">11.6.2</span> 线程栈</h4>
 <div class="outline-text-4" id="text-11-6-2">
 <p>
 每个线程都是在特定栈上面运行的，如果我们不设置的话那么会按照默认方式来分配栈。
@@ -7889,8 +7889,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-orgabf707a" class="outline-4">
-<h4 id="orgabf707a"><span class="section-number-4">11.6.3</span> 其他属性</h4>
+<div id="outline-container-orge0581e2" class="outline-4">
+<h4 id="orge0581e2"><span class="section-number-4">11.6.3</span> 其他属性</h4>
 <div class="outline-text-4" id="text-11-6-3">
 <p>
 线程还有其他一些属性但是没有在attr里面反应包括：
@@ -7920,12 +7920,12 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-org9c9ce0f" class="outline-3">
-<h3 id="org9c9ce0f"><span class="section-number-3">11.7</span> 同步属性</h3>
+<div id="outline-container-org1534e27" class="outline-3">
+<h3 id="org1534e27"><span class="section-number-3">11.7</span> 同步属性</h3>
 <div class="outline-text-3" id="text-11-7">
 </div>
-<div id="outline-container-org1b3a344" class="outline-4">
-<h4 id="org1b3a344"><span class="section-number-4">11.7.1</span> 进程共享</h4>
+<div id="outline-container-org588dfae" class="outline-4">
+<h4 id="org588dfae"><span class="section-number-4">11.7.1</span> 进程共享</h4>
 <div class="outline-text-4" id="text-11-7-1">
 <p>
 对于三个同步机制来说，提供了进程共享的属性。也就是说，如果同步机制是在共享内存上面开辟的话，
@@ -7997,8 +7997,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-org50a6885" class="outline-4">
-<h4 id="org50a6885"><span class="section-number-4">11.7.2</span> 互斥量类型</h4>
+<div id="outline-container-orgcc85acf" class="outline-4">
+<h4 id="orgcc85acf"><span class="section-number-4">11.7.2</span> 互斥量类型</h4>
 <div class="outline-text-4" id="text-11-7-2">
 <p>
 对于互斥量来说有一个类型属性，对于互斥量来说有下面4种类型：
@@ -8080,8 +8080,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-org6a87a76" class="outline-3">
-<h3 id="org6a87a76"><span class="section-number-3">11.8</span> 可重入与线程安全</h3>
+<div id="outline-container-org28f2ae7" class="outline-3">
+<h3 id="org28f2ae7"><span class="section-number-3">11.8</span> 可重入与线程安全</h3>
 <div class="outline-text-3" id="text-11-8">
 <p>
 可重入这个话题在信号处理已经讨论过了，可重入函数一定是线程安全函数，但是线程安全不一定是可重入的。如果
@@ -8116,8 +8116,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-org727b745" class="outline-3">
-<h3 id="org727b745"><span class="section-number-3">11.9</span> 线程私有数据</h3>
+<div id="outline-container-org6ffc9aa" class="outline-3">
+<h3 id="org6ffc9aa"><span class="section-number-3">11.9</span> 线程私有数据</h3>
 <div class="outline-text-3" id="text-11-9">
 <p>
 引入线程之后，我们就有必须重新考虑变量作用域的问题。在引入线程之前，我们有全局变量和局部变量。但是在多个线程情况下，
@@ -8146,8 +8146,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-orgeb996b6" class="outline-3">
-<h3 id="orgeb996b6"><span class="section-number-3">11.10</span> 取消选项</h3>
+<div id="outline-container-orgef4a9ae" class="outline-3">
+<h3 id="orgef4a9ae"><span class="section-number-3">11.10</span> 取消选项</h3>
 <div class="outline-text-3" id="text-11-10">
 <p>
 线程分为是否可以取消，以及如果允许取消的话是延迟还是异步取消。设置线程取消可以通过：
@@ -8182,8 +8182,8 @@ guardsize意思是如果我们使用线程栈超过了设定大小之后，系�
 </div>
 </div>
 
-<div id="outline-container-org84f8075" class="outline-3">
-<h3 id="org84f8075"><span class="section-number-3">11.11</span> 线程和信号</h3>
+<div id="outline-container-orgc6d7338" class="outline-3">
+<h3 id="orgc6d7338"><span class="section-number-3">11.11</span> 线程和信号</h3>
 <div class="outline-text-3" id="text-11-11">
 <p>
 每个线程有自己的信号屏蔽字，但是信号的处理是所有线程共享的。进程中的单个信号是递送到单个线程的，如果信号
@@ -8271,8 +8271,8 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </div>
 
-<div id="outline-container-org098236d" class="outline-3">
-<h3 id="org098236d"><span class="section-number-3">11.12</span> 线程和fork</h3>
+<div id="outline-container-orga5f9979" class="outline-3">
+<h3 id="orga5f9979"><span class="section-number-3">11.12</span> 线程和fork</h3>
 <div class="outline-text-3" id="text-11-12">
 <p>
 #note: 个人觉得相当无用而且异常繁琐。为了保证锁和条件变量的状态，使用到了pthread_atfork.
@@ -8280,8 +8280,8 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </div>
 
-<div id="outline-container-orgfa01a69" class="outline-3">
-<h3 id="orgfa01a69"><span class="section-number-3">11.13</span> 线程和IO</h3>
+<div id="outline-container-org70a87a0" class="outline-3">
+<h3 id="org70a87a0"><span class="section-number-3">11.13</span> 线程和IO</h3>
 <div class="outline-text-3" id="text-11-13">
 <p>
 多线程IO下面读写文件的话，底层能够保证一次read/write的串行化，可以认为是一个原子操作。
@@ -8291,8 +8291,8 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </div>
 
-<div id="outline-container-org1f306ca" class="outline-3">
-<h3 id="org1f306ca"><span class="section-number-3">11.14</span> API</h3>
+<div id="outline-container-org01a56eb" class="outline-3">
+<h3 id="org01a56eb"><span class="section-number-3">11.14</span> API</h3>
 <div class="outline-text-3" id="text-11-14">
 <p>
 我们只是打算对于pthread的API做一个简单的回顾，这样我们至少可以知道pthread到底可以做什么事情。
@@ -8301,12 +8301,12 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </p>
 </div>
 
-<div id="outline-container-orgf5e9077" class="outline-4">
-<h4 id="orgf5e9077"><span class="section-number-4">11.14.1</span> attr</h4>
+<div id="outline-container-orgfb160c2" class="outline-4">
+<h4 id="orgfb160c2"><span class="section-number-4">11.14.1</span> attr</h4>
 <div class="outline-text-4" id="text-11-14-1">
 </div>
 <ol class="org-ol">
-<li><a id="org009e904"></a>init<br />
+<li><a id="org8ed5a0d"></a>init<br />
 <div class="outline-text-5" id="text-11-14-1-1">
 <ul class="org-ul">
 <li>pthread_attr_init</li>
@@ -8315,7 +8315,7 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </li>
 
-<li><a id="org8d80000"></a>detach<br />
+<li><a id="org4a6137a"></a>detach<br />
 <div class="outline-text-5" id="text-11-14-1-2">
 <ul class="org-ul">
 <li>pthread_attr_getdetachstate</li>
@@ -8327,7 +8327,7 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </li>
 
-<li><a id="orgd2c3366"></a>guard<br />
+<li><a id="org74042b3"></a>guard<br />
 <div class="outline-text-5" id="text-11-14-1-3">
 <ul class="org-ul">
 <li>pthread_attr_setguardsize</li>
@@ -8340,7 +8340,7 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 </div>
 </li>
 
-<li><a id="org41f29f0"></a>sched<br />
+<li><a id="org7a14569"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-1-4">
 <ul class="org-ul">
 <li>pthread_attr_getinheritsched</li>
@@ -8371,7 +8371,7 @@ schedpolicy可以设置调度策略，而schedparam可以设置调度策略所�
 </div>
 </li>
 
-<li><a id="org90d9739"></a>scope<br />
+<li><a id="orgf92fb29"></a>scope<br />
 <div class="outline-text-5" id="text-11-14-1-5">
 <ul class="org-ul">
 <li>pthread_attr_setscope</li>
@@ -8391,7 +8391,7 @@ system contention scope是只线程直接和系统范围内其他线程竞争，
 </div>
 </li>
 
-<li><a id="org45a4ab4"></a>stack<br />
+<li><a id="org67143ef"></a>stack<br />
 <div class="outline-text-5" id="text-11-14-1-6">
 <ul class="org-ul">
 <li>pthread_attr_getstack</li>
@@ -8409,12 +8409,12 @@ system contention scope是只线程直接和系统范围内其他线程竞争，
 </ol>
 </div>
 
-<div id="outline-container-org0195cca" class="outline-4">
-<h4 id="org0195cca"><span class="section-number-4">11.14.2</span> sync</h4>
+<div id="outline-container-org32b97f4" class="outline-4">
+<h4 id="org32b97f4"><span class="section-number-4">11.14.2</span> sync</h4>
 <div class="outline-text-4" id="text-11-14-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgc52b2c7"></a>mutex<br />
+<li><a id="org17a7a44"></a>mutex<br />
 <div class="outline-text-5" id="text-11-14-2-1">
 <ul class="org-ul">
 <li>pthread_mutex_init</li>
@@ -8456,7 +8456,7 @@ type是锁的类型包括下面这些
 </li>
 
 
-<li><a id="org61e6163"></a>cond<br />
+<li><a id="orgbc8520c"></a>cond<br />
 <div class="outline-text-5" id="text-11-14-2-2">
 <ul class="org-ul">
 <li>pthread_cond_init</li>
@@ -8475,7 +8475,7 @@ type是锁的类型包括下面这些
 </div>
 </li>
 
-<li><a id="org46af17d"></a>rwlock<br />
+<li><a id="org54e42f0"></a>rwlock<br />
 <div class="outline-text-5" id="text-11-14-2-3">
 <ul class="org-ul">
 <li>pthread_rwlock_init</li>
@@ -8495,7 +8495,7 @@ type是锁的类型包括下面这些
 </div>
 </li>
 
-<li><a id="orgf0469d9"></a>spinlock<br />
+<li><a id="orgef462c4"></a>spinlock<br />
 <div class="outline-text-5" id="text-11-14-2-4">
 <ul class="org-ul">
 <li>pthread_spin_init</li>
@@ -8507,7 +8507,7 @@ type是锁的类型包括下面这些
 </div>
 </li>
 
-<li><a id="org05a6553"></a>barrier<br />
+<li><a id="org4ccb030"></a>barrier<br />
 <div class="outline-text-5" id="text-11-14-2-5">
 <ul class="org-ul">
 <li>pthread_barrier_init // 以count初始化,表明有多少个线程需要同步</li>
@@ -8526,12 +8526,12 @@ barrier类似于muduo里面的countdownlatch机制
 </ol>
 </div>
 
-<div id="outline-container-org96861a3" class="outline-4">
-<h4 id="org96861a3"><span class="section-number-4">11.14.3</span> control</h4>
+<div id="outline-container-orgbfffcac" class="outline-4">
+<h4 id="orgbfffcac"><span class="section-number-4">11.14.3</span> control</h4>
 <div class="outline-text-4" id="text-11-14-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgab82676"></a>run<br />
+<li><a id="org5287ac2"></a>run<br />
 <div class="outline-text-5" id="text-11-14-3-1">
 <ul class="org-ul">
 <li>pthread_create</li>
@@ -8542,7 +8542,7 @@ barrier类似于muduo里面的countdownlatch机制
 </div>
 </li>
 
-<li><a id="orga3c7d4c"></a>cancel<br />
+<li><a id="org625ed2b"></a>cancel<br />
 <div class="outline-text-5" id="text-11-14-3-2">
 <ul class="org-ul">
 <li>pthread_cancel</li>
@@ -8574,7 +8574,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="orgda9ba85"></a>signal<br />
+<li><a id="org16b39ce"></a>signal<br />
 <div class="outline-text-5" id="text-11-14-3-3">
 <ul class="org-ul">
 <li>pthread_kill</li>
@@ -8584,7 +8584,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="orge166bb4"></a>sched<br />
+<li><a id="orgb7aaa89"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-3-4">
 <ul class="org-ul">
 <li>pthread_getschedparam</li>
@@ -8597,7 +8597,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="orgaa06a94"></a>resource<br />
+<li><a id="org158533b"></a>resource<br />
 <div class="outline-text-5" id="text-11-14-3-5">
 <ul class="org-ul">
 <li>pthread_getcpuclockid</li>
@@ -8663,7 +8663,7 @@ resolution 0.000001 ms
 </div>
 </li>
 
-<li><a id="org9688aa7"></a>specific<br />
+<li><a id="org5072888"></a>specific<br />
 <div class="outline-text-5" id="text-11-14-3-6">
 <ul class="org-ul">
 <li>pthread_once</li>
@@ -8679,12 +8679,12 @@ resolution 0.000001 ms
 </div>
 </div>
 
-<div id="outline-container-org2643ec6" class="outline-3">
-<h3 id="org2643ec6"><span class="section-number-3">11.15</span> 使用注意</h3>
+<div id="outline-container-orgf53a73f" class="outline-3">
+<h3 id="orgf53a73f"><span class="section-number-3">11.15</span> 使用注意</h3>
 <div class="outline-text-3" id="text-11-15">
 </div>
-<div id="outline-container-org5200a8b" class="outline-4">
-<h4 id="org5200a8b"><span class="section-number-4">11.15.1</span> pthread cancel陷阱</h4>
+<div id="outline-container-orgafc3161" class="outline-4">
+<h4 id="orgafc3161"><span class="section-number-4">11.15.1</span> pthread cancel陷阱</h4>
 <div class="outline-text-4" id="text-11-15-1">
 <p>
 最近几天看core java,对于多线程部分的话提到了最好不要stop,suspend,resume线程。在外部去干扰线程执行的话，容易造成线程资源占用以及运行状态不合理。
@@ -8781,8 +8781,8 @@ a.out: main.cc:17: Lock::~Lock(): Assertion `holder_==0′ failed.
 </div>
 </div>
 
-<div id="outline-container-orga6c9000" class="outline-2">
-<h2 id="orga6c9000"><span class="section-number-2">12</span> 守护进程</h2>
+<div id="outline-container-org56aebab" class="outline-2">
+<h2 id="org56aebab"><span class="section-number-2">12</span> 守护进程</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 守护进程也是精灵进程(daemon),是一种生存期较长的进程，常常在系统自举时候启动，仅仅在系统关闭时终止。
@@ -8804,8 +8804,8 @@ a.out: main.cc:17: Lock::~Lock(): Assertion `holder_==0′ failed.
 </ul>
 </div>
 
-<div id="outline-container-orgebddf0e" class="outline-3">
-<h3 id="orgebddf0e"><span class="section-number-3">12.1</span> daemonize</h3>
+<div id="outline-container-org8620bc9" class="outline-3">
+<h3 id="org8620bc9"><span class="section-number-3">12.1</span> daemonize</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 产生一个daemon程序需要一系列的操作，步骤如下：
@@ -8878,8 +8878,8 @@ a.out: main.cc:17: Lock::~Lock(): Assertion `holder_==0′ failed.
 </div>
 </div>
 
-<div id="outline-container-org7f1c8c9" class="outline-3">
-<h3 id="org7f1c8c9"><span class="section-number-3">12.2</span> 出错处理</h3>
+<div id="outline-container-org44026cf" class="outline-3">
+<h3 id="org44026cf"><span class="section-number-3">12.2</span> 出错处理</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 我们假设daemon不会将错误信息输出到终端上。如果我们只是写到一个单独的文件，那么非常难以管理。所以有必要有
@@ -9054,8 +9054,8 @@ local7.*						/var/log/boot.log
 </div>
 </div>
 
-<div id="outline-container-org272f64b" class="outline-3">
-<h3 id="org272f64b"><span class="section-number-3">12.3</span> 其他事项</h3>
+<div id="outline-container-orgfd17612" class="outline-3">
+<h3 id="orgfd17612"><span class="section-number-3">12.3</span> 其他事项</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 守护进程通常单实例运行的，为了保证是单例运行的话，我们可以通过文件标记或者是文件锁来完成。
@@ -9072,12 +9072,12 @@ local7.*						/var/log/boot.log
 </div>
 </div>
 
-<div id="outline-container-org0e7b617" class="outline-2">
-<h2 id="org0e7b617"><span class="section-number-2">13</span> 高级IO</h2>
+<div id="outline-container-orgbf2d11f" class="outline-2">
+<h2 id="orgbf2d11f"><span class="section-number-2">13</span> 高级IO</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org4c0be33" class="outline-3">
-<h3 id="org4c0be33"><span class="section-number-3">13.1</span> 非阻塞IO</h3>
+<div id="outline-container-org1d3d4dc" class="outline-3">
+<h3 id="org1d3d4dc"><span class="section-number-3">13.1</span> 非阻塞IO</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 首先必须明确为什么需要引入非阻塞IO这个概念。因为系统调用存在低速系统调用，可能使进程永久阻塞住。
@@ -9102,8 +9102,8 @@ local7.*						/var/log/boot.log
 </div>
 </div>
 
-<div id="outline-container-org08257d0" class="outline-3">
-<h3 id="org08257d0"><span class="section-number-3">13.2</span> 记录锁</h3>
+<div id="outline-container-org522a0ac" class="outline-3">
+<h3 id="org522a0ac"><span class="section-number-3">13.2</span> 记录锁</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 建议锁和强制锁之间的差别，建议锁更强调协作方面的特性只是一个软规定，而对于强制锁来说，
@@ -9129,8 +9129,8 @@ local7.*						/var/log/boot.log
 </p>
 </div>
 
-<div id="outline-container-org2680075" class="outline-4">
-<h4 id="org2680075"><span class="section-number-4">13.2.1</span> 接口</h4>
+<div id="outline-container-org4d8f883" class="outline-4">
+<h4 id="org4d8f883"><span class="section-number-4">13.2.1</span> 接口</h4>
 <div class="outline-text-4" id="text-13-2-1">
 <p>
 我们使用fcntl来操纵记录锁，那么接口是
@@ -9167,8 +9167,8 @@ local7.*						/var/log/boot.log
 </div>
 </div>
 
-<div id="outline-container-org65577d4" class="outline-4">
-<h4 id="org65577d4"><span class="section-number-4">13.2.2</span> 实现</h4>
+<div id="outline-container-org583724f" class="outline-4">
+<h4 id="org583724f"><span class="section-number-4">13.2.2</span> 实现</h4>
 <div class="outline-text-4" id="text-13-2-2">
 <p>
 实现上来说，所有的锁都是挂在在v节点表之后的，以链表形式挂接：
@@ -9190,8 +9190,8 @@ local7.*						/var/log/boot.log
 </div>
 </div>
 
-<div id="outline-container-org65a1419" class="outline-3">
-<h3 id="org65a1419"><span class="section-number-3">13.3</span> IO多路转接</h3>
+<div id="outline-container-orgdfcff6d" class="outline-3">
+<h3 id="orgdfcff6d"><span class="section-number-3">13.3</span> IO多路转接</h3>
 <div class="outline-text-3" id="text-13-3">
 <p>
 如果我们希望可以监视多个IO操作的话，那么会遇到一个问题。对于阻塞IO的话，我们必须安排一定的顺序来读取，
@@ -9201,8 +9201,8 @@ local7.*						/var/log/boot.log
 </p>
 </div>
 
-<div id="outline-container-org532b255" class="outline-4">
-<h4 id="org532b255"><span class="section-number-4">13.3.1</span> select/pselect</h4>
+<div id="outline-container-org665ab2a" class="outline-4">
+<h4 id="org665ab2a"><span class="section-number-4">13.3.1</span> select/pselect</h4>
 <div class="outline-text-4" id="text-13-3-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/select.h&gt;</span>
@@ -9299,8 +9299,8 @@ fds不会修改，所以最好每次都重新进行设置。对于timeout的话�
 </div>
 </div>
 
-<div id="outline-container-orgbe1d01e" class="outline-4">
-<h4 id="orgbe1d01e"><span class="section-number-4">13.3.2</span> poll/ppoll</h4>
+<div id="outline-container-orga314521" class="outline-4">
+<h4 id="orga314521"><span class="section-number-4">13.3.2</span> poll/ppoll</h4>
 <div class="outline-text-4" id="text-13-3-2">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;poll.h&gt;</span>
@@ -9437,8 +9437,8 @@ fds不会修改，所以最好每次都重新进行设置。对于timeout的话�
 </div>
 </div>
 
-<div id="outline-container-org0f36241" class="outline-4">
-<h4 id="org0f36241"><span class="section-number-4">13.3.3</span> 自动重启</h4>
+<div id="outline-container-org4d5c300" class="outline-4">
+<h4 id="org4d5c300"><span class="section-number-4">13.3.3</span> 自动重启</h4>
 <div class="outline-text-4" id="text-13-3-3">
 <p>
 上面4个都属于系统调用，取决于安装的系统是否默认为信号自动重启。不过在编写应用程序时候最好不要假设这点，
@@ -9448,8 +9448,8 @@ fds不会修改，所以最好每次都重新进行设置。对于timeout的话�
 </div>
 </div>
 
-<div id="outline-container-orgaab575b" class="outline-3">
-<h3 id="orgaab575b"><span class="section-number-3">13.4</span> 异步IO</h3>
+<div id="outline-container-orgaaaaad4" class="outline-3">
+<h3 id="orgaaaaad4"><span class="section-number-3">13.4</span> 异步IO</h3>
 <div class="outline-text-3" id="text-13-4">
 <p>
 异步IO是通过信号同时来实现的，并且异步IO对应的只有有限的几个信号。这样在信号处理函数中我们还必须仔细
@@ -9510,8 +9510,8 @@ I/O possible received(14)
 </div>
 </div>
 
-<div id="outline-container-orgb9d16e0" class="outline-3">
-<h3 id="orgb9d16e0"><span class="section-number-3">13.5</span> readv/writev</h3>
+<div id="outline-container-org550fc96" class="outline-3">
+<h3 id="org550fc96"><span class="section-number-3">13.5</span> readv/writev</h3>
 <div class="outline-text-3" id="text-13-5">
 <p>
 readv和writev能够将分散的多块缓冲区一次性读出和写入，而仅仅是是用一次系统调用
@@ -9552,8 +9552,8 @@ readv和writev能够将分散的多块缓冲区一次性读出和写入，而仅
 </div>
 </div>
 
-<div id="outline-container-org8384bda" class="outline-3">
-<h3 id="org8384bda"><span class="section-number-3">13.6</span> 存储映射IO</h3>
+<div id="outline-container-org56de7b6" class="outline-3">
+<h3 id="org56de7b6"><span class="section-number-3">13.6</span> 存储映射IO</h3>
 <div class="outline-text-3" id="text-13-6">
 <p>
 存储映射IO(memoryy-mapped IO)使得一个磁盘文件于存储空间中的一个缓冲区相映射。这样读取缓冲区的内容就
@@ -9732,8 +9732,8 @@ munmap不会使得映射区的内容写到磁盘文件上，MAP_SHARED磁盘文�
 </div>
 </div>
 
-<div id="outline-container-org4b95068" class="outline-3">
-<h3 id="org4b95068"><span class="section-number-3">13.7</span> linux aio</h3>
+<div id="outline-container-orgfcb0596" class="outline-3">
+<h3 id="orgfcb0596"><span class="section-number-3">13.7</span> linux aio</h3>
 <div class="outline-text-3" id="text-13-7">
 <p>
 前几天准备公司内部关于异步编程交流的时候，想到看看linux aio。这个很早之前在百度的时候就听同事说过，但是一直没有机会看看API以及如何使用。
@@ -9908,8 +9908,8 @@ linux aio的API大抵包括下面这些：
 </div>
 </div>
 
-<div id="outline-container-org064dea8" class="outline-2">
-<h2 id="org064dea8"><span class="section-number-2">14</span> 进程间通信</h2>
+<div id="outline-container-org3953229" class="outline-2">
+<h2 id="org3953229"><span class="section-number-2">14</span> 进程间通信</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 unix系统下面的IPC(inteprocess communication)主要分为下面这几种：
@@ -9929,8 +9929,8 @@ unix系统下面的IPC(inteprocess communication)主要分为下面这几种：
 </p>
 </div>
 
-<div id="outline-container-orga47d805" class="outline-3">
-<h3 id="orga47d805"><span class="section-number-3">14.1</span> pipe</h3>
+<div id="outline-container-org01dcb81" class="outline-3">
+<h3 id="org01dcb81"><span class="section-number-3">14.1</span> pipe</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 管道是最古老的unix ipc，几乎所有的unix系统上都会提供这种通信机制。但是管道有两种局限性：
@@ -10034,8 +10034,8 @@ fd必然和这个进程号做了一个绑定。不然我们在pclose使用FILE*�
 </div>
 </div>
 
-<div id="outline-container-orge50c3fd" class="outline-3">
-<h3 id="orge50c3fd"><span class="section-number-3">14.2</span> fifo</h3>
+<div id="outline-container-orge1e7978" class="outline-3">
+<h3 id="orge1e7978"><span class="section-number-3">14.2</span> fifo</h3>
 <div class="outline-text-3" id="text-14-2">
 <p>
 这里的fifo是指命名fifo.和管道特征一样，一次字节小于PIPE_BUF保证不会穿插，并且没有写端读端返回0,没有读端
@@ -10074,8 +10074,8 @@ fd必然和这个进程号做了一个绑定。不然我们在pclose使用FILE*�
 </div>
 </div>
 
-<div id="outline-container-org8c97a89" class="outline-3">
-<h3 id="org8c97a89"><span class="section-number-3">14.3</span> XSI IPC</h3>
+<div id="outline-container-org221f626" class="outline-3">
+<h3 id="org221f626"><span class="section-number-3">14.3</span> XSI IPC</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 XSI IPC包括的就是消息队列，信号量和共享存储，他们有很多相似之处，所以在开头我们介绍相似之处的功能。
@@ -10084,8 +10084,8 @@ XSI IPC包括的就是消息队列，信号量和共享存储，他们有很多�
 </p>
 </div>
 
-<div id="outline-container-org4b2ca27" class="outline-4">
-<h4 id="org4b2ca27"><span class="section-number-4">14.3.1</span> 创建标识</h4>
+<div id="outline-container-orgf8bb2a2" class="outline-4">
+<h4 id="orgf8bb2a2"><span class="section-number-4">14.3.1</span> 创建标识</h4>
 <div class="outline-text-4" id="text-14-3-1">
 <p>
 和文件的文件描述符类似，IPC也是通过一个非负整数来表示一个IPC资源的，然后之后的操作都是针对这个id来引用
@@ -10121,8 +10121,8 @@ ftok必须引用一个已经存在的路径。底层实现可能是得到path的
 </div>
 </div>
 
-<div id="outline-container-org0a5c3d7" class="outline-4">
-<h4 id="org0a5c3d7"><span class="section-number-4">14.3.2</span> 权限结构</h4>
+<div id="outline-container-org45dac3c" class="outline-4">
+<h4 id="org45dac3c"><span class="section-number-4">14.3.2</span> 权限结构</h4>
 <div class="outline-text-4" id="text-14-3-2">
 <p>
 对于每一个IPC结构都设置了ipc_perm结构，规定了权限和所有者。
@@ -10153,8 +10153,8 @@ ftok必须引用一个已经存在的路径。底层实现可能是得到path的
 </div>
 </div>
 
-<div id="outline-container-org60e64da" class="outline-4">
-<h4 id="org60e64da"><span class="section-number-4">14.3.3</span> 资源限制</h4>
+<div id="outline-container-orgeeb896a" class="outline-4">
+<h4 id="orgeeb896a"><span class="section-number-4">14.3.3</span> 资源限制</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 XSI IPC都有内置限制(built-in limit),大多数可以通过重新配置内核而加以修改。在Linux下面我们可以通过ipcs -l来显示
@@ -10163,8 +10163,8 @@ XSI IPC都有内置限制(built-in limit),大多数可以通过重新配置内�
 </div>
 </div>
 
-<div id="outline-container-orgca88084" class="outline-4">
-<h4 id="orgca88084"><span class="section-number-4">14.3.4</span> 优点和缺点</h4>
+<div id="outline-container-orge917f65" class="outline-4">
+<h4 id="orge917f65"><span class="section-number-4">14.3.4</span> 优点和缺点</h4>
 <div class="outline-text-4" id="text-14-3-4">
 <p>
 XSI IPC有下面这些问题。首先IPC结构没有引用计数，这就意味如果不显示调用的话那么资源会一直保留，即使没有人使用这个IPC的话也一直会存在于
@@ -10214,8 +10214,8 @@ for x in msg:
 </div>
 </div>
 
-<div id="outline-container-orgb8a0925" class="outline-3">
-<h3 id="orgb8a0925"><span class="section-number-3">14.4</span> 消息队列</h3>
+<div id="outline-container-orgde32b3c" class="outline-3">
+<h3 id="orgde32b3c"><span class="section-number-3">14.4</span> 消息队列</h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 消息队列由内核来管理，每一个队列通过一个队列ID来识别(queue ID).每一个消息队列都有一个结构msgid_ds与其关联
@@ -10370,8 +10370,8 @@ help
 </div>
 </div>
 
-<div id="outline-container-org996e540" class="outline-3">
-<h3 id="org996e540"><span class="section-number-3">14.5</span> 信号量</h3>
+<div id="outline-container-org3e9000f" class="outline-3">
+<h3 id="org3e9000f"><span class="section-number-3">14.5</span> 信号量</h3>
 <div class="outline-text-3" id="text-14-5">
 <p>
 信号量主要用于进行多进程之间同步的。通常来说针对资源的话，提供是类似于操作系统里面提到的PV操作。
@@ -10539,8 +10539,8 @@ child about to exit
 </div>
 </div>
 
-<div id="outline-container-org2764e0e" class="outline-3">
-<h3 id="org2764e0e"><span class="section-number-3">14.6</span> 共享存储</h3>
+<div id="outline-container-org5133c43" class="outline-3">
+<h3 id="org5133c43"><span class="section-number-3">14.6</span> 共享存储</h3>
 <div class="outline-text-3" id="text-14-6">
 <p>
 共享存储也成为共享内存，和其他XSI IPC一样也每个共享存储段也有一个结构
@@ -10640,8 +10640,8 @@ segment size:1024,attach number:2
 </div>
 </div>
 
-<div id="outline-container-orgb925faa" class="outline-3">
-<h3 id="orgb925faa"><span class="section-number-3">14.7</span> mmap共享内存</h3>
+<div id="outline-container-orgd05a2aa" class="outline-3">
+<h3 id="orgd05a2aa"><span class="section-number-3">14.7</span> mmap共享内存</h3>
 <div class="outline-text-3" id="text-14-7">
 <p>
 如果仅仅是父子进程之间的共享内存的话，那么可以有更加简单的方式，都和mmap相关。第一种方式是将
@@ -10704,8 +10704,8 @@ mmap映射/dev/zero这个文件。因为/dev/zero是一个特殊文件任何写�
 </div>
 </div>
 
-<div id="outline-container-orgdc7c226" class="outline-3">
-<h3 id="orgdc7c226"><span class="section-number-3">14.8</span> 进程pthread锁</h3>
+<div id="outline-container-org2e6ad55" class="outline-3">
+<h3 id="org2e6ad55"><span class="section-number-3">14.8</span> 进程pthread锁</h3>
 <div class="outline-text-3" id="text-14-8">
 <p>
 pthread的同步机制允许设置进程之间的共享属性。通过pthread的同步机制是在共享内存上面开辟并且设置了共享属性，

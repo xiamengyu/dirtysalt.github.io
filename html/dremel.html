@@ -16,17 +16,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf3c040e">1. Abstract</a></li>
-<li><a href="#orgbf9f66f">2. Introduction</a></li>
-<li><a href="#org3652b80">3. Background</a></li>
-<li><a href="#orgf35cc50">4. Data Model</a></li>
-<li><a href="#orgdcb309b">5. Nested Columnar Storage</a></li>
-<li><a href="#orgfe713aa">6. Query Language</a></li>
-<li><a href="#org1da3d47">7. Query Execution</a></li>
-<li><a href="#orga2886be">8. Experiments</a></li>
-<li><a href="#org6089353">9. Observations</a></li>
-<li><a href="#orgd56edfa">10. Related Work</a></li>
-<li><a href="#orge82f278">11. Conclusion</a></li>
+<li><a href="#orgfe5447d">1. Abstract</a></li>
+<li><a href="#org89b6636">2. Introduction</a></li>
+<li><a href="#orgdcde982">3. Background</a></li>
+<li><a href="#orgef3ee5f">4. Data Model</a></li>
+<li><a href="#org4032452">5. Nested Columnar Storage</a></li>
+<li><a href="#org21a543d">6. Query Language</a></li>
+<li><a href="#org181e7e0">7. Query Execution</a></li>
+<li><a href="#org7c5a6d9">8. Experiments</a></li>
+<li><a href="#orgf9413cc">9. Observations</a></li>
+<li><a href="#org1983f67">10. Related Work</a></li>
+<li><a href="#org94cd969">11. Conclusion</a></li>
 </ul>
 </div>
 </div>
@@ -35,8 +35,8 @@
 <li><a href="http://www.yankay.com/google-dremel-rationale">http://www.yankay.com/google-dremel-rationale</a></li>
 </ul>
 
-<div id="outline-container-orgf3c040e" class="outline-2">
-<h2 id="orgf3c040e"><span class="section-number-2">1</span> Abstract</h2>
+<div id="outline-container-orgfe5447d" class="outline-2">
+<h2 id="orgfe5447d"><span class="section-number-2">1</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Dremel is a scalable, interactive ad-hoc query system for analy-sis of read-only nested data. （着重处理只读的嵌套数据，主要针对交互式的ad-hoc查询，并且有良好的可扩展性）</li>
@@ -46,8 +46,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgbf9f66f" class="outline-2">
-<h2 id="orgbf9f66f"><span class="section-number-2">2</span> Introduction</h2>
+<div id="outline-container-org89b6636" class="outline-2">
+<h2 id="org89b6636"><span class="section-number-2">2</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>This paper describes a system called Dremel1 that supports inter-active analysis of very large datasets over shared clusters of com-modity machines. （允许在廉价的集群上面进行大规模数据的交互式分析）</li>
@@ -88,8 +88,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3652b80" class="outline-2">
-<h2 id="org3652b80"><span class="section-number-2">3</span> Background</h2>
+<div id="outline-container-orgdcde982" class="outline-2">
+<h2 id="orgdcde982"><span class="section-number-2">3</span> Background</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 下图表示行式存储和列式存储的区别
@@ -103,8 +103,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf35cc50" class="outline-2">
-<h2 id="orgf35cc50"><span class="section-number-2">4</span> Data Model</h2>
+<div id="outline-container-orgef3ee5f" class="outline-2">
+<h2 id="orgef3ee5f"><span class="section-number-2">4</span> Data Model</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 in a short word, "protobuf"
@@ -112,8 +112,8 @@ in a short word, "protobuf"
 </div>
 </div>
 
-<div id="outline-container-orgdcb309b" class="outline-2">
-<h2 id="orgdcb309b"><span class="section-number-2">5</span> Nested Columnar Storage</h2>
+<div id="outline-container-org4032452" class="outline-2">
+<h2 id="org4032452"><span class="section-number-2">5</span> Nested Columnar Storage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这节讲的内容主要就是说，如何在行式存储和为列式存储之间无损地进行转换。
@@ -168,11 +168,11 @@ in a short word, "protobuf"
 </div>
 </div>
 
-<div id="outline-container-orgfe713aa" class="outline-2">
-<h2 id="orgfe713aa"><span class="section-number-2">6</span> Query Language</h2>
+<div id="outline-container-org21a543d" class="outline-2">
+<h2 id="org21a543d"><span class="section-number-2">6</span> Query Language</h2>
 </div>
-<div id="outline-container-org1da3d47" class="outline-2">
-<h2 id="org1da3d47"><span class="section-number-2">7</span> Query Execution</h2>
+<div id="outline-container-org181e7e0" class="outline-2">
+<h2 id="org181e7e0"><span class="section-number-2">7</span> Query Execution</h2>
 <div class="outline-text-2" id="text-7">
 <hr />
 
@@ -211,11 +211,11 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </div>
 </div>
 
-<div id="outline-container-orga2886be" class="outline-2">
-<h2 id="orga2886be"><span class="section-number-2">8</span> Experiments</h2>
+<div id="outline-container-org7c5a6d9" class="outline-2">
+<h2 id="org7c5a6d9"><span class="section-number-2">8</span> Experiments</h2>
 </div>
-<div id="outline-container-org6089353" class="outline-2">
-<h2 id="org6089353"><span class="section-number-2">9</span> Observations</h2>
+<div id="outline-container-orgf9413cc" class="outline-2">
+<h2 id="orgf9413cc"><span class="section-number-2">9</span> Observations</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Dremel scans quadrillions of records per month. Figure 15 shows the query response time distribution in a typical monthly workload of one Dremel system, on a logarithmic scale. As the figure indi-cates, most queries are processed under 10 seconds, well within the interactive range. Some queries achieve a scan throughput close to 100 billion records per second on a shared cluster, and even higher on dedicated machines. （可以看到大部分的读取时间都非常小，没有长尾）
@@ -241,11 +241,11 @@ Dremel scans quadrillions of records per month. Figure 15 shows the query respon
 </div>
 </div>
 
-<div id="outline-container-orgd56edfa" class="outline-2">
-<h2 id="orgd56edfa"><span class="section-number-2">10</span> Related Work</h2>
+<div id="outline-container-org1983f67" class="outline-2">
+<h2 id="org1983f67"><span class="section-number-2">10</span> Related Work</h2>
 </div>
-<div id="outline-container-orge82f278" class="outline-2">
-<h2 id="orge82f278"><span class="section-number-2">11</span> Conclusion</h2>
+<div id="outline-container-org94cd969" class="outline-2">
+<h2 id="org94cd969"><span class="section-number-2">11</span> Conclusion</h2>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/dremel.html';this.page.identifier = 'dremel.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

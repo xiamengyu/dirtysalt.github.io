@@ -16,25 +16,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgad2b5cd">1. Overview</a></li>
-<li><a href="#orgb5a99f2">2. I/O Model and Cache-Oblivious</a>
+<li><a href="#org359fdb1">1. Overview</a></li>
+<li><a href="#org2b186e8">2. I/O Model and Cache-Oblivious</a>
 <ul>
-<li><a href="#org195cc38">2.1. Modeling I/O Using the Disk Access Model</a></li>
-<li><a href="#orgb94049d">2.2. Cache-Oblivious Analysis</a></li>
+<li><a href="#org552b7b7">2.1. Modeling I/O Using the Disk Access Model</a></li>
+<li><a href="#org9d843df">2.2. Cache-Oblivious Analysis</a></li>
 </ul>
 </li>
-<li><a href="#orgb7c5b72">3. Write-Optimized Data Structures</a></li>
-<li><a href="#org6df6ecc">4. TokuFS&#x2013;How to Make a Write-Optimized File System</a></li>
-<li><a href="#org050a953">5. Paging</a></li>
-<li><a href="#orgf08d032">6. What to Index</a></li>
-<li><a href="#org783e1c3">7. Log Structured Merge Trees</a></li>
-<li><a href="#org3068f35">8. Bloom Filters</a></li>
-<li><a href="#org2dab432">9. Closing Words</a></li>
+<li><a href="#orgc9a5370">3. Write-Optimized Data Structures</a></li>
+<li><a href="#orgbdabbca">4. TokuFS&#x2013;How to Make a Write-Optimized File System</a></li>
+<li><a href="#org19a7fc4">5. Paging</a></li>
+<li><a href="#org6ec908e">6. What to Index</a></li>
+<li><a href="#org588cec6">7. Log Structured Merge Trees</a></li>
+<li><a href="#orgc113447">8. Bloom Filters</a></li>
+<li><a href="#org37dc2b6">9. Closing Words</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgad2b5cd" class="outline-2">
-<h2 id="orgad2b5cd"><span class="section-number-2">1</span> Overview</h2>
+<div id="outline-container-org359fdb1" class="outline-2">
+<h2 id="org359fdb1"><span class="section-number-2">1</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Michael A. Bender @ Stony Brook &amp; Tokutek</li>
@@ -80,12 +80,12 @@ Topics and Outline for this Tutorial
 </div>
 </div>
 
-<div id="outline-container-orgb5a99f2" class="outline-2">
-<h2 id="orgb5a99f2"><span class="section-number-2">2</span> I/O Model and Cache-Oblivious</h2>
+<div id="outline-container-org2b186e8" class="outline-2">
+<h2 id="org2b186e8"><span class="section-number-2">2</span> I/O Model and Cache-Oblivious</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org195cc38" class="outline-3">
-<h3 id="org195cc38"><span class="section-number-3">2.1</span> Modeling I/O Using the Disk Access Model</h3>
+<div id="outline-container-org552b7b7" class="outline-3">
+<h3 id="org552b7b7"><span class="section-number-3">2.1</span> Modeling I/O Using the Disk Access Model</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>How computation works:
@@ -126,8 +126,8 @@ merge-sort analysis非常精辟，每次merge run是M/B. 这点非常重要，�
 </div>
 </div>
 
-<div id="outline-container-orgb94049d" class="outline-3">
-<h3 id="orgb94049d"><span class="section-number-3">2.2</span> Cache-Oblivious Analysis</h3>
+<div id="outline-container-org9d843df" class="outline-3">
+<h3 id="org9d843df"><span class="section-number-3">2.2</span> Cache-Oblivious Analysis</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Cache-oblivious analysis:
@@ -144,8 +144,8 @@ merge-sort analysis非常精辟，每次merge run是M/B. 这点非常重要，�
 </div>
 </div>
 
-<div id="outline-container-orgb7c5b72" class="outline-2">
-<h2 id="orgb7c5b72"><span class="section-number-2">3</span> Write-Optimized Data Structures</h2>
+<div id="outline-container-orgc9a5370" class="outline-2">
+<h2 id="orgc9a5370"><span class="section-number-2">3</span> Write-Optimized Data Structures</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Data structures: [O'Neil,Cheng, Gawlick, O'Neil 96], [Buchsbaum, Goldwasser, Venkatasubramanian, Westbrook 00], [Argel 03], [Graefe 03], [Brodal, Fagerberg 03], [Bender, Farach,Fineman,Fogel, Kuszmaul, Nelson’07], [Brodal, Demaine, Fineman, Iacono, Langerman, Munro 10], [Spillane, Shetty, Zadok, Archak, Dixit 11].</li>
@@ -202,8 +202,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-org6df6ecc" class="outline-2">
-<h2 id="org6df6ecc"><span class="section-number-2">4</span> TokuFS&#x2013;How to Make a Write-Optimized File System</h2>
+<div id="outline-container-orgbdabbca" class="outline-2">
+<h2 id="orgbdabbca"><span class="section-number-2">4</span> TokuFS&#x2013;How to Make a Write-Optimized File System</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Microdata is the Problem 重点解决元数据存储问题</li>
@@ -211,8 +211,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-org050a953" class="outline-2">
-<h2 id="org050a953"><span class="section-number-2">5</span> Paging</h2>
+<div id="outline-container-org19a7fc4" class="outline-2">
+<h2 id="org19a7fc4"><span class="section-number-2">5</span> Paging</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Paging Algorithms
@@ -227,8 +227,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-orgf08d032" class="outline-2">
-<h2 id="orgf08d032"><span class="section-number-2">6</span> What to Index</h2>
+<div id="outline-container-org6ec908e" class="outline-2">
+<h2 id="org6ec908e"><span class="section-number-2">6</span> What to Index</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Indexes provide query performance
@@ -250,8 +250,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-org783e1c3" class="outline-2">
-<h2 id="org783e1c3"><span class="section-number-2">7</span> Log Structured Merge Trees</h2>
+<div id="outline-container-org588cec6" class="outline-2">
+<h2 id="org588cec6"><span class="section-number-2">7</span> Log Structured Merge Trees</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 #todo: LSM algorithm analysis
@@ -290,8 +290,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-org3068f35" class="outline-2">
-<h2 id="org3068f35"><span class="section-number-2">8</span> Bloom Filters</h2>
+<div id="outline-container-orgc113447" class="outline-2">
+<h2 id="orgc113447"><span class="section-number-2">8</span> Bloom Filters</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>If n items are in an array of size m, then the chances of getting a YES answer on an element that is not there is 1 - e^(-n /m)</li>
@@ -302,8 +302,8 @@ Optimal read-write tradeoff: Easy Full featured: Hard 实现需要考虑如下�
 </div>
 </div>
 
-<div id="outline-container-org2dab432" class="outline-2">
-<h2 id="org2dab432"><span class="section-number-2">9</span> Closing Words</h2>
+<div id="outline-container-org37dc2b6" class="outline-2">
+<h2 id="org37dc2b6"><span class="section-number-2">9</span> Closing Words</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>Big Data Epigrams

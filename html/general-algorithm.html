@@ -16,24 +16,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd5dbc5b">1. strlen in glibc</a></li>
-<li><a href="#orgb46b196">2. consistent hashing</a></li>
-<li><a href="#org8536f0d">3. rsync core algorithm</a></li>
-<li><a href="#org433a415">4. simhash algorithm</a></li>
-<li><a href="#orga93e373">5. HyperLogLog</a></li>
-<li><a href="#orgc60774d">6. CONCISE</a></li>
-<li><a href="#org17e8339">7. 流式计算均值和方差</a></li>
-<li><a href="#orgc021078">8. 查找非重复数字</a></li>
-<li><a href="#org1a72031">9. Monty Hall Problem</a></li>
-<li><a href="#orgb58aee8">10. 神奇帽子问题 Magical Hat</a></li>
-<li><a href="#org059caac">11. 等概率选取链表元素</a></li>
-<li><a href="#orgbecd98e">12. CS中最重要的32个算法</a></li>
+<li><a href="#org9ae4c9f">1. strlen in glibc</a></li>
+<li><a href="#org2c0e7cd">2. consistent hashing</a></li>
+<li><a href="#orgca2e937">3. rsync core algorithm</a></li>
+<li><a href="#org951fbf3">4. simhash algorithm</a></li>
+<li><a href="#orgbcecc73">5. HyperLogLog</a></li>
+<li><a href="#org03aa438">6. CONCISE</a></li>
+<li><a href="#org94c9587">7. 流式计算均值和方差</a></li>
+<li><a href="#org6f22de5">8. 查找非重复数字</a></li>
+<li><a href="#org3ccd874">9. Monty Hall Problem</a></li>
+<li><a href="#org53af006">10. 神奇帽子问题 Magical Hat</a></li>
+<li><a href="#orgfb92914">11. 等概率选取链表元素</a></li>
+<li><a href="#org33a36a8">12. CS中最重要的32个算法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd5dbc5b" class="outline-2">
-<h2 id="orgd5dbc5b"><span class="section-number-2">1</span> strlen in glibc</h2>
+<div id="outline-container-org9ae4c9f" class="outline-2">
+<h2 id="org9ae4c9f"><span class="section-number-2">1</span> strlen in glibc</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 参考链接 <a href="http://www.kuqin.com/language/20071113/2308.html">http://www.kuqin.com/language/20071113/2308.html</a>. 这里和链接有点不太一样的就是，这个版本glibc实现考虑了非ASCII字符。
@@ -132,8 +132,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb46b196" class="outline-2">
-<h2 id="orgb46b196"><span class="section-number-2">2</span> consistent hashing</h2>
+<div id="outline-container-org2c0e7cd" class="outline-2">
+<h2 id="org2c0e7cd"><span class="section-number-2">2</span> consistent hashing</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Consistent_hash">http://en.wikipedia.org/wiki/Consistent_hash</a></li>
@@ -155,8 +155,8 @@ The basic idea behind the consistent hashing algorithm is to hash both objects a
 </div>
 </div>
 
-<div id="outline-container-org8536f0d" class="outline-2">
-<h2 id="org8536f0d"><span class="section-number-2">3</span> rsync core algorithm</h2>
+<div id="outline-container-orgca2e937" class="outline-2">
+<h2 id="orgca2e937"><span class="section-number-2">3</span> rsync core algorithm</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://coolshell.cn/articles/7425.html">http://coolshell.cn/articles/7425.html</a></li>
@@ -187,8 +187,8 @@ The basic idea behind the consistent hashing algorithm is to hash both objects a
 </div>
 </div>
 
-<div id="outline-container-org433a415" class="outline-2">
-<h2 id="org433a415"><span class="section-number-2">4</span> simhash algorithm</h2>
+<div id="outline-container-org951fbf3" class="outline-2">
+<h2 id="org951fbf3"><span class="section-number-2">4</span> simhash algorithm</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="http://blog.csdn.net/lgnlgn/article/details/6008498">http://blog.csdn.net/lgnlgn/article/details/6008498</a></li>
@@ -255,8 +255,8 @@ UPDATE@201808 这篇 <a href="https://github.com/julycoding/The-Art-Of-Programmi
 </div>
 </div>
 
-<div id="outline-container-orga93e373" class="outline-2">
-<h2 id="orga93e373"><span class="section-number-2">5</span> HyperLogLog</h2>
+<div id="outline-container-orgbcecc73" class="outline-2">
+<h2 id="orgbcecc73"><span class="section-number-2">5</span> HyperLogLog</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf">http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf</a></li>
@@ -348,8 +348,8 @@ def estimate_cardinality(values, k):
 </div>
 </div>
 
-<div id="outline-container-orgc60774d" class="outline-2">
-<h2 id="orgc60774d"><span class="section-number-2">6</span> CONCISE</h2>
+<div id="outline-container-org03aa438" class="outline-2">
+<h2 id="org03aa438"><span class="section-number-2">6</span> CONCISE</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Maximum Performance with Minimum Storage: Data Compression in Druid | Metamarkets <a href="http://metamarkets.com/2012/druid-bitmap-compression/">http://metamarkets.com/2012/druid-bitmap-compression/</a></li>
@@ -413,8 +413,8 @@ CONCISE针对这个部分稍微改进了一下
 </div>
 </div>
 
-<div id="outline-container-org17e8339" class="outline-2">
-<h2 id="org17e8339"><span class="section-number-2">7</span> 流式计算均值和方差</h2>
+<div id="outline-container-org94c9587" class="outline-2">
+<h2 id="org94c9587"><span class="section-number-2">7</span> 流式计算均值和方差</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance">http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance</a></li>
@@ -445,8 +445,8 @@ th^2 * n = (X1-Xe)^2 + (X2-Xe)^2 + (X3-Xe)^2 + ... (Xi-Xe)^2 + .. (Xn-Xe)^2
 </div>
 </div>
 
-<div id="outline-container-orgc021078" class="outline-2">
-<h2 id="orgc021078"><span class="section-number-2">8</span> 查找非重复数字</h2>
+<div id="outline-container-org6f22de5" class="outline-2">
+<h2 id="org6f22de5"><span class="section-number-2">8</span> 查找非重复数字</h2>
 <div class="outline-text-2" id="text-8">
 <hr />
 <p>
@@ -556,8 +556,8 @@ a1 a1 a1 a2 a2 a2 &#x2026; an an an X
 </div>
 </div>
 
-<div id="outline-container-org1a72031" class="outline-2">
-<h2 id="org1a72031"><span class="section-number-2">9</span> Monty Hall Problem</h2>
+<div id="outline-container-org3ccd874" class="outline-2">
+<h2 id="org3ccd874"><span class="section-number-2">9</span> Monty Hall Problem</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 原题是有三扇门，一扇门后面是一辆汽车，后面两扇门没有东西。主持人首先让你选择一扇门，之后主持人打开一扇后面没有任何东西的门，然后主持人问你是否需要更换你的选择？扩展一下这个问题，如果扩展到N(N&gt;=3)扇门的话，那么之前和之后中奖概率分别是多少？
@@ -585,8 +585,8 @@ UPDATE@2015-09-08: 这个问题是 <a href="https://en.wikipedia.org/wiki/Monty_
 </div>
 </div>
 
-<div id="outline-container-orgb58aee8" class="outline-2">
-<h2 id="orgb58aee8"><span class="section-number-2">10</span> 神奇帽子问题 Magical Hat</h2>
+<div id="outline-container-org53af006" class="outline-2">
+<h2 id="org53af006"><span class="section-number-2">10</span> 神奇帽子问题 Magical Hat</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 A bunch of men are on an island. A genie comes down and gathers everyone together and places a magical hat on some people’s heads (i.e., at least one person has a hat). The hat is magical: it can be seen by other people, but not by the wearer of the hat himself. To remove the hat, those (and only those who have a hat) must dunk themselves underwater at exactly midnight. If there are n people and c hats, how long does it take the men to remove the hats? The men cannot tell each other (in any way) that they have a hat.
@@ -620,8 +620,8 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 </div>
 </div>
 
-<div id="outline-container-org059caac" class="outline-2">
-<h2 id="org059caac"><span class="section-number-2">11</span> 等概率选取链表元素</h2>
+<div id="outline-container-orgfb92914" class="outline-2">
+<h2 id="orgfb92914"><span class="section-number-2">11</span> 等概率选取链表元素</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 <a href="https://www.geeksforgeeks.org/reservoir-sampling/">https://www.geeksforgeeks.org/reservoir-sampling/</a>
@@ -653,8 +653,8 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 </div>
 </div>
 
-<div id="outline-container-orgbecd98e" class="outline-2">
-<h2 id="orgbecd98e"><span class="section-number-2">12</span> CS中最重要的32个算法</h2>
+<div id="outline-container-org33a36a8" class="outline-2">
+<h2 id="org33a36a8"><span class="section-number-2">12</span> CS中最重要的32个算法</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 <a href="http://www.infoq.com/cn/news/2012/08/32-most-important-algorithms">http://www.infoq.com/cn/news/2012/08/32-most-important-algorithms</a>

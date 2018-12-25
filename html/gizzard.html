@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc5ecd9">1. An introduction to sharding</a></li>
-<li><a href="#org49941e4">2. What is a sharding framework?</a></li>
-<li><a href="#org9c69b04">3. How does it work?</a>
+<li><a href="#org956219a">1. An introduction to sharding</a></li>
+<li><a href="#org78af370">2. What is a sharding framework?</a></li>
+<li><a href="#org283f030">3. How does it work?</a>
 <ul>
-<li><a href="#orgdd17cee">3.1. Gizzard is middleware</a></li>
-<li><a href="#org7b0f384">3.2. Gizzard supports any datastorage backend</a></li>
-<li><a href="#org453b739">3.3. Gizzard handles partitioning through a forwarding table</a></li>
-<li><a href="#orgbf5c983">3.4. Gizzard handles replication through a replication tree</a></li>
-<li><a href="#org8d4421f">3.5. Gizzard is fault-tolerant</a></li>
-<li><a href="#orgeea3215">3.6. Winged migrations</a></li>
+<li><a href="#orgc488771">3.1. Gizzard is middleware</a></li>
+<li><a href="#org4da29d4">3.2. Gizzard supports any datastorage backend</a></li>
+<li><a href="#org2758558">3.3. Gizzard handles partitioning through a forwarding table</a></li>
+<li><a href="#orge5bae1b">3.4. Gizzard handles replication through a replication tree</a></li>
+<li><a href="#org1fb5a13">3.5. Gizzard is fault-tolerant</a></li>
+<li><a href="#orgf20b486">3.6. Winged migrations</a></li>
 </ul>
 </li>
 </ul>
@@ -35,11 +35,11 @@
 <a href="https://github.com/twitter/gizzard">https://github.com/twitter/gizzard</a> # 项目已经废弃
 </p>
 
-<div id="outline-container-orgfc5ecd9" class="outline-2">
-<h2 id="orgfc5ecd9"><span class="section-number-2">1</span> An introduction to sharding</h2>
+<div id="outline-container-org956219a" class="outline-2">
+<h2 id="org956219a"><span class="section-number-2">1</span> An introduction to sharding</h2>
 </div>
-<div id="outline-container-org49941e4" class="outline-2">
-<h2 id="org49941e4"><span class="section-number-2">2</span> What is a sharding framework?</h2>
+<div id="outline-container-org78af370" class="outline-2">
+<h2 id="org78af370"><span class="section-number-2">2</span> What is a sharding framework?</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Thus, we have extracted Gizzard, a Scala framework that makes it easy to create custom fault-tolerant, distributed databases.</li>
@@ -55,12 +55,12 @@
 </div>
 </div>
 
-<div id="outline-container-org9c69b04" class="outline-2">
-<h2 id="org9c69b04"><span class="section-number-2">3</span> How does it work?</h2>
+<div id="outline-container-org283f030" class="outline-2">
+<h2 id="org283f030"><span class="section-number-2">3</span> How does it work?</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgdd17cee" class="outline-3">
-<h3 id="orgdd17cee"><span class="section-number-3">3.1</span> Gizzard is middleware</h3>
+<div id="outline-container-orgc488771" class="outline-3">
+<h3 id="orgc488771"><span class="section-number-3">3.1</span> Gizzard is middleware</h3>
 <div class="outline-text-3" id="text-3-1">
 
 <div class="figure">
@@ -74,8 +74,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7b0f384" class="outline-3">
-<h3 id="org7b0f384"><span class="section-number-3">3.2</span> Gizzard supports any datastorage backend</h3>
+<div id="outline-container-org4da29d4" class="outline-3">
+<h3 id="org4da29d4"><span class="section-number-3">3.2</span> Gizzard supports any datastorage backend</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>As a general rule, Gizzard requires that all write operations be idempotent and commutative (see the section on Fault Tolerance and Migrations), so this places some constraints on how you may use the back-end store.</li>
@@ -87,8 +87,8 @@
 </div>
 </div>
 
-<div id="outline-container-org453b739" class="outline-3">
-<h3 id="org453b739"><span class="section-number-3">3.3</span> Gizzard handles partitioning through a forwarding table</h3>
+<div id="outline-container-org2758558" class="outline-3">
+<h3 id="org2758558"><span class="section-number-3">3.3</span> Gizzard handles partitioning through a forwarding table</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Gizzard handles partitioning (i.e., dividing exclusive ranges of data across many hosts) by mappings ranges of data to particular shards. （range based partition)</li>
@@ -106,8 +106,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgbf5c983" class="outline-3">
-<h3 id="orgbf5c983"><span class="section-number-3">3.4</span> Gizzard handles replication through a replication tree</h3>
+<div id="outline-container-orge5bae1b" class="outline-3">
+<h3 id="orge5bae1b"><span class="section-number-3">3.4</span> Gizzard handles replication through a replication tree</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Each shard referenced in the forwarding table can be either a physical shard or a logical shard.
@@ -131,8 +131,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8d4421f" class="outline-3">
-<h3 id="org8d4421f"><span class="section-number-3">3.5</span> Gizzard is fault-tolerant</h3>
+<div id="outline-container-org1fb5a13" class="outline-3">
+<h3 id="org1fb5a13"><span class="section-number-3">3.5</span> Gizzard is fault-tolerant</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Gizzard is designed to avoid any single points of failure.</li>
@@ -148,8 +148,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgeea3215" class="outline-3">
-<h3 id="orgeea3215"><span class="section-number-3">3.6</span> Winged migrations</h3>
+<div id="outline-container-orgf20b486" class="outline-3">
+<h3 id="orgf20b486"><span class="section-number-3">3.6</span> Winged migrations</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>When migrating from Datastore A to Datastore A', a Replicating shard is set up between them but a WriteOnly shard is placed in front of Datastore A'. Then data is copied from the old shard to the new shard. The WriteOnly shard ensures that while the new Shard is bootstrapping, no data is read from it (because it has an incomplete picture of the corpus). (原来老的数据通过replication复制过去，而新增数据通过write-only shard拦截住，在new shard完全replication之前是不可读但是却可写的。</li>

@@ -1,6 +1,8 @@
 #+title: 个人博客 Blogs
 
 ** 2018
+- 201812 [[file:./geekbang-tech-management-practice.org][极客时间|技术管理实战36讲 文章目录]]
+- 201812 [[file:./geekbang-mysql-practice.org][极客时间|MySQL实战45讲 文章目录]]
 - 201811 [[file:why-i-quit-google-to-work-for-myself.org][Why I Quit Google to Work for Myself]]
 - 201811 [[file:whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.org][{Ask HN}What's the largest amount of bad code you have ever seen work?]]
 - 201811 [[file:interview-with-gmail-creator-and-y-combinator-partner-paul-buchheit.org][Interview with Gmail Creator Paul Buchheit]]

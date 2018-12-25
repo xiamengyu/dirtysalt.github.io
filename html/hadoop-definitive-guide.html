@@ -38,21 +38,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8eeac99">1. 初识Hadoop</a></li>
-<li><a href="#org053d826">2. 关于MapReduce</a></li>
-<li><a href="#orge29ca0c">3. Hadoop分布式文件系统</a></li>
-<li><a href="#org8487e05">4. Hadoop IO</a></li>
-<li><a href="#orgf9f7ccb">5. MapReduce应用开发</a></li>
-<li><a href="#org8534084">6. MapReduce的工作机制</a></li>
-<li><a href="#org2f4e5a2">7. MapReduce的类型与格式</a></li>
-<li><a href="#orgeeac3a6">8. MapReduce的特性</a></li>
-<li><a href="#org5ecbf12">9. 构建Hadoop集群</a></li>
-<li><a href="#org24f92e8">10. 管理Hadoop</a></li>
+<li><a href="#orgac78faf">1. 初识Hadoop</a></li>
+<li><a href="#org5327c86">2. 关于MapReduce</a></li>
+<li><a href="#orga1ac441">3. Hadoop分布式文件系统</a></li>
+<li><a href="#orgb0297d6">4. Hadoop IO</a></li>
+<li><a href="#org330435d">5. MapReduce应用开发</a></li>
+<li><a href="#org6d8fac7">6. MapReduce的工作机制</a></li>
+<li><a href="#org0239bac">7. MapReduce的类型与格式</a></li>
+<li><a href="#orgf4f385f">8. MapReduce的特性</a></li>
+<li><a href="#org087008c">9. 构建Hadoop集群</a></li>
+<li><a href="#org3993c58">10. 管理Hadoop</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8eeac99" class="outline-2">
-<h2 id="org8eeac99"><span class="section-number-2">1</span> 初识Hadoop</h2>
+<div id="outline-container-orgac78faf" class="outline-2">
+<h2 id="orgac78faf"><span class="section-number-2">1</span> 初识Hadoop</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 古代，人们用牛来拉中午，当一头牛拉不动一根圆木的时候，他们不曾想过培育更大更壮的牛。同样，我们也不需要尝试开发超级计算机，而应试着结合使用更多计算机系统。
@@ -60,8 +60,8 @@
 </div>
 </div>
 
-<div id="outline-container-org053d826" class="outline-2">
-<h2 id="org053d826"><span class="section-number-2">2</span> 关于MapReduce</h2>
+<div id="outline-container-org5327c86" class="outline-2">
+<h2 id="org5327c86"><span class="section-number-2">2</span> 关于MapReduce</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>设置HADOOP_CLASSPATH就可以直接使用hadoop CLASSNAME来在本地运行mapreduce程序。</li>
@@ -84,8 +84,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge29ca0c" class="outline-2">
-<h2 id="orge29ca0c"><span class="section-number-2">3</span> Hadoop分布式文件系统</h2>
+<div id="outline-container-orga1ac441" class="outline-2">
+<h2 id="orga1ac441"><span class="section-number-2">3</span> Hadoop分布式文件系统</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>使用hadoop archive能够将大量小文档打包，存档文件之能够只读访问
@@ -108,8 +108,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8487e05" class="outline-2">
-<h2 id="org8487e05"><span class="section-number-2">4</span> Hadoop IO</h2>
+<div id="outline-container-orgb0297d6" class="outline-2">
+<h2 id="orgb0297d6"><span class="section-number-2">4</span> Hadoop IO</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
 <ul class="org-ul">
@@ -241,8 +241,8 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 </div>
 </div>
 
-<div id="outline-container-orgf9f7ccb" class="outline-2">
-<h2 id="orgf9f7ccb"><span class="section-number-2">5</span> MapReduce应用开发</h2>
+<div id="outline-container-org330435d" class="outline-2">
+<h2 id="org330435d"><span class="section-number-2">5</span> MapReduce应用开发</h2>
 <div class="outline-text-2" id="text-5">
 <hr />
 <ul class="org-ul">
@@ -408,8 +408,8 @@ job，task and attempt
 </div>
 </div>
 
-<div id="outline-container-org8534084" class="outline-2">
-<h2 id="org8534084"><span class="section-number-2">6</span> MapReduce的工作机制</h2>
+<div id="outline-container-org6d8fac7" class="outline-2">
+<h2 id="org6d8fac7"><span class="section-number-2">6</span> MapReduce的工作机制</h2>
 <div class="outline-text-2" id="text-6">
 <hr />
 <p>
@@ -602,8 +602,8 @@ shuffle和排序
 </div>
 </div>
 
-<div id="outline-container-org2f4e5a2" class="outline-2">
-<h2 id="org2f4e5a2"><span class="section-number-2">7</span> MapReduce的类型与格式</h2>
+<div id="outline-container-org0239bac" class="outline-2">
+<h2 id="org0239bac"><span class="section-number-2">7</span> MapReduce的类型与格式</h2>
 <div class="outline-text-2" id="text-7">
 <hr />
 <p>
@@ -783,8 +783,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-orgeeac3a6" class="outline-2">
-<h2 id="orgeeac3a6"><span class="section-number-2">8</span> MapReduce的特性</h2>
+<div id="outline-container-orgf4f385f" class="outline-2">
+<h2 id="orgf4f385f"><span class="section-number-2">8</span> MapReduce的特性</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>计数器
@@ -838,8 +838,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org5ecbf12" class="outline-2">
-<h2 id="org5ecbf12"><span class="section-number-2">9</span> 构建Hadoop集群</h2>
+<div id="outline-container-org087008c" class="outline-2">
+<h2 id="org087008c"><span class="section-number-2">9</span> 构建Hadoop集群</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>很多教程说hadoop集群需要配置ssh,但是配置这个前提是你希望使用start-all.sh这个脚本来启动集群
@@ -943,8 +943,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org24f92e8" class="outline-2">
-<h2 id="org24f92e8"><span class="section-number-2">10</span> 管理Hadoop</h2>
+<div id="outline-container-org3993c58" class="outline-2">
+<h2 id="org3993c58"><span class="section-number-2">10</span> 管理Hadoop</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>永久性数据结构
