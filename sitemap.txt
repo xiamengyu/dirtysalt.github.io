@@ -432,6 +432,7 @@ https://dirtysalt.github.io/html/neuralnets.html
 https://dirtysalt.github.io/html/new-era-carmack.html
 https://dirtysalt.github.io/html/nginx-forwarding-proxy.html
 https://dirtysalt.github.io/html/nginx-https-redirect-loop.html
+https://dirtysalt.github.io/html/nginx-log-parser-opt.html
 https://dirtysalt.github.io/html/nginx-site-redirect.html
 https://dirtysalt.github.io/html/nginx.html
 https://dirtysalt.github.io/html/nine-algos-that-changed-the-future.html
