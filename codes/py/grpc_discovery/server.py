@@ -52,7 +52,9 @@ def serve():
     server = grpc.server(ThreadPoolExecutor(max_workers=10))
     helloworld_pb2_grpc.add_GreeterServicer_to_server(
         HelloServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    address = '[::]:50051'
+    print('listen on {}'.format(address))
+    server.add_insecure_port(address)
 
     def run(server):
         print('create process pid = {}'.format(os.getpid()))
