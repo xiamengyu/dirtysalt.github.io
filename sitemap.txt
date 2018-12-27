@@ -565,6 +565,7 @@ https://dirtysalt.github.io/html/sicp.html
 https://dirtysalt.github.io/html/silicon-valley-etiquette.html
 https://dirtysalt.github.io/html/simd.html
 https://dirtysalt.github.io/html/simple-made-easy.html
+https://dirtysalt.github.io/html/siraj-raval-youtube-channel-index.html
 https://dirtysalt.github.io/html/sit-boost-your-tech-career.html
 https://dirtysalt.github.io/html/skin-in-the-game-dedao.html
 https://dirtysalt.github.io/html/sklearn.html
