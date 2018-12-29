@@ -1,10 +1,16 @@
 #+title: 个人博客 Blogs
 
+** 2019
+- 201901 [[file:geekbang-tech-and-business-cases.org][极客时间|技术与商业案例解读 文章目录]]
+- 201901 [[file:geekbang-ai-internal-reference.org][极客时间|AI技术内参 文章目录]]
+
 ** 2018
+- 201812 [[file:geekbang-recommender-system.org][极客时间|推荐系统36式 文章目录]]
+- 201812 [[file:geekbang-tech-management-class.org][极客时间|朱赟的技术管理课 文章目录]]
 - 201812 [[file:siraj-raval-youtube-channel-index.org][Siraj Raval视频索引]]
-- 201812 [[file:./nginx-log-parser-opt.org][nginx日志解析器优化]]
-- 201812 [[file:./geekbang-tech-management-practice.org][极客时间|技术管理实战36讲 文章目录]]
-- 201812 [[file:./geekbang-mysql-practice.org][极客时间|MySQL实战45讲 文章目录]]
+- 201812 [[file:nginx-log-parser-opt.org][nginx日志解析器优化]]
+- 201812 [[file:geekbang-tech-management-practice.org][极客时间|技术管理实战36讲 文章目录]]
+- 201812 [[file:geekbang-mysql-practice.org][极客时间|MySQL实战45讲 文章目录]]
 - 201811 [[file:why-i-quit-google-to-work-for-myself.org][Why I Quit Google to Work for Myself]]
 - 201811 [[file:whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.org][{Ask HN}What's the largest amount of bad code you have ever seen work?]]
 - 201811 [[file:interview-with-gmail-creator-and-y-combinator-partner-paul-buchheit.org][Interview with Gmail Creator Paul Buchheit]]

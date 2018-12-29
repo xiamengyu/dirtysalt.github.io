@@ -206,8 +206,12 @@ https://dirtysalt.github.io/html/future-of-code.html
 https://dirtysalt.github.io/html/galera-code.html
 https://dirtysalt.github.io/html/galera.html
 https://dirtysalt.github.io/html/gcc-asm.html
+https://dirtysalt.github.io/html/geekbang-ai-internal-reference.html
 https://dirtysalt.github.io/html/geekbang-coolshell-index.html
 https://dirtysalt.github.io/html/geekbang-mysql-practice.html
+https://dirtysalt.github.io/html/geekbang-recommender-system.html
+https://dirtysalt.github.io/html/geekbang-tech-and-business-cases.html
+https://dirtysalt.github.io/html/geekbang-tech-management-class.html
 https://dirtysalt.github.io/html/geekbang-tech-management-practice.html
 https://dirtysalt.github.io/html/general-algorithm.html
 https://dirtysalt.github.io/html/generalists-and-specialists-thoughts-on-hiring.html
