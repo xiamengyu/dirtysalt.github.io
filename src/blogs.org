@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201901 [[file:instagram-engineering-3-rules-to-a-scalable-cloud-application-architecture.org][Instagram Engineering’s 3 rules to a scalable cloud application architecture]]
 - 201901 [[file:geekbang-tech-and-business-cases.org][极客时间|技术与商业案例解读 文章目录]]
 - 201901 [[file:geekbang-ai-internal-reference.org][极客时间|AI技术内参 文章目录]]
 
