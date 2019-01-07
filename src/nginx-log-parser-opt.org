@@ -58,7 +58,7 @@ py 1.12 secs
 #+END_EXAMPLE
 
 -----
-附带上生成正则表达式的代码
+附带上生成正则表达式的代码 [[file:codes/py/misc/ngx_log_parser.py][Implementation]]
 
 #+BEGIN_SRC Python
 def custom_build_pattern(log_format):
