@@ -26,7 +26,7 @@ codes_refs = (
     'file:///Users/dirlt/mysite/codes/',
     'file:///home/dirlt/repo/dirtysalt.github.io/codes/',
     'file:///home/dirlt/mysite/codes/',
-    '../../codes/'
+    'codes/'
 )
 
 HEAD_BEGIN = """<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -98,7 +98,7 @@ for f in html_files:
 
     def replace_link(x):
         for r in codes_refs:
-            x = x.replace(r, codes_link)
+            x = x.replace('<a href="' + r, '<a href="' + codes_link)
         return x
 
     data = map(replace_link, data)
