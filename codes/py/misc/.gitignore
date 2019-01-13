@@ -8,5 +8,4 @@ podcast_xml/
 podcast_mp3/
 podcast_rss/
 podcast_image/
-podcast_rsync.sh
 top10k_feeds.json
