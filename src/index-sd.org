@@ -141,3 +141,4 @@
 - [[file:future-of-code.org][代码的未来]] by 松本行弘
 - [[file:how-to-be-a-programmer.org][How to be a Programmer]]
 - [[file:geekbang-coolshell-index.org][极客时间|左耳听风 文章目录]]
+- [[file:im-hft-engineer-zhihu.org][我是高频交易工程师]]
