@@ -127,8 +127,12 @@ def run(ctx):
         tracks.append(t)
 
     rss = rss_template.render(**ctx)
-    with open(os.path.join(ctx['rss_dir'], '%s.xml' % ctx['name']), 'w') as fh:
-        fh.write(rss)
+
+    if tracks:
+        with open(os.path.join(ctx['rss_dir'], '%s.xml' % ctx['name']), 'w') as fh:
+            fh.write(rss)
+    else:
+        print('No episodes. skipped generating rss')
     print('rss url = http://{}/rss/{}.xml'.format(ctx['domain'], ctx['name']))
 
 
