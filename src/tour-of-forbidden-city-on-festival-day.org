@@ -41,3 +41,5 @@
 file:images/tour-of-forbidden-city-0.jpg
 
 file:images/tour-of-forbidden-city-1.jpg
+
+file:images/tour-of-forbidden-city-2.jpg
