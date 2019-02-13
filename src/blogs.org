@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201902 [[file:tour-of-forbidden-city-on-festival-day.org][春节逛了一圈故宫]]
 - 201902 [[file:lucky-to-have-someone-to-share.org][能找到一个人分享是多么难得的一件事情]]
 - 201901 [[file:instagram-engineering-3-rules-to-a-scalable-cloud-application-architecture.org][Instagram Engineering’s 3 rules to a scalable cloud application architecture]]
 - 201901 [[file:geekbang-tech-and-business-cases.org][极客时间|技术与商业案例解读 文章目录]]
@@ -357,10 +358,11 @@
   - [[file:review-2015.org][回顾2015]]
   - [[file:review-2016.org][回顾2016]]
   - [[file:review-2017.org][回顾2017]]
+- [[file:about-me.org][个人介绍 AboutMe]]
+- [[file:micro-twitter.org][只言片语 MicroTwitter]]
 
 ** links
 People:
-- [[file:blogs.org][my blog]] & [[file:about-me.org][about me]]
 - jwz. [[http://www.jwz.org/blog/][blog]] & [[http://www.jwz.org/doc/][doc]] "you can divide our industry into two kinds of people: those who want to go work for a company to make it successful, and those who want to go work for a successful company. " - [[http://www.jwz.org/gruntle/nomo.html][jwz]])
 - Leslie Lamport. http://research.microsoft.com/en-us/um/people/lamport/pubs/pubs.html
 - James Hamilton. http://mvdirona.com/jrh/work/
