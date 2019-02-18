@@ -71,8 +71,18 @@ def get_audio_duration(f):
     #     return res
     # except mutagen.mp3.HeaderNotFoundError:
     #     return 0
-    tag = TinyTag.get(f)
-    return tag.duration
+    try:
+        tag = TinyTag.get(f)
+        return tag.duration
+    except:
+        output = '/tmp/gen_podcast_rss_mp3_duration.txt'
+        cmd="""ffprobe "%s" 2>&1 | grep Duration | awk '{print(substr($2, 0, 8));}' > %s""" % (f, output)
+        # print(cmd)
+        os.system(cmd)
+        with open(output) as fh:
+            text = fh.read()
+            text = text.split(':')
+            return 3600 * int(text[0]) + 60 * int(text[1]) + int(text[2])
 
 
 def audio_duration_in_text(v):

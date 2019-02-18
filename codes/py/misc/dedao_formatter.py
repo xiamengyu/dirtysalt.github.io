@@ -368,6 +368,31 @@ page_string = """
 </html>
 """
 
+download_audio_script_string = """#!/bin/bash
+mkdir -p audio/
+{% for x in items %}
+wget --continue "{{ x.url }}" -O "audio/{{ x.title }}.mp3"
+{% endfor %}
+"""
+
+
+def make_download_audio_script():
+    if not os.path.exists('info/article'):
+        return
+
+    fs = glob.glob('info/article/*')
+    items = []
+    for f in fs:
+        js = json.load(open(f))
+        if 'audio' in js['c']['article_info']:
+            url = js['c']['article_info']['audio']['mp3_play_url']
+            title = js['c']['article_info']['audio']['title']
+            items.append({'title': title, 'url': url})
+    template = jinja2.Template(download_audio_script_string)
+    output = template.render(items=items)
+    with open('download_audio.sh', 'w') as fh:
+        fh.write(output)
+
 
 def main():
     fs = glob.glob('resp/get*')
@@ -403,6 +428,8 @@ def main():
         output = template.render(items=items, style_string=style_string,
                                  index_page_title="Index Page Document")
         fh.write(output)
+
+    make_download_audio_script()
 
 
 if __name__ == '__main__':
