@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # coding:utf-8
 # Copyright (C) dirlt
-
-import glob
 import hashlib
-import io
 import jinja2
 import json
 import os
+import pymongo
+import re
 import requests
+
+client = pymongo.MongoClient()
+table = client['geekbang']['cache']
 
 style_string = """
 <style type="text/css">html {
@@ -237,40 +239,11 @@ def get_sha1_key(s):
     return hashlib.sha1(s.encode('utf8')).hexdigest()
 
 
-def parse_response(resp):
-    path = resp
-    data = open(resp).read()
-    resp = json.loads(data)
-    d = resp['data']['content']
-    js = json.loads(d)
-    title = js['title']
-    content = js['content']
-    fh = io.StringIO()
-    for c in content:
-        if c['type'] == 'title':
-            fh.write('<h2>{}</h2>'.format(c['value']))
-        elif c['type'] == 'text':
-            fh.write(c['value'])
-        elif c['type'] == 'image':
-            url = c['src']
-            key = get_sha1_key(url)
-            path = 'images/{}.jpg'.format(key)
-            if not os.path.exists(path):
-                print('downloading url = {}'.format(url))
-                r = requests.get(url)
-                with open(path, 'wb') as img:
-                    img.write(r.content)
-            # fh.write('<img src="{}"/>'.format(url))
-            fh.write('<img src="{}"/>'.format(path))
-        elif c['type'] == 'comment':
-            fh.write('<blockquote><p>{}</p></blockquote>'.format('</br>'.join(c['value'])))
-        elif c['type'] == 'split':
-            fh.write('<hr/>')
-        else:
-            # print(c)
-            pass
-        fh.write('\n')
-    return title, fh.getvalue()
+def parse_response(doc):
+    data = doc['data']
+    title = data['article_title']
+    content = data['article_content']
+    return title, content
 
 
 sp_string = """
@@ -368,43 +341,58 @@ page_string = """
 </html>
 """
 
-download_audio_script_string = """#!/bin/bash
-mkdir -p audio/
-{% for x in items %}
-wget --continue "{{ x.url }}" -O "audio/{{ x.title }}.mp3"
-{% endfor %}
-"""
+
+def create_session(cookie):
+    sample_headers = """Accept: application/json, text/plain, */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh,zh-CN;q=0.9,en-US;q=0.8,en;q=0.7
+Connection: keep-alive
+Content-Type: application/json
+Host: time.geekbang.org
+Origin: https://time.geekbang.org
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"""
+
+    sample_headers = sample_headers.split('\n')
+    ss = requests.Session()
+    headers = {}
+    for sh in sample_headers:
+        k, v = sh.split(': ', maxsplit=1)
+        headers[k] = v
+    headers['Cookie'] = cookie
+    ss.headers = headers
+    return ss
 
 
-def make_download_audio_script():
-    if not os.path.exists('info/article'):
-        return
+def get_article(ss, article_id):
+    print('get article of {}'.format(article_id))
+    r = table.find_one({'_id': article_id})
+    if not r:
+        url = 'https://time.geekbang.org/serv/v1/article'
+        payload = {
+            'id': str(article_id),
+            'include_neighbors': True
+        }
+        r = ss.post(url, data=json.dumps(payload))
+        data = r.json()
+        value = json.dumps(data)
+        table.update_one({'_id': article_id}, {'$set': {'value': value}}, upsert=True)
+    else:
+        value = r['value']
+    return json.loads(value)
 
-    fs = glob.glob('info/article/*')
-    items = []
-    for f in fs:
-        js = json.load(open(f))
-        if 'audio' in js['c']['article_info']:
-            url = js['c']['article_info']['audio']['mp3_play_url']
-            title = js['c']['article_info']['audio']['title']
-            items.append({'title': title, 'url': url})
-    template = jinja2.Template(download_audio_script_string)
-    output = template.render(items=items)
-    with open('download_audio.sh', 'w') as fh:
-        fh.write(output)
 
-
-def main():
-    fs = glob.glob('resp/get*')
+def make_page(docs):
     items = []
     dup = set()
     os.makedirs('html', exist_ok=True)
     os.makedirs('images', exist_ok=True)
     template = jinja2.Template(page_string)
-    for resp in fs:
-        title, html = parse_response(resp)
+
+    for doc in docs:
+        title, html = parse_response(doc)
         if title in dup: continue
         dup.add(title)
+        title = title.replace('/', '')
         path = "html/{}.html".format(title)
         with open(path, 'w') as fh:
             output = template.render(style_string=style_string,
@@ -429,7 +417,60 @@ def main():
                                  index_page_title="Index Page Document")
         fh.write(output)
 
-    make_download_audio_script()
+
+def get_docs(cookie, article_ids):
+    ss = create_session(cookie)
+    docs = []
+    for article_id in article_ids:
+        doc = get_article(ss, article_id)
+        docs.append(doc)
+    return docs
+
+
+def run(cookie, org_file):
+    article_ids = []
+    reobj = re.compile(r'column/article/(?P<article_id>\d+)')
+    with open(org_file) as fh:
+        for x in fh:
+            if x.startswith('#+title:'):
+                ss = x.split(' ')
+                output_path = ss[1]
+                continue
+
+            m = reobj.search(x)
+            if m:
+                x = int(m.group('article_id'))
+                article_ids.append(x)
+
+    docs = get_docs(cookie, article_ids)
+    pwd = os.getcwd()
+    os.makedirs(output_path)
+    os.chdir(output_path)
+    make_page(docs)
+    os.chdir(pwd)
+
+
+#
+# def main():
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('--cookie', action='store')
+#     # # org_file see geekbang_index2org
+#     # parser.add_argument('--org-file', action='store')
+#     args = parser.parse_args()
+#     run(args.cookie, args.org_file)
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
+def main():
+    import geekbang_scraper_conf as conf
+    cookie = conf.cookie
+    org_files = conf.org_files
+    for org_file in org_files:
+        print(org_file)
+        run(cookie, org_file)
 
 
 if __name__ == '__main__':

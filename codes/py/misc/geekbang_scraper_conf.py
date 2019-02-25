@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+import glob
+
+cookie = "ga=GA1.2.2050939844.1551081642; _gid=GA1.2.642190628.1551081642; GCID=807626f-5f1f526-7125ed7-72dde60; GCESS=BAsCBAAJAQEMAQEDBMygc1wFBAAAAAAHBILAFhIGBE1NvJYBBNPkEQACBMygc1wIAQMEBAAvDQAKBAAAAAA-; Hm_lvt_022f847c4e3acd44d4a2481d9187f1e6=1551085888,1551085906,1551085921,1551086758; Hm_lpvt_022f847c4e3acd44d4a2481d9187f1e6=1551086758; SERVERID=1fa1f330efedec1559b3abbcb6e30f50|1551086760|1551081639"
+
+org_files = glob.glob('/Users/dirlt/repo/dirtysalt.github.io/src/geekbang*.org')

@@ -9,3 +9,4 @@ podcast_mp3/
 podcast_rss/
 podcast_image/
 top10k_feeds.json
+geekbang_scraper_conf.py
