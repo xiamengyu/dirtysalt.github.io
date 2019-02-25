@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding:utf-8
 # Copyright (C) dirlt
+import datetime
 import hashlib
 import jinja2
 import json
@@ -418,6 +419,51 @@ def make_page(docs):
         fh.write(output)
 
 
+evernote_template_string = """<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
+<en-export export-date="{{ export_date }}" application="Evernote" version="Evernote Mac 7.2.1 (456793)">
+{% for x in notes %}
+<note>
+<title>{{ x.title }}</title>
+<content>
+<![CDATA[<!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note>{{ x.html_data }}</en-note>]]>
+</content>
+<created>{{ x.created_date }}</created>
+<updated>{{ x.updated_date }}</updated>
+<note-attributes>
+  <author>{{ x.author }}</author>
+  <source>python.script</source>
+  <reminder-order>0</reminder-order>
+</note-attributes>
+</note>
+{% endfor %}
+</en-export>"""
+
+
+# def make_evernote_notebook(name, docs):
+#     now = datetime.datetime.now()
+#     date_now = now.strftime('%Y%m%dT%H%M%SZ')
+#     ctx = {
+#         'export_date': date_now
+#     }
+#     notes = []
+#     for doc in docs:
+#         title, html = parse_response(doc)
+#         note = {
+#             'created_date': date_now,
+#             'updated_date': date_now,
+#             'author': '章炎',
+#             'title': title,
+#             'html_data': html
+#         }
+#         notes.append(note)
+#     ctx['notes'] = notes
+#     template = jinja2.Template(evernote_template_string)
+#     output = template.render(**ctx)
+#     with open(name + '.enex', 'w') as fh:
+#         fh.write(output)
+#
+
 def get_docs(cookie, article_ids):
     ss = create_session(cookie)
     docs = []
@@ -444,10 +490,11 @@ def run(cookie, org_file):
 
     docs = get_docs(cookie, article_ids)
     pwd = os.getcwd()
-    os.makedirs(output_path)
+    os.makedirs(output_path, exist_ok=True)
     os.chdir(output_path)
     make_page(docs)
     os.chdir(pwd)
+    # make_evernote_notebook(output_path, docs)
 
 
 #
