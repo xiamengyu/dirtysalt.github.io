@@ -493,6 +493,7 @@ https://dirtysalt.github.io/html/photon.html
 https://dirtysalt.github.io/html/pic-code.html
 https://dirtysalt.github.io/html/pieces-of-advice-from-yq.html
 https://dirtysalt.github.io/html/pig.html
+https://dirtysalt.github.io/html/pitalls-of-python-ecosystem.html
 https://dirtysalt.github.io/html/play-stock-in-vc-way.html
 https://dirtysalt.github.io/html/pnuts.html
 https://dirtysalt.github.io/html/poetry-and-movie.html
