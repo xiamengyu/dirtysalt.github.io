@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201903 [[file:strangler-application.org][StranglerApplication]] 扼杀者应用（如何有效安全地替换掉老的应用）
 - 201903 [[file:pitalls-of-python-ecosystem.org][Python生态系统里的各种陷阱]]
 - 201903 [[file:instagram-under-the-hood.org][Instagram Under the Hood]]
 - 201903 [[file:running-sentry-on-ec2.org][在AWS EC2上启动Sentry]]
