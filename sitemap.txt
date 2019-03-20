@@ -614,6 +614,7 @@ https://dirtysalt.github.io/html/steve-jobs.html
 https://dirtysalt.github.io/html/stock-price-data-sanity.html
 https://dirtysalt.github.io/html/storage-system-reading.html
 https://dirtysalt.github.io/html/storm.html
+https://dirtysalt.github.io/html/strangler-application.html
 https://dirtysalt.github.io/html/streambase.html
 https://dirtysalt.github.io/html/structing-machine-learning-projects.html
 https://dirtysalt.github.io/html/structured-computer-organization.html
