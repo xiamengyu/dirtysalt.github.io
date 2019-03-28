@@ -105,6 +105,7 @@ https://dirtysalt.github.io/html/ceph.html
 https://dirtysalt.github.io/html/char-encoding.html
 https://dirtysalt.github.io/html/chasing-the-shiny-and-new.html
 https://dirtysalt.github.io/html/chengdu-travel.html
+https://dirtysalt.github.io/html/chenyu-on-internet-finance.html
 https://dirtysalt.github.io/html/chubby.html
 https://dirtysalt.github.io/html/cities-and-ambition.html
 https://dirtysalt.github.io/html/climbing-the-wrong-hill.html
