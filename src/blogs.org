@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201903 [[file:lessons-learned-from-fighting-against-haze.org][我当时认为治霾这事很简单，结果走一走发现不对劲，然后恍然大悟 | 陶光远 一席第###位讲者]]
 - 201903 [[file:strangler-application.org][StranglerApplication]] 扼杀者应用（如何有效安全地替换掉老的应用）
 - 201903 [[file:pitalls-of-python-ecosystem.org][Python生态系统里的各种陷阱]]
 - 201903 [[file:instagram-under-the-hood.org][Instagram Under the Hood]]

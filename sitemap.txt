@@ -346,6 +346,7 @@ https://dirtysalt.github.io/html/large-scale-deep-learning-for-intelligent-compu
 https://dirtysalt.github.io/html/laws-of-performant-software.html
 https://dirtysalt.github.io/html/lean-in.html
 https://dirtysalt.github.io/html/learn-stop-using-shiny-new-things-and-love-mysql.html
+https://dirtysalt.github.io/html/lessons-learned-from-fighting-against-haze.html
 https://dirtysalt.github.io/html/lessons-learned-from-reading-postmortems.html
 https://dirtysalt.github.io/html/lessons-learned-while-building-infrastructure-software-at-google.html
 https://dirtysalt.github.io/html/lessons-learned-while-working-on-large-scale-server-softwarre.html
