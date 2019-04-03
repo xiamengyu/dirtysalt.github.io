@@ -11,7 +11,9 @@ import os.path
 import requests
 import uuid
 
-UPLOAD_URL = "http://localhost:9998/upload"
+# UPLOAD_URL = "http://localhost:9998/upload"
+# UPLOAD_URL = "http://utils.castbox.fm/file_upload/multiple_uploads_to_s3"
+UPLOAD_URL = "http://localhost:9998/file_upload/multiple_uploads_to_s3?res_type=audio"
 SEGMENT_SIZE = 400
 
 
