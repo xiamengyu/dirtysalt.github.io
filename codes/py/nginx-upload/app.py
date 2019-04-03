@@ -33,15 +33,10 @@ def handle_upload():
     headers = AppRequest.headers
     for k in list(headers.keys()):
         headers_s += '<li>%s = %s</li>' % (k, cgi.escape(str(headers[k])))
-    files_s = ''
-    files = AppRequest.files
-    for k in list(files.keys()):
-        f = files[k]
-        files_s += '<li>{} = ({}, {}, {})</li>'.format(f.name, f.filename, f.content_type, f.content_length)
     html = """<html><body><p>args<br/><ul>%s</ul></p>
     <p>form<br/><ul>%s</ul></p>
     <p>headers<br/><ul>%s</ul></p>
-    <p>files<br/><ul>%s</ul></body></html>""" % (s, form_s, headers_s, files_s)
+    </body></html>""" % (s, form_s, headers_s)
     return html
 
 
