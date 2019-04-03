@@ -9,10 +9,8 @@ import gevent.pool
 
 import os.path
 import requests
-import uuid
 
 # UPLOAD_URL = "http://localhost:9998/upload"
-# UPLOAD_URL = "http://utils.castbox.fm/file_upload/multiple_uploads_to_s3"
 UPLOAD_URL = "http://localhost:9998/file_upload/multiple_uploads_to_s3?res_type=audio"
 SEGMENT_SIZE = 400
 
@@ -35,7 +33,8 @@ def upload(req):
     headers = {'Content-Disposition': 'attachment; filename="big.TXT"', 'Content-Type': 'application/octet-stream',
                'X-Content-Range': content_range, 'Session-ID': session_id, 'Content-Length': str(size)}
     res = requests.post(UPLOAD_URL, data=payload, headers=headers)
-    print('content-range = {}, resp = {}'.format(content_range, res.text))
+    # print('content-range = {}, resp = {}, headers = {}'.format(content_range, res.text, res.headers))
+    print('resp = {}'.format(res.text))
 
 
 def main():
