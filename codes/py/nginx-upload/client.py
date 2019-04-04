@@ -12,8 +12,8 @@ import os.path
 import requests
 
 # UPLOAD_URL = "http://localhost:9998/upload"
-UPLOAD_URL = "http://utils.castbox.fm/file_upload/multiple_uploads_to_s3?res_type=data&content_type=applicaiton/python&file_ext=py"
-# UPLOAD_URL = "http://localhost:9998/file_upload/multiple_uploads_to_s3?res_type=audio"
+UPLOAD_URL = "http://utils.castbox.fm/file_upload/multiple_uploads_to_s3?file_ext=py"
+# UPLOAD_URL = "http://localhost:9998/file_upload/multiple_uploads_to_s3"
 SEGMENT_SIZE = 400
 
 
@@ -32,7 +32,8 @@ def upload(req):
     size = len(payload)
     content_range = "bytes {file_pos}-{pos_end}/{file_size}".format(file_pos=file_pos,
                                                                     pos_end=file_pos + size - 1, file_size=file_size)
-    headers = {'Content-Disposition': 'attachment; filename="filename.data"', 'Content-Type': 'application/octet-stream',
+    headers = {'Content-Disposition': 'attachment; filename="filename.data"',
+               'Content-Type': 'text/plain',
                'X-Content-Range': content_range, 'Session-ID': session_id, 'Content-Length': str(size)}
     res = requests.post(UPLOAD_URL, data=payload, headers=headers)
     # print('content-range = {}, resp = {}, headers = {}'.format(content_range, res.text, res.headers))
