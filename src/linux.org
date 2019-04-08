@@ -275,3 +275,29 @@ May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disa
 ** linux kernel map
 
 file:images/linux-kernel-map.png
+** ssh access denied
+通常来说access denied主要是因为 ~/.ssh/authorized_keys 里面没有配置公钥，但是也有其他原因比如目录权限等。
+在排除了公钥问题之后如何定位access denied的原因呢？假如你现在还有一个session连接在远端服务器上的话，那么可以在
+这个服务器上另外一个端口启动sshd, 并且开启debug模式来观察错误日志. (方法来自于这个 [[https://serverfault.com/questions/130482/how-to-check-sshd-log][帖子]])
+
+下面我做个试验. 我先把 tinycache 的.ssh目录修改一下权限 `chmod og+rwx .ssh`
+
+这个时候如果如果连接 tinycache 服务器就会出现下面错误
+
+#+BEGIN_EXAMPLE
+[ec2-user@rel0 ~]$ ssh tinycache
+Permission denied (publickey).
+#+END_EXAMPLE
+
+然后我在 tinycache 服务器上启动debug模式的sshd
+#+BEGIN_EXAMPLE
+/usr/sbin/sshd -d -p 2222
+#+END_EXAMPLE
+
+然后重启尝试连接端口2222的话，那么这边就会出现错误日志
+
+#+BEGIN_EXAMPLE
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+#+END_EXAMPLE

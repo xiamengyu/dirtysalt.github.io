@@ -36,6 +36,7 @@
 </ul>
 </li>
 <li><a href="#org0cae832">14. linux kernel map</a></li>
+<li><a href="#org105a3a0">15. ssh access denied</a></li>
 </ul>
 </div>
 </div>
@@ -479,6 +480,46 @@ May 12 12:29:40 dp57 mcelog: Processor 1 below trip temperature. Throttling disa
 <p><img src="images/linux-kernel-map.png" alt="linux-kernel-map.png" />
 </p>
 </div>
+</div>
+</div>
+<div id="outline-container-org105a3a0" class="outline-2">
+<h2 id="org105a3a0"><span class="section-number-2">15</span> ssh access denied</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+通常来说access denied主要是因为 ~/.ssh/authorized_keys 里面没有配置公钥，但是也有其他原因比如目录权限等。
+在排除了公钥问题之后如何定位access denied的原因呢？假如你现在还有一个session连接在远端服务器上的话，那么可以在
+这个服务器上另外一个端口启动sshd, 并且开启debug模式来观察错误日志. (方法来自于这个 <a href="https://serverfault.com/questions/130482/how-to-check-sshd-log">帖子</a>)
+</p>
+
+<p>
+下面我做个试验. 我先把 tinycache 的.ssh目录修改一下权限 `chmod og+rwx .ssh`
+</p>
+
+<p>
+这个时候如果如果连接 tinycache 服务器就会出现下面错误
+</p>
+
+<pre class="example">
+[ec2-user@rel0 ~]$ ssh tinycache
+Permission denied (publickey).
+</pre>
+
+<p>
+然后我在 tinycache 服务器上启动debug模式的sshd
+</p>
+<pre class="example">
+/usr/sbin/sshd -d -p 2222
+</pre>
+
+<p>
+然后重启尝试连接端口2222的话，那么这边就会出现错误日志
+</p>
+
+<pre class="example">
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+Authentication refused: bad ownership or modes for directory /home/ec2-user/.ssh
+</pre>
 </div>
 </div>
 </div>
