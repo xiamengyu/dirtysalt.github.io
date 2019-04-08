@@ -500,6 +500,7 @@ https://dirtysalt.github.io/html/pitalls-of-python-ecosystem.html
 https://dirtysalt.github.io/html/play-stock-in-vc-way.html
 https://dirtysalt.github.io/html/pnuts.html
 https://dirtysalt.github.io/html/poetry-and-movie.html
+https://dirtysalt.github.io/html/polyglot-persistence.html
 https://dirtysalt.github.io/html/poor-charlie-almanack.html
 https://dirtysalt.github.io/html/possible-hadoop-trajectories.html
 https://dirtysalt.github.io/html/power-drill.html
