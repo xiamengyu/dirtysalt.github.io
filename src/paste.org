@@ -1,6 +1,9 @@
 #+title: Paste
 
 -----
+在故宫走丢真是倍儿有面子，全紫禁城开始广播“请xxx听到广播后到乾清宫”，好像被皇上召见一样[doge]
+
+-----
 https://www.weibo.com/1834459124/H6nD3AtS5?ref=collection
 
 最近自己攒了一台 PC：Intel Core i9-9900K，G.Skill 64G 3466MHz DDR4 内存，Gigabyte Z390 Aorus Master 主板，Samsung 970 Pro SSD，Corsair Hydro H150i PRO 水冷，Corsair Crystal 570X RGB 机箱。运行我们的 systemtap-plus 的测试集，相比我的最高配的 mid-2015 MBP，整体时间减少 74%。一开始是装的 Ubuntu，但很快发现 Ubuntu 18.10 和 18.04 的官方内核还没把 post-meltdown 引入的 regression 修完整，果断放弃。后来又尝试装最新的 Fedora 29，结果发现 X Window 都起不来，对集成显卡存在兼容性问题，最后还是装了 Fedora 28 了事。
