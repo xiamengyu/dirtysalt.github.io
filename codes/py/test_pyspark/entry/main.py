@@ -3,11 +3,12 @@
 # Copyright (C) dirlt
 
 import sys
+
 print(sys.path)
 
 import platform
-print(platform.python_version())
 
+print(platform.python_version())
 
 from pyspark.sql import SparkSession
 
