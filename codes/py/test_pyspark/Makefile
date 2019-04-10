@@ -6,4 +6,5 @@ pack:
 	echo "make app.zip"; zip -rq app.zip share
 
 copy:
-	rsync -avrz Makefile app.zip entry data.json ~/playbook/test_pyspark/
+	mkdir -p temp_build
+	rsync -avrz Makefile app.zip entry data.json ./temp_build/
