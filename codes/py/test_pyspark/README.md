@@ -32,12 +32,11 @@ aws emr add-steps --cluster-id <cluster-id> --steps Type=spark,Name=ParquetConve
 Args=[--deploy-mode,cluster,--master,yarn,--conf,spark.yarn.submit.waitAppCompletion=true,
 --conf,spark.yarn.appMasterEnv.PYSPARK_PYTHON=./venv/bin/python,
 --conf,spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON=./venv/bin/python,
---archives,s3n://bucket/venv.zip#venv,
---py-files,s3n://bucket/app.zip,
+--archives,s3a://bucket/venv.zip#venv,
+--py-files,s3a://bucket/app.zip,
 s3a://bucket/main.py],ActionOnFailure=CONTINUE
 ```
 
 其中 `archives` 里面指定的文件会在本地解压缩，`#` 后面部分的解压缩的目录名称. 我的理解是
 `PYSPARK_PYTHON`是executor上面的python二进制， `PYSPARK_DRIVE_PYTHON` 是driver上面
 的python二进制
-
