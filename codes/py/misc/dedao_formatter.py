@@ -377,10 +377,10 @@ wget --continue "{{ x.url }}" -O "audio/{{ x.title }}.mp3"
 
 
 def make_download_audio_script():
-    if not os.path.exists('info/article'):
+    if not os.path.exists('info/'):
         return
 
-    fs = glob.glob('info/article/*')
+    fs = glob.glob('info/*') + glob.glob('info/article/*')
     items = []
     for f in fs:
         js = json.load(open(f))
