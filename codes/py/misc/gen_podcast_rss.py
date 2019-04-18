@@ -73,7 +73,10 @@ def get_audio_duration(f):
     #     return 0
     try:
         tag = TinyTag.get(f)
-        return tag.duration
+        duration = tag.duration
+        if duration is None:
+            raise Exception()
+        return duration
     except:
         output = '/tmp/gen_podcast_rss_mp3_duration.txt'
         cmd="""ffprobe "%s" 2>&1 | grep Duration | awk '{print(substr($2, 0, 8));}' > %s""" % (f, output)
