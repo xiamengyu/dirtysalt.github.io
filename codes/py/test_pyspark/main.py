@@ -14,7 +14,7 @@ from pyspark.sql import SparkSession
 
 from share.foo import foo
 
-spark_sc = SparkSession.builder.appName("testapp").getOrCreate()
+spark_sc = SparkSession.builder.appName(__name__).getOrCreate()
 log4jLogger = spark_sc._jvm.org.apache.log4j
 logger = log4jLogger.LogManager.getLogger(__name__)
 

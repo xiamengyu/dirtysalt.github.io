@@ -1,8 +1,11 @@
-# NOTES
+# test_pyspark
 
 这个example是非常简单的case, 没有涉及virtualenv的部署，以及部署到yarn集群的情况。
 真实情况远比这个要复杂得多。而且你大概率是跑在aws emr上的，所以emr的问题也需要考虑到。
 
+参考项目有
+- [mrjob — mrjob v0.6.8.dev0 documentation](https://mrjob.readthedocs.io/en/latest/index.html)
+- [kcrandall/EMR_Spark_Automation](https://github.com/kcrandall/EMR_Spark_Automation)
 
 # run on aws emr
 
@@ -40,3 +43,14 @@ s3a://bucket/main.py],ActionOnFailure=CONTINUE
 其中 `archives` 里面指定的文件会在本地解压缩，`#` 后面部分的解压缩的目录名称. 我的理解是
 `PYSPARK_PYTHON`是executor上面的python二进制， `PYSPARK_DRIVE_PYTHON` 是driver上面
 的python二进制
+
+## 取消aws emr step
+
+https://aws.amazon.com/cn/premiumsupport/knowledge-center/cancel-emr-step/
+
+需要先连接到主节点上面去。找到当前运行的应用，然后kill掉。
+
+```bash
+yarn application -list
+yarn application -kill application_id
+```
