@@ -36,10 +36,11 @@
 <ul>
 <li><a href="#orgbf41c23">3.1. httplib</a></li>
 <li><a href="#org0e9adae">3.2. datetime</a></li>
-<li><a href="#org07f334e">3.3. pip(python package index)</a></li>
-<li><a href="#org2664307">3.4. logging</a></li>
-<li><a href="#orgc95b44b">3.5. virtualenv</a></li>
-<li><a href="#orgf31e368">3.6. asyncio</a></li>
+<li><a href="#org52ded99">3.3. datetime v2</a></li>
+<li><a href="#org7002ea3">3.4. pip</a></li>
+<li><a href="#org2664307">3.5. logging</a></li>
+<li><a href="#orgc95b44b">3.6. virtualenv</a></li>
+<li><a href="#orgf31e368">3.7. asyncio</a></li>
 </ul>
 </li>
 <li><a href="#orgcaafc24">4. inside</a></li>
@@ -483,7 +484,6 @@ UPDATE@201801: nova项目中我发现 <a href="http://v2in.com/pth-file-usage-in
 </div>
 </div>
 
-
 <div id="outline-container-orgab38025" class="outline-3">
 <h3 id="orgab38025"><span class="section-number-3">2.11</span> coroutine(协程)</h3>
 <div class="outline-text-3" id="text-2-11">
@@ -688,11 +688,75 @@ Out[5]: datetime.datetime(2018, 2, 9, 11, 0)
 </div>
 </div>
 
-<div id="outline-container-org07f334e" class="outline-3">
-<h3 id="org07f334e"><span class="section-number-3">3.3</span> pip(python package index)</h3>
+<div id="outline-container-org52ded99" class="outline-3">
+<h3 id="org52ded99"><span class="section-number-3">3.3</span> datetime v2</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-python模块管理工具
+@2019-04-23T21:51:45
+</p>
+
+<p>
+这里在放几个链接作为参考。除了 `python-dateutil` 这个库之外，还有一些库也在致力解决datetime这种世界性的难题
+</p>
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/questions/1703546/parsing-date-time-string-with-timezone-abbreviated-name-in-python">https://stackoverflow.com/questions/1703546/parsing-date-time-string-with-timezone-abbreviated-name-in-python</a></li>
+<li><a href="https://opensource.com/article/17/5/understanding-datetime-python-primer">https://opensource.com/article/17/5/understanding-datetime-python-primer</a></li>
+<li><a href="https://opensource.com/article/18/4/python-datetime-libraries">https://opensource.com/article/18/4/python-datetime-libraries</a></li>
+</ul>
+
+<p>
+即便在切换到 `python-dateutil` 这个库之后依然存在一些问题，最主要的问题就是timezone列表不够完整。
+现在我发现一个终极武器了，那就是 `python-dateutil` + `pytz`. 后者在timezone方面做的非常好（看名字就知道了）
+东拼西凑一把，就可以搞出一个 ultimate parse_date 函数，可以把基础所有的日期字符串全部解析为UTC日期时间对象。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+import datetime
+import dateutil
+import dateutil.parser
+import dateutil.tz
+import pytz
+
+def gen_tzinfos():
+    now = datetime.datetime.utcnow()
+    for zone in pytz.common_timezones:
+        try:
+            tzdate = pytz.timezone(zone).localize(now)
+        except pytz.NonExistentTimeError:
+            pass
+        else:
+            tzinfo = dateutil.tz.gettz(zone)
+            if tzinfo:
+                yield tzdate.tzname(), tzinfo
+
+
+TZINFOS = dict(gen_tzinfos())
+
+
+def parse_date(s):
+    x = dateutil.parser.parse(s, tzinfos=TZINFOS, fuzzy=True)
+    tzinfo = getattr(x, 'tzinfo')
+    if tzinfo:
+        offset = tzinfo.utcoffset(x)
+        y = x - offset
+        x = y.replace(tzinfo=None)
+    return x
+
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org7002ea3" class="outline-3">
+<h3 id="org7002ea3"><span class="section-number-3">3.4</span> pip</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+python模块管理工具(python package index)
 </p>
 <ul class="org-ul">
 <li><a href="https://github.com/pypa/pip/">https://github.com/pypa/pip/</a></li>
@@ -714,8 +778,8 @@ python模块管理工具
 </div>
 
 <div id="outline-container-org2664307" class="outline-3">
-<h3 id="org2664307"><span class="section-number-3">3.4</span> logging</h3>
-<div class="outline-text-3" id="text-3-4">
+<h3 id="org2664307"><span class="section-number-3">3.5</span> logging</h3>
+<div class="outline-text-3" id="text-3-5">
 <p>
 python logging主要有下面几个类
 </p>
@@ -772,8 +836,8 @@ class=logging.Formatter
 </div>
 
 <div id="outline-container-orgc95b44b" class="outline-3">
-<h3 id="orgc95b44b"><span class="section-number-3">3.5</span> virtualenv</h3>
-<div class="outline-text-3" id="text-3-5">
+<h3 id="orgc95b44b"><span class="section-number-3">3.6</span> virtualenv</h3>
+<div class="outline-text-3" id="text-3-6">
 <p>
 <a href="https://virtualenv.pypa.io/en/latest/index.html">https://virtualenv.pypa.io/en/latest/index.html</a>
 </p>
@@ -792,8 +856,8 @@ class=logging.Formatter
 </div>
 
 <div id="outline-container-orgf31e368" class="outline-3">
-<h3 id="orgf31e368"><span class="section-number-3">3.6</span> asyncio</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="orgf31e368"><span class="section-number-3">3.7</span> asyncio</h3>
+<div class="outline-text-3" id="text-3-7">
 <p>
 理论上asynco也可以不配合coroutine，不过配合coroutine才能最好地发挥asyncio的性能。Python3.5引入关键字`async`和`await`让定义coroutine更加简单。
 </p>
