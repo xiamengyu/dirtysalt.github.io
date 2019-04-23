@@ -317,7 +317,6 @@ wrapper
 
 UPDATE@201801: nova项目中我发现 [[http://v2in.com/pth-file-usage-in-python.html][.pth]] 这种机制在很大程度上可以帮助模块路径配置。不过好像这种机制仅限于CPython，在PyPy或者是Jython下面不行。
 
-
 *** coroutine(协程)
 我理解generator和coroutine之间的差别只是在于切换上下文上。generator的切换关系是沿着调用链的，也是是callee完成后必须要返回到caller.
 而coroutine则没有这个限制，可以在多个函数之间切换，而这多个函数之间并没有caller/callee的联系。
@@ -475,8 +474,59 @@ parse_date(s)
 Out[5]: datetime.datetime(2018, 2, 9, 11, 0)
 #+END_EXAMPLE
 
-*** pip(python package index)
-python模块管理工具
+*** datetime v2
+@2019-04-23T21:51:45
+
+这里在放几个链接作为参考。除了 `python-dateutil` 这个库之外，还有一些库也在致力解决datetime这种世界性的难题
+- https://stackoverflow.com/questions/1703546/parsing-date-time-string-with-timezone-abbreviated-name-in-python
+- https://opensource.com/article/17/5/understanding-datetime-python-primer
+- https://opensource.com/article/18/4/python-datetime-libraries
+
+即便在切换到 `python-dateutil` 这个库之后依然存在一些问题，最主要的问题就是timezone列表不够完整。
+现在我发现一个终极武器了，那就是 `python-dateutil` + `pytz`. 后者在timezone方面做的非常好（看名字就知道了）
+东拼西凑一把，就可以搞出一个 ultimate parse_date 函数，可以把基础所有的日期字符串全部解析为UTC日期时间对象。
+
+#+BEGIN_SRC Python
+#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+import datetime
+import dateutil
+import dateutil.parser
+import dateutil.tz
+import pytz
+
+def gen_tzinfos():
+    now = datetime.datetime.utcnow()
+    for zone in pytz.common_timezones:
+        try:
+            tzdate = pytz.timezone(zone).localize(now)
+        except pytz.NonExistentTimeError:
+            pass
+        else:
+            tzinfo = dateutil.tz.gettz(zone)
+            if tzinfo:
+                yield tzdate.tzname(), tzinfo
+
+
+TZINFOS = dict(gen_tzinfos())
+
+
+def parse_date(s):
+    x = dateutil.parser.parse(s, tzinfos=TZINFOS, fuzzy=True)
+    tzinfo = getattr(x, 'tzinfo')
+    if tzinfo:
+        offset = tzinfo.utcoffset(x)
+        y = x - offset
+        x = y.replace(tzinfo=None)
+    return x
+
+#+END_SRC
+
+
+*** pip
+python模块管理工具(python package index)
 - https://github.com/pypa/pip/
 - https://pip.pypa.io/en/stable/installing.html
 
