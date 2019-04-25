@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-31377772-3"></script><script>  window.dataLayer = window.dataLayer || [];  function gtag(){dataLayer.push(arguments);}  gtag('js', new Date());  gtag('config', 'UA-31377772-3');</script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>比特币挖矿的泊松分布问题</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="dirtysalt" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/htmlize.css"/><link rel="stylesheet" type="text/css" href="/themes/styles/readtheorg/css/readtheorg.css"/><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><script type="text/javascript" src="/themes/styles/lib/js/jquery.stickytableheaders.min.js"></script><script type="text/javascript" src="/themes/styles/readtheorg/js/readtheorg.js"></script></head>
+<body>
+<div id="content">
+<h1 class="title">比特币挖矿的泊松分布问题</h1>
+<p>
+<a href="https://twitter.com/SatoshiLite/status/978913057999998976">https://twitter.com/SatoshiLite/status/978913057999998976</a>
+</p>
+
+<blockquote>
+<p>
+Let's test your knowledge of Bitcoin mining. Bitcoin is designed such that a block is mined every 10 minutes on average.
+</p>
+
+<p>
+If 5 minutes has passed since the last block was mined, what's the expected amount of time before the next block is mined?
+</p>
+</blockquote>
+
+<p>
+这里问题是首先我们需要假定出矿间隔是泊松分布。如果是泊松分布的话，如果平均出矿时间是10分钟的话，那么lambda = 10.
+</p>
+
+<p>
+然后我们可以用程序来做个模拟：
+</p>
+<ul class="org-ul">
+<li>首先用lambda = 10的泊松分布产生N个点</li>
+<li>排除那些值小于5的点，剩余的就是之后可能出现的点</li>
+<li>然后看剩余的点平均值</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-Python">#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+# https://twitter.com/SatoshiLite/status/978913057999998976
+
+import numpy as np
+
+
+def run(lam, thres, n):
+    values = np.random.poisson(lam=lam, size=n)
+    values = np.array([x for x in values if x &gt; thres])
+    print('n = {}, # = {}, avg = {}'.format(n, len(values), values.mean()))
+
+
+lam = 10
+thres = 5
+for n in (100 * 1000, 1000 * 1000, 5 * 1000 * 1000):
+    run(lam, thres, n)
+
+</pre>
+</div>
+
+<p>
+输出结果如下，可以看到实际结果其实并不是10min, 而是在10.4min左右。
+</p>
+
+<pre class="example">
+➜  misc git:(master) ✗ python block_poission_dist.py
+n = 100000, # = 93291, avg = 10.434715031460698
+n = 1000000, # = 932709, avg = 10.401006101581523
+n = 5000000, # = 4664554, avg = 10.404514558090655
+</pre>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/poission-distribution-in-bitcoin-mining.html';this.page.identifier = 'poission-distribution-in-bitcoin-mining.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
