@@ -1,0 +1,48 @@
+#+title: 比特币挖矿的泊松分布问题
+
+https://twitter.com/SatoshiLite/status/978913057999998976
+
+#+BEGIN_QUOTE
+Let's test your knowledge of Bitcoin mining. Bitcoin is designed such that a block is mined every 10 minutes on average.
+
+If 5 minutes has passed since the last block was mined, what's the expected amount of time before the next block is mined?
+#+END_QUOTE
+
+这里问题是首先我们需要假定出矿间隔是泊松分布。如果是泊松分布的话，如果平均出矿时间是10分钟的话，那么lambda = 10.
+
+然后我们可以用程序来做个模拟：
+- 首先用lambda = 10的泊松分布产生N个点
+- 排除那些值小于5的点，剩余的就是之后可能出现的点
+- 然后看剩余的点平均值
+
+#+BEGIN_SRC Python
+#!/usr/bin/env python
+# coding:utf-8
+# Copyright (C) dirlt
+
+# https://twitter.com/SatoshiLite/status/978913057999998976
+
+import numpy as np
+
+
+def run(lam, thres, n):
+    values = np.random.poisson(lam=lam, size=n)
+    values = np.array([x for x in values if x > thres])
+    print('n = {}, # = {}, avg = {}'.format(n, len(values), values.mean()))
+
+
+lam = 10
+thres = 5
+for n in (100 * 1000, 1000 * 1000, 5 * 1000 * 1000):
+    run(lam, thres, n)
+
+#+END_SRC
+
+输出结果如下，可以看到实际结果其实并不是10min, 而是在10.4min左右。
+
+#+BEGIN_EXAMPLE
+➜  misc git:(master) ✗ python block_poission_dist.py
+n = 100000, # = 93291, avg = 10.434715031460698
+n = 1000000, # = 932709, avg = 10.401006101581523
+n = 5000000, # = 4664554, avg = 10.404514558090655
+#+END_EXAMPLE
