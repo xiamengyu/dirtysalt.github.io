@@ -368,6 +368,7 @@ https://dirtysalt.github.io/html/linux.html
 https://dirtysalt.github.io/html/living-in-county.html
 https://dirtysalt.github.io/html/liyongle-youtube-channel-index.html
 https://dirtysalt.github.io/html/lock.html
+https://dirtysalt.github.io/html/logrotate-conf-for-nginx.html
 https://dirtysalt.github.io/html/look-house-with-xcq.html
 https://dirtysalt.github.io/html/love-your-bugs.html
 https://dirtysalt.github.io/html/lua-prog-lang-book.html
