@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201905 [[file:logrotate-conf-for-nginx.org][nginx正确的logrotate配置]]
 - 201904 [[file:poission-distribution-in-bitcoin-mining.org][比特币挖矿的泊松分布问题]]
 - 201904 [[file:image-decompression-bomb.org][图片解压缩炸弹问题(image decompression bomb)]]
 - 201904 [[file:polyglot-persistence.org][Polyplot Persistence]] 混合使用各种存储系统
