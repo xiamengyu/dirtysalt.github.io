@@ -31,7 +31,6 @@ def pb_bench(n):
 
     start = time.time()
     for i in range(n):
-        req = HelloRequest()
         req.ParseFromString(data)
     stop = time.time()
     print('pb load = {:.2f}'.format(stop - start))
