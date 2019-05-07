@@ -1,0 +1,16 @@
+syntax = "proto3";
+package test;
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+    int32 version = 2;
+    repeated int32 tags = 3;
+    string title = 4;
+    string desc = 5;
+    string f0 = 6;
+    string f1 = 7;
+    string f2 = 8;
+}
+message BatchHelloRequest {
+    repeated HelloRequest items = 1;
+}
