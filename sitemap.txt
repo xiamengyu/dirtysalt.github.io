@@ -115,6 +115,7 @@ https://dirtysalt.github.io/html/cmb-hk-account.html
 https://dirtysalt.github.io/html/cn-cv.html
 https://dirtysalt.github.io/html/code-in-space.html
 https://dirtysalt.github.io/html/code-quality-the-open-source-perspective.html
+https://dirtysalt.github.io/html/codehaus-manifesto.html
 https://dirtysalt.github.io/html/coding-for-ssd.html
 https://dirtysalt.github.io/html/cola-and-water.html
 https://dirtysalt.github.io/html/colleague-creates-spaghetti-code.html
