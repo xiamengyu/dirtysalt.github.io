@@ -10,6 +10,8 @@ import msgpack
 
 from test2_pb2 import BatchHelloRequest, HelloRequest
 
+from google.protobuf.internal import api_implementation
+print('python protobuf API impl = {}'.format(api_implementation.Type()))
 
 def pb_bench(n):
     breq = BatchHelloRequest()

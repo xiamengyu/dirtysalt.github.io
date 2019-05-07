@@ -10,6 +10,8 @@ import msgpack
 
 from test_pb2 import HelloRequest
 
+from google.protobuf.internal import api_implementation
+print('python protobuf API impl = {}'.format(api_implementation.Type()))
 
 def pb_bench(n):
     req = HelloRequest()
@@ -29,6 +31,7 @@ def pb_bench(n):
 
     start = time.time()
     for i in range(n):
+        req = HelloRequest()
         req.ParseFromString(data)
     stop = time.time()
     print('pb load = {:.2f}'.format(stop - start))
