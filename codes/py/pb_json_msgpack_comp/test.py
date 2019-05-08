@@ -13,13 +13,15 @@ from test_pb2 import HelloRequest
 from google.protobuf.internal import api_implementation
 print('python protobuf API impl = {}'.format(api_implementation.Type()))
 
+import bson
+
 def pb_bench(n):
     req = HelloRequest()
     keys = []
     pids = []
     for i in range(200):
         keys.append("key#%d" % i)
-        # pids.append(i + 200000)
+        pids.append(i + 200000)
     req.keys.extend(keys)
     req.pids.extend(pids)
 
@@ -41,7 +43,7 @@ def json_bench(n):
     pids = []
     for i in range(200):
         keys.append("key#%d" % i)
-        # pids.append(i + 200000)
+        pids.append(i + 200000)
     js = dict(keys = keys, pids = pids)
 
     start = time.time()
@@ -56,13 +58,32 @@ def json_bench(n):
     stop = time.time()
     print('json load = {:.2f}'.format(stop - start))
 
+def bson_bench(n):
+    keys = []
+    pids = []
+    for i in range(200):
+        keys.append("key#%d" % i)
+        pids.append(i + 200000)
+    js = dict(keys = keys, pids = pids)
+
+    start = time.time()
+    for i in range(n):
+        data = bson.BSON.encode(js)
+    stop = time.time()
+    print('bson save = {:.2f}. size = {}'.format(stop - start, len(data)))
+
+    start = time.time()
+    for i in range(n):
+        js = bson.BSON.decode(data)
+    stop = time.time()
+    print('bson load = {:.2f}'.format(stop - start))
 
 def msgpack_bench(n):
     keys = []
     pids = []
     for i in range(200):
         keys.append("key#%d" % i)
-        # pids.append(i + 200000)
+        pids.append(i + 200000)
     js = dict(keys = keys, pids = pids)
 
     start = time.time()
@@ -79,6 +100,8 @@ def msgpack_bench(n):
 
 
 n = 100000
-pb_bench(n)
 json_bench(n)
+# save too fucking slow.
+# bson_bench(n)
 msgpack_bench(n)
+pb_bench(n)
