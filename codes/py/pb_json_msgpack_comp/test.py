@@ -13,8 +13,6 @@ from test_pb2 import HelloRequest
 from google.protobuf.internal import api_implementation
 print('python protobuf API impl = {}'.format(api_implementation.Type()))
 
-import bson
-
 def pb_bench(n):
     req = HelloRequest()
     keys = []
@@ -59,6 +57,7 @@ def json_bench(n):
     print('json load = {:.2f}'.format(stop - start))
 
 def bson_bench(n):
+    import bson
     keys = []
     pids = []
     for i in range(200):
