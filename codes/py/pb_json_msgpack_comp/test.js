@@ -1,3 +1,5 @@
+const util = require('util')
+
 function json_bench(n) {
     keys = []
     pids = []
@@ -15,14 +17,14 @@ function json_bench(n) {
         data = JSON.stringify(js)
     }
     end = process.hrtime(start)
-    console.log('json save = %s, size = %d', (end[0] + end[1] * 1e-9), data.length)
+    console.log('json save = %s, size = %d', (end[0] + end[1] * 1e-9).toFixed(4), data.length)
 
     start = process.hrtime()
     for (var i = 0; i < n; i++) {
         js = JSON.parse(data)
     }
     end = process.hrtime(start)
-    console.log('json save = %s, size = %d', end[0] + end[1] * 1e-9, data.length)
+    console.log('json load = %s', (end[0] + end[1] * 1e-9).toFixed(4))
 }
 
 n = 10000
