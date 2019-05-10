@@ -108,5 +108,5 @@ n = 10000
 json_bench(n)
 # save too fucking slow.
 # bson_bench(n)
-msgpack_bench(n)
-pb_bench(n)
+# msgpack_bench(n)
+# pb_bench(n)
