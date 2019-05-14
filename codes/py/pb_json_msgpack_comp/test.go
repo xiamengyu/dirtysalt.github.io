@@ -1,14 +1,14 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
-
-	jsoniter "github.com/json-iterator/go"
+	// jsoniter "github.com/json-iterator/go"
 )
 
 func json_bench(n int) {
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
+	// var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 	size := 200
 	keys := make([]string, size)
