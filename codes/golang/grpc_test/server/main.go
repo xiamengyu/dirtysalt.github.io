@@ -4,7 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	pb "grpc_test/hello"
+	pb "golang/grpc_test/hello"
 	"log"
 	"net"
 

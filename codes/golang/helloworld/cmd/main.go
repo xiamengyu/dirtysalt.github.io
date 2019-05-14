@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "helloworld"
+import "golang/helloworld"
 
 func main() {
 	fmt.Println(helloworld.Pi)
