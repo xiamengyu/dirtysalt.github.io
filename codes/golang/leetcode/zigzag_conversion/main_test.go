@@ -11,7 +11,6 @@ type Params struct {
 }
 
 func TestConvert(t *testing.T) {
-
 	cases := []Params{
 		Params{s: "PAYPALISHIRING", rows: 3, exp: "PAHNAPLSIIGYIR"},
 		Params{"PAYPALISHIRING",1,"PAYPALISHIRING"},
