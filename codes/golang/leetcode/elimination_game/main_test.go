@@ -18,6 +18,7 @@ func TestLastRemaining(t *testing.T) {
 		Params{n:2, exp:2},
 		Params{n:3, exp:2},
 		Params{n:4, exp:2},
+		Params{n:6, exp:4},
 	}
 
 	for _, c := range cases {
@@ -27,7 +28,7 @@ func TestLastRemaining(t *testing.T) {
 		}
 	}
 
-	for i:=1;i<100;i++ {
-		lastRemaining(i)
-	}
+	// for i:=1;i<100;i++ {
+	// 	lastRemaining(i)
+	// }
 }
