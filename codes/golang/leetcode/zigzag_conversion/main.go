@@ -1,4 +1,4 @@
-package zigzag
+package zigzag_conversion
 
 import (
 	"bytes"
