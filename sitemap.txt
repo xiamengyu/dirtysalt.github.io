@@ -333,6 +333,7 @@ https://dirtysalt.github.io/html/jeju-travel.html
 https://dirtysalt.github.io/html/jianshu-captcha.html
 https://dirtysalt.github.io/html/jni.html
 https://dirtysalt.github.io/html/jobs.html
+https://dirtysalt.github.io/html/joe-duffy-software-leadership-series.html
 https://dirtysalt.github.io/html/jonathon-ive.html
 https://dirtysalt.github.io/html/jvm.html
 https://dirtysalt.github.io/html/kafka.html
@@ -340,6 +341,7 @@ https://dirtysalt.github.io/html/kaggle-bike-sharing-demand.html
 https://dirtysalt.github.io/html/kaggle-digit-recongnizer.html
 https://dirtysalt.github.io/html/kaggle-facial-keypoints-detection.html
 https://dirtysalt.github.io/html/keras-author-on-software-engineering.html
+https://dirtysalt.github.io/html/keynes-vs-hayek.html
 https://dirtysalt.github.io/html/klotski-solving.html
 https://dirtysalt.github.io/html/kylin.html
 https://dirtysalt.github.io/html/lang-detect-and-encoding-detect.html
