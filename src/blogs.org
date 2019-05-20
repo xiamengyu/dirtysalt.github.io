@@ -1,6 +1,8 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
+- 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
 - 201905 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]
 - 201905 [[file:keynes-vs-hayek.org][凯恩斯大战哈耶克]]
 - 201905 [[file:codehaus-manifesto.org][Codehaus宣言]]

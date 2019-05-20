@@ -329,6 +329,8 @@ https://dirtysalt.github.io/html/is-hadoop-out-of-date.html
 https://dirtysalt.github.io/html/is-there-a-simple-algorithm-for-intelligence.html
 https://dirtysalt.github.io/html/issue-of-retry-after-field.html
 https://dirtysalt.github.io/html/java.html
+https://dirtysalt.github.io/html/javascript-prototype-chain-tests.html
+https://dirtysalt.github.io/html/javascript-the-good-parts.html
 https://dirtysalt.github.io/html/jeju-travel.html
 https://dirtysalt.github.io/html/jianshu-captcha.html
 https://dirtysalt.github.io/html/jni.html
