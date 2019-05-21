@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201905 [[file:12-classic-mistakes.org][12个软件工程经典错误]]
 - 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
 - 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
 - 201905 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]

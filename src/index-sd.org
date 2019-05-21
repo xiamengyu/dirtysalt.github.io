@@ -1,6 +1,16 @@
 #+title: 软件设计 Software Design
 
 ** Blogs
+- 201905 [[file:12-classic-mistakes.org][12个软件工程经典错误]]
+- 201905 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]
+- 201905 [[file:codehaus-manifesto.org][Codehaus宣言]]
+- 201904 [[file:polyglot-persistence.org][Polyplot Persistence]] 混合使用各种存储系统
+- 201903 [[file:strangler-application.org][StranglerApplication]] 扼杀者应用（如何有效安全地替换掉老的应用）
+- 201903 [[file:instagram-under-the-hood.org][Instagram Under the Hood]]
+- 201901 [[file:instagram-engineering-3-rules-to-a-scalable-cloud-application-architecture.org][Instagram Engineering’s 3 rules to a scalable cloud application architecture]]
+- 201811 [[file:whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.org][{Ask HN}What's the largest amount of bad code you have ever seen work?]]
+- 201811 [[file:keras-author-on-software-engineering.org][Keras之父写给年轻程序员的33条忠告]]
+- 201810 [[file:writing-system-software-code-comments.org][Writing system software: code comments]]
 - 201810 [[file:github-flow.org][GitHub Flow]]
 - 201810 [[file:whats-a-senior-engineers-job.org][What's a senior engineer's job?]]
 - 201808 [[file:youtube-scalability.org][YouTube Scalability]] on youtube

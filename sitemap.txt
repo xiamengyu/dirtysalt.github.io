@@ -1,5 +1,6 @@
 https://dirtysalt.github.io/html/10-lessons-from-10-years-of-aws.html
 https://dirtysalt.github.io/html/10-lessons-learned-from-the-early-days-of-google.html
+https://dirtysalt.github.io/html/12-classic-mistakes.html
 https://dirtysalt.github.io/html/1984.html
 https://dirtysalt.github.io/html/2012-birthday.html
 https://dirtysalt.github.io/html/2015-house-clean.html
@@ -573,6 +574,7 @@ https://dirtysalt.github.io/html/run-wordpress-in-fast-way.html
 https://dirtysalt.github.io/html/running-sentry-on-ec2.html
 https://dirtysalt.github.io/html/samza.html
 https://dirtysalt.github.io/html/sanitizer.html
+https://dirtysalt.github.io/html/scala-prog-lang-book.html
 https://dirtysalt.github.io/html/scala.html
 https://dirtysalt.github.io/html/scaling-lessons-learned-at-dropbox.html
 https://dirtysalt.github.io/html/scaling-to-billions-on-top-of-digital-ocean.html
