@@ -1,6 +1,6 @@
 #+title: Go语言编程
 
-顺序编程
+** 顺序编程
 - 有限的类型推导
   - var k = "hello" or k := "hello"
   - 不会对函数返回值类型进行推导
@@ -13,9 +13,9 @@
 - 指针. 仅限于引用，不可以运算，智能解引用((&s).X 和 s.X)
 - 映射. _, ok = m[key] 判断是否存在; delete 删除映射
 - 取消while, 只保留for.
-  - for <init>; <loop>; <pred> { \n ... }
-  - for <loop> { \n ... }
-  - for { \n ... }
+  - for <init>; <loop>; <pred> { ... }
+  - for <loop> { ... }
+  - for {  ... }
 - 多重赋值, 多值返回, 匿名函数与闭包
 - 错误处理. error接口
 - RAII解决方案. defer(defer stack)
@@ -25,7 +25,7 @@
 - new用来分配对象内存，make只用于创建切片，映射和信道并且不返回指针
 - 每个源文件内部 `init()` 函数会在初始化时候调用
 
-类型系统
+** 类型系统
 - 值语义 vs. 引用语义
   - 大部分cases都是值语义
   - 看起来像引用语义的有
@@ -49,7 +49,7 @@
   - t, ok := i.(T) 如果成功，ok=True, t则为对应类型T
   - i.(type) 取得底层类型
 
-并发编程
+** 并发编程
 - goroutine go协程 see libtask
   - 使用CPU数量 runtime.GOMAXPROCS()
   - 主动yield runtime.GoSched()
@@ -63,7 +63,7 @@
   - select本身没有提供timeout机制
   - workaround办法是启动另外一个检测超时的goroutine
 
-工程管理
+** 工程管理
 - 目录组织. src/pkg/bin
 - 集成工具. just =go=
 - 代码风格. see =go fmt=
