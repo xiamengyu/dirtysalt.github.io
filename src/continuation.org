@@ -4,3 +4,7 @@
 - [[http://www.ps.uni-saarland.de/~duchier/python/continuations.html][Continuations Made Simple and Illustrated]]
 - [[http://library.readscheme.org/page6.html][Continuations and Continuation Passing Style]]
 - [[file:the-little-schemer.org][The Little Schemer]] 里面有一些关于continuation/CPS的内容
+- https://www.sczyh30.com/posts/Functional-Programming/call-with-current-continuation/
+- https://ds26gte.github.io/tyscheme/index-Z-H-15.html
+- https://dkandalov.github.io/call-with-current-continuation
+- http://www.madore.org/~david/computers/callcc.html
