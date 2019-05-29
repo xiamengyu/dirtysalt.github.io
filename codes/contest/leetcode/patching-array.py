@@ -6,40 +6,38 @@ from typing import List
 
 class Solution:
     def minPatches(self, nums: List[int], n: int) -> int:
-        C = {}
         nums.sort()
+        k, size, value = 0, len(nums), 1
 
-        def mp(k, n):
-            if n == 0:
-                return 0
+        # 确保第一个元素是1
+        res = []
+        if k < size and nums[k] == 1:
+            k += 1
+        else:
+            res.append(1)
 
-            while k >= 0 and nums[k] > n:
-                k -= 1
-
-            if k == -1:
-                return n
-
-            key = '{}-{}'.format(k, n)
-            if key in C:
-                return C[key]
-
-            # 可以使用nums[k], 也可以不使用
-            res = min(mp(k - 1, n), mp(k - 1, n - nums[k]))
-
-            while n > 1:
-                res = max(res, mp(k, n - 1))
-                n -= 1
-
-            C[key] = res
-            return res
-
-        k = len(nums) - 1
-        res = mp(k, n)
-        return res
+        # 不断检测当前范围和下一个值是否重叠
+        # 如果不重叠的话，那么就需要插入值(value+1)，然后更新范围value=2*value+1
+        # 如果重叠的话，那么不需要插入值，但是更新范围value=value+k
+        while value < n:
+            if k < size:
+                v = nums[k]
+                if v > (value + 1):
+                    res.append(value + 1)
+                    value = value * 2 + 1
+                else:
+                    value += v
+                    k += 1
+            else:
+                res.append(value + 1)
+                value = value * 2 + 1
+        print(res)
+        return len(res)
 
 
 def test():
     cases = [
+        ([], 1, 1),
         ([1, 3], 6, 1),
         ([1, 5, 10], 20, 2)
     ]
