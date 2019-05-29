@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201905 [[file:python-thread-safe-complaint.org][Python线程安全的抱怨]]
 - 201905 [[file:12-classic-mistakes.org][12个软件工程经典错误]]
 - 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
 - 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
@@ -375,7 +376,6 @@
   - [[file:review-2017.org][回顾2017]]
   - [[file:review-2018.org][回顾2018]]
 - [[file:about-me.org][个人介绍 AboutMe]]
-- [[file:micro-twitter.org][只言片语 MicroTwitter]]
 
 ** links
 People:

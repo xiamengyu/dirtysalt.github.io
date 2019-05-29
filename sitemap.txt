@@ -418,7 +418,6 @@ https://dirtysalt.github.io/html/memory-barrier.html
 https://dirtysalt.github.io/html/memory.html
 https://dirtysalt.github.io/html/mesos-omega-borg-a-survey.html
 https://dirtysalt.github.io/html/mesos.html
-https://dirtysalt.github.io/html/micro-twitter.html
 https://dirtysalt.github.io/html/microservices-not-a-free-lunch.html
 https://dirtysalt.github.io/html/millwheel.html
 https://dirtysalt.github.io/html/minimal-wsgi-app-in-python.html
@@ -536,6 +535,7 @@ https://dirtysalt.github.io/html/pypy-impl.html
 https://dirtysalt.github.io/html/python-gzip-input-stream-impl.html
 https://dirtysalt.github.io/html/python-ipython.html
 https://dirtysalt.github.io/html/python-requests-encoding-issue.html
+https://dirtysalt.github.io/html/python-thread-safe-complaint.html
 https://dirtysalt.github.io/html/python-universal-feed-parser.html
 https://dirtysalt.github.io/html/python-weak-perf-matters.html
 https://dirtysalt.github.io/html/python.html
