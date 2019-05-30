@@ -1,6 +1,7 @@
 #+title: 个人博客 Blogs
 
 ** 2019
+- 201905 [[file:bayesian-methods-for-hackers.org][Bayesian Methods for Hackers]]
 - 201905 [[file:python-thread-safe-complaint.org][Python线程安全的抱怨]]
 - 201905 [[file:12-classic-mistakes.org][12个软件工程经典错误]]
 - 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]

@@ -64,6 +64,7 @@ https://dirtysalt.github.io/html/azkaban.html
 https://dirtysalt.github.io/html/baby-sleep-training.html
 https://dirtysalt.github.io/html/backblaze-storage-pod.html
 https://dirtysalt.github.io/html/baidu-bit-shanghai-route.html
+https://dirtysalt.github.io/html/bayesian-methods-for-hackers.html
 https://dirtysalt.github.io/html/be-careful-when-you-drive.html
 https://dirtysalt.github.io/html/beating-the-cap-theorem-checklist.html
 https://dirtysalt.github.io/html/beauty-of-math.html
